@@ -108,10 +108,15 @@ void Main_Component::refresh_patch_display()
     setup_choice(cb_reverb, pgen.type_reverb());
 
     std::array<Fl_Group *, 6> box_cpr
-        {{ box_cpr1, box_cpr2, box_cpr3, box_cpr4, box_cpr5, box_cpr6  }};
+        {{ box_cpr1, box_cpr2, box_cpr3, box_cpr4, box_cpr5, box_cpr6 }};
     setup_boxes(pgen.enable_compressor().get(pat), pgen.compressor, box_cpr.data(), box_cpr.size());
 
+    std::array<Fl_Group *, 9> box_eq
+        {{ box_eq1, box_eq2, box_eq3, box_eq4, box_eq5, box_eq6, box_eq7, box_eq8, box_eq9 }};
+    setup_boxes(pgen.enable_equalizer().get(pat), pgen.equalizer, box_eq.data(), box_eq.size());
+
     // TODO
+    
     
 
     for (const auto &a : assoc_)
@@ -149,7 +154,7 @@ void Main_Component::setup_boxes(bool enable, const Parameter_Collection &pc, Fl
         box->labeltype(FL_NO_LABEL);
     }
     if (enable) {
-        for (size_t i = 0; i < 5; ++i) {
+        for (size_t i = 0, n = pc.slots.size(); i < n; ++i) {
             std::unique_ptr<Association> a(new Association);
             a->flags = Assoc_Name_On_Box|Assoc_Value_On_Label;
 

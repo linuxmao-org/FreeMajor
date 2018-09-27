@@ -112,6 +112,21 @@ public:
     DEFPARAMETER(4, PA_Integer, gain)
 };
 
+class P_Equalizer : public Parameter_Collection {
+public:
+    P_Equalizer();
+
+    DEFPARAMETER(0, PA_Choice, frequency1)
+    DEFPARAMETER(1, PA_Choice, frequency2)
+    DEFPARAMETER(2, PA_Choice, frequency3)
+    DEFPARAMETER(3, PA_Integer, gain1)
+    DEFPARAMETER(4, PA_Integer, gain2)
+    DEFPARAMETER(5, PA_Integer, gain3)
+    DEFPARAMETER(6, PA_Choice, width1)
+    DEFPARAMETER(7, PA_Choice, width2)
+    DEFPARAMETER(8, PA_Choice, width3)
+};
+
 class P_General : public Parameter_Collection {
 public:
     P_General();
@@ -132,6 +147,7 @@ public:
     DEFPARAMETER(12, PA_Choice, type_reverb)
 
     P_Compressor compressor;
+    P_Equalizer equalizer;
 };
 
 #undef DEFPARAMETER

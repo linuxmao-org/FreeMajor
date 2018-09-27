@@ -1,0 +1,83 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0304
+i18n_type 1
+i18n_include app_i18n.h
+i18n_function _
+header_name {.h}
+code_name {.cxx}
+decl {\#include "model/patch.h"} {private local
+}
+
+decl {\#include <FL/Fl_Hold_Browser.H>} {public global
+}
+
+decl {\#include <stdint.h>} {public global
+}
+
+decl {class Patch_Bank;} {public global
+}
+
+class Patch_Chooser {open
+} {
+  Function {Patch_Chooser(const Patch_Bank &pbank)} {open
+  } {
+    code {pbank_ = &pbank;} {}
+  }
+  Function {show(const char *title, const char *text)} {open return_type int
+  } {
+    Fl_Window {} {open
+      xywh {465 192 240 415} type Double visible
+    } {
+      Fl_Button {} {
+        label Cancel
+        callback {window_->hide()}
+        xywh {145 380 65 25}
+      }
+      Fl_Button {} {
+        label OK
+        callback {accept_ = true;
+window_->hide();}
+        xywh {25 380 65 25}
+      }
+      Fl_Browser br_bank {
+        xywh {10 30 220 340}
+        class Fl_Hold_Browser
+      }
+      Fl_Box lbl_text {
+        label label selected
+        xywh {10 7 220 13} align 20
+      }
+    }
+    code {accept_ = false;
+window_ = w;
+
+w->label(title);
+lbl_text->label(text);
+
+const Patch_Bank &pbank = *pbank_;
+for (unsigned i = 0; i < Patch_Bank::max_count; ++i) {
+    std::string name = std::to_string(i + 1) + " - ";
+    if (pbank.used[i])
+        name += pbank.slot[i].name();
+    br_bank->add(name.c_str(), (void *)(uintptr_t)i);
+}
+
+w->set_modal();
+w->show();
+while (w->shown()) Fl::wait();
+int v = br_bank->value();
+void *p = br_bank->data(v);
+delete w;
+window_ = nullptr;
+if (!accept_)
+    return -1;
+
+return (v == 0) ? -1 : (unsigned)(uintptr_t)p;} {}
+  }
+  decl {const Patch_Bank *pbank_ = nullptr;} {private local
+  }
+  decl {Fl_Double_Window *window_ = nullptr;} {private local
+  }
+  decl {bool accept_ = false;} {private local
+  }
+}

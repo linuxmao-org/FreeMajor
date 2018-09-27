@@ -1,0 +1,470 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0304
+i18n_type 1
+i18n_include app_i18n.h
+i18n_function _
+header_name {.h}
+code_name {.cxx}
+decl {\#include "association.h"} {private global
+}
+
+decl {\#include "model/patch.h"} {private global
+}
+
+decl {\#include "model/parameter.h"} {private global
+}
+
+decl {\#include <FL/Fl_Hold_Browser.H>} {public global
+}
+
+decl {\#include <vector>} {selected public global
+}
+
+decl {\#include <memory>} {public global
+}
+
+decl {class Patch;} {public global
+}
+
+decl {class Patch_Bank;} {public global
+}
+
+decl {class Parameter_Collection;} {public global
+}
+
+decl {class P_General;} {public global
+}
+
+decl {class Association;} {public global
+}
+
+widget_class Main_Component {open
+  xywh {5 59 1000 840} type Double
+  code0 {init();} visible
+} {
+  decl {void init();} {private local
+  }
+  decl {~Main_Component();} {public local
+  }
+  decl {unsigned get_patch_number() const;} {public local
+  }
+  decl {void set_patch_number(unsigned no);} {private local
+  }
+  decl {void set_nth_patch(unsigned nth, const Patch &pat);} {public local
+  }
+  decl {void refresh_bank_browser();} {public local
+  }
+  decl {void refresh_patch_display();} {public local
+  }
+  decl {void setup_boxes(bool enable, const Parameter_Collection &pc, Fl_Group *boxes[], unsigned nboxes, const Patch &pat);} {private local
+  }
+  decl {void update_midi_outs();} {private local
+  }
+  decl {void on_selected_patch();} {private local
+  }
+  decl {void on_changed_midi_out();} {private local
+  }
+  Fl_Box {} {
+    label {Toto Major}
+    xywh {695 3 300 39} box UP_BOX labeltype SHADOW_LABEL labelsize 28
+  }
+  Fl_Button btn_import {
+    label Import
+    callback {on_clicked_import();}
+    xywh {525 80 70 20} labelsize 12
+  }
+  Fl_Button btn_export {
+    label Export
+    callback {on_clicked_export();}
+    xywh {595 80 70 20} labelsize 12
+  }
+  decl {void on_clicked_import();} {private local
+  }
+  decl {void on_clicked_export();} {private local
+  }
+  decl {void on_clicked_change();} {private local
+  }
+  decl {void on_clicked_send();} {private local
+  }
+  Fl_Browser br_bank {
+    callback {on_selected_patch();}
+    xywh {345 30 180 70} labelsize 12 textsize 12
+    class Fl_Hold_Browser
+  }
+  decl {std::unique_ptr<Patch_Bank> pbank_;} {private local
+  }
+  decl {std::unique_ptr<P_General> pgen_;} {private local
+  }
+  decl {std::vector<std::unique_ptr<Association>> assoc_;} {private local
+  }
+  Fl_Choice ch_midi_out {
+    callback {on_changed_midi_out();} open
+    xywh {695 85 220 20} down_box BORDER_BOX labelsize 12 textsize 12
+  } {}
+  Fl_Button btn_change {
+    label Change
+    callback {on_clicked_change();}
+    xywh {560 60 70 20} labelsize 12
+  }
+  Fl_Group {} {open
+    xywh {5 110 261 225} box THIN_UP_BOX
+  } {
+    Fl_Check_Button chk_noise_gate {
+      label {Noise gate}
+      xywh {6 111 128 23} down_box DOWN_BOX labelsize 12
+    }
+    Fl_Group box_ng1 {open
+      xywh {10 135 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_ng2 {open
+      xywh {70 135 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_ng3 {open
+      xywh {10 200 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_ng4 {open
+      xywh {70 200 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_ng5 {open
+      xywh {10 265 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_ng6 {open
+      xywh {70 265 60 60} box BORDER_BOX
+    } {}
+    Fl_Group {} {open
+      xywh {135 110 131 225} box THIN_UP_BOX
+    } {
+      Fl_Check_Button chk_compressor {
+        label Compressor
+        xywh {136 111 128 23} down_box DOWN_BOX labelsize 12
+      }
+      Fl_Group box_cpr1 {open
+        xywh {140 135 60 60} box BORDER_BOX
+      } {}
+      Fl_Group box_cpr2 {open
+        xywh {200 135 60 60} box BORDER_BOX
+      } {}
+      Fl_Group box_cpr3 {open
+        xywh {140 200 60 60} box BORDER_BOX
+      } {}
+      Fl_Group box_cpr4 {open
+        xywh {200 200 60 60} box BORDER_BOX
+      } {}
+      Fl_Group box_cpr5 {open
+        xywh {140 265 60 60} box BORDER_BOX
+      } {}
+      Fl_Group box_cpr6 {open
+        xywh {200 265 60 60} box BORDER_BOX
+      } {}
+    }
+  }
+  Fl_Group {} {open
+    xywh {5 335 261 285} box THIN_UP_BOX
+  } {
+    Fl_Check_Button chk_equalizer {
+      label Equalizer
+      xywh {6 336 258 23} down_box DOWN_BOX labelsize 12
+    }
+    Fl_Group box_eq1 {open
+      xywh {25 360 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_eq2 {open
+      xywh {105 360 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_eq4 {open
+      xywh {25 425 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_eq5 {open
+      xywh {105 425 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_eq7 {open
+      xywh {25 490 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_eq8 {open
+      xywh {105 490 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_eq3 {open
+      xywh {185 360 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_eq6 {open
+      xywh {185 425 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_eq9 {open
+      xywh {185 490 60 60} box BORDER_BOX
+    } {}
+  }
+  Fl_Group {} {open
+    xywh {265 110 131 510} box THIN_UP_BOX
+  } {
+    Fl_Check_Button chk_filter {
+      label Filter
+      xywh {266 111 128 23} down_box DOWN_BOX labelsize 12
+    }
+    Fl_Group box_flt1 {open
+      xywh {270 160 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_flt2 {open
+      xywh {330 160 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_flt3 {open
+      xywh {270 225 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_flt4 {open
+      xywh {330 225 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_flt5 {open
+      xywh {270 290 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_flt6 {open
+      xywh {330 290 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_flt7 {open
+      xywh {270 355 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_flt8 {open
+      xywh {330 355 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_flt9 {open
+      xywh {270 420 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_flt10 {open
+      xywh {330 420 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_flt11 {open
+      xywh {270 485 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_flt12 {open
+      xywh {330 485 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_flt13 {open
+      xywh {270 550 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_flt14 {open
+      xywh {330 550 60 60} box BORDER_BOX
+    } {}
+    Fl_Choice cb_filter {open
+      xywh {270 135 120 20} down_box BORDER_BOX
+    } {}
+  }
+  Fl_Group {} {open
+    xywh {395 110 131 510} box THIN_UP_BOX
+  } {
+    Fl_Check_Button chk_pitch {
+      label Pitch
+      xywh {396 111 128 23} down_box DOWN_BOX labelsize 12
+    }
+    Fl_Group box_pit1 {open
+      xywh {400 160 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_pit2 {open
+      xywh {460 160 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_pit3 {open
+      xywh {400 225 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_pit4 {open
+      xywh {460 225 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_pit5 {open
+      xywh {400 290 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_pit6 {open
+      xywh {460 290 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_pit7 {open
+      xywh {400 355 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_pit8 {open
+      xywh {460 355 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_pit9 {open
+      xywh {400 420 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_pit10 {open
+      xywh {460 420 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_pit11 {open
+      xywh {400 485 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_pit12 {open
+      xywh {460 485 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_pit13 {open
+      xywh {400 550 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_pit14 {open
+      xywh {460 550 60 60} box BORDER_BOX
+    } {}
+    Fl_Choice cb_pitch {open
+      xywh {400 135 120 20} down_box BORDER_BOX
+    } {}
+  }
+  Fl_Group {} {open
+    xywh {525 110 391 510} box THIN_UP_BOX
+  } {
+    Fl_Check_Button chk_chorus {
+      label {Chorus/Flanger}
+      xywh {526 111 128 23} down_box DOWN_BOX labelsize 12
+    }
+    Fl_Group box_cho1 {open
+      xywh {530 160 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_cho2 {open
+      xywh {590 160 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_cho3 {open
+      xywh {530 225 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_cho4 {open
+      xywh {590 225 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_cho5 {open
+      xywh {530 290 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_cho6 {open
+      xywh {590 290 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_cho7 {open
+      xywh {530 355 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_cho8 {open
+      xywh {590 355 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_cho9 {open
+      xywh {530 420 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_cho10 {open
+      xywh {590 420 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_cho11 {open
+      xywh {530 485 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_cho12 {open
+      xywh {590 485 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_cho13 {open
+      xywh {530 550 60 60} box BORDER_BOX
+    } {}
+    Fl_Group box_cho14 {open
+      xywh {590 550 60 60} box BORDER_BOX
+    } {}
+    Fl_Choice cb_chorus {open
+      xywh {530 135 120 20} down_box BORDER_BOX
+    } {}
+    Fl_Group {} {open
+      xywh {655 110 261 510} box THIN_UP_BOX
+    } {
+      Fl_Check_Button chk_delay {
+        label Delay
+        xywh {656 111 128 23} down_box DOWN_BOX labelsize 12
+      }
+      Fl_Group box_del1 {open
+        xywh {660 160 60 60} box BORDER_BOX
+      } {}
+      Fl_Group box_del2 {open
+        xywh {720 160 60 60} box BORDER_BOX
+      } {}
+      Fl_Group box_del3 {open
+        xywh {660 225 60 60} box BORDER_BOX
+      } {}
+      Fl_Group box_del4 {open
+        xywh {720 225 60 60} box BORDER_BOX
+      } {}
+      Fl_Group box_del5 {open
+        xywh {660 290 60 60} box BORDER_BOX
+      } {}
+      Fl_Group box_del6 {open
+        xywh {720 290 60 60} box BORDER_BOX
+      } {}
+      Fl_Group box_del7 {open
+        xywh {660 355 60 60} box BORDER_BOX
+      } {}
+      Fl_Group box_del8 {open
+        xywh {720 355 60 60} box BORDER_BOX
+      } {}
+      Fl_Group box_del9 {open
+        xywh {660 420 60 60} box BORDER_BOX
+      } {}
+      Fl_Group box_del10 {open
+        xywh {720 420 60 60} box BORDER_BOX
+      } {}
+      Fl_Group box_del11 {open
+        xywh {660 485 60 60} box BORDER_BOX
+      } {}
+      Fl_Group box_del12 {open
+        xywh {720 485 60 60} box BORDER_BOX
+      } {}
+      Fl_Group box_del13 {open
+        xywh {660 550 60 60} box BORDER_BOX
+      } {}
+      Fl_Group box_del14 {open
+        xywh {720 550 60 60} box BORDER_BOX
+      } {}
+      Fl_Choice cb_delay {open
+        xywh {660 135 120 20} down_box BORDER_BOX
+      } {}
+      Fl_Group {} {open
+        xywh {785 110 131 510} box THIN_UP_BOX
+      } {
+        Fl_Check_Button chk_reverb {
+          label Reverb
+          xywh {786 111 128 23} down_box DOWN_BOX labelsize 12
+        }
+        Fl_Group box_rev1 {open
+          xywh {790 160 60 60} box BORDER_BOX
+        } {}
+        Fl_Group box_rev2 {open
+          xywh {850 160 60 60} box BORDER_BOX
+        } {}
+        Fl_Group box_rev3 {open
+          xywh {790 225 60 60} box BORDER_BOX
+        } {}
+        Fl_Group box_rev4 {open
+          xywh {850 225 60 60} box BORDER_BOX
+        } {}
+        Fl_Group box_rev5 {open
+          xywh {790 290 60 60} box BORDER_BOX
+        } {}
+        Fl_Group box_rev6 {open
+          xywh {850 290 60 60} box BORDER_BOX
+        } {}
+        Fl_Group box_rev7 {open
+          xywh {790 355 60 60} box BORDER_BOX
+        } {}
+        Fl_Group box_rev8 {open
+          xywh {850 355 60 60} box BORDER_BOX
+        } {}
+        Fl_Group box_rev9 {open
+          xywh {790 420 60 60} box BORDER_BOX
+        } {}
+        Fl_Group box_rev10 {open
+          xywh {850 420 60 60} box BORDER_BOX
+        } {}
+        Fl_Group box_rev11 {open
+          xywh {790 485 60 60} box BORDER_BOX
+        } {}
+        Fl_Group box_rev12 {open
+          xywh {850 485 60 60} box BORDER_BOX
+        } {}
+        Fl_Group box_rev13 {open
+          xywh {790 550 60 60} box BORDER_BOX
+        } {}
+        Fl_Group box_rev14 {open
+          xywh {850 550 60 60} box BORDER_BOX
+        } {}
+        Fl_Choice cb_reverb {open
+          xywh {790 135 120 20} down_box BORDER_BOX
+        } {}
+      }
+    }
+  }
+  Fl_Button btn_send {
+    label Send
+    callback {on_clicked_send();}
+    xywh {920 85 70 20} labelsize 12
+  }
+  Fl_Box {} {
+    label {Midi Out Devices:}
+    xywh {695 60 140 25} labelsize 12 align 20
+  }
+}

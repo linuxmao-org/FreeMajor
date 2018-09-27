@@ -1,0 +1,15 @@
+# build rules for RtMidi
+
+add_library(RtMidi STATIC "${PROJECT_SOURCE_DIR}/thirdparty/rtmidi/RtMidi.cpp")
+target_include_directories(RtMidi PUBLIC "${PROJECT_SOURCE_DIR}/thirdparty/rtmidi")
+if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+  target_compile_definitions(RtMidi PUBLIC "__LINUX_ALSA__")
+  target_link_libraries(RtMidi PUBLIC "asound")
+elseif(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+  target_compile_definitions(RtMidi PUBLIC "__WINDOWS_MM__")
+  target_link_libraries(RtMidi PUBLIC "winmm")
+elseif(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+  target_compile_definitions(RtMidi PUBLIC "__MACOSX_CORE__")
+  find_library(COREMIDI_LIBRARY "CoreMidi")
+  target_link_libraries(RtMidi PUBLIC "${COREMIDI_LIBRARY}")
+endif()

@@ -125,6 +125,12 @@ public:
     DEFPARAMETER(6, PA_Boolean, enable_equalizer)
     DEFPARAMETER(7, PA_Boolean, enable_noisegate)
 
+    DEFPARAMETER(8, PA_Choice, type_filter)
+    DEFPARAMETER(9, PA_Choice, type_pitch)
+    DEFPARAMETER(10, PA_Choice, type_modulation)
+    DEFPARAMETER(11, PA_Choice, type_delay)
+    DEFPARAMETER(12, PA_Choice, type_reverb)
+
     P_Compressor compressor;
 };
 

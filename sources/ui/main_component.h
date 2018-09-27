@@ -9,6 +9,8 @@
 class Patch;
 class Patch_Bank;
 class Parameter_Collection;
+class PA_Boolean;
+class PA_Choice;
 class P_General;
 class Association;
 #include <FL/Fl_Group.H>
@@ -32,7 +34,9 @@ public:
   void refresh_bank_browser(); 
   void refresh_patch_display(); 
 private:
-  void setup_boxes(bool enable, const Parameter_Collection &pc, Fl_Group *boxes[], unsigned nboxes, const Patch &pat); 
+  void setup_checkbox(Fl_Check_Button *chk, PA_Boolean &p); 
+  void setup_choice(Fl_Choice *cb, PA_Choice &p); 
+  void setup_boxes(bool enable, const Parameter_Collection &pc, Fl_Group *boxes[], unsigned nboxes); 
   void update_midi_outs(); 
   void on_selected_patch(); 
   void on_changed_midi_out(); 

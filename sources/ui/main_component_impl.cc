@@ -92,15 +92,56 @@ void Main_Component::refresh_patch_display()
 
     assoc_.clear();
 
+    setup_checkbox(chk_compressor, pgen.enable_compressor());
+    setup_checkbox(chk_filter, pgen.enable_filter());
+    setup_checkbox(chk_pitch, pgen.enable_pitch());
+    setup_checkbox(chk_chorus, pgen.enable_modulator());
+    setup_checkbox(chk_delay, pgen.enable_delay());
+    setup_checkbox(chk_reverb, pgen.enable_reverb());
+    setup_checkbox(chk_equalizer, pgen.enable_equalizer());
+    setup_checkbox(chk_noise_gate, pgen.enable_noisegate());
+
+    setup_choice(cb_filter, pgen.type_filter());
+    setup_choice(cb_pitch, pgen.type_pitch());
+    setup_choice(cb_chorus, pgen.type_modulation());
+    setup_choice(cb_delay, pgen.type_delay());
+    setup_choice(cb_reverb, pgen.type_reverb());
+
     std::array<Fl_Group *, 6> box_cpr
         {{ box_cpr1, box_cpr2, box_cpr3, box_cpr4, box_cpr5, box_cpr6  }};
-    setup_boxes(pgen.enable_compressor().get(pat), pgen.compressor, box_cpr.data(), box_cpr.size(), pat);
+    setup_boxes(pgen.enable_compressor().get(pat), pgen.compressor, box_cpr.data(), box_cpr.size());
 
     // TODO
     
+
+    for (const auto &a : assoc_)
+        a->update_value(pat);
 }
 
-void Main_Component::setup_boxes(bool enable, const Parameter_Collection &pc, Fl_Group *boxes[], unsigned nboxes, const Patch &pat)
+void Main_Component::setup_checkbox(Fl_Check_Button *chk, PA_Boolean &p)
+{
+    std::unique_ptr<Association> a(new Association);
+    a->access = &p;
+    a->value_widget = chk;
+    a->kind = Assoc_Check;
+    assoc_.push_back(std::move(a));
+}
+
+void Main_Component::setup_choice(Fl_Choice *cb, PA_Choice &p)
+{
+    std::unique_ptr<Association> a(new Association);
+
+    cb->clear();
+    for (const std::string &value : p.values)
+        cb->add(value.c_str(), 0, nullptr);
+
+    a->access = &p;
+    a->value_widget = cb;
+    a->kind = Assoc_Choice;
+    assoc_.push_back(std::move(a));
+}
+
+void Main_Component::setup_boxes(bool enable, const Parameter_Collection &pc, Fl_Group *boxes[], unsigned nboxes)
 {
     for (unsigned i = 0; i < nboxes; ++i) {
         Fl_Group *box = boxes[i];
@@ -110,11 +151,10 @@ void Main_Component::setup_boxes(bool enable, const Parameter_Collection &pc, Fl
     if (enable) {
         for (size_t i = 0; i < 5; ++i) {
             std::unique_ptr<Association> a(new Association);
+            a->flags = Assoc_Name_On_Box|Assoc_Value_On_Label;
 
             Parameter_Access *pa = pc.slots[i].get();
             a->access = pa;
-
-            int pv = pa->get(pat);
 
             Fl_Group *box = boxes[i];
             a->group_box = box;
@@ -126,20 +166,17 @@ void Main_Component::setup_boxes(bool enable, const Parameter_Collection &pc, Fl
 
             box->labeltype(FL_NORMAL_LABEL);
             box->labelsize(9);
-            box->copy_label(pa->to_string(pv).c_str());
-            box->align(FL_ALIGN_INSIDE|FL_ALIGN_BOTTOM);
+            box->align(FL_ALIGN_TOP|FL_ALIGN_INSIDE);
 
             box->begin();
             Fl_Dial *dial = new Fl_Dial(wx, wy, ww, wh, pa->name);
             a->value_widget = dial;
+            a->kind = Assoc_Dial;
             dial->range(pa->min(), pa->max());
             dial->labeltype(FL_NORMAL_LABEL);
             dial->labelsize(9);
-            dial->copy_label(pa->name);
-            dial->align(FL_ALIGN_TOP);
+            dial->align(FL_ALIGN_BOTTOM);
             box->end();
-
-            dial->value(pv);
 
             assoc_.push_back(std::move(a));
         }

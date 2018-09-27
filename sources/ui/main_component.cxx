@@ -257,6 +257,8 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
   } // Fl_Group* box_flt14
   { cb_filter = new Fl_Choice(270, 135, 120, 20);
     cb_filter->down_box(FL_BORDER_BOX);
+    cb_filter->labelsize(12);
+    cb_filter->textsize(12);
   } // Fl_Choice* cb_filter
   o->end();
 } // Fl_Group* o
@@ -324,6 +326,8 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
   } // Fl_Group* box_pit14
   { cb_pitch = new Fl_Choice(400, 135, 120, 20);
     cb_pitch->down_box(FL_BORDER_BOX);
+    cb_pitch->labelsize(12);
+    cb_pitch->textsize(12);
   } // Fl_Choice* cb_pitch
   o->end();
 } // Fl_Group* o
@@ -391,6 +395,8 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
   } // Fl_Group* box_cho14
   { cb_chorus = new Fl_Choice(530, 135, 120, 20);
     cb_chorus->down_box(FL_BORDER_BOX);
+    cb_chorus->labelsize(12);
+    cb_chorus->textsize(12);
   } // Fl_Choice* cb_chorus
   { Fl_Group* o = new Fl_Group(655, 110, 261, 510);
     o->box(FL_THIN_UP_BOX);
@@ -456,6 +462,8 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     } // Fl_Group* box_del14
     { cb_delay = new Fl_Choice(660, 135, 120, 20);
       cb_delay->down_box(FL_BORDER_BOX);
+      cb_delay->labelsize(12);
+      cb_delay->textsize(12);
     } // Fl_Choice* cb_delay
     { Fl_Group* o = new Fl_Group(785, 110, 131, 510);
       o->box(FL_THIN_UP_BOX);
@@ -521,6 +529,8 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
       } // Fl_Group* box_rev14
       { cb_reverb = new Fl_Choice(790, 135, 120, 20);
         cb_reverb->down_box(FL_BORDER_BOX);
+        cb_reverb->labelsize(12);
+        cb_reverb->textsize(12);
       } // Fl_Choice* cb_reverb
       o->end();
     } // Fl_Group* o

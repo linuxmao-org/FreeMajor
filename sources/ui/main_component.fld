@@ -17,7 +17,7 @@ decl {\#include "model/parameter.h"} {private global
 decl {\#include <FL/Fl_Hold_Browser.H>} {public global
 }
 
-decl {\#include <vector>} {selected public global
+decl {\#include <vector>} {public global
 }
 
 decl {\#include <memory>} {public global
@@ -30,6 +30,12 @@ decl {class Patch_Bank;} {public global
 }
 
 decl {class Parameter_Collection;} {public global
+}
+
+decl {class PA_Boolean;} {public global
+}
+
+decl {class PA_Choice;} {public global
 }
 
 decl {class P_General;} {public global
@@ -56,7 +62,11 @@ widget_class Main_Component {open
   }
   decl {void refresh_patch_display();} {public local
   }
-  decl {void setup_boxes(bool enable, const Parameter_Collection &pc, Fl_Group *boxes[], unsigned nboxes, const Patch &pat);} {private local
+  decl {void setup_checkbox(Fl_Check_Button *chk, PA_Boolean &p);} {private local
+  }
+  decl {void setup_choice(Fl_Choice *cb, PA_Choice &p);} {private local
+  }
+  decl {void setup_boxes(bool enable, const Parameter_Collection &pc, Fl_Group *boxes[], unsigned nboxes);} {private local
   }
   decl {void update_midi_outs();} {private local
   }
@@ -243,7 +253,7 @@ widget_class Main_Component {open
       xywh {330 550 60 60} box BORDER_BOX
     } {}
     Fl_Choice cb_filter {open
-      xywh {270 135 120 20} down_box BORDER_BOX
+      xywh {270 135 120 20} down_box BORDER_BOX labelsize 12 textsize 12
     } {}
   }
   Fl_Group {} {open
@@ -296,7 +306,7 @@ widget_class Main_Component {open
       xywh {460 550 60 60} box BORDER_BOX
     } {}
     Fl_Choice cb_pitch {open
-      xywh {400 135 120 20} down_box BORDER_BOX
+      xywh {400 135 120 20} down_box BORDER_BOX labelsize 12 textsize 12
     } {}
   }
   Fl_Group {} {open
@@ -349,7 +359,7 @@ widget_class Main_Component {open
       xywh {590 550 60 60} box BORDER_BOX
     } {}
     Fl_Choice cb_chorus {open
-      xywh {530 135 120 20} down_box BORDER_BOX
+      xywh {530 135 120 20} down_box BORDER_BOX labelsize 12 textsize 12
     } {}
     Fl_Group {} {open
       xywh {655 110 261 510} box THIN_UP_BOX
@@ -401,7 +411,7 @@ widget_class Main_Component {open
         xywh {720 550 60 60} box BORDER_BOX
       } {}
       Fl_Choice cb_delay {open
-        xywh {660 135 120 20} down_box BORDER_BOX
+        xywh {660 135 120 20} down_box BORDER_BOX labelsize 12 textsize 12
       } {}
       Fl_Group {} {open
         xywh {785 110 131 510} box THIN_UP_BOX
@@ -452,8 +462,8 @@ widget_class Main_Component {open
         Fl_Group box_rev14 {open
           xywh {850 550 60 60} box BORDER_BOX
         } {}
-        Fl_Choice cb_reverb {open
-          xywh {790 135 120 20} down_box BORDER_BOX
+        Fl_Choice cb_reverb {open selected
+          xywh {790 135 120 20} down_box BORDER_BOX labelsize 12 textsize 12
         } {}
       }
     }

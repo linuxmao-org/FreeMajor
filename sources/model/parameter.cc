@@ -159,4 +159,20 @@ P_General::P_General()
     slots.emplace_back((new PA_Boolean(564, 4, _("Enable"), _("Enable the equalizer"))));
     slots.emplace_back((new PA_Boolean(608, 4, _("Enable"), _("Enable the noise gate")))
                        ->with_inversion());
+
+    slots.emplace_back((new PA_Choice(228, 4,
+                                      {_("Auto filter"), _("Resonance filter"), _("Vintage phaser"), _("Smooth phaser"), _("Tremolo"), _("Phaser")},
+                                      _("Filter type"), _("Type of filter effect"))));
+    slots.emplace_back((new PA_Choice(292, 4,
+                                      {_("Detune"), _("Whammy"), _("Octaver"), _("Pitch shifter")},
+                                      _("Pitch type"), _("Type of pitch effect"))));
+    slots.emplace_back((new PA_Choice(356, 4,
+                                      {_("Classic chorus"), _("Advanced chorus"), _("Classic flanger"), _("Advanced flanger"), _("Vibrato")},
+                                      _("Modulation type"), _("Type of modulation effect"))));
+    slots.emplace_back((new PA_Choice(420, 4,
+                                      {_("Ping Pong"), _("Dynamic"), _("Dual")},
+                                      _("Delay type"), _("Type of delay effect"))));
+    slots.emplace_back((new PA_Choice(484, 4,
+                                      {_("Spring"), _("Hall"), _("Room"), _("Plate")},
+                                      _("Reverb type"), _("Type of reverb effect"))));
 }

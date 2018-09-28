@@ -7,6 +7,11 @@
 #include "device/midi.h"
 #include <FL/Fl.H>
 
+Midi_Out_Queue::~Midi_Out_Queue()
+{
+    Fl::remove_timeout(&on_timeout, this);
+}
+
 void Midi_Out_Queue::enqueue_message(
     const uint8_t *msg, unsigned length, double interval_after)
 {

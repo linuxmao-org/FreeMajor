@@ -137,9 +137,11 @@ widget_class Main_Component {open
   }
   decl {void on_clicked_copy();} {private local
   }
-  decl {void on_clicked_delete();} {selected private local
+  decl {void on_clicked_delete();} {private local
   }
   decl {void on_clicked_send();} {private local
+  }
+  decl {void on_edited_patch_name();} {selected private local
   }
   decl {static void on_edited_parameter(Fl_Widget *w, void *user_data);} {private local
   }
@@ -637,7 +639,7 @@ widget_class Main_Component {open
   }
   Fl_Box {} {
     label {Midi Out Devices:}
-    xywh {680 60 140 25} labelsize 12 align 20
+    xywh {680 65 225 20} labelsize 12 align 20
   }
   Fl_Check_Button chk_realtime {
     label {Real time}
@@ -657,5 +659,13 @@ widget_class Main_Component {open
     label Delete
     callback {on_clicked_delete();}
     xywh {595 60 70 20} labelsize 12
+  }
+  Fl_Box {} {
+    label {Patch name:}
+    xywh {30 155 120 20} labelsize 12 align 20
+  }
+  Fl_Input txt_patch_name {
+    callback {on_edited_patch_name();}
+    xywh {30 175 120 20} labelsize 12 textsize 12
   }
 }

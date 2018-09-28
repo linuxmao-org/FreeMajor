@@ -10,6 +10,8 @@
 
 class Midi_Out_Queue {
 public:
+    ~Midi_Out_Queue();
+
     void enqueue_message(const uint8_t *msg, unsigned length, double interval_after);
     void cancel_all_sysex();
 

@@ -34,10 +34,13 @@ void Main_Component::init()
     P_General *pgen = new P_General;
     pgen_.reset(pgen);
 
-    set_nth_patch(0, Patch::create_empty());
-
     midi_out_q_.reset(new Midi_Out_Queue);
     update_midi_outs();
+
+    txt_patch_name->when(FL_WHEN_CHANGED);
+
+    set_nth_patch(0, Patch::create_empty());
+    set_patch_number(0);
 }
 
 Main_Component::~Main_Component()
@@ -54,7 +57,26 @@ unsigned Main_Component::get_patch_number() const
 
 void Main_Component::set_patch_number(unsigned no)
 {
-    br_bank->select_only((void *)(uintptr_t)no);
+    if (no == get_patch_number()) {
+        refresh_patch_display();
+        return;
+    }
+
+    Fl_Browser &br = *br_bank;
+
+    if (no == ~0u) {
+        br.value(0);
+        return;
+    }
+
+    unsigned nth = 0;
+    for (unsigned i = 1, n = br.size(); nth == 0 && i <= n; ++i) {
+        if ((uintptr_t)br.data(i) == no)
+            nth = i;
+    }
+
+    br.value(nth);
+    refresh_patch_display();
 }
 
 void Main_Component::set_nth_patch(unsigned nth, const Patch &pat)
@@ -67,7 +89,9 @@ void Main_Component::set_nth_patch(unsigned nth, const Patch &pat)
     pbank.slot[nth].patch_number(nth);
     pbank.used.set(nth);
 
+    unsigned patchno = get_patch_number();
     refresh_bank_browser();
+    set_patch_number(patchno);
 }
 
 void Main_Component::refresh_bank_browser()
@@ -90,6 +114,8 @@ void Main_Component::refresh_patch_display()
     if (patchno == ~0u)
         return;
     const Patch &pat = pbank_->slot[patchno];
+
+    txt_patch_name->value(pat.name().c_str());
 
     P_General &pgen = *pgen_;
     chk_compressor->value(pgen.enable_compressor().get(pat));
@@ -369,7 +395,7 @@ void Main_Component::on_clicked_new()
     pbank.used[patchno] = true;
 
     refresh_bank_browser();
-    refresh_patch_display();
+    set_patch_number(patchno);
 }
 
 void Main_Component::on_clicked_copy()
@@ -388,7 +414,7 @@ void Main_Component::on_clicked_copy()
     pbank.used[dst_patchno] = true;
 
     refresh_bank_browser();
-    refresh_patch_display();
+    set_patch_number(src_patchno);
 }
 
 void Main_Component::on_clicked_delete()
@@ -424,6 +450,21 @@ void Main_Component::on_clicked_send()
     midi_out_q_->enqueue_message(pgm_chg_msg, sizeof(pgm_chg_msg), 0.0);
 
     midi_out_q_->enqueue_message(message.data(), message.size(), sysex_send_interval);
+}
+
+void Main_Component::on_edited_patch_name()
+{
+    unsigned patchno = get_patch_number();
+    if (patchno == ~0u)
+        return;
+    Patch &pat = pbank_->slot[patchno];
+
+    pat.name(txt_patch_name->value());
+    refresh_bank_browser();
+    set_patch_number(patchno);
+
+    if (chk_realtime->value())
+        on_clicked_send();
 }
 
 void Main_Component::on_edited_parameter(Fl_Widget *w, void *user_data)

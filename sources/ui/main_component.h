@@ -29,6 +29,7 @@ typedef Fl_Widget_Ex<Fl_Group> Fl_Group_Ex;
 #include <FL/Fl_Button.H>
 #include <FL/Fl_Choice.H>
 #include <FL/Fl_Check_Button.H>
+#include <FL/Fl_Input.H>
 
 class Main_Component : public Fl_Group {
 public:
@@ -68,6 +69,7 @@ private:
   void on_clicked_copy(); 
   void on_clicked_delete(); 
   void on_clicked_send(); 
+  void on_edited_patch_name(); 
   static void on_edited_parameter(Fl_Widget *w, void *user_data); 
   static void on_enter_parameter_control(Fl_Widget *w, void *user_data); 
   static void on_leave_parameter_control(Fl_Widget *w, void *user_data); 
@@ -217,5 +219,10 @@ public:
 private:
   inline void cb_btn_delete_i(Fl_Button*, void*);
   static void cb_btn_delete(Fl_Button*, void*);
+public:
+  Fl_Input *txt_patch_name;
+private:
+  inline void cb_txt_patch_name_i(Fl_Input*, void*);
+  static void cb_txt_patch_name(Fl_Input*, void*);
 };
 #endif

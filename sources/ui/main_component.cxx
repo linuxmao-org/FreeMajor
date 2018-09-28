@@ -70,6 +70,13 @@ void Main_Component::cb_btn_delete_i(Fl_Button*, void*) {
 void Main_Component::cb_btn_delete(Fl_Button* o, void* v) {
   ((Main_Component*)(o->parent()))->cb_btn_delete_i(o,v);
 }
+
+void Main_Component::cb_txt_patch_name_i(Fl_Input*, void*) {
+  on_edited_patch_name();
+}
+void Main_Component::cb_txt_patch_name(Fl_Input* o, void* v) {
+  ((Main_Component*)(o->parent()))->cb_txt_patch_name_i(o,v);
+}
 Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
   : Fl_Group(X, Y, W, H, L) {
 { Fl_Box* o = new Fl_Box(700, 1, 300, 39, _("Toto Major"));
@@ -1402,7 +1409,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
   txt_description->labelsize(12);
   txt_description->align(Fl_Align(133|FL_ALIGN_INSIDE));
 } // Fl_Box* txt_description
-{ Fl_Box* o = new Fl_Box(680, 60, 140, 25, _("Midi Out Devices:"));
+{ Fl_Box* o = new Fl_Box(680, 65, 225, 20, _("Midi Out Devices:"));
   o->labelsize(12);
   o->align(Fl_Align(FL_ALIGN_LEFT|FL_ALIGN_INSIDE));
 } // Fl_Box* o
@@ -1423,6 +1430,15 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
   btn_delete->labelsize(12);
   btn_delete->callback((Fl_Callback*)cb_btn_delete);
 } // Fl_Button* btn_delete
+{ Fl_Box* o = new Fl_Box(30, 155, 120, 20, _("Patch name:"));
+  o->labelsize(12);
+  o->align(Fl_Align(FL_ALIGN_LEFT|FL_ALIGN_INSIDE));
+} // Fl_Box* o
+{ txt_patch_name = new Fl_Input(30, 175, 120, 20);
+  txt_patch_name->labelsize(12);
+  txt_patch_name->textsize(12);
+  txt_patch_name->callback((Fl_Callback*)cb_txt_patch_name);
+} // Fl_Input* txt_patch_name
 init();
 end();
 }

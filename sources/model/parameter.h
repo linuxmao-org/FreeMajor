@@ -280,6 +280,87 @@ public:
     } dual;
 };
 
+class P_Filter : public Polymorphic_Parameter_Collection {
+public:
+    explicit P_Filter(const PA_Choice &tag);
+
+    Parameter_Collection &dispatch(const Patch &pat) override;
+
+    class Auto_Resonance : public Parameter_Collection {
+    public:
+        Auto_Resonance();
+
+        DEFPARAMETER(0, PA_Choice, order)
+        DEFPARAMETER(1, PA_Integer, sensitivity)
+        DEFPARAMETER(2, PA_Choice, response)
+        DEFPARAMETER(3, PA_Choice, frequency_max)
+        DEFPARAMETER(4, PA_Integer, mix)
+        DEFPARAMETER(4, PA_Integer, out_level)
+    } auto_resonance;
+
+    class Resonance : public Parameter_Collection {
+    public:
+        Resonance();
+
+        DEFPARAMETER(0, PA_Choice, order)
+        DEFPARAMETER(1, PA_Choice, hi_cut)
+        DEFPARAMETER(2, PA_Integer, hi_resonance)
+        DEFPARAMETER(3, PA_Integer, mix)
+        DEFPARAMETER(4, PA_Integer, out_level)
+    } resonance;
+
+    class Vintage_Phaser : public Parameter_Collection {
+    public:
+        Vintage_Phaser();
+
+        DEFPARAMETER(0, PA_Choice, speed)
+        DEFPARAMETER(1, PA_Integer, depth)
+        DEFPARAMETER(2, PA_Choice, tempo)
+        DEFPARAMETER(3, PA_Integer, feedback)
+        DEFPARAMETER(4, PA_Choice, range)
+        DEFPARAMETER(5, PA_Boolean, phase_reverse)
+        DEFPARAMETER(6, PA_Integer, mix)
+        DEFPARAMETER(7, PA_Integer, out_level)
+    } vintage_phaser;
+
+    class Smooth_Phaser : public Parameter_Collection {
+    public:
+        Smooth_Phaser();
+
+        DEFPARAMETER(0, PA_Choice, speed)
+        DEFPARAMETER(1, PA_Integer, depth)
+        DEFPARAMETER(2, PA_Choice, tempo)
+        DEFPARAMETER(3, PA_Integer, feedback)
+        DEFPARAMETER(4, PA_Choice, range)
+        DEFPARAMETER(5, PA_Boolean, phase_reverse)
+        DEFPARAMETER(6, PA_Integer, mix)
+        DEFPARAMETER(7, PA_Integer, out_level)
+    } smooth_phaser;
+
+    class Tremolo : public Parameter_Collection {
+    public:
+        Tremolo();
+
+        DEFPARAMETER(0, PA_Choice, speed)
+        DEFPARAMETER(1, PA_Integer, depth)
+        DEFPARAMETER(2, PA_Choice, tempo)
+        DEFPARAMETER(3, PA_Integer, lfo_pulse_width)
+        DEFPARAMETER(4, PA_Choice, hi_cut)
+        DEFPARAMETER(5, PA_Choice, type)
+        DEFPARAMETER(6, PA_Integer, out_level)
+    } tremolo;
+
+    class Panner : public Parameter_Collection {
+    public:
+        Panner();
+
+        DEFPARAMETER(0, PA_Choice, speed)
+        DEFPARAMETER(1, PA_Integer, width)
+        DEFPARAMETER(2, PA_Choice, tempo)
+        DEFPARAMETER(3, PA_Integer, out_level)
+    } panner;
+};
+
 class P_General : public Parameter_Collection {
 public:
     P_General();
@@ -305,6 +386,7 @@ public:
     P_Reverb reverb;
     std::unique_ptr<P_Pitch> pitch;
     std::unique_ptr<P_Delay> delay;
+    std::unique_ptr<P_Filter> filter;
 };
 
 #undef DEFPARAMETER

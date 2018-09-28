@@ -135,6 +135,10 @@ void Main_Component::refresh_patch_display()
         {{ box_del1, box_del2, box_del3, box_del4, box_del5, box_del6, box_del7, box_del8, box_del9, box_del10, box_del11, box_del12, box_del13, box_del14 }};
     setup_boxes(pgen.enable_delay().get(pat), pgen.delay->dispatch(pat), box_del.data(), box_del.size());
 
+    std::array<Fl_Group_Ex *, 14> box_flt
+        {{ box_flt1, box_flt2, box_flt3, box_flt4, box_flt5, box_flt6, box_flt7, box_flt8, box_flt9, box_flt10, box_flt11, box_flt12, box_flt13, box_flt14 }};
+    setup_boxes(pgen.enable_filter().get(pat), pgen.filter->dispatch(pat), box_flt.data(), box_flt.size());
+
     // TODO
     
     

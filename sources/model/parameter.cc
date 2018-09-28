@@ -415,6 +415,148 @@ P_Delay::Dual::Dual()
                        ->with_min_max(-100, 0));
 }
 
+P_Filter::P_Filter(const PA_Choice &tag)
+    : Polymorphic_Parameter_Collection(tag)
+{
+}
+
+Parameter_Collection &P_Filter::dispatch(const Patch &pat)
+{
+    switch (tag.get(pat)) {
+    default:
+        assert(false);
+    case 0:
+        return auto_resonance;
+    case 1:
+        return resonance;
+    case 2:
+        return vintage_phaser;
+    case 3:
+        return smooth_phaser;
+    case 4:
+        return tremolo;
+    case 5:
+        return panner;
+    }
+}
+
+P_Filter::Auto_Resonance::Auto_Resonance()
+{
+    slots.emplace_back((new PA_Choice(232, 4,
+                                      {_("2nd"), _("4th")},
+                                      _("Order"), _("The Order parameter of the resonance filters changes the steepness of the filters. 2nd order filters are 12dB/Octave while 4th order filters are 24dB/Octave."))));
+    slots.emplace_back((new PA_Integer(236, 4, _("Sensitivity"), _("Sets the sensitivity according to the Input you are feeding the unit.")))
+                       ->with_min_max(0, 10));
+    slots.emplace_back((new PA_Choice(240, 4,
+                                      {_("Slow"), _("Medium"), _("Fast")},
+                                      _("Response"), _("Determines whether the sweep through a frequency range will be performed fast or slow."))));
+    slots.emplace_back((new PA_Choice(252, 4,
+                                      {"1.00k", "1.12k", "1.26k", "1.41k", "1.58k", "1.78k", "2.00k", "2.24k", "2.51k", "2.82k", "3.16k", "3.55k", "3.98k", "4.47k", "5.01k", "5.62k", "6.31k", "7.08k", "7.94k", "8.91k", "10.0k"},
+                                      _("Frequency Max"), _("Limits the frequency range in which the sweep will be performed."))));
+    slots.emplace_back((new PA_Integer(280, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
+                       ->with_min_max(0, 100));
+    slots.emplace_back((new PA_Integer(284, 4, _("Out level"), _("Sets the overall Output level of this block.")))
+                       ->with_min_max(-100, 0));
+}
+
+P_Filter::Resonance::Resonance()
+{
+    slots.emplace_back((new PA_Choice(232, 4,
+                                      {_("2nd"), _("4th")},
+                                      _("Order"), _("The Order parameter of the resonance filters changes the steepness of the filters. 2nd order filters are 12dB/Octave while 4th order filters are 24dB/Octave."))));
+    slots.emplace_back((new PA_Choice(272, 4,
+                                      {"158.5", "177.8", "199.5", "223.9", "251.2", "281.8", "316.2", "354.8", "398.1", "446.7", "501.2", "562.3", "631.0", "707.9", "794.3", "891.3", "1.00k", "1.12k", "1.26k", "1.41k", "1.58k", "1.78k", "2.00k", "2.24k", "2.51k", "2.82k", "3.16k", "3.55k", "3.98k", "4.47k", "5.01k", "5.62k", "6.31k", "7.08k", "7.94k", "8.91k", "10.0k", "11.2k", "12.6k", "14.1k"},
+                                      _("Hi Cut"), _("Determines the frequency above which the Hi Cut filter will attenuate the high-end frequencies of the generated effect."))));
+    slots.emplace_back((new PA_Integer(276, 4, _("Hi Resonance"), _("Sets the amount of Resonance in the Hi Cut filter.")))
+                       ->with_min_max(0, 100));
+    slots.emplace_back((new PA_Integer(280, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
+                       ->with_min_max(0, 100));
+    slots.emplace_back((new PA_Integer(284, 4, _("Out level"), _("Sets the overall Output level of this block.")))
+                       ->with_min_max(-100, 0));
+}
+
+P_Filter::Vintage_Phaser::Vintage_Phaser()
+{
+    slots.emplace_back((new PA_Choice(244, 4,
+                                      {".050", ".052", ".053", ".055", ".056", ".058", ".060", ".061", ".063", ".065", ".067", ".069", ".071", ".073", ".075", ".077", ".079", ".082", ".084", ".087", ".089", ".092", ".094", ".097", ".100", ".103", ".106", ".109", ".112", ".115", ".119", ".122", ".126", ".130", ".133", ".137", ".141", ".145", ".150", ".154", ".158", ".163", ".168", ".173", ".178", ".183", ".188", ".194", ".200", ".205", ".211", ".218", ".224", ".230", ".237", ".244", ".251", ".259", ".266", ".274", ".282", ".290", ".299", ".307", ".316", ".325", ".335", ".345", ".355", ".365", ".376", ".387", ".398", ".410", ".422", ".434", ".447", ".460", ".473", ".487", ".501", ".516", ".531", ".546", ".562", ".579", ".596", ".613", ".631", ".649", ".668", ".688", ".708", ".729", ".750", ".772", ".794", ".818", ".841", ".866", ".891", ".917", ".944", ".972", "1.00", "1.03", "1.06", "1.09", "1.12", "1.15", "1.19", "1.22", "1.26", "1.30", "1.33", "1.37", "1.41", "1.45", "1.50", "1.54", "1.58", "1.63", "1.68", "1.73", "1.78", "1.83", "1.88", "1.94", "2.00", "2.05", "2.11", "2.18", "2.24", "2.30", "2.37", "2.44", "2.51", "2.59", "2.66", "2.74", "2.82", "2.90", "2.99", "3.07", "3.16", "3.25", "3.35", "3.45", "3.55", "3.65", "3.76", "3.87", "3.98", "4.10", "4.22", "4.34", "4.47", "4.60", "4.73", "4.87", "5.01", "5.16", "5.31", "5.46", "5.62", "5.79", "5.96", "6.13", "6.31", "6.49", "6.68", "6.88", "7.08", "7.29", "7.50", "7.72", "7.94", "8.18", "8.41", "8.66", "8.91", "9.17", "9.44", "9.72", "10.00", "10.29", "10.59", "10.90", "11.22", "11.55", "11.89", "12.23", "12.59", "12.96", "13.34", "13.72", "14.13", "14.54", "14.96", "15.40", "15.85", "16.31", "16.79", "17.28", "17.78", "18.30", "18.84", "19.39", "19.95"}, 
+                                      _("Speed"), _("The Speed of the Chorus, also known as Rate."))));
+    slots.emplace_back((new PA_Integer(248, 4, _("Depth"), _("Controls the Depth of the Phaser.")))
+                       ->with_min_max(0, 100));
+    slots.emplace_back((new PA_Choice(252, 4,
+                                      {_("Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
+                                      _("Tempo"), _("The Tempo parameter sets the relationship to the global Tempo."))));
+    slots.emplace_back((new PA_Integer(260, 4, _("Feedback"), _("Controls the amount of feedback in the Phaser. Setting this parameter to \"-100\" reverses the phase of the signal that is fed back to the algorithm Input.")))
+                       ->with_min_max(-100, 100));
+    slots.emplace_back((new PA_Choice(264, 4,
+                                      {"Low", "High"},
+                                      _("Range"), _("Determines whether the phasing effect should be mainly on the high- of low-end frequencies."))));
+    slots.emplace_back((new PA_Boolean(268, 4, _("Phase reverse"), _("An LFO phase change that causes a small Delay in one of the waveform starting points. When applied to the Left and Right outputs will start the current waveform at two different points giving you a more extreme wide spread phasing effect.")))
+                       ->with_inversion());
+    slots.emplace_back((new PA_Integer(280, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
+                       ->with_min_max(0, 100));
+    slots.emplace_back((new PA_Integer(284, 4, _("Out level"), _("Sets the overall Output level of this block.")))
+                       ->with_min_max(-100, 0));
+}
+
+P_Filter::Smooth_Phaser::Smooth_Phaser()
+{
+    slots.emplace_back((new PA_Choice(244, 4,
+                                      {".050", ".052", ".053", ".055", ".056", ".058", ".060", ".061", ".063", ".065", ".067", ".069", ".071", ".073", ".075", ".077", ".079", ".082", ".084", ".087", ".089", ".092", ".094", ".097", ".100", ".103", ".106", ".109", ".112", ".115", ".119", ".122", ".126", ".130", ".133", ".137", ".141", ".145", ".150", ".154", ".158", ".163", ".168", ".173", ".178", ".183", ".188", ".194", ".200", ".205", ".211", ".218", ".224", ".230", ".237", ".244", ".251", ".259", ".266", ".274", ".282", ".290", ".299", ".307", ".316", ".325", ".335", ".345", ".355", ".365", ".376", ".387", ".398", ".410", ".422", ".434", ".447", ".460", ".473", ".487", ".501", ".516", ".531", ".546", ".562", ".579", ".596", ".613", ".631", ".649", ".668", ".688", ".708", ".729", ".750", ".772", ".794", ".818", ".841", ".866", ".891", ".917", ".944", ".972", "1.00", "1.03", "1.06", "1.09", "1.12", "1.15", "1.19", "1.22", "1.26", "1.30", "1.33", "1.37", "1.41", "1.45", "1.50", "1.54", "1.58", "1.63", "1.68", "1.73", "1.78", "1.83", "1.88", "1.94", "2.00", "2.05", "2.11", "2.18", "2.24", "2.30", "2.37", "2.44", "2.51", "2.59", "2.66", "2.74", "2.82", "2.90", "2.99", "3.07", "3.16", "3.25", "3.35", "3.45", "3.55", "3.65", "3.76", "3.87", "3.98", "4.10", "4.22", "4.34", "4.47", "4.60", "4.73", "4.87", "5.01", "5.16", "5.31", "5.46", "5.62", "5.79", "5.96", "6.13", "6.31", "6.49", "6.68", "6.88", "7.08", "7.29", "7.50", "7.72", "7.94", "8.18", "8.41", "8.66", "8.91", "9.17", "9.44", "9.72", "10.00", "10.29", "10.59", "10.90", "11.22", "11.55", "11.89", "12.23", "12.59", "12.96", "13.34", "13.72", "14.13", "14.54", "14.96", "15.40", "15.85", "16.31", "16.79", "17.28", "17.78", "18.30", "18.84", "19.39", "19.95"}, 
+                                      _("Speed"), _("The Speed of the Chorus, also known as Rate."))));
+    slots.emplace_back((new PA_Integer(248, 4, _("Depth"), _("Controls the Depth of the Phaser.")))
+                       ->with_min_max(0, 100));
+    slots.emplace_back((new PA_Choice(252, 4,
+                                      {_("Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
+                                      _("Tempo"), _("The Tempo parameter sets the relationship to the global Tempo."))));
+    slots.emplace_back((new PA_Integer(260, 4, _("Feedback"), _("Controls the amount of feedback in the Phaser. Setting this parameter to \"-100\" reverses the phase of the signal that is fed back to the algorithm Input.")))
+                       ->with_min_max(-100, 100));
+    slots.emplace_back((new PA_Choice(264, 4,
+                                      {"Low", "High"},
+                                      _("Range"), _("Determines whether the phasing effect should be mainly on the high- of low-end frequencies."))));
+    slots.emplace_back((new PA_Boolean(268, 4, _("Phase reverse"), _("An LFO phase change that causes a small Delay in one of the waveform starting points. When applied to the Left and Right outputs will start the current waveform at two different points giving you a more extreme wide spread phasing effect.")))
+                       ->with_inversion());
+    slots.emplace_back((new PA_Integer(280, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
+                       ->with_min_max(0, 100));
+    slots.emplace_back((new PA_Integer(284, 4, _("Out level"), _("Sets the overall Output level of this block.")))
+                       ->with_min_max(-100, 0));
+}
+
+P_Filter::Tremolo::Tremolo()
+{
+    slots.emplace_back((new PA_Choice(244, 4,
+                                      {".050", ".052", ".053", ".055", ".056", ".058", ".060", ".061", ".063", ".065", ".067", ".069", ".071", ".073", ".075", ".077", ".079", ".082", ".084", ".087", ".089", ".092", ".094", ".097", ".100", ".103", ".106", ".109", ".112", ".115", ".119", ".122", ".126", ".130", ".133", ".137", ".141", ".145", ".150", ".154", ".158", ".163", ".168", ".173", ".178", ".183", ".188", ".194", ".200", ".205", ".211", ".218", ".224", ".230", ".237", ".244", ".251", ".259", ".266", ".274", ".282", ".290", ".299", ".307", ".316", ".325", ".335", ".345", ".355", ".365", ".376", ".387", ".398", ".410", ".422", ".434", ".447", ".460", ".473", ".487", ".501", ".516", ".531", ".546", ".562", ".579", ".596", ".613", ".631", ".649", ".668", ".688", ".708", ".729", ".750", ".772", ".794", ".818", ".841", ".866", ".891", ".917", ".944", ".972", "1.00", "1.03", "1.06", "1.09", "1.12", "1.15", "1.19", "1.22", "1.26", "1.30", "1.33", "1.37", "1.41", "1.45", "1.50", "1.54", "1.58", "1.63", "1.68", "1.73", "1.78", "1.83", "1.88", "1.94", "2.00", "2.05", "2.11", "2.18", "2.24", "2.30", "2.37", "2.44", "2.51", "2.59", "2.66", "2.74", "2.82", "2.90", "2.99", "3.07", "3.16", "3.25", "3.35", "3.45", "3.55", "3.65", "3.76", "3.87", "3.98", "4.10", "4.22", "4.34", "4.47", "4.60", "4.73", "4.87", "5.01", "5.16", "5.31", "5.46", "5.62", "5.79", "5.96", "6.13", "6.31", "6.49", "6.68", "6.88", "7.08", "7.29", "7.50", "7.72", "7.94", "8.18", "8.41", "8.66", "8.91", "9.17", "9.44", "9.72", "10.00", "10.29", "10.59", "10.90", "11.22", "11.55", "11.89", "12.23", "12.59", "12.96", "13.34", "13.72", "14.13", "14.54", "14.96", "15.40", "15.85", "16.31", "16.79", "17.28", "17.78", "18.30", "18.84", "19.39", "19.95"}, 
+                                      _("Speed"), _("The Speed of the Chorus, also known as Rate."))));
+    slots.emplace_back((new PA_Integer(248, 4, _("Depth"), _("Controls the Depth of the Phaser.")))
+                       ->with_min_max(0, 100));
+    slots.emplace_back((new PA_Choice(252, 4,
+                                      {_("Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
+                                      _("Tempo"), _("The Tempo parameter sets the relationship to the global Tempo."))));
+    slots.emplace_back((new PA_Integer(260, 4, _("LFO Pulse Width"), _("Controls the division of the upper and the lower part of the current waveform, e.g. if Pulse Width is set to 75%, the upper half of the waveform will be on for 75% of the time.")))
+                       ->with_min_max(0, 100));
+    slots.emplace_back((new PA_Choice(272, 4,
+                                      {"19.95", "22.39", "25.12", "28.18", "31.62", "35.48", "39.81", "44.67", "50.12", "56.23", "63.10", "70.79", "79.43", "89.13", "100.0", "112.2", "125.9", "141.3", "158.5", "177.8", "199.5", "223.9", "251.2", "281.8", "316.2", "354.8", "398.1", "446.7", "501.2", "562.3", "631.0", "707.9", "794.3", "891.3", "1.00k", "1.12k", "1.26k", "1.41k", "1.58k", "1.78k", "2.00k", "2.24k", "2.51k", "2.82k", "3.16k", "3.55k", "3.98k", "4.47k", "5.01k", "5.62k", "6.31k", "7.08k", "7.94k", "8.91k", "10.0k", "11.2k", "12.6k", "14.1k", "15.8k", "17.8k", _("Off")},
+                                      _("Hi Cut"), _("Attenuates the high frequencies of the Tremolo effect. Use the Hi Cut filter to create a less dominant Tremolo effect while keeping the Depth."))));
+    slots.emplace_back((new PA_Choice(256, 4,
+                                      {_("Soft"), _("Hard")},
+                                      _("Type"), _("Two variations of the steepness of the Tremolo Curve are available. Listen and select."))));
+    slots.emplace_back((new PA_Integer(284, 4, _("Out level"), _("Sets the overall Output level of this block.")))
+                       ->with_min_max(-100, 0));
+}
+
+P_Filter::Panner::Panner()
+{
+    slots.emplace_back((new PA_Choice(244, 4,
+                                      {".050", ".052", ".053", ".055", ".056", ".058", ".060", ".061", ".063", ".065", ".067", ".069", ".071", ".073", ".075", ".077", ".079", ".082", ".084", ".087", ".089", ".092", ".094", ".097", ".100", ".103", ".106", ".109", ".112", ".115", ".119", ".122", ".126", ".130", ".133", ".137", ".141", ".145", ".150", ".154", ".158", ".163", ".168", ".173", ".178", ".183", ".188", ".194", ".200", ".205", ".211", ".218", ".224", ".230", ".237", ".244", ".251", ".259", ".266", ".274", ".282", ".290", ".299", ".307", ".316", ".325", ".335", ".345", ".355", ".365", ".376", ".387", ".398", ".410", ".422", ".434", ".447", ".460", ".473", ".487", ".501", ".516", ".531", ".546", ".562", ".579", ".596", ".613", ".631", ".649", ".668", ".688", ".708", ".729", ".750", ".772", ".794", ".818", ".841", ".866", ".891", ".917", ".944", ".972", "1.00", "1.03", "1.06", "1.09", "1.12", "1.15", "1.19", "1.22", "1.26", "1.30", "1.33", "1.37", "1.41", "1.45", "1.50", "1.54", "1.58", "1.63", "1.68", "1.73", "1.78", "1.83", "1.88", "1.94", "2.00", "2.05", "2.11", "2.18", "2.24", "2.30", "2.37", "2.44", "2.51", "2.59", "2.66", "2.74", "2.82", "2.90", "2.99", "3.07", "3.16", "3.25", "3.35", "3.45", "3.55", "3.65", "3.76", "3.87", "3.98", "4.10", "4.22", "4.34", "4.47", "4.60", "4.73", "4.87", "5.01", "5.16", "5.31", "5.46", "5.62", "5.79", "5.96", "6.13", "6.31", "6.49", "6.68", "6.88", "7.08", "7.29", "7.50", "7.72", "7.94", "8.18", "8.41", "8.66", "8.91", "9.17", "9.44", "9.72", "10.00", "10.29", "10.59", "10.90", "11.22", "11.55", "11.89", "12.23", "12.59", "12.96", "13.34", "13.72", "14.13", "14.54", "14.96", "15.40", "15.85", "16.31", "16.79", "17.28", "17.78", "18.30", "18.84", "19.39", "19.95"}, 
+                                      _("Speed"), _("The Speed of the Chorus, also known as Rate."))));
+    slots.emplace_back((new PA_Integer(248, 4, _("Width"), _("A 100% setting will sweep the signal completely from the Left to the Right. Very often a more subtle setting will be more applicable and blend better with the overall sound.")))
+                       ->with_min_max(0, 100));
+    slots.emplace_back((new PA_Choice(252, 4,
+                                      {_("Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
+                                      _("Tempo"), _("The Tempo parameter sets the relationship to the global Tempo."))));
+    slots.emplace_back((new PA_Integer(284, 4, _("Out level"), _("Sets the overall Output level of this block.")))
+                       ->with_min_max(-100, 0));
+}
+
 P_General::P_General()
 {
     slots.emplace_back((new PA_Boolean(224, 4, _("Enable"), _("Enable the compressor")))
@@ -434,7 +576,7 @@ P_General::P_General()
                        ->with_inversion());
 
     slots.emplace_back((new PA_Choice(228, 4,
-                                      {_("Auto filter"), _("Resonance filter"), _("Vintage phaser"), _("Smooth phaser"), _("Tremolo"), _("Phaser")},
+                                      {_("Auto filter"), _("Resonance filter"), _("Vintage phaser"), _("Smooth phaser"), _("Tremolo"), _("Panner")},
                                       _("Filter type"), _("Type of filter effect"))));
     slots.emplace_back((new PA_Choice(292, 4,
                                       {_("Detune"), _("Whammy"), _("Octaver"), _("Pitch shifter")},
@@ -451,4 +593,5 @@ P_General::P_General()
 
     pitch.reset(new P_Pitch(type_pitch()));
     delay.reset(new P_Delay(type_delay()));
+    filter.reset(new P_Filter(type_filter()));
 }

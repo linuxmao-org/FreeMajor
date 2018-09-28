@@ -15,6 +15,7 @@
 #include "utility/misc.h"
 #include <FL/Fl_Dial.H>
 #include <FL/Fl_Native_File_Chooser.H>
+#include <assert.h>
 
 void Main_Component::init()
 {
@@ -115,12 +116,31 @@ void Main_Component::refresh_patch_display()
         {{ box_eq1, box_eq2, box_eq3, box_eq4, box_eq5, box_eq6, box_eq7, box_eq8, box_eq9 }};
     setup_boxes(pgen.enable_equalizer().get(pat), pgen.equalizer, box_eq.data(), box_eq.size());
 
+    std::array<Fl_Group *, 6> box_ng
+        {{ box_ng1, box_ng2, box_ng3, box_ng4, box_ng5, box_ng6 }};
+    setup_boxes(pgen.enable_noisegate().get(pat), pgen.noise_gate, box_ng.data(), box_ng.size());
+
+    std::array<Fl_Group *, 14> box_rev
+        {{ box_rev1, box_rev2, box_rev3, box_rev4, box_rev5, box_rev6, box_rev7, box_rev8, box_rev9, box_rev10, box_rev11, box_rev12, box_rev13, box_rev14 }};
+    setup_boxes(pgen.enable_reverb().get(pat), pgen.reverb, box_rev.data(), box_rev.size());
+
+    std::array<Fl_Group *, 14> box_pit
+        {{ box_pit1, box_pit2, box_pit3, box_pit4, box_pit5, box_pit6, box_pit7, box_pit8, box_pit9, box_pit10, box_pit11, box_pit12, box_pit13, box_pit14 }};
+    setup_boxes(pgen.enable_pitch().get(pat), pgen.pitch->dispatch(pat), box_pit.data(), box_pit.size());
+
+    std::array<Fl_Group *, 14> box_del
+        {{ box_del1, box_del2, box_del3, box_del4, box_del5, box_del6, box_del7, box_del8, box_del9, box_del10, box_del11, box_del12, box_del13, box_del14 }};
+    setup_boxes(pgen.enable_delay().get(pat), pgen.delay->dispatch(pat), box_del.data(), box_del.size());
+
     // TODO
     
     
 
-    for (const auto &a : assoc_)
+    for (const auto &a : assoc_) {
+        if (Fl_Widget *w = a->value_widget)
+            w->callback(&on_edited_parameter, this);
         a->update_value(pat);
+    }
 }
 
 void Main_Component::setup_checkbox(Fl_Check_Button *chk, PA_Boolean &p)
@@ -318,4 +338,28 @@ void Main_Component::on_clicked_send()
     std::vector<uint8_t> message;
     Patch_Writer::save_sysex_patch(pat, message);
     mido.send_message(message.data(), message.size());
+}
+
+void Main_Component::on_edited_parameter(Fl_Widget *w, void *user_data)
+{
+    Main_Component *self = (Main_Component *)user_data;
+
+    unsigned patchno = self->get_patch_number();
+    if (patchno == ~0u)
+        return;
+    Patch &pat = self->pbank_->slot[patchno];
+
+    Association *a = nullptr;
+    for (unsigned i = 0, n = self->assoc_.size(); i < n && !a; ++i) {
+        Association *cur = self->assoc_[i].get();
+        if (cur->value_widget == w)
+            a = cur;
+    }
+
+    if (!a) {
+        assert(false);
+        return;
+    }
+
+    a->update_from_widget(pat);
 }

@@ -44,7 +44,7 @@ decl {class P_General;} {public global
 decl {class Association;} {public global
 }
 
-widget_class Main_Component {open
+widget_class Main_Component {open selected
   xywh {5 59 1000 840} type Double
   code0 {init();} visible
 } {
@@ -76,7 +76,7 @@ widget_class Main_Component {open
   }
   Fl_Box {} {
     label {Toto Major}
-    xywh {695 3 300 39} box UP_BOX labeltype SHADOW_LABEL labelsize 28
+    xywh {700 1 300 39} box UP_BOX labeltype SHADOW_LABEL labelsize 28
   }
   Fl_Button btn_import {
     label Import
@@ -95,6 +95,8 @@ widget_class Main_Component {open
   decl {void on_clicked_change();} {private local
   }
   decl {void on_clicked_send();} {private local
+  }
+  decl {static void on_edited_parameter(Fl_Widget *w, void *user_data);} {private local
   }
   Fl_Browser br_bank {
     callback {on_selected_patch();}
@@ -462,7 +464,7 @@ widget_class Main_Component {open
         Fl_Group box_rev14 {open
           xywh {850 550 60 60} box BORDER_BOX
         } {}
-        Fl_Choice cb_reverb {open selected
+        Fl_Choice cb_reverb {open
           xywh {790 135 120 20} down_box BORDER_BOX labelsize 12 textsize 12
         } {}
       }

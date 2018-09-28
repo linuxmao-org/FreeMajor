@@ -28,4 +28,5 @@ struct Association {
     Association_Kind kind = Assoc_Undefined;
     int flags = 0;
     void update_value(const Patch &pat);
+    void update_from_widget(Patch &pat);
 };

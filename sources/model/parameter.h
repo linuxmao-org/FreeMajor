@@ -101,6 +101,17 @@ public:
 
 ///
 
+class Polymorphic_Parameter_Collection {
+public:
+    explicit Polymorphic_Parameter_Collection(const PA_Choice &tag)
+        : tag(tag) {}
+    virtual Parameter_Collection &dispatch(const Patch &pat) = 0;
+
+    const PA_Choice &tag;
+};
+
+///
+
 class P_Compressor : public Parameter_Collection {
 public:
     P_Compressor();
@@ -127,6 +138,148 @@ public:
     DEFPARAMETER(8, PA_Choice, width3)
 };
 
+class P_Noise_Gate : public Parameter_Collection {
+public:
+    P_Noise_Gate();
+
+    DEFPARAMETER(0, PA_Choice, mode);
+    DEFPARAMETER(1, PA_Integer, threshold);
+    DEFPARAMETER(2, PA_Integer, max_damping);
+    DEFPARAMETER(3, PA_Integer, release);
+};
+
+class P_Reverb : public Parameter_Collection {
+public:
+    P_Reverb();
+
+    DEFPARAMETER(0, PA_Integer, decay)
+    DEFPARAMETER(1, PA_Integer, pre_delay)
+    DEFPARAMETER(2, PA_Choice, shape)
+    DEFPARAMETER(3, PA_Choice, size)
+    DEFPARAMETER(4, PA_Choice, hi_color)
+    DEFPARAMETER(5, PA_Integer, hi_factor)
+    DEFPARAMETER(6, PA_Choice, lo_color)
+    DEFPARAMETER(7, PA_Integer, lo_factor)
+    DEFPARAMETER(8, PA_Integer, room_level)
+    DEFPARAMETER(9, PA_Integer, reverb_level)
+    DEFPARAMETER(10, PA_Integer, diffuse)
+    DEFPARAMETER(11, PA_Integer, mix)
+    DEFPARAMETER(12, PA_Integer, out_level)
+};
+
+class P_Pitch : public Polymorphic_Parameter_Collection {
+public:
+    explicit P_Pitch(const PA_Choice &tag);
+
+    Parameter_Collection &dispatch(const Patch &pat) override;
+
+    class Detune : public Parameter_Collection {
+    public:
+        Detune();
+
+        DEFPARAMETER(0, PA_Integer, voice1);
+        DEFPARAMETER(1, PA_Integer, voice2);
+        DEFPARAMETER(2, PA_Integer, delay1);
+        DEFPARAMETER(3, PA_Integer, delay2);
+        DEFPARAMETER(4, PA_Integer, mix);
+        DEFPARAMETER(5, PA_Integer, out_level);
+    } detune;
+
+    class Whammy : public Parameter_Collection {
+    public:
+        Whammy();
+
+        DEFPARAMETER(0, PA_Integer, pitch);
+        DEFPARAMETER(1, PA_Choice, direction);
+        DEFPARAMETER(2, PA_Choice, range);
+        DEFPARAMETER(3, PA_Integer, out_level);
+    } whammy;
+
+    class Octaver : public Parameter_Collection {
+    public:
+        Octaver();
+
+        DEFPARAMETER(0, PA_Choice, direction);
+        DEFPARAMETER(1, PA_Choice, range);
+        DEFPARAMETER(2, PA_Integer, mix);
+        DEFPARAMETER(3, PA_Integer, out_level);
+    } octaver;
+
+    class Shifter : public Parameter_Collection {
+    public:
+        Shifter();
+
+        DEFPARAMETER(0, PA_Integer, voice1);
+        DEFPARAMETER(1, PA_Integer, voice2);
+        DEFPARAMETER(2, PA_Integer, pan1);
+        DEFPARAMETER(3, PA_Integer, pan2);
+        DEFPARAMETER(4, PA_Integer, delay1);
+        DEFPARAMETER(5, PA_Integer, delay2);
+        DEFPARAMETER(6, PA_Integer, feedback1);
+        DEFPARAMETER(7, PA_Integer, feedback2);
+        DEFPARAMETER(8, PA_Integer, level1);
+        DEFPARAMETER(9, PA_Integer, level2);
+        DEFPARAMETER(10, PA_Integer, mix);
+        DEFPARAMETER(11, PA_Integer, out_level);
+    } shifter;
+};
+
+class P_Delay : public Polymorphic_Parameter_Collection {
+public:
+    explicit P_Delay(const PA_Choice &tag);
+
+    Parameter_Collection &dispatch(const Patch &pat) override;
+
+    class Ping_Pong : public Parameter_Collection {
+    public:
+        Ping_Pong();
+
+        DEFPARAMETER(0, PA_Integer, delay)
+        DEFPARAMETER(1, PA_Choice, tempo)
+        DEFPARAMETER(2, PA_Integer, width)
+        DEFPARAMETER(3, PA_Integer, feedback)
+        DEFPARAMETER(4, PA_Choice, fb_hi_cut)
+        DEFPARAMETER(5, PA_Choice, fb_lo_cut)
+        DEFPARAMETER(6, PA_Integer, mix)
+        DEFPARAMETER(7, PA_Integer, out_level)
+    } ping_pong;
+
+    class Dynamic : public Parameter_Collection {
+    public:
+        Dynamic();
+
+        DEFPARAMETER(0, PA_Integer, delay)
+        DEFPARAMETER(1, PA_Choice, tempo)
+        DEFPARAMETER(2, PA_Integer, feedback)
+        DEFPARAMETER(3, PA_Choice, fb_hi_cut)
+        DEFPARAMETER(4, PA_Choice, fb_lo_cut)
+        DEFPARAMETER(5, PA_Integer, offset)
+        DEFPARAMETER(6, PA_Integer, sensitivity)
+        DEFPARAMETER(7, PA_Integer, damping)
+        DEFPARAMETER(8, PA_Choice, release)
+        DEFPARAMETER(9, PA_Integer, mix)
+        DEFPARAMETER(10, PA_Integer, out_level)
+    } dynamic;
+
+    class Dual : public Parameter_Collection {
+    public:
+        Dual();
+
+        DEFPARAMETER(0, PA_Integer, delay1)
+        DEFPARAMETER(1, PA_Integer, delay2)
+        DEFPARAMETER(2, PA_Choice, tempo1)
+        DEFPARAMETER(3, PA_Choice, tempo2)
+        DEFPARAMETER(4, PA_Integer, feedback1)
+        DEFPARAMETER(5, PA_Integer, feedback2)
+        DEFPARAMETER(6, PA_Choice, fb_hi_cut)
+        DEFPARAMETER(7, PA_Choice, fb_lo_cut)
+        DEFPARAMETER(8, PA_Integer, pan1)
+        DEFPARAMETER(9, PA_Integer, pan2)
+        DEFPARAMETER(10, PA_Integer, mix)
+        DEFPARAMETER(11, PA_Integer, out_level)
+    } dual;
+};
+
 class P_General : public Parameter_Collection {
 public:
     P_General();
@@ -148,6 +301,10 @@ public:
 
     P_Compressor compressor;
     P_Equalizer equalizer;
+    P_Noise_Gate noise_gate;
+    P_Reverb reverb;
+    std::unique_ptr<P_Pitch> pitch;
+    std::unique_ptr<P_Delay> delay;
 };
 
 #undef DEFPARAMETER

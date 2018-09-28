@@ -54,6 +54,7 @@ private:
   void on_clicked_export(); 
   void on_clicked_change(); 
   void on_clicked_send(); 
+  static void on_edited_parameter(Fl_Widget *w, void *user_data); 
 public:
   Fl_Hold_Browser *br_bank;
 private:

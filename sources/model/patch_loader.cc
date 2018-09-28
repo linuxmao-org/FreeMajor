@@ -37,10 +37,11 @@ bool Patch_Loader::load_realmajor_patch(const uint8_t *data, size_t length, Patc
         }
     }
 
-    return load_sysex_patch(sysex.data(), sysex.size(), pat);
+    bool validate_checksum = false;
+    return load_sysex_patch(sysex.data(), sysex.size(), pat, validate_checksum);
 }
 
-bool Patch_Loader::load_sysex_patch(const uint8_t *data, size_t length, Patch &pat)
+bool Patch_Loader::load_sysex_patch(const uint8_t *data, size_t length, Patch &pat, bool validate_checksum)
 {
     const uint8_t *startp = (const uint8_t *)memchr(data, 0xf0, length);
     if (!startp)
@@ -58,8 +59,11 @@ bool Patch_Loader::load_sysex_patch(const uint8_t *data, size_t length, Patch &p
 
     Patch tmp;
     memcpy(tmp.raw_data, data + 1, 612);
-    if (data[613] != tmp.checksum())
-        return false;
+
+    if (validate_checksum) {
+        if (data[613] != tmp.checksum())
+            return false;
+    }
 
     pat = tmp;
     return true;

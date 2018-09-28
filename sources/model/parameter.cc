@@ -6,6 +6,7 @@
 #include "parameter.h"
 #include "patch.h"
 #include "app_i18n.h"
+#include <assert.h>
 
 static int load_int(const uint8_t *src, unsigned size)
 {
@@ -103,7 +104,7 @@ int PA_Choice::get(const Patch &pat) const
 
 void PA_Choice::set(Patch &pat, int value)
 {
-    int v = clamp(value + offset);
+    int v = clamp(value) + offset;
     store_int(&pat.raw_data[index], size, v);
 }
 
@@ -129,7 +130,6 @@ P_Compressor::P_Compressor()
     slots.emplace_back((new PA_Choice(168, 4,
                                       {_("Off"), "1.12:1", "1.25:1", "1.40:1", "1.60:1", "1.80:1", "2.0:1", "2.5:1", "3.2:1", "4.0:1", "5.6:1", "8.0:1", "16:1", "32:1", "64:1", _("Inf:1")},
                                       _("Ratio"), _("The Ratio setting determines how hard the signal is compressed."))));
-    // TODO check times for correct values
     slots.emplace_back((new PA_Choice(172, 4,
                                       {"1.0", "1.4", "2.0", "3.0", "5.0", "7.0", "10", "14", "20", "30", "50", "70"},
                                       _("Attack"), _("The Attack time is the response time of the Compressor. The shorter the attack time the sooner the Compressor will reach the specified Ratio after the signal rises above the Threshold.")))
@@ -168,6 +168,253 @@ P_Equalizer::P_Equalizer()
                        ->with_offset(width1().offset));
 }
 
+P_Noise_Gate::P_Noise_Gate()
+{
+    slots.emplace_back((new PA_Choice(548, 4,
+                                      {_("Soft"), _("Hard")},
+                                      _("Mode"), _("General overall mode that determines how fast the Noise Gate should attenuate/dampen the signal when below Threshold."))));
+    slots.emplace_back((new PA_Integer(552, 4, _("Threshold"), _("The Threshold point determines at what point the Noise Gate should start to dampen the signal.")))
+                       ->with_min_max(-60, 0));
+    slots.emplace_back((new PA_Integer(556, 4, _("Max Damping"), _("The parameter determines how hard the signal should be attenuated when below the set Threshold.")))
+                       ->with_min_max(0, 90));
+    slots.emplace_back((new PA_Integer(560, 4, _("Release"), _("The Release parameter determines how fast the signal is released when the Input signal rises above the Threshold point.")))
+                       ->with_min_max(3, 200));
+}
+
+P_Reverb::P_Reverb()
+{
+    slots.emplace_back((new PA_Integer(488, 4, _("Decay"), _("The Decay parameter determines the length of the Reverb Diffuse field.")))
+                       ->with_min_max(1, 200));
+    slots.emplace_back((new PA_Integer(492, 4, _("Pre Delay"), _("A short Delay placed between the direct signal and the Reverb Diffuse field.")))
+                       ->with_min_max(0, 100));
+    slots.emplace_back((new PA_Choice(496, 4,
+                                      {_("Round"), _("Curved"), _("Square")},
+                                      _("Shape"), _("Shape"))));
+    slots.emplace_back((new PA_Choice(500, 4,
+                                      {_("Box"), _("Tiny"), _("Small"), _("Medium"), _("Large"), _("Ex Large"), _("Grand"), _("Huge")},
+                                      _("Size"), _("The Size parameter defines the size of the Early Reflection pattern used."))));
+    slots.emplace_back((new PA_Choice(504, 4,
+                                      {_("Wool"), _("Warm"), _("Real"), _("Clear"), _("Bright"), _("Crisp"), _("Grand")},
+                                      _("Hi color"), _("7 different Hi Colors can be selected."))));
+    slots.emplace_back((new PA_Integer(508, 4, _("Hi factor"), _("Adds or substracts the selected Hi Color type.")))
+                       ->with_min_max(-25, 25));
+    slots.emplace_back((new PA_Choice(512, 4,
+                                      {_("Thick"), _("Round"), _("Real"), _("Light"), _("Tight"), _("Thin"), _("No Base")},
+                                      _("Lo color"), _("7 different Lo Colors can be selected."))));
+    slots.emplace_back((new PA_Integer(516, 4, _("Lo factor"), _("Adds or substracts the selected Lo Color type.")))
+                       ->with_min_max(-25, 25));
+    slots.emplace_back((new PA_Integer(520, 4, _("Room level"), _("This parameter adjusts the Reverb Diffuse field level. Lowering the Reverb Level will give you a more ambient sound, since the Early Reflection patterns will become more obvious.")))
+                       ->with_min_max(-100, 0));
+    slots.emplace_back((new PA_Integer(524, 4, _("Reverb level"), _("The level of the Early Reflections.")))
+                       ->with_min_max(-100, 0));
+    slots.emplace_back((new PA_Integer(528, 4, _("Diffuse"), _("Allows fine-tuning of the density of the Reverb Diffuse field.")))
+                       ->with_min_max(-25, 25));
+    slots.emplace_back((new PA_Integer(532, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
+                       ->with_min_max(0, 100));
+    slots.emplace_back((new PA_Integer(536, 4, _("Out level"), _("Sets the overall Output level of this block.")))
+                       ->with_min_max(-100, 0));
+}
+
+P_Pitch::P_Pitch(const PA_Choice &tag)
+    : Polymorphic_Parameter_Collection(tag)
+{
+}
+
+Parameter_Collection &P_Pitch::dispatch(const Patch &pat)
+{
+    switch (tag.get(pat)) {
+    default:
+        assert(false);
+    case 0:
+        return detune;
+    case 1:
+        return whammy;
+    case 2:
+        return octaver;
+    case 3:
+        return shifter;
+    }
+}
+
+P_Pitch::Detune::Detune()
+{
+    slots.emplace_back((new PA_Integer(296, 4, _("Voice 1"), _("Offsets the first Voice in the Detune block.")))
+                       ->with_min_max(-100, 100));
+    slots.emplace_back((new PA_Integer(300, 4, _("Voice 2"), _("Offsets the second Voice in the Detune block.")))
+                       ->with_min_max(-100, 100));
+    slots.emplace_back((new PA_Integer(312, 4, _("Delay 1"), _("Specifies the Delay on the first voice.")))
+                       ->with_min_max(0, 50));
+    slots.emplace_back((new PA_Integer(316, 4, _("Delay 2"), _("Specifies the Delay on the second voice.")))
+                       ->with_min_max(0, 50));
+    slots.emplace_back((new PA_Integer(340, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
+                       ->with_min_max(0, 100));
+    slots.emplace_back((new PA_Integer(344, 4, _("Out level"), _("Sets the overall Output level of this block.")))
+                       ->with_min_max(-100, 0));
+}
+
+P_Pitch::Whammy::Whammy()
+{
+    slots.emplace_back((new PA_Integer(328, 4, _("Pitch"), _("This parameters sets the mix between the dry and processed signal. If e.g. set to 100%, no direct guitar tone will be heard - only the processed \"pitched\" tone.")))
+                       ->with_min_max(0, 100));
+    slots.emplace_back((new PA_Choice(332, 4,
+                                      {_("Down"), _("Up")},
+                                      _("Direction"), _("This parameter determines whether the attached Expression pedal should increase or decrease Pitch when moved either direction."))));
+    slots.emplace_back((new PA_Choice(336, 4,
+                                      {_("1 oct"), _("2 oct")},
+                                      _("Range"), _("Selects how the Whammy block will pitch your tone.")))
+                       ->with_offset(1));
+    slots.emplace_back((new PA_Integer(344, 4, _("Out level"), _("Sets the overall Output level of this block.")))
+                       ->with_min_max(-100, 0));
+}
+
+P_Pitch::Octaver::Octaver()
+{
+    slots.emplace_back((new PA_Choice(332, 4,
+                                      {_("Down"), _("Up")},
+                                      _("Direction"), _("Direction."))));
+    slots.emplace_back((new PA_Choice(336, 4,
+                                      {_("1 oct"), _("2 oct")},
+                                      _("Range"), _("Range.")))
+                       ->with_offset(1));
+    slots.emplace_back((new PA_Integer(340, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
+                       ->with_min_max(0, 100));
+    slots.emplace_back((new PA_Integer(344, 4, _("Out level"), _("Sets the overall Output level of this block.")))
+                       ->with_min_max(-100, 0));
+}
+
+P_Pitch::Shifter::Shifter()
+{
+    slots.emplace_back((new PA_Integer(296, 4, _("Voice 1"), _("Specifies the Pitch of the first Voice. As 100 cent equals 1 semitone you can select a pitch freely between one octave below the Input Pitch to one octave above.")))
+                       ->with_min_max(-2400, 2400));
+    slots.emplace_back((new PA_Integer(300, 4, _("Voice 2"), _("Specifies the Pitch of the second Voice. As 100 cent equals 1 semitone you can select a pitch freely between one octave below the Input Pitch to one octave above.")))
+                       ->with_min_max(-2400, 2400));
+    slots.emplace_back((new PA_Integer(304, 4, _("Pan 1"), _("Pan parameter for the first voice.")))
+                       ->with_min_max(-50, 50));
+    slots.emplace_back((new PA_Integer(308, 4, _("Pan 2"), _("Pan parameter for the second voice.")))
+                       ->with_min_max(-50, 50));
+    slots.emplace_back((new PA_Integer(312, 4, _("Delay 1"), _("Sets the delay time for the first voice.")))
+                       ->with_min_max(0, 350));
+    slots.emplace_back((new PA_Integer(316, 4, _("Delay 2"), _("Sets the delay time for the second voice.")))
+                       ->with_min_max(0, 350));
+    slots.emplace_back((new PA_Integer(320, 4, _("Feedback 1"), _("Determines how many repetitions there will be on the Delay of the first voice.")))
+                       ->with_min_max(0, 100));
+    slots.emplace_back((new PA_Integer(324, 4, _("Feedback 2"), _("Determines how many repetitions there will be on the Delay of the second voice.")))
+                       ->with_min_max(0, 100));
+    slots.emplace_back((new PA_Integer(328, 4, _("Level 1"), _("Sets the level for Voice 1.")))
+                       ->with_min_max(-100, 0));
+    slots.emplace_back((new PA_Integer(332, 4, _("Level 2"), _("Sets the level for Voice 2.")))
+                       ->with_min_max(-100, 0));
+    slots.emplace_back((new PA_Integer(340, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
+                       ->with_min_max(0, 100));
+    slots.emplace_back((new PA_Integer(344, 4, _("Out level"), _("Sets the overall Output level of this block.")))
+                       ->with_min_max(-100, 0));
+}
+
+P_Delay::P_Delay(const PA_Choice &tag)
+    : Polymorphic_Parameter_Collection(tag)
+{
+}
+
+Parameter_Collection &P_Delay::dispatch(const Patch &pat)
+{
+    switch (tag.get(pat)) {
+    default:
+        assert(false);
+    case 0:
+        return ping_pong;
+    case 1:
+        return dynamic;
+    case 2:
+        return dual;
+    }
+}
+
+P_Delay::Ping_Pong::Ping_Pong()
+{
+    slots.emplace_back((new PA_Integer(424, 4, _("Delay Time"), _("The time between the repetitions.")))
+                       ->with_min_max(0, 1800));
+    slots.emplace_back((new PA_Choice(432, 4,
+                                      {_("Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
+                                      _("Tempo"), _("The Tempo parameter sets the relationship to the global Tempo."))));
+    slots.emplace_back((new PA_Integer(436, 4, _("Width"), _("The Width parameter determines whether the Left or Right repetitions are panned 100% or not.")))
+                       ->with_min_max(0, 100));
+    slots.emplace_back((new PA_Integer(440, 4, _("Feedback"), _("Determines how many repetitions there will be.")))
+                       ->with_min_max(0, 100));
+    slots.emplace_back((new PA_Choice(448, 4,
+                                      {"2.00k", "2.24k", "2.51k", "2.82k", "3.16k", "3.55k", "3.98k", "4.47k", "5.01k", "5.62k", "6.31k", "7.08k", "7.94k", "8.91k", "10.0k", "11.2k", "12.6k", "14.1k", "15.8k", "17.8k", _("Off")},
+                                      _("FB Hi cut"), _("Attenuates the frequencies above the set frequency thereby giving you a more analog Delay sound that in many cases will blend better in the overall sound."))));
+    slots.emplace_back((new PA_Choice(452, 4,
+                                      {_("Off"), "22.39", "25.12", "28.18", "31.62", "35.48", "39.81", "44.67", "50.12", "56.23", "63.10", "70.79", "79.43", "89.13", "100.0", "112.2", "125.9", "141.3", "158.5", "177.8", "199.5", "223.9", "251.2", "281.8", "316.2", "354.8", "398.1", "446.7", "501.2", "562.3", "631.0", "707.9", "794.3", "891.3", "1.00k", "1.12k", "1.26k", "1.41k", "1.58k", "1.78k", "2.00k"},
+                                      _("FB Lo cut"), _("Attenuates the frequencies below the set frequency."))));
+    slots.emplace_back((new PA_Integer(472, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
+                       ->with_min_max(0, 100));
+    slots.emplace_back((new PA_Integer(476, 4, _("Out level"), _("Sets the overall Output level of this block.")))
+                       ->with_min_max(-100, 0));
+}
+
+P_Delay::Dynamic::Dynamic()
+{
+    slots.emplace_back((new PA_Integer(424, 4, _("Delay Time"), _("The time between the repetitions.")))
+                       ->with_min_max(0, 1800));
+    slots.emplace_back((new PA_Choice(432, 4,
+                                      {_("Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
+                                      _("Tempo"), _("The Tempo parameter sets the relationship to the global Tempo."))));
+    slots.emplace_back((new PA_Integer(440, 4, _("Feedback"), _("Determines how many repetitions there will be.")))
+                       ->with_min_max(0, 100));
+    slots.emplace_back((new PA_Choice(448, 4,
+                                      {"2.00k", "2.24k", "2.51k", "2.82k", "3.16k", "3.55k", "3.98k", "4.47k", "5.01k", "5.62k", "6.31k", "7.08k", "7.94k", "8.91k", "10.0k", "11.2k", "12.6k", "14.1k", "15.8k", "17.8k", _("Off")},
+                                      _("FB Hi cut"), _("Attenuates the frequencies above the set frequency thereby giving you a more analog Delay sound that in many cases will blend better in the overall sound."))));
+    slots.emplace_back((new PA_Choice(452, 4,
+                                      {_("Off"), "22.39", "25.12", "28.18", "31.62", "35.48", "39.81", "44.67", "50.12", "56.23", "63.10", "70.79", "79.43", "89.13", "100.0", "112.2", "125.9", "141.3", "158.5", "177.8", "199.5", "223.9", "251.2", "281.8", "316.2", "354.8", "398.1", "446.7", "501.2", "562.3", "631.0", "707.9", "794.3", "891.3", "1.00k", "1.12k", "1.26k", "1.41k", "1.58k", "1.78k", "2.00k"},
+                                      _("FB Lo cut"), _("Attenuates the frequencies below the set frequency."))));
+    slots.emplace_back((new PA_Integer(456, 4, _("Offset R"), _("Offsets the Delay repeats in the Right channel only. For a true wide stereo Delay the Delay in the two channels should not appear at the exact same time.")))
+                       ->with_min_max(-200, 200));
+    slots.emplace_back((new PA_Integer(460, 4, _("Sensitivity"), _("With this parameter you control how sensitive the \"ducking\" or dampening function of the Delay repeats should be according to the signal present on the Input.")))
+                       ->with_min_max(-50, 0));
+    slots.emplace_back((new PA_Integer(464, 4, _("Damping"), _("This parameter controls the actual attenuation of the Delay while Input is present.")))
+                       ->with_min_max(0, 100));
+    slots.emplace_back((new PA_Choice(468, 4,
+                                      {"20", "30", "50", "70", "100", "140", "200", "300", "500", "700", "1000"},
+                                      _("Release"), _("A parameter relative to a Compressor release.")))
+                       ->with_offset(3));
+    slots.emplace_back((new PA_Integer(472, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
+                       ->with_min_max(0, 100));
+    slots.emplace_back((new PA_Integer(476, 4, _("Out level"), _("Sets the overall Output level of this block.")))
+                       ->with_min_max(-100, 0));
+}
+
+P_Delay::Dual::Dual()
+{
+    slots.emplace_back((new PA_Integer(424, 4, _("Delay Time 1"), _("Sets the Delay Time of the first Delay Line.")))
+                       ->with_min_max(0, 1800));
+    slots.emplace_back((new PA_Integer(428, 4, _("Delay Time 2"), _("Sets the Delay Time of the second Delay Line.")))
+                       ->with_min_max(0, 1800));
+    slots.emplace_back((new PA_Choice(432, 4,
+                                      {_("Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
+                                      _("Tempo 1"), _("The Tempo parameter sets the relationship to the global Tempo."))));
+    slots.emplace_back((new PA_Choice(436, 4,
+                                      {_("Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
+                                      _("Tempo 2"), _("The Tempo parameter sets the relationship to the global Tempo."))));
+    slots.emplace_back((new PA_Integer(440, 4, _("Feedback 1"), _("Determines the number of repetitions of the Delay of the first Delay Line.")))
+                       ->with_min_max(0, 100));
+    slots.emplace_back((new PA_Integer(444, 4, _("Feedback 2"), _("Determines the number of repetitions of the Delay of the second Delay Line.")))
+                       ->with_min_max(0, 100));
+    slots.emplace_back((new PA_Choice(448, 4,
+                                      {"2.00k", "2.24k", "2.51k", "2.82k", "3.16k", "3.55k", "3.98k", "4.47k", "5.01k", "5.62k", "6.31k", "7.08k", "7.94k", "8.91k", "10.0k", "11.2k", "12.6k", "14.1k", "15.8k", "17.8k", _("Off")},
+                                      _("FB Hi cut"), _("Attenuates the frequencies above the set frequency thereby giving you a more analog Delay sound that in many cases will blend better in the overall sound."))));
+    slots.emplace_back((new PA_Choice(452, 4,
+                                      {_("Off"), "22.39", "25.12", "28.18", "31.62", "35.48", "39.81", "44.67", "50.12", "56.23", "63.10", "70.79", "79.43", "89.13", "100.0", "112.2", "125.9", "141.3", "158.5", "177.8", "199.5", "223.9", "251.2", "281.8", "316.2", "354.8", "398.1", "446.7", "501.2", "562.3", "631.0", "707.9", "794.3", "891.3", "1.00k", "1.12k", "1.26k", "1.41k", "1.58k", "1.78k", "2.00k"},
+                                      _("FB Lo cut"), _("Attenuates the frequencies below the set frequency."))));
+    slots.emplace_back((new PA_Integer(456, 4, _("Pan 1"), _("Pans the Delay repetitions of the first Delay Line.")))
+                       ->with_min_max(-50, 50));
+    slots.emplace_back((new PA_Integer(460, 4, _("Pan 2"), _("Pans the Delay repetitions of the second Delay Line.")))
+                       ->with_min_max(-50, 50));
+    slots.emplace_back((new PA_Integer(472, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
+                       ->with_min_max(0, 100));
+    slots.emplace_back((new PA_Integer(476, 4, _("Out level"), _("Sets the overall Output level of this block.")))
+                       ->with_min_max(-100, 0));
+}
+
 P_General::P_General()
 {
     slots.emplace_back((new PA_Boolean(224, 4, _("Enable"), _("Enable the compressor")))
@@ -201,4 +448,7 @@ P_General::P_General()
     slots.emplace_back((new PA_Choice(484, 4,
                                       {_("Spring"), _("Hall"), _("Room"), _("Plate")},
                                       _("Reverb type"), _("Type of reverb effect"))));
+
+    pitch.reset(new P_Pitch(type_pitch()));
+    delay.reset(new P_Delay(type_delay()));
 }

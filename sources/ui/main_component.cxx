@@ -49,7 +49,7 @@ void Main_Component::cb_btn_send(Fl_Button* o, void* v) {
 }
 Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
   : Fl_Group(X, Y, W, H, L) {
-{ Fl_Box* o = new Fl_Box(695, 3, 300, 39, _("Toto Major"));
+{ Fl_Box* o = new Fl_Box(700, 1, 300, 39, _("Toto Major"));
   o->box(FL_UP_BOX);
   o->labeltype(FL_SHADOW_LABEL);
   o->labelsize(28);

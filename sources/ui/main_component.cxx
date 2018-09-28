@@ -3,6 +3,7 @@
 #include "app_i18n.h"
 #include "main_component.h"
 #include "association.h"
+#include "widget_ex.h"
 #include "model/patch.h"
 #include "model/parameter.h"
 
@@ -85,453 +86,1285 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
   btn_change->labelsize(12);
   btn_change->callback((Fl_Callback*)cb_btn_change);
 } // Fl_Button* btn_change
-{ Fl_Group* o = new Fl_Group(5, 110, 261, 225);
+{ Fl_Group* o = new Fl_Group(0, 280, 261, 225);
   o->box(FL_THIN_UP_BOX);
-  { chk_noise_gate = new Fl_Check_Button(6, 111, 128, 23, _("Noise gate"));
+  { chk_noise_gate = new Fl_Check_Button_Ex(1, 281, 128, 23, _("Noise gate"));
+    chk_noise_gate->box(FL_NO_BOX);
     chk_noise_gate->down_box(FL_DOWN_BOX);
+    chk_noise_gate->color(FL_BACKGROUND_COLOR);
+    chk_noise_gate->selection_color(FL_FOREGROUND_COLOR);
+    chk_noise_gate->labeltype(FL_NORMAL_LABEL);
+    chk_noise_gate->labelfont(0);
     chk_noise_gate->labelsize(12);
-  } // Fl_Check_Button* chk_noise_gate
-  { box_ng1 = new Fl_Group(10, 135, 60, 60);
+    chk_noise_gate->labelcolor(FL_FOREGROUND_COLOR);
+    chk_noise_gate->align(Fl_Align(FL_ALIGN_LEFT|FL_ALIGN_INSIDE));
+    chk_noise_gate->when(FL_WHEN_RELEASE);
+  } // Fl_Check_Button_Ex* chk_noise_gate
+  { box_ng1 = new Fl_Group_Ex(5, 305, 60, 60);
     box_ng1->box(FL_BORDER_BOX);
+    box_ng1->color(FL_BACKGROUND_COLOR);
+    box_ng1->selection_color(FL_BACKGROUND_COLOR);
+    box_ng1->labeltype(FL_NORMAL_LABEL);
+    box_ng1->labelfont(0);
+    box_ng1->labelsize(14);
+    box_ng1->labelcolor(FL_FOREGROUND_COLOR);
+    box_ng1->align(Fl_Align(FL_ALIGN_TOP));
+    box_ng1->when(FL_WHEN_RELEASE);
     box_ng1->end();
-  } // Fl_Group* box_ng1
-  { box_ng2 = new Fl_Group(70, 135, 60, 60);
+  } // Fl_Group_Ex* box_ng1
+  { box_ng2 = new Fl_Group_Ex(65, 305, 60, 60);
     box_ng2->box(FL_BORDER_BOX);
+    box_ng2->color(FL_BACKGROUND_COLOR);
+    box_ng2->selection_color(FL_BACKGROUND_COLOR);
+    box_ng2->labeltype(FL_NORMAL_LABEL);
+    box_ng2->labelfont(0);
+    box_ng2->labelsize(14);
+    box_ng2->labelcolor(FL_FOREGROUND_COLOR);
+    box_ng2->align(Fl_Align(FL_ALIGN_TOP));
+    box_ng2->when(FL_WHEN_RELEASE);
     box_ng2->end();
-  } // Fl_Group* box_ng2
-  { box_ng3 = new Fl_Group(10, 200, 60, 60);
+  } // Fl_Group_Ex* box_ng2
+  { box_ng3 = new Fl_Group_Ex(5, 370, 60, 60);
     box_ng3->box(FL_BORDER_BOX);
+    box_ng3->color(FL_BACKGROUND_COLOR);
+    box_ng3->selection_color(FL_BACKGROUND_COLOR);
+    box_ng3->labeltype(FL_NORMAL_LABEL);
+    box_ng3->labelfont(0);
+    box_ng3->labelsize(14);
+    box_ng3->labelcolor(FL_FOREGROUND_COLOR);
+    box_ng3->align(Fl_Align(FL_ALIGN_TOP));
+    box_ng3->when(FL_WHEN_RELEASE);
     box_ng3->end();
-  } // Fl_Group* box_ng3
-  { box_ng4 = new Fl_Group(70, 200, 60, 60);
+  } // Fl_Group_Ex* box_ng3
+  { box_ng4 = new Fl_Group_Ex(65, 370, 60, 60);
     box_ng4->box(FL_BORDER_BOX);
+    box_ng4->color(FL_BACKGROUND_COLOR);
+    box_ng4->selection_color(FL_BACKGROUND_COLOR);
+    box_ng4->labeltype(FL_NORMAL_LABEL);
+    box_ng4->labelfont(0);
+    box_ng4->labelsize(14);
+    box_ng4->labelcolor(FL_FOREGROUND_COLOR);
+    box_ng4->align(Fl_Align(FL_ALIGN_TOP));
+    box_ng4->when(FL_WHEN_RELEASE);
     box_ng4->end();
-  } // Fl_Group* box_ng4
-  { box_ng5 = new Fl_Group(10, 265, 60, 60);
+  } // Fl_Group_Ex* box_ng4
+  { box_ng5 = new Fl_Group_Ex(5, 435, 60, 60);
     box_ng5->box(FL_BORDER_BOX);
+    box_ng5->color(FL_BACKGROUND_COLOR);
+    box_ng5->selection_color(FL_BACKGROUND_COLOR);
+    box_ng5->labeltype(FL_NORMAL_LABEL);
+    box_ng5->labelfont(0);
+    box_ng5->labelsize(14);
+    box_ng5->labelcolor(FL_FOREGROUND_COLOR);
+    box_ng5->align(Fl_Align(FL_ALIGN_TOP));
+    box_ng5->when(FL_WHEN_RELEASE);
     box_ng5->end();
-  } // Fl_Group* box_ng5
-  { box_ng6 = new Fl_Group(70, 265, 60, 60);
+  } // Fl_Group_Ex* box_ng5
+  { box_ng6 = new Fl_Group_Ex(65, 435, 60, 60);
     box_ng6->box(FL_BORDER_BOX);
+    box_ng6->color(FL_BACKGROUND_COLOR);
+    box_ng6->selection_color(FL_BACKGROUND_COLOR);
+    box_ng6->labeltype(FL_NORMAL_LABEL);
+    box_ng6->labelfont(0);
+    box_ng6->labelsize(14);
+    box_ng6->labelcolor(FL_FOREGROUND_COLOR);
+    box_ng6->align(Fl_Align(FL_ALIGN_TOP));
+    box_ng6->when(FL_WHEN_RELEASE);
     box_ng6->end();
-  } // Fl_Group* box_ng6
-  { Fl_Group* o = new Fl_Group(135, 110, 131, 225);
+  } // Fl_Group_Ex* box_ng6
+  { Fl_Group* o = new Fl_Group(130, 280, 131, 225);
     o->box(FL_THIN_UP_BOX);
-    { chk_compressor = new Fl_Check_Button(136, 111, 128, 23, _("Compressor"));
+    { chk_compressor = new Fl_Check_Button_Ex(131, 281, 128, 23, _("Compressor"));
+      chk_compressor->box(FL_NO_BOX);
       chk_compressor->down_box(FL_DOWN_BOX);
+      chk_compressor->color(FL_BACKGROUND_COLOR);
+      chk_compressor->selection_color(FL_FOREGROUND_COLOR);
+      chk_compressor->labeltype(FL_NORMAL_LABEL);
+      chk_compressor->labelfont(0);
       chk_compressor->labelsize(12);
-    } // Fl_Check_Button* chk_compressor
-    { box_cpr1 = new Fl_Group(140, 135, 60, 60);
+      chk_compressor->labelcolor(FL_FOREGROUND_COLOR);
+      chk_compressor->align(Fl_Align(FL_ALIGN_LEFT|FL_ALIGN_INSIDE));
+      chk_compressor->when(FL_WHEN_RELEASE);
+    } // Fl_Check_Button_Ex* chk_compressor
+    { box_cpr1 = new Fl_Group_Ex(135, 305, 60, 60);
       box_cpr1->box(FL_BORDER_BOX);
+      box_cpr1->color(FL_BACKGROUND_COLOR);
+      box_cpr1->selection_color(FL_BACKGROUND_COLOR);
+      box_cpr1->labeltype(FL_NORMAL_LABEL);
+      box_cpr1->labelfont(0);
+      box_cpr1->labelsize(14);
+      box_cpr1->labelcolor(FL_FOREGROUND_COLOR);
+      box_cpr1->align(Fl_Align(FL_ALIGN_TOP));
+      box_cpr1->when(FL_WHEN_RELEASE);
       box_cpr1->end();
-    } // Fl_Group* box_cpr1
-    { box_cpr2 = new Fl_Group(200, 135, 60, 60);
+    } // Fl_Group_Ex* box_cpr1
+    { box_cpr2 = new Fl_Group_Ex(195, 305, 60, 60);
       box_cpr2->box(FL_BORDER_BOX);
+      box_cpr2->color(FL_BACKGROUND_COLOR);
+      box_cpr2->selection_color(FL_BACKGROUND_COLOR);
+      box_cpr2->labeltype(FL_NORMAL_LABEL);
+      box_cpr2->labelfont(0);
+      box_cpr2->labelsize(14);
+      box_cpr2->labelcolor(FL_FOREGROUND_COLOR);
+      box_cpr2->align(Fl_Align(FL_ALIGN_TOP));
+      box_cpr2->when(FL_WHEN_RELEASE);
       box_cpr2->end();
-    } // Fl_Group* box_cpr2
-    { box_cpr3 = new Fl_Group(140, 200, 60, 60);
+    } // Fl_Group_Ex* box_cpr2
+    { box_cpr3 = new Fl_Group_Ex(135, 370, 60, 60);
       box_cpr3->box(FL_BORDER_BOX);
+      box_cpr3->color(FL_BACKGROUND_COLOR);
+      box_cpr3->selection_color(FL_BACKGROUND_COLOR);
+      box_cpr3->labeltype(FL_NORMAL_LABEL);
+      box_cpr3->labelfont(0);
+      box_cpr3->labelsize(14);
+      box_cpr3->labelcolor(FL_FOREGROUND_COLOR);
+      box_cpr3->align(Fl_Align(FL_ALIGN_TOP));
+      box_cpr3->when(FL_WHEN_RELEASE);
       box_cpr3->end();
-    } // Fl_Group* box_cpr3
-    { box_cpr4 = new Fl_Group(200, 200, 60, 60);
+    } // Fl_Group_Ex* box_cpr3
+    { box_cpr4 = new Fl_Group_Ex(195, 370, 60, 60);
       box_cpr4->box(FL_BORDER_BOX);
+      box_cpr4->color(FL_BACKGROUND_COLOR);
+      box_cpr4->selection_color(FL_BACKGROUND_COLOR);
+      box_cpr4->labeltype(FL_NORMAL_LABEL);
+      box_cpr4->labelfont(0);
+      box_cpr4->labelsize(14);
+      box_cpr4->labelcolor(FL_FOREGROUND_COLOR);
+      box_cpr4->align(Fl_Align(FL_ALIGN_TOP));
+      box_cpr4->when(FL_WHEN_RELEASE);
       box_cpr4->end();
-    } // Fl_Group* box_cpr4
-    { box_cpr5 = new Fl_Group(140, 265, 60, 60);
+    } // Fl_Group_Ex* box_cpr4
+    { box_cpr5 = new Fl_Group_Ex(135, 435, 60, 60);
       box_cpr5->box(FL_BORDER_BOX);
+      box_cpr5->color(FL_BACKGROUND_COLOR);
+      box_cpr5->selection_color(FL_BACKGROUND_COLOR);
+      box_cpr5->labeltype(FL_NORMAL_LABEL);
+      box_cpr5->labelfont(0);
+      box_cpr5->labelsize(14);
+      box_cpr5->labelcolor(FL_FOREGROUND_COLOR);
+      box_cpr5->align(Fl_Align(FL_ALIGN_TOP));
+      box_cpr5->when(FL_WHEN_RELEASE);
       box_cpr5->end();
-    } // Fl_Group* box_cpr5
-    { box_cpr6 = new Fl_Group(200, 265, 60, 60);
+    } // Fl_Group_Ex* box_cpr5
+    { box_cpr6 = new Fl_Group_Ex(195, 435, 60, 60);
       box_cpr6->box(FL_BORDER_BOX);
+      box_cpr6->color(FL_BACKGROUND_COLOR);
+      box_cpr6->selection_color(FL_BACKGROUND_COLOR);
+      box_cpr6->labeltype(FL_NORMAL_LABEL);
+      box_cpr6->labelfont(0);
+      box_cpr6->labelsize(14);
+      box_cpr6->labelcolor(FL_FOREGROUND_COLOR);
+      box_cpr6->align(Fl_Align(FL_ALIGN_TOP));
+      box_cpr6->when(FL_WHEN_RELEASE);
       box_cpr6->end();
-    } // Fl_Group* box_cpr6
+    } // Fl_Group_Ex* box_cpr6
     o->end();
   } // Fl_Group* o
   o->end();
 } // Fl_Group* o
-{ Fl_Group* o = new Fl_Group(5, 335, 261, 285);
+{ Fl_Group* o = new Fl_Group(0, 505, 261, 285);
   o->box(FL_THIN_UP_BOX);
-  { chk_equalizer = new Fl_Check_Button(6, 336, 258, 23, _("Equalizer"));
+  { chk_equalizer = new Fl_Check_Button_Ex(1, 506, 258, 23, _("Equalizer"));
+    chk_equalizer->box(FL_NO_BOX);
     chk_equalizer->down_box(FL_DOWN_BOX);
+    chk_equalizer->color(FL_BACKGROUND_COLOR);
+    chk_equalizer->selection_color(FL_FOREGROUND_COLOR);
+    chk_equalizer->labeltype(FL_NORMAL_LABEL);
+    chk_equalizer->labelfont(0);
     chk_equalizer->labelsize(12);
-  } // Fl_Check_Button* chk_equalizer
-  { box_eq1 = new Fl_Group(25, 360, 60, 60);
+    chk_equalizer->labelcolor(FL_FOREGROUND_COLOR);
+    chk_equalizer->align(Fl_Align(FL_ALIGN_LEFT|FL_ALIGN_INSIDE));
+    chk_equalizer->when(FL_WHEN_RELEASE);
+  } // Fl_Check_Button_Ex* chk_equalizer
+  { box_eq1 = new Fl_Group_Ex(20, 530, 60, 60);
     box_eq1->box(FL_BORDER_BOX);
+    box_eq1->color(FL_BACKGROUND_COLOR);
+    box_eq1->selection_color(FL_BACKGROUND_COLOR);
+    box_eq1->labeltype(FL_NORMAL_LABEL);
+    box_eq1->labelfont(0);
+    box_eq1->labelsize(14);
+    box_eq1->labelcolor(FL_FOREGROUND_COLOR);
+    box_eq1->align(Fl_Align(FL_ALIGN_TOP));
+    box_eq1->when(FL_WHEN_RELEASE);
     box_eq1->end();
-  } // Fl_Group* box_eq1
-  { box_eq2 = new Fl_Group(105, 360, 60, 60);
+  } // Fl_Group_Ex* box_eq1
+  { box_eq2 = new Fl_Group_Ex(100, 530, 60, 60);
     box_eq2->box(FL_BORDER_BOX);
+    box_eq2->color(FL_BACKGROUND_COLOR);
+    box_eq2->selection_color(FL_BACKGROUND_COLOR);
+    box_eq2->labeltype(FL_NORMAL_LABEL);
+    box_eq2->labelfont(0);
+    box_eq2->labelsize(14);
+    box_eq2->labelcolor(FL_FOREGROUND_COLOR);
+    box_eq2->align(Fl_Align(FL_ALIGN_TOP));
+    box_eq2->when(FL_WHEN_RELEASE);
     box_eq2->end();
-  } // Fl_Group* box_eq2
-  { box_eq4 = new Fl_Group(25, 425, 60, 60);
+  } // Fl_Group_Ex* box_eq2
+  { box_eq4 = new Fl_Group_Ex(20, 595, 60, 60);
     box_eq4->box(FL_BORDER_BOX);
+    box_eq4->color(FL_BACKGROUND_COLOR);
+    box_eq4->selection_color(FL_BACKGROUND_COLOR);
+    box_eq4->labeltype(FL_NORMAL_LABEL);
+    box_eq4->labelfont(0);
+    box_eq4->labelsize(14);
+    box_eq4->labelcolor(FL_FOREGROUND_COLOR);
+    box_eq4->align(Fl_Align(FL_ALIGN_TOP));
+    box_eq4->when(FL_WHEN_RELEASE);
     box_eq4->end();
-  } // Fl_Group* box_eq4
-  { box_eq5 = new Fl_Group(105, 425, 60, 60);
+  } // Fl_Group_Ex* box_eq4
+  { box_eq5 = new Fl_Group_Ex(100, 595, 60, 60);
     box_eq5->box(FL_BORDER_BOX);
+    box_eq5->color(FL_BACKGROUND_COLOR);
+    box_eq5->selection_color(FL_BACKGROUND_COLOR);
+    box_eq5->labeltype(FL_NORMAL_LABEL);
+    box_eq5->labelfont(0);
+    box_eq5->labelsize(14);
+    box_eq5->labelcolor(FL_FOREGROUND_COLOR);
+    box_eq5->align(Fl_Align(FL_ALIGN_TOP));
+    box_eq5->when(FL_WHEN_RELEASE);
     box_eq5->end();
-  } // Fl_Group* box_eq5
-  { box_eq7 = new Fl_Group(25, 490, 60, 60);
+  } // Fl_Group_Ex* box_eq5
+  { box_eq7 = new Fl_Group_Ex(20, 660, 60, 60);
     box_eq7->box(FL_BORDER_BOX);
+    box_eq7->color(FL_BACKGROUND_COLOR);
+    box_eq7->selection_color(FL_BACKGROUND_COLOR);
+    box_eq7->labeltype(FL_NORMAL_LABEL);
+    box_eq7->labelfont(0);
+    box_eq7->labelsize(14);
+    box_eq7->labelcolor(FL_FOREGROUND_COLOR);
+    box_eq7->align(Fl_Align(FL_ALIGN_TOP));
+    box_eq7->when(FL_WHEN_RELEASE);
     box_eq7->end();
-  } // Fl_Group* box_eq7
-  { box_eq8 = new Fl_Group(105, 490, 60, 60);
+  } // Fl_Group_Ex* box_eq7
+  { box_eq8 = new Fl_Group_Ex(100, 660, 60, 60);
     box_eq8->box(FL_BORDER_BOX);
+    box_eq8->color(FL_BACKGROUND_COLOR);
+    box_eq8->selection_color(FL_BACKGROUND_COLOR);
+    box_eq8->labeltype(FL_NORMAL_LABEL);
+    box_eq8->labelfont(0);
+    box_eq8->labelsize(14);
+    box_eq8->labelcolor(FL_FOREGROUND_COLOR);
+    box_eq8->align(Fl_Align(FL_ALIGN_TOP));
+    box_eq8->when(FL_WHEN_RELEASE);
     box_eq8->end();
-  } // Fl_Group* box_eq8
-  { box_eq3 = new Fl_Group(185, 360, 60, 60);
+  } // Fl_Group_Ex* box_eq8
+  { box_eq3 = new Fl_Group_Ex(180, 530, 60, 60);
     box_eq3->box(FL_BORDER_BOX);
+    box_eq3->color(FL_BACKGROUND_COLOR);
+    box_eq3->selection_color(FL_BACKGROUND_COLOR);
+    box_eq3->labeltype(FL_NORMAL_LABEL);
+    box_eq3->labelfont(0);
+    box_eq3->labelsize(14);
+    box_eq3->labelcolor(FL_FOREGROUND_COLOR);
+    box_eq3->align(Fl_Align(FL_ALIGN_TOP));
+    box_eq3->when(FL_WHEN_RELEASE);
     box_eq3->end();
-  } // Fl_Group* box_eq3
-  { box_eq6 = new Fl_Group(185, 425, 60, 60);
+  } // Fl_Group_Ex* box_eq3
+  { box_eq6 = new Fl_Group_Ex(180, 595, 60, 60);
     box_eq6->box(FL_BORDER_BOX);
+    box_eq6->color(FL_BACKGROUND_COLOR);
+    box_eq6->selection_color(FL_BACKGROUND_COLOR);
+    box_eq6->labeltype(FL_NORMAL_LABEL);
+    box_eq6->labelfont(0);
+    box_eq6->labelsize(14);
+    box_eq6->labelcolor(FL_FOREGROUND_COLOR);
+    box_eq6->align(Fl_Align(FL_ALIGN_TOP));
+    box_eq6->when(FL_WHEN_RELEASE);
     box_eq6->end();
-  } // Fl_Group* box_eq6
-  { box_eq9 = new Fl_Group(185, 490, 60, 60);
+  } // Fl_Group_Ex* box_eq6
+  { box_eq9 = new Fl_Group_Ex(180, 660, 60, 60);
     box_eq9->box(FL_BORDER_BOX);
+    box_eq9->color(FL_BACKGROUND_COLOR);
+    box_eq9->selection_color(FL_BACKGROUND_COLOR);
+    box_eq9->labeltype(FL_NORMAL_LABEL);
+    box_eq9->labelfont(0);
+    box_eq9->labelsize(14);
+    box_eq9->labelcolor(FL_FOREGROUND_COLOR);
+    box_eq9->align(Fl_Align(FL_ALIGN_TOP));
+    box_eq9->when(FL_WHEN_RELEASE);
     box_eq9->end();
-  } // Fl_Group* box_eq9
+  } // Fl_Group_Ex* box_eq9
   o->end();
 } // Fl_Group* o
-{ Fl_Group* o = new Fl_Group(265, 110, 131, 510);
+{ Fl_Group* o = new Fl_Group(260, 280, 131, 510);
   o->box(FL_THIN_UP_BOX);
-  { chk_filter = new Fl_Check_Button(266, 111, 128, 23, _("Filter"));
+  { chk_filter = new Fl_Check_Button_Ex(261, 281, 128, 23, _("Filter"));
+    chk_filter->box(FL_NO_BOX);
     chk_filter->down_box(FL_DOWN_BOX);
+    chk_filter->color(FL_BACKGROUND_COLOR);
+    chk_filter->selection_color(FL_FOREGROUND_COLOR);
+    chk_filter->labeltype(FL_NORMAL_LABEL);
+    chk_filter->labelfont(0);
     chk_filter->labelsize(12);
-  } // Fl_Check_Button* chk_filter
-  { box_flt1 = new Fl_Group(270, 160, 60, 60);
+    chk_filter->labelcolor(FL_FOREGROUND_COLOR);
+    chk_filter->align(Fl_Align(FL_ALIGN_LEFT|FL_ALIGN_INSIDE));
+    chk_filter->when(FL_WHEN_RELEASE);
+  } // Fl_Check_Button_Ex* chk_filter
+  { box_flt1 = new Fl_Group_Ex(265, 330, 60, 60);
     box_flt1->box(FL_BORDER_BOX);
+    box_flt1->color(FL_BACKGROUND_COLOR);
+    box_flt1->selection_color(FL_BACKGROUND_COLOR);
+    box_flt1->labeltype(FL_NORMAL_LABEL);
+    box_flt1->labelfont(0);
+    box_flt1->labelsize(14);
+    box_flt1->labelcolor(FL_FOREGROUND_COLOR);
+    box_flt1->align(Fl_Align(FL_ALIGN_TOP));
+    box_flt1->when(FL_WHEN_RELEASE);
     box_flt1->end();
-  } // Fl_Group* box_flt1
-  { box_flt2 = new Fl_Group(330, 160, 60, 60);
+  } // Fl_Group_Ex* box_flt1
+  { box_flt2 = new Fl_Group_Ex(325, 330, 60, 60);
     box_flt2->box(FL_BORDER_BOX);
+    box_flt2->color(FL_BACKGROUND_COLOR);
+    box_flt2->selection_color(FL_BACKGROUND_COLOR);
+    box_flt2->labeltype(FL_NORMAL_LABEL);
+    box_flt2->labelfont(0);
+    box_flt2->labelsize(14);
+    box_flt2->labelcolor(FL_FOREGROUND_COLOR);
+    box_flt2->align(Fl_Align(FL_ALIGN_TOP));
+    box_flt2->when(FL_WHEN_RELEASE);
     box_flt2->end();
-  } // Fl_Group* box_flt2
-  { box_flt3 = new Fl_Group(270, 225, 60, 60);
+  } // Fl_Group_Ex* box_flt2
+  { box_flt3 = new Fl_Group_Ex(265, 395, 60, 60);
     box_flt3->box(FL_BORDER_BOX);
+    box_flt3->color(FL_BACKGROUND_COLOR);
+    box_flt3->selection_color(FL_BACKGROUND_COLOR);
+    box_flt3->labeltype(FL_NORMAL_LABEL);
+    box_flt3->labelfont(0);
+    box_flt3->labelsize(14);
+    box_flt3->labelcolor(FL_FOREGROUND_COLOR);
+    box_flt3->align(Fl_Align(FL_ALIGN_TOP));
+    box_flt3->when(FL_WHEN_RELEASE);
     box_flt3->end();
-  } // Fl_Group* box_flt3
-  { box_flt4 = new Fl_Group(330, 225, 60, 60);
+  } // Fl_Group_Ex* box_flt3
+  { box_flt4 = new Fl_Group_Ex(325, 395, 60, 60);
     box_flt4->box(FL_BORDER_BOX);
+    box_flt4->color(FL_BACKGROUND_COLOR);
+    box_flt4->selection_color(FL_BACKGROUND_COLOR);
+    box_flt4->labeltype(FL_NORMAL_LABEL);
+    box_flt4->labelfont(0);
+    box_flt4->labelsize(14);
+    box_flt4->labelcolor(FL_FOREGROUND_COLOR);
+    box_flt4->align(Fl_Align(FL_ALIGN_TOP));
+    box_flt4->when(FL_WHEN_RELEASE);
     box_flt4->end();
-  } // Fl_Group* box_flt4
-  { box_flt5 = new Fl_Group(270, 290, 60, 60);
+  } // Fl_Group_Ex* box_flt4
+  { box_flt5 = new Fl_Group_Ex(265, 460, 60, 60);
     box_flt5->box(FL_BORDER_BOX);
+    box_flt5->color(FL_BACKGROUND_COLOR);
+    box_flt5->selection_color(FL_BACKGROUND_COLOR);
+    box_flt5->labeltype(FL_NORMAL_LABEL);
+    box_flt5->labelfont(0);
+    box_flt5->labelsize(14);
+    box_flt5->labelcolor(FL_FOREGROUND_COLOR);
+    box_flt5->align(Fl_Align(FL_ALIGN_TOP));
+    box_flt5->when(FL_WHEN_RELEASE);
     box_flt5->end();
-  } // Fl_Group* box_flt5
-  { box_flt6 = new Fl_Group(330, 290, 60, 60);
+  } // Fl_Group_Ex* box_flt5
+  { box_flt6 = new Fl_Group_Ex(325, 460, 60, 60);
     box_flt6->box(FL_BORDER_BOX);
+    box_flt6->color(FL_BACKGROUND_COLOR);
+    box_flt6->selection_color(FL_BACKGROUND_COLOR);
+    box_flt6->labeltype(FL_NORMAL_LABEL);
+    box_flt6->labelfont(0);
+    box_flt6->labelsize(14);
+    box_flt6->labelcolor(FL_FOREGROUND_COLOR);
+    box_flt6->align(Fl_Align(FL_ALIGN_TOP));
+    box_flt6->when(FL_WHEN_RELEASE);
     box_flt6->end();
-  } // Fl_Group* box_flt6
-  { box_flt7 = new Fl_Group(270, 355, 60, 60);
+  } // Fl_Group_Ex* box_flt6
+  { box_flt7 = new Fl_Group_Ex(265, 525, 60, 60);
     box_flt7->box(FL_BORDER_BOX);
+    box_flt7->color(FL_BACKGROUND_COLOR);
+    box_flt7->selection_color(FL_BACKGROUND_COLOR);
+    box_flt7->labeltype(FL_NORMAL_LABEL);
+    box_flt7->labelfont(0);
+    box_flt7->labelsize(14);
+    box_flt7->labelcolor(FL_FOREGROUND_COLOR);
+    box_flt7->align(Fl_Align(FL_ALIGN_TOP));
+    box_flt7->when(FL_WHEN_RELEASE);
     box_flt7->end();
-  } // Fl_Group* box_flt7
-  { box_flt8 = new Fl_Group(330, 355, 60, 60);
+  } // Fl_Group_Ex* box_flt7
+  { box_flt8 = new Fl_Group_Ex(325, 525, 60, 60);
     box_flt8->box(FL_BORDER_BOX);
+    box_flt8->color(FL_BACKGROUND_COLOR);
+    box_flt8->selection_color(FL_BACKGROUND_COLOR);
+    box_flt8->labeltype(FL_NORMAL_LABEL);
+    box_flt8->labelfont(0);
+    box_flt8->labelsize(14);
+    box_flt8->labelcolor(FL_FOREGROUND_COLOR);
+    box_flt8->align(Fl_Align(FL_ALIGN_TOP));
+    box_flt8->when(FL_WHEN_RELEASE);
     box_flt8->end();
-  } // Fl_Group* box_flt8
-  { box_flt9 = new Fl_Group(270, 420, 60, 60);
+  } // Fl_Group_Ex* box_flt8
+  { box_flt9 = new Fl_Group_Ex(265, 590, 60, 60);
     box_flt9->box(FL_BORDER_BOX);
+    box_flt9->color(FL_BACKGROUND_COLOR);
+    box_flt9->selection_color(FL_BACKGROUND_COLOR);
+    box_flt9->labeltype(FL_NORMAL_LABEL);
+    box_flt9->labelfont(0);
+    box_flt9->labelsize(14);
+    box_flt9->labelcolor(FL_FOREGROUND_COLOR);
+    box_flt9->align(Fl_Align(FL_ALIGN_TOP));
+    box_flt9->when(FL_WHEN_RELEASE);
     box_flt9->end();
-  } // Fl_Group* box_flt9
-  { box_flt10 = new Fl_Group(330, 420, 60, 60);
+  } // Fl_Group_Ex* box_flt9
+  { box_flt10 = new Fl_Group_Ex(325, 590, 60, 60);
     box_flt10->box(FL_BORDER_BOX);
+    box_flt10->color(FL_BACKGROUND_COLOR);
+    box_flt10->selection_color(FL_BACKGROUND_COLOR);
+    box_flt10->labeltype(FL_NORMAL_LABEL);
+    box_flt10->labelfont(0);
+    box_flt10->labelsize(14);
+    box_flt10->labelcolor(FL_FOREGROUND_COLOR);
+    box_flt10->align(Fl_Align(FL_ALIGN_TOP));
+    box_flt10->when(FL_WHEN_RELEASE);
     box_flt10->end();
-  } // Fl_Group* box_flt10
-  { box_flt11 = new Fl_Group(270, 485, 60, 60);
+  } // Fl_Group_Ex* box_flt10
+  { box_flt11 = new Fl_Group_Ex(265, 655, 60, 60);
     box_flt11->box(FL_BORDER_BOX);
+    box_flt11->color(FL_BACKGROUND_COLOR);
+    box_flt11->selection_color(FL_BACKGROUND_COLOR);
+    box_flt11->labeltype(FL_NORMAL_LABEL);
+    box_flt11->labelfont(0);
+    box_flt11->labelsize(14);
+    box_flt11->labelcolor(FL_FOREGROUND_COLOR);
+    box_flt11->align(Fl_Align(FL_ALIGN_TOP));
+    box_flt11->when(FL_WHEN_RELEASE);
     box_flt11->end();
-  } // Fl_Group* box_flt11
-  { box_flt12 = new Fl_Group(330, 485, 60, 60);
+  } // Fl_Group_Ex* box_flt11
+  { box_flt12 = new Fl_Group_Ex(325, 655, 60, 60);
     box_flt12->box(FL_BORDER_BOX);
+    box_flt12->color(FL_BACKGROUND_COLOR);
+    box_flt12->selection_color(FL_BACKGROUND_COLOR);
+    box_flt12->labeltype(FL_NORMAL_LABEL);
+    box_flt12->labelfont(0);
+    box_flt12->labelsize(14);
+    box_flt12->labelcolor(FL_FOREGROUND_COLOR);
+    box_flt12->align(Fl_Align(FL_ALIGN_TOP));
+    box_flt12->when(FL_WHEN_RELEASE);
     box_flt12->end();
-  } // Fl_Group* box_flt12
-  { box_flt13 = new Fl_Group(270, 550, 60, 60);
+  } // Fl_Group_Ex* box_flt12
+  { box_flt13 = new Fl_Group_Ex(265, 720, 60, 60);
     box_flt13->box(FL_BORDER_BOX);
+    box_flt13->color(FL_BACKGROUND_COLOR);
+    box_flt13->selection_color(FL_BACKGROUND_COLOR);
+    box_flt13->labeltype(FL_NORMAL_LABEL);
+    box_flt13->labelfont(0);
+    box_flt13->labelsize(14);
+    box_flt13->labelcolor(FL_FOREGROUND_COLOR);
+    box_flt13->align(Fl_Align(FL_ALIGN_TOP));
+    box_flt13->when(FL_WHEN_RELEASE);
     box_flt13->end();
-  } // Fl_Group* box_flt13
-  { box_flt14 = new Fl_Group(330, 550, 60, 60);
+  } // Fl_Group_Ex* box_flt13
+  { box_flt14 = new Fl_Group_Ex(325, 720, 60, 60);
     box_flt14->box(FL_BORDER_BOX);
+    box_flt14->color(FL_BACKGROUND_COLOR);
+    box_flt14->selection_color(FL_BACKGROUND_COLOR);
+    box_flt14->labeltype(FL_NORMAL_LABEL);
+    box_flt14->labelfont(0);
+    box_flt14->labelsize(14);
+    box_flt14->labelcolor(FL_FOREGROUND_COLOR);
+    box_flt14->align(Fl_Align(FL_ALIGN_TOP));
+    box_flt14->when(FL_WHEN_RELEASE);
     box_flt14->end();
-  } // Fl_Group* box_flt14
-  { cb_filter = new Fl_Choice(270, 135, 120, 20);
+  } // Fl_Group_Ex* box_flt14
+  { cb_filter = new Fl_Choice_Ex(265, 305, 120, 20);
+    cb_filter->box(FL_FLAT_BOX);
     cb_filter->down_box(FL_BORDER_BOX);
+    cb_filter->color(FL_BACKGROUND_COLOR);
+    cb_filter->selection_color(FL_SELECTION_COLOR);
+    cb_filter->labeltype(FL_NORMAL_LABEL);
+    cb_filter->labelfont(0);
     cb_filter->labelsize(12);
+    cb_filter->labelcolor(FL_FOREGROUND_COLOR);
     cb_filter->textsize(12);
-  } // Fl_Choice* cb_filter
+    cb_filter->align(Fl_Align(FL_ALIGN_LEFT));
+    cb_filter->when(FL_WHEN_RELEASE);
+  } // Fl_Choice_Ex* cb_filter
   o->end();
 } // Fl_Group* o
-{ Fl_Group* o = new Fl_Group(395, 110, 131, 510);
+{ Fl_Group* o = new Fl_Group(390, 280, 131, 510);
   o->box(FL_THIN_UP_BOX);
-  { chk_pitch = new Fl_Check_Button(396, 111, 128, 23, _("Pitch"));
+  { chk_pitch = new Fl_Check_Button_Ex(391, 281, 128, 23, _("Pitch"));
+    chk_pitch->box(FL_NO_BOX);
     chk_pitch->down_box(FL_DOWN_BOX);
+    chk_pitch->color(FL_BACKGROUND_COLOR);
+    chk_pitch->selection_color(FL_FOREGROUND_COLOR);
+    chk_pitch->labeltype(FL_NORMAL_LABEL);
+    chk_pitch->labelfont(0);
     chk_pitch->labelsize(12);
-  } // Fl_Check_Button* chk_pitch
-  { box_pit1 = new Fl_Group(400, 160, 60, 60);
+    chk_pitch->labelcolor(FL_FOREGROUND_COLOR);
+    chk_pitch->align(Fl_Align(FL_ALIGN_LEFT|FL_ALIGN_INSIDE));
+    chk_pitch->when(FL_WHEN_RELEASE);
+  } // Fl_Check_Button_Ex* chk_pitch
+  { box_pit1 = new Fl_Group_Ex(395, 330, 60, 60);
     box_pit1->box(FL_BORDER_BOX);
+    box_pit1->color(FL_BACKGROUND_COLOR);
+    box_pit1->selection_color(FL_BACKGROUND_COLOR);
+    box_pit1->labeltype(FL_NORMAL_LABEL);
+    box_pit1->labelfont(0);
+    box_pit1->labelsize(14);
+    box_pit1->labelcolor(FL_FOREGROUND_COLOR);
+    box_pit1->align(Fl_Align(FL_ALIGN_TOP));
+    box_pit1->when(FL_WHEN_RELEASE);
     box_pit1->end();
-  } // Fl_Group* box_pit1
-  { box_pit2 = new Fl_Group(460, 160, 60, 60);
+  } // Fl_Group_Ex* box_pit1
+  { box_pit2 = new Fl_Group_Ex(455, 330, 60, 60);
     box_pit2->box(FL_BORDER_BOX);
+    box_pit2->color(FL_BACKGROUND_COLOR);
+    box_pit2->selection_color(FL_BACKGROUND_COLOR);
+    box_pit2->labeltype(FL_NORMAL_LABEL);
+    box_pit2->labelfont(0);
+    box_pit2->labelsize(14);
+    box_pit2->labelcolor(FL_FOREGROUND_COLOR);
+    box_pit2->align(Fl_Align(FL_ALIGN_TOP));
+    box_pit2->when(FL_WHEN_RELEASE);
     box_pit2->end();
-  } // Fl_Group* box_pit2
-  { box_pit3 = new Fl_Group(400, 225, 60, 60);
+  } // Fl_Group_Ex* box_pit2
+  { box_pit3 = new Fl_Group_Ex(395, 395, 60, 60);
     box_pit3->box(FL_BORDER_BOX);
+    box_pit3->color(FL_BACKGROUND_COLOR);
+    box_pit3->selection_color(FL_BACKGROUND_COLOR);
+    box_pit3->labeltype(FL_NORMAL_LABEL);
+    box_pit3->labelfont(0);
+    box_pit3->labelsize(14);
+    box_pit3->labelcolor(FL_FOREGROUND_COLOR);
+    box_pit3->align(Fl_Align(FL_ALIGN_TOP));
+    box_pit3->when(FL_WHEN_RELEASE);
     box_pit3->end();
-  } // Fl_Group* box_pit3
-  { box_pit4 = new Fl_Group(460, 225, 60, 60);
+  } // Fl_Group_Ex* box_pit3
+  { box_pit4 = new Fl_Group_Ex(455, 395, 60, 60);
     box_pit4->box(FL_BORDER_BOX);
+    box_pit4->color(FL_BACKGROUND_COLOR);
+    box_pit4->selection_color(FL_BACKGROUND_COLOR);
+    box_pit4->labeltype(FL_NORMAL_LABEL);
+    box_pit4->labelfont(0);
+    box_pit4->labelsize(14);
+    box_pit4->labelcolor(FL_FOREGROUND_COLOR);
+    box_pit4->align(Fl_Align(FL_ALIGN_TOP));
+    box_pit4->when(FL_WHEN_RELEASE);
     box_pit4->end();
-  } // Fl_Group* box_pit4
-  { box_pit5 = new Fl_Group(400, 290, 60, 60);
+  } // Fl_Group_Ex* box_pit4
+  { box_pit5 = new Fl_Group_Ex(395, 460, 60, 60);
     box_pit5->box(FL_BORDER_BOX);
+    box_pit5->color(FL_BACKGROUND_COLOR);
+    box_pit5->selection_color(FL_BACKGROUND_COLOR);
+    box_pit5->labeltype(FL_NORMAL_LABEL);
+    box_pit5->labelfont(0);
+    box_pit5->labelsize(14);
+    box_pit5->labelcolor(FL_FOREGROUND_COLOR);
+    box_pit5->align(Fl_Align(FL_ALIGN_TOP));
+    box_pit5->when(FL_WHEN_RELEASE);
     box_pit5->end();
-  } // Fl_Group* box_pit5
-  { box_pit6 = new Fl_Group(460, 290, 60, 60);
+  } // Fl_Group_Ex* box_pit5
+  { box_pit6 = new Fl_Group_Ex(455, 460, 60, 60);
     box_pit6->box(FL_BORDER_BOX);
+    box_pit6->color(FL_BACKGROUND_COLOR);
+    box_pit6->selection_color(FL_BACKGROUND_COLOR);
+    box_pit6->labeltype(FL_NORMAL_LABEL);
+    box_pit6->labelfont(0);
+    box_pit6->labelsize(14);
+    box_pit6->labelcolor(FL_FOREGROUND_COLOR);
+    box_pit6->align(Fl_Align(FL_ALIGN_TOP));
+    box_pit6->when(FL_WHEN_RELEASE);
     box_pit6->end();
-  } // Fl_Group* box_pit6
-  { box_pit7 = new Fl_Group(400, 355, 60, 60);
+  } // Fl_Group_Ex* box_pit6
+  { box_pit7 = new Fl_Group_Ex(395, 525, 60, 60);
     box_pit7->box(FL_BORDER_BOX);
+    box_pit7->color(FL_BACKGROUND_COLOR);
+    box_pit7->selection_color(FL_BACKGROUND_COLOR);
+    box_pit7->labeltype(FL_NORMAL_LABEL);
+    box_pit7->labelfont(0);
+    box_pit7->labelsize(14);
+    box_pit7->labelcolor(FL_FOREGROUND_COLOR);
+    box_pit7->align(Fl_Align(FL_ALIGN_TOP));
+    box_pit7->when(FL_WHEN_RELEASE);
     box_pit7->end();
-  } // Fl_Group* box_pit7
-  { box_pit8 = new Fl_Group(460, 355, 60, 60);
+  } // Fl_Group_Ex* box_pit7
+  { box_pit8 = new Fl_Group_Ex(455, 525, 60, 60);
     box_pit8->box(FL_BORDER_BOX);
+    box_pit8->color(FL_BACKGROUND_COLOR);
+    box_pit8->selection_color(FL_BACKGROUND_COLOR);
+    box_pit8->labeltype(FL_NORMAL_LABEL);
+    box_pit8->labelfont(0);
+    box_pit8->labelsize(14);
+    box_pit8->labelcolor(FL_FOREGROUND_COLOR);
+    box_pit8->align(Fl_Align(FL_ALIGN_TOP));
+    box_pit8->when(FL_WHEN_RELEASE);
     box_pit8->end();
-  } // Fl_Group* box_pit8
-  { box_pit9 = new Fl_Group(400, 420, 60, 60);
+  } // Fl_Group_Ex* box_pit8
+  { box_pit9 = new Fl_Group_Ex(395, 590, 60, 60);
     box_pit9->box(FL_BORDER_BOX);
+    box_pit9->color(FL_BACKGROUND_COLOR);
+    box_pit9->selection_color(FL_BACKGROUND_COLOR);
+    box_pit9->labeltype(FL_NORMAL_LABEL);
+    box_pit9->labelfont(0);
+    box_pit9->labelsize(14);
+    box_pit9->labelcolor(FL_FOREGROUND_COLOR);
+    box_pit9->align(Fl_Align(FL_ALIGN_TOP));
+    box_pit9->when(FL_WHEN_RELEASE);
     box_pit9->end();
-  } // Fl_Group* box_pit9
-  { box_pit10 = new Fl_Group(460, 420, 60, 60);
+  } // Fl_Group_Ex* box_pit9
+  { box_pit10 = new Fl_Group_Ex(455, 590, 60, 60);
     box_pit10->box(FL_BORDER_BOX);
+    box_pit10->color(FL_BACKGROUND_COLOR);
+    box_pit10->selection_color(FL_BACKGROUND_COLOR);
+    box_pit10->labeltype(FL_NORMAL_LABEL);
+    box_pit10->labelfont(0);
+    box_pit10->labelsize(14);
+    box_pit10->labelcolor(FL_FOREGROUND_COLOR);
+    box_pit10->align(Fl_Align(FL_ALIGN_TOP));
+    box_pit10->when(FL_WHEN_RELEASE);
     box_pit10->end();
-  } // Fl_Group* box_pit10
-  { box_pit11 = new Fl_Group(400, 485, 60, 60);
+  } // Fl_Group_Ex* box_pit10
+  { box_pit11 = new Fl_Group_Ex(395, 655, 60, 60);
     box_pit11->box(FL_BORDER_BOX);
+    box_pit11->color(FL_BACKGROUND_COLOR);
+    box_pit11->selection_color(FL_BACKGROUND_COLOR);
+    box_pit11->labeltype(FL_NORMAL_LABEL);
+    box_pit11->labelfont(0);
+    box_pit11->labelsize(14);
+    box_pit11->labelcolor(FL_FOREGROUND_COLOR);
+    box_pit11->align(Fl_Align(FL_ALIGN_TOP));
+    box_pit11->when(FL_WHEN_RELEASE);
     box_pit11->end();
-  } // Fl_Group* box_pit11
-  { box_pit12 = new Fl_Group(460, 485, 60, 60);
+  } // Fl_Group_Ex* box_pit11
+  { box_pit12 = new Fl_Group_Ex(455, 655, 60, 60);
     box_pit12->box(FL_BORDER_BOX);
+    box_pit12->color(FL_BACKGROUND_COLOR);
+    box_pit12->selection_color(FL_BACKGROUND_COLOR);
+    box_pit12->labeltype(FL_NORMAL_LABEL);
+    box_pit12->labelfont(0);
+    box_pit12->labelsize(14);
+    box_pit12->labelcolor(FL_FOREGROUND_COLOR);
+    box_pit12->align(Fl_Align(FL_ALIGN_TOP));
+    box_pit12->when(FL_WHEN_RELEASE);
     box_pit12->end();
-  } // Fl_Group* box_pit12
-  { box_pit13 = new Fl_Group(400, 550, 60, 60);
+  } // Fl_Group_Ex* box_pit12
+  { box_pit13 = new Fl_Group_Ex(395, 720, 60, 60);
     box_pit13->box(FL_BORDER_BOX);
+    box_pit13->color(FL_BACKGROUND_COLOR);
+    box_pit13->selection_color(FL_BACKGROUND_COLOR);
+    box_pit13->labeltype(FL_NORMAL_LABEL);
+    box_pit13->labelfont(0);
+    box_pit13->labelsize(14);
+    box_pit13->labelcolor(FL_FOREGROUND_COLOR);
+    box_pit13->align(Fl_Align(FL_ALIGN_TOP));
+    box_pit13->when(FL_WHEN_RELEASE);
     box_pit13->end();
-  } // Fl_Group* box_pit13
-  { box_pit14 = new Fl_Group(460, 550, 60, 60);
+  } // Fl_Group_Ex* box_pit13
+  { box_pit14 = new Fl_Group_Ex(455, 720, 60, 60);
     box_pit14->box(FL_BORDER_BOX);
+    box_pit14->color(FL_BACKGROUND_COLOR);
+    box_pit14->selection_color(FL_BACKGROUND_COLOR);
+    box_pit14->labeltype(FL_NORMAL_LABEL);
+    box_pit14->labelfont(0);
+    box_pit14->labelsize(14);
+    box_pit14->labelcolor(FL_FOREGROUND_COLOR);
+    box_pit14->align(Fl_Align(FL_ALIGN_TOP));
+    box_pit14->when(FL_WHEN_RELEASE);
     box_pit14->end();
-  } // Fl_Group* box_pit14
-  { cb_pitch = new Fl_Choice(400, 135, 120, 20);
+  } // Fl_Group_Ex* box_pit14
+  { cb_pitch = new Fl_Choice_Ex(395, 305, 120, 20);
+    cb_pitch->box(FL_FLAT_BOX);
     cb_pitch->down_box(FL_BORDER_BOX);
+    cb_pitch->color(FL_BACKGROUND_COLOR);
+    cb_pitch->selection_color(FL_SELECTION_COLOR);
+    cb_pitch->labeltype(FL_NORMAL_LABEL);
+    cb_pitch->labelfont(0);
     cb_pitch->labelsize(12);
+    cb_pitch->labelcolor(FL_FOREGROUND_COLOR);
     cb_pitch->textsize(12);
-  } // Fl_Choice* cb_pitch
+    cb_pitch->align(Fl_Align(FL_ALIGN_LEFT));
+    cb_pitch->when(FL_WHEN_RELEASE);
+  } // Fl_Choice_Ex* cb_pitch
   o->end();
 } // Fl_Group* o
-{ Fl_Group* o = new Fl_Group(525, 110, 391, 510);
+{ Fl_Group* o = new Fl_Group(520, 280, 391, 510);
   o->box(FL_THIN_UP_BOX);
-  { chk_chorus = new Fl_Check_Button(526, 111, 128, 23, _("Chorus/Flanger"));
+  { chk_chorus = new Fl_Check_Button_Ex(521, 281, 128, 23, _("Chorus/Flanger"));
+    chk_chorus->box(FL_NO_BOX);
     chk_chorus->down_box(FL_DOWN_BOX);
+    chk_chorus->color(FL_BACKGROUND_COLOR);
+    chk_chorus->selection_color(FL_FOREGROUND_COLOR);
+    chk_chorus->labeltype(FL_NORMAL_LABEL);
+    chk_chorus->labelfont(0);
     chk_chorus->labelsize(12);
-  } // Fl_Check_Button* chk_chorus
-  { box_cho1 = new Fl_Group(530, 160, 60, 60);
+    chk_chorus->labelcolor(FL_FOREGROUND_COLOR);
+    chk_chorus->align(Fl_Align(FL_ALIGN_LEFT|FL_ALIGN_INSIDE));
+    chk_chorus->when(FL_WHEN_RELEASE);
+  } // Fl_Check_Button_Ex* chk_chorus
+  { box_cho1 = new Fl_Group_Ex(525, 330, 60, 60);
     box_cho1->box(FL_BORDER_BOX);
+    box_cho1->color(FL_BACKGROUND_COLOR);
+    box_cho1->selection_color(FL_BACKGROUND_COLOR);
+    box_cho1->labeltype(FL_NORMAL_LABEL);
+    box_cho1->labelfont(0);
+    box_cho1->labelsize(14);
+    box_cho1->labelcolor(FL_FOREGROUND_COLOR);
+    box_cho1->align(Fl_Align(FL_ALIGN_TOP));
+    box_cho1->when(FL_WHEN_RELEASE);
     box_cho1->end();
-  } // Fl_Group* box_cho1
-  { box_cho2 = new Fl_Group(590, 160, 60, 60);
+  } // Fl_Group_Ex* box_cho1
+  { box_cho2 = new Fl_Group_Ex(585, 330, 60, 60);
     box_cho2->box(FL_BORDER_BOX);
+    box_cho2->color(FL_BACKGROUND_COLOR);
+    box_cho2->selection_color(FL_BACKGROUND_COLOR);
+    box_cho2->labeltype(FL_NORMAL_LABEL);
+    box_cho2->labelfont(0);
+    box_cho2->labelsize(14);
+    box_cho2->labelcolor(FL_FOREGROUND_COLOR);
+    box_cho2->align(Fl_Align(FL_ALIGN_TOP));
+    box_cho2->when(FL_WHEN_RELEASE);
     box_cho2->end();
-  } // Fl_Group* box_cho2
-  { box_cho3 = new Fl_Group(530, 225, 60, 60);
+  } // Fl_Group_Ex* box_cho2
+  { box_cho3 = new Fl_Group_Ex(525, 395, 60, 60);
     box_cho3->box(FL_BORDER_BOX);
+    box_cho3->color(FL_BACKGROUND_COLOR);
+    box_cho3->selection_color(FL_BACKGROUND_COLOR);
+    box_cho3->labeltype(FL_NORMAL_LABEL);
+    box_cho3->labelfont(0);
+    box_cho3->labelsize(14);
+    box_cho3->labelcolor(FL_FOREGROUND_COLOR);
+    box_cho3->align(Fl_Align(FL_ALIGN_TOP));
+    box_cho3->when(FL_WHEN_RELEASE);
     box_cho3->end();
-  } // Fl_Group* box_cho3
-  { box_cho4 = new Fl_Group(590, 225, 60, 60);
+  } // Fl_Group_Ex* box_cho3
+  { box_cho4 = new Fl_Group_Ex(585, 395, 60, 60);
     box_cho4->box(FL_BORDER_BOX);
+    box_cho4->color(FL_BACKGROUND_COLOR);
+    box_cho4->selection_color(FL_BACKGROUND_COLOR);
+    box_cho4->labeltype(FL_NORMAL_LABEL);
+    box_cho4->labelfont(0);
+    box_cho4->labelsize(14);
+    box_cho4->labelcolor(FL_FOREGROUND_COLOR);
+    box_cho4->align(Fl_Align(FL_ALIGN_TOP));
+    box_cho4->when(FL_WHEN_RELEASE);
     box_cho4->end();
-  } // Fl_Group* box_cho4
-  { box_cho5 = new Fl_Group(530, 290, 60, 60);
+  } // Fl_Group_Ex* box_cho4
+  { box_cho5 = new Fl_Group_Ex(525, 460, 60, 60);
     box_cho5->box(FL_BORDER_BOX);
+    box_cho5->color(FL_BACKGROUND_COLOR);
+    box_cho5->selection_color(FL_BACKGROUND_COLOR);
+    box_cho5->labeltype(FL_NORMAL_LABEL);
+    box_cho5->labelfont(0);
+    box_cho5->labelsize(14);
+    box_cho5->labelcolor(FL_FOREGROUND_COLOR);
+    box_cho5->align(Fl_Align(FL_ALIGN_TOP));
+    box_cho5->when(FL_WHEN_RELEASE);
     box_cho5->end();
-  } // Fl_Group* box_cho5
-  { box_cho6 = new Fl_Group(590, 290, 60, 60);
+  } // Fl_Group_Ex* box_cho5
+  { box_cho6 = new Fl_Group_Ex(585, 460, 60, 60);
     box_cho6->box(FL_BORDER_BOX);
+    box_cho6->color(FL_BACKGROUND_COLOR);
+    box_cho6->selection_color(FL_BACKGROUND_COLOR);
+    box_cho6->labeltype(FL_NORMAL_LABEL);
+    box_cho6->labelfont(0);
+    box_cho6->labelsize(14);
+    box_cho6->labelcolor(FL_FOREGROUND_COLOR);
+    box_cho6->align(Fl_Align(FL_ALIGN_TOP));
+    box_cho6->when(FL_WHEN_RELEASE);
     box_cho6->end();
-  } // Fl_Group* box_cho6
-  { box_cho7 = new Fl_Group(530, 355, 60, 60);
+  } // Fl_Group_Ex* box_cho6
+  { box_cho7 = new Fl_Group_Ex(525, 525, 60, 60);
     box_cho7->box(FL_BORDER_BOX);
+    box_cho7->color(FL_BACKGROUND_COLOR);
+    box_cho7->selection_color(FL_BACKGROUND_COLOR);
+    box_cho7->labeltype(FL_NORMAL_LABEL);
+    box_cho7->labelfont(0);
+    box_cho7->labelsize(14);
+    box_cho7->labelcolor(FL_FOREGROUND_COLOR);
+    box_cho7->align(Fl_Align(FL_ALIGN_TOP));
+    box_cho7->when(FL_WHEN_RELEASE);
     box_cho7->end();
-  } // Fl_Group* box_cho7
-  { box_cho8 = new Fl_Group(590, 355, 60, 60);
+  } // Fl_Group_Ex* box_cho7
+  { box_cho8 = new Fl_Group_Ex(585, 525, 60, 60);
     box_cho8->box(FL_BORDER_BOX);
+    box_cho8->color(FL_BACKGROUND_COLOR);
+    box_cho8->selection_color(FL_BACKGROUND_COLOR);
+    box_cho8->labeltype(FL_NORMAL_LABEL);
+    box_cho8->labelfont(0);
+    box_cho8->labelsize(14);
+    box_cho8->labelcolor(FL_FOREGROUND_COLOR);
+    box_cho8->align(Fl_Align(FL_ALIGN_TOP));
+    box_cho8->when(FL_WHEN_RELEASE);
     box_cho8->end();
-  } // Fl_Group* box_cho8
-  { box_cho9 = new Fl_Group(530, 420, 60, 60);
+  } // Fl_Group_Ex* box_cho8
+  { box_cho9 = new Fl_Group_Ex(525, 590, 60, 60);
     box_cho9->box(FL_BORDER_BOX);
+    box_cho9->color(FL_BACKGROUND_COLOR);
+    box_cho9->selection_color(FL_BACKGROUND_COLOR);
+    box_cho9->labeltype(FL_NORMAL_LABEL);
+    box_cho9->labelfont(0);
+    box_cho9->labelsize(14);
+    box_cho9->labelcolor(FL_FOREGROUND_COLOR);
+    box_cho9->align(Fl_Align(FL_ALIGN_TOP));
+    box_cho9->when(FL_WHEN_RELEASE);
     box_cho9->end();
-  } // Fl_Group* box_cho9
-  { box_cho10 = new Fl_Group(590, 420, 60, 60);
+  } // Fl_Group_Ex* box_cho9
+  { box_cho10 = new Fl_Group_Ex(585, 590, 60, 60);
     box_cho10->box(FL_BORDER_BOX);
+    box_cho10->color(FL_BACKGROUND_COLOR);
+    box_cho10->selection_color(FL_BACKGROUND_COLOR);
+    box_cho10->labeltype(FL_NORMAL_LABEL);
+    box_cho10->labelfont(0);
+    box_cho10->labelsize(14);
+    box_cho10->labelcolor(FL_FOREGROUND_COLOR);
+    box_cho10->align(Fl_Align(FL_ALIGN_TOP));
+    box_cho10->when(FL_WHEN_RELEASE);
     box_cho10->end();
-  } // Fl_Group* box_cho10
-  { box_cho11 = new Fl_Group(530, 485, 60, 60);
+  } // Fl_Group_Ex* box_cho10
+  { box_cho11 = new Fl_Group_Ex(525, 655, 60, 60);
     box_cho11->box(FL_BORDER_BOX);
+    box_cho11->color(FL_BACKGROUND_COLOR);
+    box_cho11->selection_color(FL_BACKGROUND_COLOR);
+    box_cho11->labeltype(FL_NORMAL_LABEL);
+    box_cho11->labelfont(0);
+    box_cho11->labelsize(14);
+    box_cho11->labelcolor(FL_FOREGROUND_COLOR);
+    box_cho11->align(Fl_Align(FL_ALIGN_TOP));
+    box_cho11->when(FL_WHEN_RELEASE);
     box_cho11->end();
-  } // Fl_Group* box_cho11
-  { box_cho12 = new Fl_Group(590, 485, 60, 60);
+  } // Fl_Group_Ex* box_cho11
+  { box_cho12 = new Fl_Group_Ex(585, 655, 60, 60);
     box_cho12->box(FL_BORDER_BOX);
+    box_cho12->color(FL_BACKGROUND_COLOR);
+    box_cho12->selection_color(FL_BACKGROUND_COLOR);
+    box_cho12->labeltype(FL_NORMAL_LABEL);
+    box_cho12->labelfont(0);
+    box_cho12->labelsize(14);
+    box_cho12->labelcolor(FL_FOREGROUND_COLOR);
+    box_cho12->align(Fl_Align(FL_ALIGN_TOP));
+    box_cho12->when(FL_WHEN_RELEASE);
     box_cho12->end();
-  } // Fl_Group* box_cho12
-  { box_cho13 = new Fl_Group(530, 550, 60, 60);
+  } // Fl_Group_Ex* box_cho12
+  { box_cho13 = new Fl_Group_Ex(525, 720, 60, 60);
     box_cho13->box(FL_BORDER_BOX);
+    box_cho13->color(FL_BACKGROUND_COLOR);
+    box_cho13->selection_color(FL_BACKGROUND_COLOR);
+    box_cho13->labeltype(FL_NORMAL_LABEL);
+    box_cho13->labelfont(0);
+    box_cho13->labelsize(14);
+    box_cho13->labelcolor(FL_FOREGROUND_COLOR);
+    box_cho13->align(Fl_Align(FL_ALIGN_TOP));
+    box_cho13->when(FL_WHEN_RELEASE);
     box_cho13->end();
-  } // Fl_Group* box_cho13
-  { box_cho14 = new Fl_Group(590, 550, 60, 60);
+  } // Fl_Group_Ex* box_cho13
+  { box_cho14 = new Fl_Group_Ex(585, 720, 60, 60);
     box_cho14->box(FL_BORDER_BOX);
+    box_cho14->color(FL_BACKGROUND_COLOR);
+    box_cho14->selection_color(FL_BACKGROUND_COLOR);
+    box_cho14->labeltype(FL_NORMAL_LABEL);
+    box_cho14->labelfont(0);
+    box_cho14->labelsize(14);
+    box_cho14->labelcolor(FL_FOREGROUND_COLOR);
+    box_cho14->align(Fl_Align(FL_ALIGN_TOP));
+    box_cho14->when(FL_WHEN_RELEASE);
     box_cho14->end();
-  } // Fl_Group* box_cho14
-  { cb_chorus = new Fl_Choice(530, 135, 120, 20);
+  } // Fl_Group_Ex* box_cho14
+  { cb_chorus = new Fl_Choice_Ex(525, 305, 120, 20);
+    cb_chorus->box(FL_FLAT_BOX);
     cb_chorus->down_box(FL_BORDER_BOX);
+    cb_chorus->color(FL_BACKGROUND_COLOR);
+    cb_chorus->selection_color(FL_SELECTION_COLOR);
+    cb_chorus->labeltype(FL_NORMAL_LABEL);
+    cb_chorus->labelfont(0);
     cb_chorus->labelsize(12);
+    cb_chorus->labelcolor(FL_FOREGROUND_COLOR);
     cb_chorus->textsize(12);
-  } // Fl_Choice* cb_chorus
-  { Fl_Group* o = new Fl_Group(655, 110, 261, 510);
+    cb_chorus->align(Fl_Align(FL_ALIGN_LEFT));
+    cb_chorus->when(FL_WHEN_RELEASE);
+  } // Fl_Choice_Ex* cb_chorus
+  { Fl_Group* o = new Fl_Group(650, 280, 261, 510);
     o->box(FL_THIN_UP_BOX);
-    { chk_delay = new Fl_Check_Button(656, 111, 128, 23, _("Delay"));
+    { chk_delay = new Fl_Check_Button_Ex(651, 281, 128, 23, _("Delay"));
+      chk_delay->box(FL_NO_BOX);
       chk_delay->down_box(FL_DOWN_BOX);
+      chk_delay->color(FL_BACKGROUND_COLOR);
+      chk_delay->selection_color(FL_FOREGROUND_COLOR);
+      chk_delay->labeltype(FL_NORMAL_LABEL);
+      chk_delay->labelfont(0);
       chk_delay->labelsize(12);
-    } // Fl_Check_Button* chk_delay
-    { box_del1 = new Fl_Group(660, 160, 60, 60);
+      chk_delay->labelcolor(FL_FOREGROUND_COLOR);
+      chk_delay->align(Fl_Align(FL_ALIGN_LEFT|FL_ALIGN_INSIDE));
+      chk_delay->when(FL_WHEN_RELEASE);
+    } // Fl_Check_Button_Ex* chk_delay
+    { box_del1 = new Fl_Group_Ex(655, 330, 60, 60);
       box_del1->box(FL_BORDER_BOX);
+      box_del1->color(FL_BACKGROUND_COLOR);
+      box_del1->selection_color(FL_BACKGROUND_COLOR);
+      box_del1->labeltype(FL_NORMAL_LABEL);
+      box_del1->labelfont(0);
+      box_del1->labelsize(14);
+      box_del1->labelcolor(FL_FOREGROUND_COLOR);
+      box_del1->align(Fl_Align(FL_ALIGN_TOP));
+      box_del1->when(FL_WHEN_RELEASE);
       box_del1->end();
-    } // Fl_Group* box_del1
-    { box_del2 = new Fl_Group(720, 160, 60, 60);
+    } // Fl_Group_Ex* box_del1
+    { box_del2 = new Fl_Group_Ex(715, 330, 60, 60);
       box_del2->box(FL_BORDER_BOX);
+      box_del2->color(FL_BACKGROUND_COLOR);
+      box_del2->selection_color(FL_BACKGROUND_COLOR);
+      box_del2->labeltype(FL_NORMAL_LABEL);
+      box_del2->labelfont(0);
+      box_del2->labelsize(14);
+      box_del2->labelcolor(FL_FOREGROUND_COLOR);
+      box_del2->align(Fl_Align(FL_ALIGN_TOP));
+      box_del2->when(FL_WHEN_RELEASE);
       box_del2->end();
-    } // Fl_Group* box_del2
-    { box_del3 = new Fl_Group(660, 225, 60, 60);
+    } // Fl_Group_Ex* box_del2
+    { box_del3 = new Fl_Group_Ex(655, 395, 60, 60);
       box_del3->box(FL_BORDER_BOX);
+      box_del3->color(FL_BACKGROUND_COLOR);
+      box_del3->selection_color(FL_BACKGROUND_COLOR);
+      box_del3->labeltype(FL_NORMAL_LABEL);
+      box_del3->labelfont(0);
+      box_del3->labelsize(14);
+      box_del3->labelcolor(FL_FOREGROUND_COLOR);
+      box_del3->align(Fl_Align(FL_ALIGN_TOP));
+      box_del3->when(FL_WHEN_RELEASE);
       box_del3->end();
-    } // Fl_Group* box_del3
-    { box_del4 = new Fl_Group(720, 225, 60, 60);
+    } // Fl_Group_Ex* box_del3
+    { box_del4 = new Fl_Group_Ex(715, 395, 60, 60);
       box_del4->box(FL_BORDER_BOX);
+      box_del4->color(FL_BACKGROUND_COLOR);
+      box_del4->selection_color(FL_BACKGROUND_COLOR);
+      box_del4->labeltype(FL_NORMAL_LABEL);
+      box_del4->labelfont(0);
+      box_del4->labelsize(14);
+      box_del4->labelcolor(FL_FOREGROUND_COLOR);
+      box_del4->align(Fl_Align(FL_ALIGN_TOP));
+      box_del4->when(FL_WHEN_RELEASE);
       box_del4->end();
-    } // Fl_Group* box_del4
-    { box_del5 = new Fl_Group(660, 290, 60, 60);
+    } // Fl_Group_Ex* box_del4
+    { box_del5 = new Fl_Group_Ex(655, 460, 60, 60);
       box_del5->box(FL_BORDER_BOX);
+      box_del5->color(FL_BACKGROUND_COLOR);
+      box_del5->selection_color(FL_BACKGROUND_COLOR);
+      box_del5->labeltype(FL_NORMAL_LABEL);
+      box_del5->labelfont(0);
+      box_del5->labelsize(14);
+      box_del5->labelcolor(FL_FOREGROUND_COLOR);
+      box_del5->align(Fl_Align(FL_ALIGN_TOP));
+      box_del5->when(FL_WHEN_RELEASE);
       box_del5->end();
-    } // Fl_Group* box_del5
-    { box_del6 = new Fl_Group(720, 290, 60, 60);
+    } // Fl_Group_Ex* box_del5
+    { box_del6 = new Fl_Group_Ex(715, 460, 60, 60);
       box_del6->box(FL_BORDER_BOX);
+      box_del6->color(FL_BACKGROUND_COLOR);
+      box_del6->selection_color(FL_BACKGROUND_COLOR);
+      box_del6->labeltype(FL_NORMAL_LABEL);
+      box_del6->labelfont(0);
+      box_del6->labelsize(14);
+      box_del6->labelcolor(FL_FOREGROUND_COLOR);
+      box_del6->align(Fl_Align(FL_ALIGN_TOP));
+      box_del6->when(FL_WHEN_RELEASE);
       box_del6->end();
-    } // Fl_Group* box_del6
-    { box_del7 = new Fl_Group(660, 355, 60, 60);
+    } // Fl_Group_Ex* box_del6
+    { box_del7 = new Fl_Group_Ex(655, 525, 60, 60);
       box_del7->box(FL_BORDER_BOX);
+      box_del7->color(FL_BACKGROUND_COLOR);
+      box_del7->selection_color(FL_BACKGROUND_COLOR);
+      box_del7->labeltype(FL_NORMAL_LABEL);
+      box_del7->labelfont(0);
+      box_del7->labelsize(14);
+      box_del7->labelcolor(FL_FOREGROUND_COLOR);
+      box_del7->align(Fl_Align(FL_ALIGN_TOP));
+      box_del7->when(FL_WHEN_RELEASE);
       box_del7->end();
-    } // Fl_Group* box_del7
-    { box_del8 = new Fl_Group(720, 355, 60, 60);
+    } // Fl_Group_Ex* box_del7
+    { box_del8 = new Fl_Group_Ex(715, 525, 60, 60);
       box_del8->box(FL_BORDER_BOX);
+      box_del8->color(FL_BACKGROUND_COLOR);
+      box_del8->selection_color(FL_BACKGROUND_COLOR);
+      box_del8->labeltype(FL_NORMAL_LABEL);
+      box_del8->labelfont(0);
+      box_del8->labelsize(14);
+      box_del8->labelcolor(FL_FOREGROUND_COLOR);
+      box_del8->align(Fl_Align(FL_ALIGN_TOP));
+      box_del8->when(FL_WHEN_RELEASE);
       box_del8->end();
-    } // Fl_Group* box_del8
-    { box_del9 = new Fl_Group(660, 420, 60, 60);
+    } // Fl_Group_Ex* box_del8
+    { box_del9 = new Fl_Group_Ex(655, 590, 60, 60);
       box_del9->box(FL_BORDER_BOX);
+      box_del9->color(FL_BACKGROUND_COLOR);
+      box_del9->selection_color(FL_BACKGROUND_COLOR);
+      box_del9->labeltype(FL_NORMAL_LABEL);
+      box_del9->labelfont(0);
+      box_del9->labelsize(14);
+      box_del9->labelcolor(FL_FOREGROUND_COLOR);
+      box_del9->align(Fl_Align(FL_ALIGN_TOP));
+      box_del9->when(FL_WHEN_RELEASE);
       box_del9->end();
-    } // Fl_Group* box_del9
-    { box_del10 = new Fl_Group(720, 420, 60, 60);
+    } // Fl_Group_Ex* box_del9
+    { box_del10 = new Fl_Group_Ex(715, 590, 60, 60);
       box_del10->box(FL_BORDER_BOX);
+      box_del10->color(FL_BACKGROUND_COLOR);
+      box_del10->selection_color(FL_BACKGROUND_COLOR);
+      box_del10->labeltype(FL_NORMAL_LABEL);
+      box_del10->labelfont(0);
+      box_del10->labelsize(14);
+      box_del10->labelcolor(FL_FOREGROUND_COLOR);
+      box_del10->align(Fl_Align(FL_ALIGN_TOP));
+      box_del10->when(FL_WHEN_RELEASE);
       box_del10->end();
-    } // Fl_Group* box_del10
-    { box_del11 = new Fl_Group(660, 485, 60, 60);
+    } // Fl_Group_Ex* box_del10
+    { box_del11 = new Fl_Group_Ex(655, 655, 60, 60);
       box_del11->box(FL_BORDER_BOX);
+      box_del11->color(FL_BACKGROUND_COLOR);
+      box_del11->selection_color(FL_BACKGROUND_COLOR);
+      box_del11->labeltype(FL_NORMAL_LABEL);
+      box_del11->labelfont(0);
+      box_del11->labelsize(14);
+      box_del11->labelcolor(FL_FOREGROUND_COLOR);
+      box_del11->align(Fl_Align(FL_ALIGN_TOP));
+      box_del11->when(FL_WHEN_RELEASE);
       box_del11->end();
-    } // Fl_Group* box_del11
-    { box_del12 = new Fl_Group(720, 485, 60, 60);
+    } // Fl_Group_Ex* box_del11
+    { box_del12 = new Fl_Group_Ex(715, 655, 60, 60);
       box_del12->box(FL_BORDER_BOX);
+      box_del12->color(FL_BACKGROUND_COLOR);
+      box_del12->selection_color(FL_BACKGROUND_COLOR);
+      box_del12->labeltype(FL_NORMAL_LABEL);
+      box_del12->labelfont(0);
+      box_del12->labelsize(14);
+      box_del12->labelcolor(FL_FOREGROUND_COLOR);
+      box_del12->align(Fl_Align(FL_ALIGN_TOP));
+      box_del12->when(FL_WHEN_RELEASE);
       box_del12->end();
-    } // Fl_Group* box_del12
-    { box_del13 = new Fl_Group(660, 550, 60, 60);
+    } // Fl_Group_Ex* box_del12
+    { box_del13 = new Fl_Group_Ex(655, 720, 60, 60);
       box_del13->box(FL_BORDER_BOX);
+      box_del13->color(FL_BACKGROUND_COLOR);
+      box_del13->selection_color(FL_BACKGROUND_COLOR);
+      box_del13->labeltype(FL_NORMAL_LABEL);
+      box_del13->labelfont(0);
+      box_del13->labelsize(14);
+      box_del13->labelcolor(FL_FOREGROUND_COLOR);
+      box_del13->align(Fl_Align(FL_ALIGN_TOP));
+      box_del13->when(FL_WHEN_RELEASE);
       box_del13->end();
-    } // Fl_Group* box_del13
-    { box_del14 = new Fl_Group(720, 550, 60, 60);
+    } // Fl_Group_Ex* box_del13
+    { box_del14 = new Fl_Group_Ex(715, 720, 60, 60);
       box_del14->box(FL_BORDER_BOX);
+      box_del14->color(FL_BACKGROUND_COLOR);
+      box_del14->selection_color(FL_BACKGROUND_COLOR);
+      box_del14->labeltype(FL_NORMAL_LABEL);
+      box_del14->labelfont(0);
+      box_del14->labelsize(14);
+      box_del14->labelcolor(FL_FOREGROUND_COLOR);
+      box_del14->align(Fl_Align(FL_ALIGN_TOP));
+      box_del14->when(FL_WHEN_RELEASE);
       box_del14->end();
-    } // Fl_Group* box_del14
-    { cb_delay = new Fl_Choice(660, 135, 120, 20);
+    } // Fl_Group_Ex* box_del14
+    { cb_delay = new Fl_Choice_Ex(655, 305, 120, 20);
+      cb_delay->box(FL_FLAT_BOX);
       cb_delay->down_box(FL_BORDER_BOX);
+      cb_delay->color(FL_BACKGROUND_COLOR);
+      cb_delay->selection_color(FL_SELECTION_COLOR);
+      cb_delay->labeltype(FL_NORMAL_LABEL);
+      cb_delay->labelfont(0);
       cb_delay->labelsize(12);
+      cb_delay->labelcolor(FL_FOREGROUND_COLOR);
       cb_delay->textsize(12);
-    } // Fl_Choice* cb_delay
-    { Fl_Group* o = new Fl_Group(785, 110, 131, 510);
+      cb_delay->align(Fl_Align(FL_ALIGN_LEFT));
+      cb_delay->when(FL_WHEN_RELEASE);
+    } // Fl_Choice_Ex* cb_delay
+    { Fl_Group* o = new Fl_Group(780, 280, 131, 510);
       o->box(FL_THIN_UP_BOX);
-      { chk_reverb = new Fl_Check_Button(786, 111, 128, 23, _("Reverb"));
+      { chk_reverb = new Fl_Check_Button_Ex(781, 281, 128, 23, _("Reverb"));
+        chk_reverb->box(FL_NO_BOX);
         chk_reverb->down_box(FL_DOWN_BOX);
+        chk_reverb->color(FL_BACKGROUND_COLOR);
+        chk_reverb->selection_color(FL_FOREGROUND_COLOR);
+        chk_reverb->labeltype(FL_NORMAL_LABEL);
+        chk_reverb->labelfont(0);
         chk_reverb->labelsize(12);
-      } // Fl_Check_Button* chk_reverb
-      { box_rev1 = new Fl_Group(790, 160, 60, 60);
+        chk_reverb->labelcolor(FL_FOREGROUND_COLOR);
+        chk_reverb->align(Fl_Align(FL_ALIGN_LEFT|FL_ALIGN_INSIDE));
+        chk_reverb->when(FL_WHEN_RELEASE);
+      } // Fl_Check_Button_Ex* chk_reverb
+      { box_rev1 = new Fl_Group_Ex(785, 330, 60, 60);
         box_rev1->box(FL_BORDER_BOX);
+        box_rev1->color(FL_BACKGROUND_COLOR);
+        box_rev1->selection_color(FL_BACKGROUND_COLOR);
+        box_rev1->labeltype(FL_NORMAL_LABEL);
+        box_rev1->labelfont(0);
+        box_rev1->labelsize(14);
+        box_rev1->labelcolor(FL_FOREGROUND_COLOR);
+        box_rev1->align(Fl_Align(FL_ALIGN_TOP));
+        box_rev1->when(FL_WHEN_RELEASE);
         box_rev1->end();
-      } // Fl_Group* box_rev1
-      { box_rev2 = new Fl_Group(850, 160, 60, 60);
+      } // Fl_Group_Ex* box_rev1
+      { box_rev2 = new Fl_Group_Ex(845, 330, 60, 60);
         box_rev2->box(FL_BORDER_BOX);
+        box_rev2->color(FL_BACKGROUND_COLOR);
+        box_rev2->selection_color(FL_BACKGROUND_COLOR);
+        box_rev2->labeltype(FL_NORMAL_LABEL);
+        box_rev2->labelfont(0);
+        box_rev2->labelsize(14);
+        box_rev2->labelcolor(FL_FOREGROUND_COLOR);
+        box_rev2->align(Fl_Align(FL_ALIGN_TOP));
+        box_rev2->when(FL_WHEN_RELEASE);
         box_rev2->end();
-      } // Fl_Group* box_rev2
-      { box_rev3 = new Fl_Group(790, 225, 60, 60);
+      } // Fl_Group_Ex* box_rev2
+      { box_rev3 = new Fl_Group_Ex(785, 395, 60, 60);
         box_rev3->box(FL_BORDER_BOX);
+        box_rev3->color(FL_BACKGROUND_COLOR);
+        box_rev3->selection_color(FL_BACKGROUND_COLOR);
+        box_rev3->labeltype(FL_NORMAL_LABEL);
+        box_rev3->labelfont(0);
+        box_rev3->labelsize(14);
+        box_rev3->labelcolor(FL_FOREGROUND_COLOR);
+        box_rev3->align(Fl_Align(FL_ALIGN_TOP));
+        box_rev3->when(FL_WHEN_RELEASE);
         box_rev3->end();
-      } // Fl_Group* box_rev3
-      { box_rev4 = new Fl_Group(850, 225, 60, 60);
+      } // Fl_Group_Ex* box_rev3
+      { box_rev4 = new Fl_Group_Ex(845, 395, 60, 60);
         box_rev4->box(FL_BORDER_BOX);
+        box_rev4->color(FL_BACKGROUND_COLOR);
+        box_rev4->selection_color(FL_BACKGROUND_COLOR);
+        box_rev4->labeltype(FL_NORMAL_LABEL);
+        box_rev4->labelfont(0);
+        box_rev4->labelsize(14);
+        box_rev4->labelcolor(FL_FOREGROUND_COLOR);
+        box_rev4->align(Fl_Align(FL_ALIGN_TOP));
+        box_rev4->when(FL_WHEN_RELEASE);
         box_rev4->end();
-      } // Fl_Group* box_rev4
-      { box_rev5 = new Fl_Group(790, 290, 60, 60);
+      } // Fl_Group_Ex* box_rev4
+      { box_rev5 = new Fl_Group_Ex(785, 460, 60, 60);
         box_rev5->box(FL_BORDER_BOX);
+        box_rev5->color(FL_BACKGROUND_COLOR);
+        box_rev5->selection_color(FL_BACKGROUND_COLOR);
+        box_rev5->labeltype(FL_NORMAL_LABEL);
+        box_rev5->labelfont(0);
+        box_rev5->labelsize(14);
+        box_rev5->labelcolor(FL_FOREGROUND_COLOR);
+        box_rev5->align(Fl_Align(FL_ALIGN_TOP));
+        box_rev5->when(FL_WHEN_RELEASE);
         box_rev5->end();
-      } // Fl_Group* box_rev5
-      { box_rev6 = new Fl_Group(850, 290, 60, 60);
+      } // Fl_Group_Ex* box_rev5
+      { box_rev6 = new Fl_Group_Ex(845, 460, 60, 60);
         box_rev6->box(FL_BORDER_BOX);
+        box_rev6->color(FL_BACKGROUND_COLOR);
+        box_rev6->selection_color(FL_BACKGROUND_COLOR);
+        box_rev6->labeltype(FL_NORMAL_LABEL);
+        box_rev6->labelfont(0);
+        box_rev6->labelsize(14);
+        box_rev6->labelcolor(FL_FOREGROUND_COLOR);
+        box_rev6->align(Fl_Align(FL_ALIGN_TOP));
+        box_rev6->when(FL_WHEN_RELEASE);
         box_rev6->end();
-      } // Fl_Group* box_rev6
-      { box_rev7 = new Fl_Group(790, 355, 60, 60);
+      } // Fl_Group_Ex* box_rev6
+      { box_rev7 = new Fl_Group_Ex(785, 525, 60, 60);
         box_rev7->box(FL_BORDER_BOX);
+        box_rev7->color(FL_BACKGROUND_COLOR);
+        box_rev7->selection_color(FL_BACKGROUND_COLOR);
+        box_rev7->labeltype(FL_NORMAL_LABEL);
+        box_rev7->labelfont(0);
+        box_rev7->labelsize(14);
+        box_rev7->labelcolor(FL_FOREGROUND_COLOR);
+        box_rev7->align(Fl_Align(FL_ALIGN_TOP));
+        box_rev7->when(FL_WHEN_RELEASE);
         box_rev7->end();
-      } // Fl_Group* box_rev7
-      { box_rev8 = new Fl_Group(850, 355, 60, 60);
+      } // Fl_Group_Ex* box_rev7
+      { box_rev8 = new Fl_Group_Ex(845, 525, 60, 60);
         box_rev8->box(FL_BORDER_BOX);
+        box_rev8->color(FL_BACKGROUND_COLOR);
+        box_rev8->selection_color(FL_BACKGROUND_COLOR);
+        box_rev8->labeltype(FL_NORMAL_LABEL);
+        box_rev8->labelfont(0);
+        box_rev8->labelsize(14);
+        box_rev8->labelcolor(FL_FOREGROUND_COLOR);
+        box_rev8->align(Fl_Align(FL_ALIGN_TOP));
+        box_rev8->when(FL_WHEN_RELEASE);
         box_rev8->end();
-      } // Fl_Group* box_rev8
-      { box_rev9 = new Fl_Group(790, 420, 60, 60);
+      } // Fl_Group_Ex* box_rev8
+      { box_rev9 = new Fl_Group_Ex(785, 590, 60, 60);
         box_rev9->box(FL_BORDER_BOX);
+        box_rev9->color(FL_BACKGROUND_COLOR);
+        box_rev9->selection_color(FL_BACKGROUND_COLOR);
+        box_rev9->labeltype(FL_NORMAL_LABEL);
+        box_rev9->labelfont(0);
+        box_rev9->labelsize(14);
+        box_rev9->labelcolor(FL_FOREGROUND_COLOR);
+        box_rev9->align(Fl_Align(FL_ALIGN_TOP));
+        box_rev9->when(FL_WHEN_RELEASE);
         box_rev9->end();
-      } // Fl_Group* box_rev9
-      { box_rev10 = new Fl_Group(850, 420, 60, 60);
+      } // Fl_Group_Ex* box_rev9
+      { box_rev10 = new Fl_Group_Ex(845, 590, 60, 60);
         box_rev10->box(FL_BORDER_BOX);
+        box_rev10->color(FL_BACKGROUND_COLOR);
+        box_rev10->selection_color(FL_BACKGROUND_COLOR);
+        box_rev10->labeltype(FL_NORMAL_LABEL);
+        box_rev10->labelfont(0);
+        box_rev10->labelsize(14);
+        box_rev10->labelcolor(FL_FOREGROUND_COLOR);
+        box_rev10->align(Fl_Align(FL_ALIGN_TOP));
+        box_rev10->when(FL_WHEN_RELEASE);
         box_rev10->end();
-      } // Fl_Group* box_rev10
-      { box_rev11 = new Fl_Group(790, 485, 60, 60);
+      } // Fl_Group_Ex* box_rev10
+      { box_rev11 = new Fl_Group_Ex(785, 655, 60, 60);
         box_rev11->box(FL_BORDER_BOX);
+        box_rev11->color(FL_BACKGROUND_COLOR);
+        box_rev11->selection_color(FL_BACKGROUND_COLOR);
+        box_rev11->labeltype(FL_NORMAL_LABEL);
+        box_rev11->labelfont(0);
+        box_rev11->labelsize(14);
+        box_rev11->labelcolor(FL_FOREGROUND_COLOR);
+        box_rev11->align(Fl_Align(FL_ALIGN_TOP));
+        box_rev11->when(FL_WHEN_RELEASE);
         box_rev11->end();
-      } // Fl_Group* box_rev11
-      { box_rev12 = new Fl_Group(850, 485, 60, 60);
+      } // Fl_Group_Ex* box_rev11
+      { box_rev12 = new Fl_Group_Ex(845, 655, 60, 60);
         box_rev12->box(FL_BORDER_BOX);
+        box_rev12->color(FL_BACKGROUND_COLOR);
+        box_rev12->selection_color(FL_BACKGROUND_COLOR);
+        box_rev12->labeltype(FL_NORMAL_LABEL);
+        box_rev12->labelfont(0);
+        box_rev12->labelsize(14);
+        box_rev12->labelcolor(FL_FOREGROUND_COLOR);
+        box_rev12->align(Fl_Align(FL_ALIGN_TOP));
+        box_rev12->when(FL_WHEN_RELEASE);
         box_rev12->end();
-      } // Fl_Group* box_rev12
-      { box_rev13 = new Fl_Group(790, 550, 60, 60);
+      } // Fl_Group_Ex* box_rev12
+      { box_rev13 = new Fl_Group_Ex(785, 720, 60, 60);
         box_rev13->box(FL_BORDER_BOX);
+        box_rev13->color(FL_BACKGROUND_COLOR);
+        box_rev13->selection_color(FL_BACKGROUND_COLOR);
+        box_rev13->labeltype(FL_NORMAL_LABEL);
+        box_rev13->labelfont(0);
+        box_rev13->labelsize(14);
+        box_rev13->labelcolor(FL_FOREGROUND_COLOR);
+        box_rev13->align(Fl_Align(FL_ALIGN_TOP));
+        box_rev13->when(FL_WHEN_RELEASE);
         box_rev13->end();
-      } // Fl_Group* box_rev13
-      { box_rev14 = new Fl_Group(850, 550, 60, 60);
+      } // Fl_Group_Ex* box_rev13
+      { box_rev14 = new Fl_Group_Ex(845, 720, 60, 60);
         box_rev14->box(FL_BORDER_BOX);
+        box_rev14->color(FL_BACKGROUND_COLOR);
+        box_rev14->selection_color(FL_BACKGROUND_COLOR);
+        box_rev14->labeltype(FL_NORMAL_LABEL);
+        box_rev14->labelfont(0);
+        box_rev14->labelsize(14);
+        box_rev14->labelcolor(FL_FOREGROUND_COLOR);
+        box_rev14->align(Fl_Align(FL_ALIGN_TOP));
+        box_rev14->when(FL_WHEN_RELEASE);
         box_rev14->end();
-      } // Fl_Group* box_rev14
-      { cb_reverb = new Fl_Choice(790, 135, 120, 20);
+      } // Fl_Group_Ex* box_rev14
+      { cb_reverb = new Fl_Choice_Ex(785, 305, 120, 20);
+        cb_reverb->box(FL_FLAT_BOX);
         cb_reverb->down_box(FL_BORDER_BOX);
+        cb_reverb->color(FL_BACKGROUND_COLOR);
+        cb_reverb->selection_color(FL_SELECTION_COLOR);
+        cb_reverb->labeltype(FL_NORMAL_LABEL);
+        cb_reverb->labelfont(0);
         cb_reverb->labelsize(12);
+        cb_reverb->labelcolor(FL_FOREGROUND_COLOR);
         cb_reverb->textsize(12);
-      } // Fl_Choice* cb_reverb
+        cb_reverb->align(Fl_Align(FL_ALIGN_LEFT));
+        cb_reverb->when(FL_WHEN_RELEASE);
+      } // Fl_Choice_Ex* cb_reverb
       o->end();
     } // Fl_Group* o
     o->end();
@@ -542,6 +1375,11 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
   btn_send->labelsize(12);
   btn_send->callback((Fl_Callback*)cb_btn_send);
 } // Fl_Button* btn_send
+{ txt_description = new Fl_Box(695, 115, 300, 100);
+  txt_description->box(FL_THIN_DOWN_BOX);
+  txt_description->labelsize(12);
+  txt_description->align(Fl_Align(133|FL_ALIGN_INSIDE));
+} // Fl_Box* txt_description
 { Fl_Box* o = new Fl_Box(695, 60, 140, 25, _("Midi Out Devices:"));
   o->labelsize(12);
   o->align(Fl_Align(FL_ALIGN_LEFT|FL_ALIGN_INSIDE));

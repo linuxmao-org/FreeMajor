@@ -3,7 +3,9 @@
 #ifndef main_component_h
 #define main_component_h
 #include <FL/Fl.H>
+#include <FL/Fl_Check_Button.H>
 #include <FL/Fl_Hold_Browser.H>
+#include <list>
 #include <vector>
 #include <memory>
 class Patch;
@@ -13,11 +15,18 @@ class PA_Boolean;
 class PA_Choice;
 class P_General;
 class Association;
+class Fl_Choice;
+class Fl_Check_Button;
+class Fl_Dial;
+template <class T> class Fl_Widget_Ex; 
+typedef Fl_Widget_Ex<Fl_Choice> Fl_Choice_Ex;
+typedef Fl_Widget_Ex<Fl_Check_Button> Fl_Check_Button_Ex;
+typedef Fl_Widget_Ex<Fl_Dial> Fl_Dial_Ex;
+typedef Fl_Widget_Ex<Fl_Group> Fl_Group_Ex;
 #include <FL/Fl_Group.H>
 #include <FL/Fl_Box.H>
 #include <FL/Fl_Button.H>
 #include <FL/Fl_Choice.H>
-#include <FL/Fl_Check_Button.H>
 
 class Main_Component : public Fl_Group {
 public:
@@ -34,9 +43,9 @@ public:
   void refresh_bank_browser(); 
   void refresh_patch_display(); 
 private:
-  void setup_checkbox(Fl_Check_Button *chk, PA_Boolean &p); 
-  void setup_choice(Fl_Choice *cb, PA_Choice &p); 
-  void setup_boxes(bool enable, const Parameter_Collection &pc, Fl_Group *boxes[], unsigned nboxes); 
+  void setup_checkbox(Fl_Check_Button_Ex *chk, PA_Boolean &p); 
+  void setup_choice(Fl_Choice_Ex *cb, PA_Choice &p); 
+  void setup_boxes(bool enable, const Parameter_Collection &pc, Fl_Group_Ex *boxes[], unsigned nboxes); 
   void update_midi_outs(); 
   void on_selected_patch(); 
   void on_changed_midi_out(); 
@@ -55,6 +64,8 @@ private:
   void on_clicked_change(); 
   void on_clicked_send(); 
   static void on_edited_parameter(Fl_Widget *w, void *user_data); 
+  static void on_enter_parameter_control(Fl_Widget *w, void *user_data); 
+  static void on_leave_parameter_control(Fl_Widget *w, void *user_data); 
 public:
   Fl_Hold_Browser *br_bank;
 private:
@@ -63,6 +74,7 @@ private:
   std::unique_ptr<Patch_Bank> pbank_; 
   std::unique_ptr<P_General> pgen_; 
   std::vector<std::unique_ptr<Association>> assoc_; 
+  std::list<Association *> assoc_entered_; 
 public:
   Fl_Choice *ch_midi_out;
 private:
@@ -74,113 +86,115 @@ private:
   inline void cb_btn_change_i(Fl_Button*, void*);
   static void cb_btn_change(Fl_Button*, void*);
 public:
-  Fl_Check_Button *chk_noise_gate;
-  Fl_Group *box_ng1;
-  Fl_Group *box_ng2;
-  Fl_Group *box_ng3;
-  Fl_Group *box_ng4;
-  Fl_Group *box_ng5;
-  Fl_Group *box_ng6;
-  Fl_Check_Button *chk_compressor;
-  Fl_Group *box_cpr1;
-  Fl_Group *box_cpr2;
-  Fl_Group *box_cpr3;
-  Fl_Group *box_cpr4;
-  Fl_Group *box_cpr5;
-  Fl_Group *box_cpr6;
-  Fl_Check_Button *chk_equalizer;
-  Fl_Group *box_eq1;
-  Fl_Group *box_eq2;
-  Fl_Group *box_eq4;
-  Fl_Group *box_eq5;
-  Fl_Group *box_eq7;
-  Fl_Group *box_eq8;
-  Fl_Group *box_eq3;
-  Fl_Group *box_eq6;
-  Fl_Group *box_eq9;
-  Fl_Check_Button *chk_filter;
-  Fl_Group *box_flt1;
-  Fl_Group *box_flt2;
-  Fl_Group *box_flt3;
-  Fl_Group *box_flt4;
-  Fl_Group *box_flt5;
-  Fl_Group *box_flt6;
-  Fl_Group *box_flt7;
-  Fl_Group *box_flt8;
-  Fl_Group *box_flt9;
-  Fl_Group *box_flt10;
-  Fl_Group *box_flt11;
-  Fl_Group *box_flt12;
-  Fl_Group *box_flt13;
-  Fl_Group *box_flt14;
-  Fl_Choice *cb_filter;
-  Fl_Check_Button *chk_pitch;
-  Fl_Group *box_pit1;
-  Fl_Group *box_pit2;
-  Fl_Group *box_pit3;
-  Fl_Group *box_pit4;
-  Fl_Group *box_pit5;
-  Fl_Group *box_pit6;
-  Fl_Group *box_pit7;
-  Fl_Group *box_pit8;
-  Fl_Group *box_pit9;
-  Fl_Group *box_pit10;
-  Fl_Group *box_pit11;
-  Fl_Group *box_pit12;
-  Fl_Group *box_pit13;
-  Fl_Group *box_pit14;
-  Fl_Choice *cb_pitch;
-  Fl_Check_Button *chk_chorus;
-  Fl_Group *box_cho1;
-  Fl_Group *box_cho2;
-  Fl_Group *box_cho3;
-  Fl_Group *box_cho4;
-  Fl_Group *box_cho5;
-  Fl_Group *box_cho6;
-  Fl_Group *box_cho7;
-  Fl_Group *box_cho8;
-  Fl_Group *box_cho9;
-  Fl_Group *box_cho10;
-  Fl_Group *box_cho11;
-  Fl_Group *box_cho12;
-  Fl_Group *box_cho13;
-  Fl_Group *box_cho14;
-  Fl_Choice *cb_chorus;
-  Fl_Check_Button *chk_delay;
-  Fl_Group *box_del1;
-  Fl_Group *box_del2;
-  Fl_Group *box_del3;
-  Fl_Group *box_del4;
-  Fl_Group *box_del5;
-  Fl_Group *box_del6;
-  Fl_Group *box_del7;
-  Fl_Group *box_del8;
-  Fl_Group *box_del9;
-  Fl_Group *box_del10;
-  Fl_Group *box_del11;
-  Fl_Group *box_del12;
-  Fl_Group *box_del13;
-  Fl_Group *box_del14;
-  Fl_Choice *cb_delay;
-  Fl_Check_Button *chk_reverb;
-  Fl_Group *box_rev1;
-  Fl_Group *box_rev2;
-  Fl_Group *box_rev3;
-  Fl_Group *box_rev4;
-  Fl_Group *box_rev5;
-  Fl_Group *box_rev6;
-  Fl_Group *box_rev7;
-  Fl_Group *box_rev8;
-  Fl_Group *box_rev9;
-  Fl_Group *box_rev10;
-  Fl_Group *box_rev11;
-  Fl_Group *box_rev12;
-  Fl_Group *box_rev13;
-  Fl_Group *box_rev14;
-  Fl_Choice *cb_reverb;
+  Fl_Check_Button_Ex *chk_noise_gate;
+  Fl_Group_Ex *box_ng1;
+  Fl_Group_Ex *box_ng2;
+  Fl_Group_Ex *box_ng3;
+  Fl_Group_Ex *box_ng4;
+  Fl_Group_Ex *box_ng5;
+  Fl_Group_Ex *box_ng6;
+  Fl_Check_Button_Ex *chk_compressor;
+  Fl_Group_Ex *box_cpr1;
+  Fl_Group_Ex *box_cpr2;
+  Fl_Group_Ex *box_cpr3;
+  Fl_Group_Ex *box_cpr4;
+  Fl_Group_Ex *box_cpr5;
+  Fl_Group_Ex *box_cpr6;
+  Fl_Check_Button_Ex *chk_equalizer;
+  Fl_Group_Ex *box_eq1;
+  Fl_Group_Ex *box_eq2;
+  Fl_Group_Ex *box_eq4;
+  Fl_Group_Ex *box_eq5;
+  Fl_Group_Ex *box_eq7;
+  Fl_Group_Ex *box_eq8;
+  Fl_Group_Ex *box_eq3;
+  Fl_Group_Ex *box_eq6;
+  Fl_Group_Ex *box_eq9;
+  Fl_Check_Button_Ex *chk_filter;
+  Fl_Group_Ex *box_flt1;
+  Fl_Group_Ex *box_flt2;
+  Fl_Group_Ex *box_flt3;
+  Fl_Group_Ex *box_flt4;
+  Fl_Group_Ex *box_flt5;
+  Fl_Group_Ex *box_flt6;
+  Fl_Group_Ex *box_flt7;
+  Fl_Group_Ex *box_flt8;
+  Fl_Group_Ex *box_flt9;
+  Fl_Group_Ex *box_flt10;
+  Fl_Group_Ex *box_flt11;
+  Fl_Group_Ex *box_flt12;
+  Fl_Group_Ex *box_flt13;
+  Fl_Group_Ex *box_flt14;
+  Fl_Choice_Ex *cb_filter;
+  Fl_Check_Button_Ex *chk_pitch;
+  Fl_Group_Ex *box_pit1;
+  Fl_Group_Ex *box_pit2;
+  Fl_Group_Ex *box_pit3;
+  Fl_Group_Ex *box_pit4;
+  Fl_Group_Ex *box_pit5;
+  Fl_Group_Ex *box_pit6;
+  Fl_Group_Ex *box_pit7;
+  Fl_Group_Ex *box_pit8;
+  Fl_Group_Ex *box_pit9;
+  Fl_Group_Ex *box_pit10;
+  Fl_Group_Ex *box_pit11;
+  Fl_Group_Ex *box_pit12;
+  Fl_Group_Ex *box_pit13;
+  Fl_Group_Ex *box_pit14;
+  Fl_Choice_Ex *cb_pitch;
+  Fl_Check_Button_Ex *chk_chorus;
+  Fl_Group_Ex *box_cho1;
+  Fl_Group_Ex *box_cho2;
+  Fl_Group_Ex *box_cho3;
+  Fl_Group_Ex *box_cho4;
+  Fl_Group_Ex *box_cho5;
+  Fl_Group_Ex *box_cho6;
+  Fl_Group_Ex *box_cho7;
+  Fl_Group_Ex *box_cho8;
+  Fl_Group_Ex *box_cho9;
+  Fl_Group_Ex *box_cho10;
+  Fl_Group_Ex *box_cho11;
+  Fl_Group_Ex *box_cho12;
+  Fl_Group_Ex *box_cho13;
+  Fl_Group_Ex *box_cho14;
+  Fl_Choice_Ex *cb_chorus;
+  Fl_Check_Button_Ex *chk_delay;
+  Fl_Group_Ex *box_del1;
+  Fl_Group_Ex *box_del2;
+  Fl_Group_Ex *box_del3;
+  Fl_Group_Ex *box_del4;
+  Fl_Group_Ex *box_del5;
+  Fl_Group_Ex *box_del6;
+  Fl_Group_Ex *box_del7;
+  Fl_Group_Ex *box_del8;
+  Fl_Group_Ex *box_del9;
+  Fl_Group_Ex *box_del10;
+  Fl_Group_Ex *box_del11;
+  Fl_Group_Ex *box_del12;
+  Fl_Group_Ex *box_del13;
+  Fl_Group_Ex *box_del14;
+  Fl_Choice_Ex *cb_delay;
+  Fl_Check_Button_Ex *chk_reverb;
+  Fl_Group_Ex *box_rev1;
+  Fl_Group_Ex *box_rev2;
+  Fl_Group_Ex *box_rev3;
+  Fl_Group_Ex *box_rev4;
+  Fl_Group_Ex *box_rev5;
+  Fl_Group_Ex *box_rev6;
+  Fl_Group_Ex *box_rev7;
+  Fl_Group_Ex *box_rev8;
+  Fl_Group_Ex *box_rev9;
+  Fl_Group_Ex *box_rev10;
+  Fl_Group_Ex *box_rev11;
+  Fl_Group_Ex *box_rev12;
+  Fl_Group_Ex *box_rev13;
+  Fl_Group_Ex *box_rev14;
+  Fl_Choice_Ex *cb_reverb;
   Fl_Button *btn_send;
 private:
   inline void cb_btn_send_i(Fl_Button*, void*);
   static void cb_btn_send(Fl_Button*, void*);
+public:
+  Fl_Box *txt_description;
 };
 #endif

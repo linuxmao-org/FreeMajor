@@ -5,6 +5,7 @@
 
 #include "main_component.h"
 #include "patch_chooser.h"
+#include "widget_ex.h"
 #include "association.h"
 #include "app_i18n.h"
 #include "device/midi.h"
@@ -15,6 +16,7 @@
 #include "utility/misc.h"
 #include <FL/Fl_Dial.H>
 #include <FL/Fl_Native_File_Chooser.H>
+#include <algorithm>
 #include <assert.h>
 
 void Main_Component::init()
@@ -92,6 +94,7 @@ void Main_Component::refresh_patch_display()
     chk_noise_gate->value(pgen.enable_noisegate().get(pat));
 
     assoc_.clear();
+    assoc_entered_.clear();
 
     setup_checkbox(chk_compressor, pgen.enable_compressor());
     setup_checkbox(chk_filter, pgen.enable_filter());
@@ -108,27 +111,27 @@ void Main_Component::refresh_patch_display()
     setup_choice(cb_delay, pgen.type_delay());
     setup_choice(cb_reverb, pgen.type_reverb());
 
-    std::array<Fl_Group *, 6> box_cpr
+    std::array<Fl_Group_Ex *, 6> box_cpr
         {{ box_cpr1, box_cpr2, box_cpr3, box_cpr4, box_cpr5, box_cpr6 }};
     setup_boxes(pgen.enable_compressor().get(pat), pgen.compressor, box_cpr.data(), box_cpr.size());
 
-    std::array<Fl_Group *, 9> box_eq
+    std::array<Fl_Group_Ex *, 9> box_eq
         {{ box_eq1, box_eq2, box_eq3, box_eq4, box_eq5, box_eq6, box_eq7, box_eq8, box_eq9 }};
     setup_boxes(pgen.enable_equalizer().get(pat), pgen.equalizer, box_eq.data(), box_eq.size());
 
-    std::array<Fl_Group *, 6> box_ng
+    std::array<Fl_Group_Ex *, 6> box_ng
         {{ box_ng1, box_ng2, box_ng3, box_ng4, box_ng5, box_ng6 }};
     setup_boxes(pgen.enable_noisegate().get(pat), pgen.noise_gate, box_ng.data(), box_ng.size());
 
-    std::array<Fl_Group *, 14> box_rev
+    std::array<Fl_Group_Ex *, 14> box_rev
         {{ box_rev1, box_rev2, box_rev3, box_rev4, box_rev5, box_rev6, box_rev7, box_rev8, box_rev9, box_rev10, box_rev11, box_rev12, box_rev13, box_rev14 }};
     setup_boxes(pgen.enable_reverb().get(pat), pgen.reverb, box_rev.data(), box_rev.size());
 
-    std::array<Fl_Group *, 14> box_pit
+    std::array<Fl_Group_Ex *, 14> box_pit
         {{ box_pit1, box_pit2, box_pit3, box_pit4, box_pit5, box_pit6, box_pit7, box_pit8, box_pit9, box_pit10, box_pit11, box_pit12, box_pit13, box_pit14 }};
     setup_boxes(pgen.enable_pitch().get(pat), pgen.pitch->dispatch(pat), box_pit.data(), box_pit.size());
 
-    std::array<Fl_Group *, 14> box_del
+    std::array<Fl_Group_Ex *, 14> box_del
         {{ box_del1, box_del2, box_del3, box_del4, box_del5, box_del6, box_del7, box_del8, box_del9, box_del10, box_del11, box_del12, box_del13, box_del14 }};
     setup_boxes(pgen.enable_delay().get(pat), pgen.delay->dispatch(pat), box_del.data(), box_del.size());
 
@@ -143,16 +146,20 @@ void Main_Component::refresh_patch_display()
     }
 }
 
-void Main_Component::setup_checkbox(Fl_Check_Button *chk, PA_Boolean &p)
+void Main_Component::setup_checkbox(Fl_Check_Button_Ex *chk, PA_Boolean &p)
 {
     std::unique_ptr<Association> a(new Association);
     a->access = &p;
     a->value_widget = chk;
     a->kind = Assoc_Check;
+
+    chk->enter_callback(&on_enter_parameter_control, this);
+    chk->leave_callback(&on_leave_parameter_control, this);
+
     assoc_.push_back(std::move(a));
 }
 
-void Main_Component::setup_choice(Fl_Choice *cb, PA_Choice &p)
+void Main_Component::setup_choice(Fl_Choice_Ex *cb, PA_Choice &p)
 {
     std::unique_ptr<Association> a(new Association);
 
@@ -163,10 +170,14 @@ void Main_Component::setup_choice(Fl_Choice *cb, PA_Choice &p)
     a->access = &p;
     a->value_widget = cb;
     a->kind = Assoc_Choice;
+
+    cb->enter_callback(&on_enter_parameter_control, this);
+    cb->leave_callback(&on_leave_parameter_control, this);
+
     assoc_.push_back(std::move(a));
 }
 
-void Main_Component::setup_boxes(bool enable, const Parameter_Collection &pc, Fl_Group *boxes[], unsigned nboxes)
+void Main_Component::setup_boxes(bool enable, const Parameter_Collection &pc, Fl_Group_Ex *boxes[], unsigned nboxes)
 {
     for (unsigned i = 0; i < nboxes; ++i) {
         Fl_Group *box = boxes[i];
@@ -181,7 +192,7 @@ void Main_Component::setup_boxes(bool enable, const Parameter_Collection &pc, Fl
             Parameter_Access *pa = pc.slots[i].get();
             a->access = pa;
 
-            Fl_Group *box = boxes[i];
+            Fl_Group_Ex *box = boxes[i];
             a->group_box = box;
             int bx = box->x(), by = box->y(), bw = box->w(), bh = box->h();
 
@@ -194,7 +205,7 @@ void Main_Component::setup_boxes(bool enable, const Parameter_Collection &pc, Fl
             box->align(FL_ALIGN_TOP|FL_ALIGN_INSIDE);
 
             box->begin();
-            Fl_Dial *dial = new Fl_Dial(wx, wy, ww, wh, pa->name);
+            Fl_Dial_Ex *dial = new Fl_Dial_Ex(wx, wy, ww, wh);
             a->value_widget = dial;
             a->kind = Assoc_Dial;
             dial->range(pa->min(), pa->max());
@@ -202,6 +213,11 @@ void Main_Component::setup_boxes(bool enable, const Parameter_Collection &pc, Fl
             dial->labelsize(9);
             dial->align(FL_ALIGN_BOTTOM);
             box->end();
+
+            box->enter_callback(&on_enter_parameter_control, this);
+            box->leave_callback(&on_leave_parameter_control, this);
+            dial->enter_callback(&on_enter_parameter_control, this);
+            dial->leave_callback(&on_leave_parameter_control, this);
 
             assoc_.push_back(std::move(a));
         }
@@ -362,4 +378,50 @@ void Main_Component::on_edited_parameter(Fl_Widget *w, void *user_data)
     }
 
     a->update_from_widget(pat);
+}
+
+void Main_Component::on_enter_parameter_control(Fl_Widget *w, void *user_data)
+{
+    Main_Component *self = (Main_Component *)user_data;
+
+    Association *a = nullptr;
+    for (unsigned i = 0, n = self->assoc_.size(); i < n && !a; ++i) {
+        Association *cur = self->assoc_[i].get();
+        if (cur->value_widget == w)
+            a = cur;
+        else if (cur->group_box == w)
+            a = cur;
+    }
+
+    if (!a)
+        return;
+
+    self->txt_description->copy_label(a->access->description);
+    self->assoc_entered_.push_front(a);
+}
+
+void Main_Component::on_leave_parameter_control(Fl_Widget *w, void *user_data)
+{
+    Main_Component *self = (Main_Component *)user_data;
+
+    Association *a = nullptr;
+    for (unsigned i = 0, n = self->assoc_.size(); i < n && !a; ++i) {
+        Association *cur = self->assoc_[i].get();
+        if (cur->value_widget == w)
+            a = cur;
+        else if (cur->group_box == w)
+            a = cur;
+    }
+
+    if (!a)
+        return;
+
+    auto &assoc_entered = self->assoc_entered_;
+
+    auto it = std::find(assoc_entered.begin(), assoc_entered.end(), a);
+    if (it != assoc_entered.end())
+        assoc_entered.erase(it);
+
+    self->txt_description->label(assoc_entered.empty() ?
+        "" : assoc_entered.front()->access->description);
 }

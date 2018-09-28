@@ -29,4 +29,5 @@ private:
 
     std::unique_ptr<RtMidiOut> client_;
     static std::unique_ptr<Midi_Out> instance_;
+    bool has_open_port_ = false;
 };

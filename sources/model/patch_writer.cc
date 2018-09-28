@@ -22,7 +22,7 @@ void Patch_Writer::save_realmajor_patch(const Patch &pat, std::vector<uint8_t> &
         sprintf(str, ", %u", byte);
         std::copy(str, str + strlen(str), std::back_inserter(data));
     }
-    for (unsigned byte : {(unsigned)pat.checksum(), 0xf0u, 0u}) {
+    for (unsigned byte : {(unsigned)pat.checksum(), 0xf7u, 0u}) {
         char str[8];
         sprintf(str, ", %u", byte);
         std::copy(str, str + strlen(str), std::back_inserter(data));

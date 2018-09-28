@@ -1436,7 +1436,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
   txt_patch_name->callback((Fl_Callback*)cb_txt_patch_name);
   txt_patch_name->align(Fl_Align(FL_ALIGN_TOP_LEFT));
 } // Fl_Input* txt_patch_name
-{ sl_tap_tempo = new Fl_Widget_Ex<Fl_Slider>(235, 174, 200, 22, _("Tap Tempo"));
+{ sl_tap_tempo = new Fl_Widget_Ex<Fl_Slider>(360, 174, 200, 22, _("Tap Tempo"));
   sl_tap_tempo->type(5);
   sl_tap_tempo->box(FL_DOWN_BOX);
   sl_tap_tempo->color(FL_BACKGROUND_COLOR);
@@ -1448,10 +1448,34 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
   sl_tap_tempo->align(Fl_Align(FL_ALIGN_TOP_LEFT));
   sl_tap_tempo->when(FL_WHEN_CHANGED);
 } // Fl_Widget_Ex<Fl_Slider>* sl_tap_tempo
-{ lbl_tap_tempo = new Fl_Box(370, 155, 65, 20, _("ms"));
+{ lbl_tap_tempo = new Fl_Box(495, 155, 65, 20, _("ms"));
   lbl_tap_tempo->labelsize(12);
   lbl_tap_tempo->align(Fl_Align(FL_ALIGN_RIGHT|FL_ALIGN_INSIDE));
 } // Fl_Box* lbl_tap_tempo
+{ chk_relay1 = new Fl_Check_Button_Ex(190, 160, 90, 20, _("Relay 1"));
+  chk_relay1->box(FL_NO_BOX);
+  chk_relay1->down_box(FL_DOWN_BOX);
+  chk_relay1->color(FL_BACKGROUND_COLOR);
+  chk_relay1->selection_color(FL_FOREGROUND_COLOR);
+  chk_relay1->labeltype(FL_NORMAL_LABEL);
+  chk_relay1->labelfont(0);
+  chk_relay1->labelsize(12);
+  chk_relay1->labelcolor(FL_FOREGROUND_COLOR);
+  chk_relay1->align(Fl_Align(FL_ALIGN_LEFT|FL_ALIGN_INSIDE));
+  chk_relay1->when(FL_WHEN_RELEASE);
+} // Fl_Check_Button_Ex* chk_relay1
+{ chk_relay2 = new Fl_Check_Button_Ex(190, 180, 90, 20, _("Relay 2"));
+  chk_relay2->box(FL_NO_BOX);
+  chk_relay2->down_box(FL_DOWN_BOX);
+  chk_relay2->color(FL_BACKGROUND_COLOR);
+  chk_relay2->selection_color(FL_FOREGROUND_COLOR);
+  chk_relay2->labeltype(FL_NORMAL_LABEL);
+  chk_relay2->labelfont(0);
+  chk_relay2->labelsize(12);
+  chk_relay2->labelcolor(FL_FOREGROUND_COLOR);
+  chk_relay2->align(Fl_Align(FL_ALIGN_LEFT|FL_ALIGN_INSIDE));
+  chk_relay2->when(FL_WHEN_RELEASE);
+} // Fl_Check_Button_Ex* chk_relay2
 init();
 end();
 }

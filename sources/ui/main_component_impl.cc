@@ -135,6 +135,9 @@ void Main_Component::refresh_patch_display()
                                    lbl_tap_tempo->copy_label((std::to_string(v) + " ms").c_str());
                                };
 
+    setup_checkbox(chk_relay1, pgen.relay1());
+    setup_checkbox(chk_relay2, pgen.relay2());
+
     setup_checkbox(chk_compressor, pgen.enable_compressor(), Assoc_Refresh_Full);
     setup_checkbox(chk_filter, pgen.enable_filter(), Assoc_Refresh_Full);
     setup_checkbox(chk_pitch, pgen.enable_pitch(), Assoc_Refresh_Full);
@@ -205,7 +208,7 @@ Association *Main_Component::setup_slider(Fl_Slider_Ex *sl, PA_Integer &p, int f
     return a.release();
 }
 
-void Main_Component::setup_checkbox(Fl_Check_Button_Ex *chk, PA_Boolean &p, int flags)
+void Main_Component::setup_checkbox(Fl_Check_Button_Ex *chk, Parameter_Access &p, int flags)
 {
     std::unique_ptr<Association> a(new Association);
     a->access = &p;

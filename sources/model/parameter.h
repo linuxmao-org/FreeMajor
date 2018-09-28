@@ -10,7 +10,7 @@
 class Patch;
 
 enum Parameter_Type {
-    PT_Integer, PT_Boolean, PT_Choice,
+    PT_Integer, PT_Boolean, PT_Choice, PT_Bits,
 };
 
 class Parameter_Access {
@@ -97,6 +97,28 @@ public:
     unsigned size = 0;
     std::vector<const char *> values;
     int offset = 0;
+};
+
+class PA_Bits : public Parameter_Access {
+public:
+    explicit PA_Bits(unsigned index, unsigned size, unsigned bit_offset, unsigned bit_size, const char *name, const char *description)
+        : Parameter_Access(name, description),
+          bit_offset(bit_offset), bit_size(bit_size), index(index), size(size) {}
+    PA_Bits *with_min_max(int vmin, int vmax);
+
+    virtual Parameter_Type type() const override { return PT_Bits; }
+    int get(const Patch &pat) const override;
+    void set(Patch &pat, int value) override;
+    int min() const override { return vmin; }
+    int max() const override { return vmax; }
+    int clamp(int value) const;
+
+    unsigned bit_offset = 0;
+    unsigned bit_size = 0;
+    unsigned index = 0;
+    unsigned size = 0;
+    int vmin = 0;
+    int vmax = 1;
 };
 
 ///
@@ -383,7 +405,6 @@ public:
     public:
         Advanced_Chorus();
 
-        // TODO
         DEFPARAMETER(0, PA_Choice, speed)
         DEFPARAMETER(1, PA_Integer, depth)
         DEFPARAMETER(2, PA_Choice, tempo)
@@ -458,6 +479,8 @@ public:
     DEFPARAMETER(12, PA_Choice, type_reverb)
 
     DEFPARAMETER(13, PA_Integer, tap_tempo)
+    DEFPARAMETER(14, PA_Bits, relay1)
+    DEFPARAMETER(15, PA_Bits, relay2)
 
     P_Compressor compressor;
     P_Equalizer equalizer;

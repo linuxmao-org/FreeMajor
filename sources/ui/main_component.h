@@ -12,6 +12,7 @@
 class Patch;
 class Patch_Bank;
 class Parameter_Collection;
+class Parameter_Access;
 class PA_Integer;
 class PA_Boolean;
 class PA_Choice;
@@ -51,7 +52,7 @@ public:
   void refresh_patch_display(); 
 private:
   Association *setup_slider(Fl_Slider_Ex *sl, PA_Integer &p, int flags = 0); 
-  void setup_checkbox(Fl_Check_Button_Ex *chk, PA_Boolean &p, int flags = 0); 
+  void setup_checkbox(Fl_Check_Button_Ex *chk, Parameter_Access &p, int flags = 0); 
   void setup_choice(Fl_Choice_Ex *cb, PA_Choice &p, int flags = 0); 
   void setup_boxes(bool enable, const Parameter_Collection &pc, Fl_Group_Ex *boxes[], unsigned nboxes); 
   void update_midi_outs(); 
@@ -232,5 +233,7 @@ private:
 public:
   Fl_Widget_Ex<Fl_Slider> *sl_tap_tempo;
   Fl_Box *lbl_tap_tempo;
+  Fl_Check_Button_Ex *chk_relay1;
+  Fl_Check_Button_Ex *chk_relay2;
 };
 #endif

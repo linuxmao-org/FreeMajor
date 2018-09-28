@@ -35,6 +35,28 @@ static void store_int(uint8_t *dst, unsigned size, int value)
     }
 }
 
+static std::vector<bool> read_bits7(const uint8_t *src, unsigned size)
+{
+    std::vector<bool> bits(7 * size);
+    for (unsigned i_byte = 0; i_byte < size; ++i_byte) {
+        for (unsigned i_bit = 0; i_bit < 7; ++i_bit)
+            bits[7 * i_byte + i_bit] = (src[i_byte] & (1 << i_bit)) != 0;
+    }
+    return bits;
+}
+
+static void write_bits7(uint8_t *dst, unsigned size, const std::vector<bool> &bits)
+{
+    for (unsigned i_byte = 0; i_byte < size; ++i_byte) {
+        unsigned b = dst[i_byte];
+        for (unsigned i_bit = 0; i_bit < 7; ++i_bit) {
+            b &= ~(1u << i_bit);
+            b |= (unsigned)bits[7 * i_byte + i_bit] << i_bit;
+        }
+        dst[i_byte] = (uint8_t)b;
+    }
+}
+
 ///
 
 std::string Parameter_Access::to_string(int value) const
@@ -119,6 +141,38 @@ int PA_Choice::clamp(int value) const
 std::string PA_Choice::to_string(int value) const
 {
     return values[clamp(value)];
+}
+
+PA_Bits *PA_Bits::with_min_max(int vmin, int vmax)
+{
+    this->vmin = vmin;
+    this->vmax = vmax;
+    return this;
+}
+
+int PA_Bits::get(const Patch &pat) const
+{
+    std::vector<bool> bits = read_bits7(&pat.raw_data[index], size);
+    int v = 0;
+    for (unsigned i = 0; i < bit_size; ++i)
+        v |= (unsigned)bits[bit_offset + i] << i;
+    return clamp(v);
+}
+
+void PA_Bits::set(Patch &pat, int value)
+{
+    int v = clamp(value);
+    std::vector<bool> bits = read_bits7(&pat.raw_data[index], size);
+    for (unsigned i = 0; i < bit_size; ++i)
+        bits[bit_offset + i] = (v & (1u << i)) != 0;
+    write_bits7(&pat.raw_data[index], size, bits);
+}
+
+int PA_Bits::clamp(int value) const
+{
+    value = (value < vmin) ? vmin : value;
+    value = (value > vmax) ? vmax : value;
+    return value;
 }
 
 ///
@@ -736,6 +790,15 @@ P_General::P_General()
     slots.emplace_back((new PA_Integer(160, 4,
                                       _("Tap tempo"), _("Sets the Tap Tempo.")))
                        ->with_min_max(100, 3000));
+
+    slots.emplace_back((new PA_Bits(156, 4,
+                                    9, 1,
+                                    _("Relay 1"), _("Relay 1")))
+                       ->with_min_max(0, 1));
+    slots.emplace_back((new PA_Bits(156, 4,
+                                    10, 1,
+                                    _("Relay 2"), _("Relay 2")))
+                       ->with_min_max(0, 1));
 
     pitch.reset(new P_Pitch(type_pitch()));
     delay.reset(new P_Delay(type_delay()));

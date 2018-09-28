@@ -47,6 +47,9 @@ decl {class Patch_Bank;} {public global
 decl {class Parameter_Collection;} {public global
 }
 
+decl {class Parameter_Access;} {selected public global
+}
+
 decl {class PA_Integer;} {public global
 }
 
@@ -115,7 +118,7 @@ widget_class Main_Component {open
   }
   decl {Association *setup_slider(Fl_Slider_Ex *sl, PA_Integer &p, int flags = 0);} {private local
   }
-  decl {void setup_checkbox(Fl_Check_Button_Ex *chk, PA_Boolean &p, int flags = 0);} {private local
+  decl {void setup_checkbox(Fl_Check_Button_Ex *chk, Parameter_Access &p, int flags = 0);} {private local
   }
   decl {void setup_choice(Fl_Choice_Ex *cb, PA_Choice &p, int flags = 0);} {private local
   }
@@ -681,11 +684,21 @@ widget_class Main_Component {open
   }
   Fl_Slider sl_tap_tempo {
     label {Tap Tempo}
-    xywh {235 174 200 22} type {Horz Knob} labelsize 12 align 5
+    xywh {360 174 200 22} type {Horz Knob} labelsize 12 align 5
     class {Fl_Widget_Ex<Fl_Slider>}
   }
   Fl_Box lbl_tap_tempo {
-    label ms selected
-    xywh {370 155 65 20} labelsize 12 align 24
+    label ms
+    xywh {495 155 65 20} labelsize 12 align 24
+  }
+  Fl_Check_Button chk_relay1 {
+    label {Relay 1}
+    xywh {190 160 90 20} down_box DOWN_BOX labelsize 12
+    class Fl_Check_Button_Ex
+  }
+  Fl_Check_Button chk_relay2 {
+    label {Relay 2}
+    xywh {190 180 90 20} down_box DOWN_BOX labelsize 12
+    class Fl_Check_Button_Ex
   }
 }

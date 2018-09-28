@@ -361,6 +361,83 @@ public:
     } panner;
 };
 
+class P_Modulation : public Polymorphic_Parameter_Collection {
+public:
+    explicit P_Modulation(const PA_Choice &tag);
+
+    Parameter_Collection &dispatch(const Patch &pat) override;
+
+    class Classic_Chorus : public Parameter_Collection {
+    public:
+        Classic_Chorus();
+
+        DEFPARAMETER(0, PA_Choice, speed)
+        DEFPARAMETER(1, PA_Integer, depth)
+        DEFPARAMETER(2, PA_Choice, tempo)
+        DEFPARAMETER(3, PA_Choice, hi_cut)
+        DEFPARAMETER(4, PA_Integer, mix)
+        DEFPARAMETER(5, PA_Integer, out_level)
+    } classic_chorus;
+
+    class Advanced_Chorus : public Parameter_Collection {
+    public:
+        Advanced_Chorus();
+
+        // TODO
+        DEFPARAMETER(0, PA_Choice, speed)
+        DEFPARAMETER(1, PA_Integer, depth)
+        DEFPARAMETER(2, PA_Choice, tempo)
+        DEFPARAMETER(3, PA_Choice, hi_cut)
+        DEFPARAMETER(4, PA_Integer, delay)
+        DEFPARAMETER(5, PA_Choice, gold_ratio)
+        DEFPARAMETER(6, PA_Choice, phase_reverse)
+        DEFPARAMETER(7, PA_Integer, mix)
+        DEFPARAMETER(8, PA_Integer, out_level)
+    } advanced_chorus;
+
+    class Classic_Flanger : public Parameter_Collection {
+    public:
+        Classic_Flanger();
+
+        DEFPARAMETER(0, PA_Choice, speed)
+        DEFPARAMETER(1, PA_Integer, depth)
+        DEFPARAMETER(2, PA_Choice, tempo)
+        DEFPARAMETER(3, PA_Choice, hi_cut)
+        DEFPARAMETER(4, PA_Integer, feedback)
+        DEFPARAMETER(5, PA_Choice, fb_hi_cut)
+        DEFPARAMETER(6, PA_Integer, mix)
+        DEFPARAMETER(7, PA_Integer, out_level)
+    } classic_flanger;
+
+    class Advanced_Flanger : public Parameter_Collection {
+    public:
+        Advanced_Flanger();
+
+        DEFPARAMETER(0, PA_Choice, speed)
+        DEFPARAMETER(1, PA_Integer, depth)
+        DEFPARAMETER(2, PA_Choice, tempo)
+        DEFPARAMETER(3, PA_Choice, hi_cut)
+        DEFPARAMETER(4, PA_Integer, feedback)
+        DEFPARAMETER(5, PA_Choice, fb_hi_cut)
+        DEFPARAMETER(6, PA_Integer, delay)
+        DEFPARAMETER(7, PA_Choice, gold_ratio)
+        DEFPARAMETER(8, PA_Choice, phase_reverse)
+        DEFPARAMETER(9, PA_Integer, mix)
+        DEFPARAMETER(10, PA_Integer, out_level)
+    } advanced_flanger;
+
+    class Vibrato : public Parameter_Collection {
+    public:
+        Vibrato();
+
+        DEFPARAMETER(0, PA_Choice, speed)
+        DEFPARAMETER(1, PA_Integer, depth)
+        DEFPARAMETER(2, PA_Choice, tempo)
+        DEFPARAMETER(3, PA_Choice, hi_cut)
+        DEFPARAMETER(4, PA_Integer, out_level)
+    } vibrato;
+};
+
 class P_General : public Parameter_Collection {
 public:
     P_General();
@@ -387,6 +464,7 @@ public:
     std::unique_ptr<P_Pitch> pitch;
     std::unique_ptr<P_Delay> delay;
     std::unique_ptr<P_Filter> filter;
+    std::unique_ptr<P_Modulation> modulation;
 };
 
 #undef DEFPARAMETER

@@ -139,9 +139,9 @@ void Main_Component::refresh_patch_display()
         {{ box_flt1, box_flt2, box_flt3, box_flt4, box_flt5, box_flt6, box_flt7, box_flt8, box_flt9, box_flt10, box_flt11, box_flt12, box_flt13, box_flt14 }};
     setup_boxes(pgen.enable_filter().get(pat), pgen.filter->dispatch(pat), box_flt.data(), box_flt.size());
 
-    // TODO
-    
-    
+    std::array<Fl_Group_Ex *, 14> box_cho
+        {{ box_cho1, box_cho2, box_cho3, box_cho4, box_cho5, box_cho6, box_cho7, box_cho8, box_cho9, box_cho10, box_cho11, box_cho12, box_cho13, box_cho14 }};
+    setup_boxes(pgen.enable_modulator().get(pat), pgen.modulation->dispatch(pat), box_cho.data(), box_cho.size());
 
     for (const auto &a : assoc_) {
         if (Fl_Widget *w = a->value_widget)

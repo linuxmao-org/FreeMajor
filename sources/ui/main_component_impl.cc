@@ -24,6 +24,10 @@ static constexpr double sysex_send_interval = 0.100;
 
 void Main_Component::init()
 {
+    txt_description->label(_("TC Electronic G-Major controller, © 2018\n"
+                             "Free and open source software controller by\n"
+                             "Jean Pierre Cimalando & Julien Taverna"));
+
     Patch_Bank *pbank = new Patch_Bank;
     pbank_.reset(pbank);
 
@@ -267,6 +271,9 @@ void Main_Component::on_selected_patch()
         return;
 
     refresh_patch_display();
+
+    if (chk_realtime->value())
+        on_clicked_change();
 }
 
 void Main_Component::on_clicked_import()
@@ -393,6 +400,9 @@ void Main_Component::on_edited_parameter(Fl_Widget *w, void *user_data)
 
     if (a->flags & Assoc_Refresh_Full)
         self->refresh_patch_display();
+
+    if (self->chk_realtime->value())
+        self->on_clicked_send();
 }
 
 void Main_Component::on_enter_parameter_control(Fl_Widget *w, void *user_data)

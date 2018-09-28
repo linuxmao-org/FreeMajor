@@ -28,6 +28,7 @@ typedef Fl_Widget_Ex<Fl_Group> Fl_Group_Ex;
 #include <FL/Fl_Box.H>
 #include <FL/Fl_Button.H>
 #include <FL/Fl_Choice.H>
+#include <FL/Fl_Check_Button.H>
 
 class Main_Component : public Fl_Group {
 public:
@@ -198,5 +199,6 @@ private:
   static void cb_btn_send(Fl_Button*, void*);
 public:
   Fl_Box *txt_description;
+  Fl_Check_Button *chk_realtime;
 };
 #endif

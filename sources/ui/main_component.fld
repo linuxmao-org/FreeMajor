@@ -8,7 +8,7 @@ code_name {.cxx}
 decl {\#include "association.h"} {private global
 }
 
-decl {\#include "midi_out_queue.h"} {selected private global
+decl {\#include "midi_out_queue.h"} {private global
 }
 
 decl {\#include "widget_ex.h"} {private global
@@ -84,8 +84,8 @@ decl {typedef Fl_Widget_Ex<Fl_Group> Fl_Group_Ex;} {public global
 }
 
 widget_class Main_Component {open
-  xywh {5 59 1000 840} type Double hide
-  code0 {init();}
+  xywh {5 59 1000 840} type Double
+  code0 {init();} visible
 } {
   decl {void init();} {private local
   }
@@ -158,7 +158,7 @@ widget_class Main_Component {open
   }
   Fl_Choice ch_midi_out {
     callback {on_changed_midi_out();} open
-    xywh {695 85 220 20} down_box BORDER_BOX labelsize 12 textsize 12
+    xywh {680 85 225 20} down_box BORDER_BOX labelsize 12 textsize 12
   } {}
   Fl_Button btn_change {
     label Change
@@ -624,13 +624,17 @@ widget_class Main_Component {open
   Fl_Button btn_send {
     label Send
     callback {on_clicked_send();}
-    xywh {920 85 70 20} labelsize 12
+    xywh {910 85 85 20} labelsize 12
   }
   Fl_Box txt_description {
-    xywh {695 115 300 100} box THIN_DOWN_BOX labelsize 12 align 149
+    xywh {680 115 315 100} box THIN_DOWN_BOX labelsize 12 align 149
   }
   Fl_Box {} {
     label {Midi Out Devices:}
-    xywh {695 60 140 25} labelsize 12 align 20
+    xywh {680 60 140 25} labelsize 12 align 20
+  }
+  Fl_Check_Button chk_realtime {
+    label {Real time} selected
+    xywh {910 60 85 25} down_box DOWN_BOX value 1 labelsize 12
   }
 }

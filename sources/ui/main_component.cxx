@@ -77,7 +77,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
   br_bank->align(Fl_Align(FL_ALIGN_BOTTOM));
   br_bank->when(FL_WHEN_RELEASE_ALWAYS);
 } // Fl_Hold_Browser* br_bank
-{ ch_midi_out = new Fl_Choice(695, 85, 220, 20);
+{ ch_midi_out = new Fl_Choice(680, 85, 225, 20);
   ch_midi_out->down_box(FL_BORDER_BOX);
   ch_midi_out->labelsize(12);
   ch_midi_out->textsize(12);
@@ -1372,19 +1372,24 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
   } // Fl_Group* o
   o->end();
 } // Fl_Group* o
-{ btn_send = new Fl_Button(920, 85, 70, 20, _("Send"));
+{ btn_send = new Fl_Button(910, 85, 85, 20, _("Send"));
   btn_send->labelsize(12);
   btn_send->callback((Fl_Callback*)cb_btn_send);
 } // Fl_Button* btn_send
-{ txt_description = new Fl_Box(695, 115, 300, 100);
+{ txt_description = new Fl_Box(680, 115, 315, 100);
   txt_description->box(FL_THIN_DOWN_BOX);
   txt_description->labelsize(12);
   txt_description->align(Fl_Align(133|FL_ALIGN_INSIDE));
 } // Fl_Box* txt_description
-{ Fl_Box* o = new Fl_Box(695, 60, 140, 25, _("Midi Out Devices:"));
+{ Fl_Box* o = new Fl_Box(680, 60, 140, 25, _("Midi Out Devices:"));
   o->labelsize(12);
   o->align(Fl_Align(FL_ALIGN_LEFT|FL_ALIGN_INSIDE));
 } // Fl_Box* o
+{ chk_realtime = new Fl_Check_Button(910, 60, 85, 25, _("Real time"));
+  chk_realtime->down_box(FL_DOWN_BOX);
+  chk_realtime->value(1);
+  chk_realtime->labelsize(12);
+} // Fl_Check_Button* chk_realtime
 init();
 end();
 }

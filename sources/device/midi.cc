@@ -58,13 +58,15 @@ std::vector<std::string> Midi_Out::get_real_ports()
 void Midi_Out::close_port()
 {
     RtMidiOut &client = *client_;
-    client.closePort();
+    if (client.isPortOpen())
+        client.closePort();
 }
 
 void Midi_Out::open_port(unsigned port)
 {
     RtMidiOut &client = *client_;
-    client.closePort();
+    if (client.isPortOpen())
+        client.closePort();
 
     std::string name = _("MIDI out");
     if (port == ~0u)
@@ -76,7 +78,8 @@ void Midi_Out::open_port(unsigned port)
 void Midi_Out::send_message(const uint8_t *data, size_t length)
 {
     RtMidiOut &client = *client_;
-    client.sendMessage(data, length);
+    if (client.isPortOpen())
+        client.sendMessage(data, length);
 }
 
 void Midi_Out::on_midi_error(RtMidiError::Type type, const std::string &text, void *user_data)

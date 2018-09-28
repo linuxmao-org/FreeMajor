@@ -47,7 +47,7 @@ decl {class Patch_Bank;} {public global
 decl {class Parameter_Collection;} {public global
 }
 
-decl {class Parameter_Access;} {selected public global
+decl {class Parameter_Access;} {public global
 }
 
 decl {class PA_Integer;} {public global
@@ -120,7 +120,7 @@ widget_class Main_Component {open
   }
   decl {void setup_checkbox(Fl_Check_Button_Ex *chk, Parameter_Access &p, int flags = 0);} {private local
   }
-  decl {void setup_choice(Fl_Choice_Ex *cb, PA_Choice &p, int flags = 0);} {private local
+  decl {void setup_choice(Fl_Choice_Ex *cb, Parameter_Access &p, int flags = 0);} {selected private local
   }
   decl {void setup_boxes(bool enable, const Parameter_Collection &pc, Fl_Group_Ex *boxes[], unsigned nboxes);} {private local
   }
@@ -684,12 +684,12 @@ widget_class Main_Component {open
   }
   Fl_Slider sl_tap_tempo {
     label {Tap Tempo}
-    xywh {360 174 200 22} type {Horz Knob} labelsize 12 align 5
+    xywh {425 174 200 22} type {Horz Knob} labelsize 12 align 5
     class {Fl_Widget_Ex<Fl_Slider>}
   }
   Fl_Box lbl_tap_tempo {
     label ms
-    xywh {495 155 65 20} labelsize 12 align 24
+    xywh {560 155 65 20} labelsize 12 align 24
   }
   Fl_Check_Button chk_relay1 {
     label {Relay 1}
@@ -701,4 +701,9 @@ widget_class Main_Component {open
     xywh {190 180 90 20} down_box DOWN_BOX labelsize 12
     class Fl_Check_Button_Ex
   }
+  Fl_Choice cb_routing {
+    label Routing open
+    xywh {270 175 145 20} down_box BORDER_BOX labelsize 12 align 5 textsize 12
+    class Fl_Choice_Ex
+  } {}
 }

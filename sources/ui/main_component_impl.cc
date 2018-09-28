@@ -138,6 +138,8 @@ void Main_Component::refresh_patch_display()
     setup_checkbox(chk_relay1, pgen.relay1());
     setup_checkbox(chk_relay2, pgen.relay2());
 
+    setup_choice(cb_routing, pgen.routing());
+
     setup_checkbox(chk_compressor, pgen.enable_compressor(), Assoc_Refresh_Full);
     setup_checkbox(chk_filter, pgen.enable_filter(), Assoc_Refresh_Full);
     setup_checkbox(chk_pitch, pgen.enable_pitch(), Assoc_Refresh_Full);
@@ -222,13 +224,20 @@ void Main_Component::setup_checkbox(Fl_Check_Button_Ex *chk, Parameter_Access &p
     assoc_.push_back(std::move(a));
 }
 
-void Main_Component::setup_choice(Fl_Choice_Ex *cb, PA_Choice &p, int flags)
+void Main_Component::setup_choice(Fl_Choice_Ex *cb, Parameter_Access &p, int flags)
 {
     std::unique_ptr<Association> a(new Association);
 
     cb->clear();
-    for (const std::string &value : p.values)
-        cb->add(value.c_str(), 0, nullptr);
+
+    if (p.type() == PT_Choice) {
+        for (const std::string &value : static_cast<PA_Choice &>(p).values)
+            cb->add(value.c_str(), 0, nullptr);
+    }
+    else {
+        for (int i1 = p.min(), i2 = p.max(); i1 <= i2; ++i1)
+            cb->add(p.to_string(i1).c_str(), 0, nullptr);
+    }
 
     a->access = &p;
     a->value_widget = cb;

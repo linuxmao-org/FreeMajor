@@ -1436,7 +1436,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
   txt_patch_name->callback((Fl_Callback*)cb_txt_patch_name);
   txt_patch_name->align(Fl_Align(FL_ALIGN_TOP_LEFT));
 } // Fl_Input* txt_patch_name
-{ sl_tap_tempo = new Fl_Widget_Ex<Fl_Slider>(360, 174, 200, 22, _("Tap Tempo"));
+{ sl_tap_tempo = new Fl_Widget_Ex<Fl_Slider>(425, 174, 200, 22, _("Tap Tempo"));
   sl_tap_tempo->type(5);
   sl_tap_tempo->box(FL_DOWN_BOX);
   sl_tap_tempo->color(FL_BACKGROUND_COLOR);
@@ -1448,7 +1448,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
   sl_tap_tempo->align(Fl_Align(FL_ALIGN_TOP_LEFT));
   sl_tap_tempo->when(FL_WHEN_CHANGED);
 } // Fl_Widget_Ex<Fl_Slider>* sl_tap_tempo
-{ lbl_tap_tempo = new Fl_Box(495, 155, 65, 20, _("ms"));
+{ lbl_tap_tempo = new Fl_Box(560, 155, 65, 20, _("ms"));
   lbl_tap_tempo->labelsize(12);
   lbl_tap_tempo->align(Fl_Align(FL_ALIGN_RIGHT|FL_ALIGN_INSIDE));
 } // Fl_Box* lbl_tap_tempo
@@ -1476,6 +1476,19 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
   chk_relay2->align(Fl_Align(FL_ALIGN_LEFT|FL_ALIGN_INSIDE));
   chk_relay2->when(FL_WHEN_RELEASE);
 } // Fl_Check_Button_Ex* chk_relay2
+{ cb_routing = new Fl_Choice_Ex(270, 175, 145, 20, _("Routing"));
+  cb_routing->box(FL_FLAT_BOX);
+  cb_routing->down_box(FL_BORDER_BOX);
+  cb_routing->color(FL_BACKGROUND_COLOR);
+  cb_routing->selection_color(FL_SELECTION_COLOR);
+  cb_routing->labeltype(FL_NORMAL_LABEL);
+  cb_routing->labelfont(0);
+  cb_routing->labelsize(12);
+  cb_routing->labelcolor(FL_FOREGROUND_COLOR);
+  cb_routing->textsize(12);
+  cb_routing->align(Fl_Align(FL_ALIGN_TOP_LEFT));
+  cb_routing->when(FL_WHEN_RELEASE);
+} // Fl_Choice_Ex* cb_routing
 init();
 end();
 }

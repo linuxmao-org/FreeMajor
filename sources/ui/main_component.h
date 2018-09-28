@@ -53,7 +53,7 @@ public:
 private:
   Association *setup_slider(Fl_Slider_Ex *sl, PA_Integer &p, int flags = 0); 
   void setup_checkbox(Fl_Check_Button_Ex *chk, Parameter_Access &p, int flags = 0); 
-  void setup_choice(Fl_Choice_Ex *cb, PA_Choice &p, int flags = 0); 
+  void setup_choice(Fl_Choice_Ex *cb, Parameter_Access &p, int flags = 0); 
   void setup_boxes(bool enable, const Parameter_Collection &pc, Fl_Group_Ex *boxes[], unsigned nboxes); 
   void update_midi_outs(); 
   void on_selected_patch(); 
@@ -235,5 +235,6 @@ public:
   Fl_Box *lbl_tap_tempo;
   Fl_Check_Button_Ex *chk_relay1;
   Fl_Check_Button_Ex *chk_relay2;
+  Fl_Choice_Ex *cb_routing;
 };
 #endif

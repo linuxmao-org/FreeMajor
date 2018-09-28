@@ -59,8 +59,16 @@ static void write_bits7(uint8_t *dst, unsigned size, const std::vector<bool> &bi
 
 ///
 
+Parameter_Access *Parameter_Access::with_string_fn(std::function<std::string(int)> fn)
+{
+    to_string_fn = std::move(fn);
+    return this;
+}
+
 std::string Parameter_Access::to_string(int value) const
 {
+    if (to_string_fn)
+        return to_string_fn(value);
     return std::to_string(value);
 }
 
@@ -109,6 +117,8 @@ void PA_Boolean::set(Patch &pat, int value)
 
 std::string PA_Boolean::to_string(int value) const
 {
+    if (to_string_fn)
+        return to_string_fn(value);
     return value ? "on" : "off";
 }
 
@@ -140,6 +150,8 @@ int PA_Choice::clamp(int value) const
 
 std::string PA_Choice::to_string(int value) const
 {
+    if (to_string_fn)
+        return to_string_fn(value);
     return values[clamp(value)];
 }
 
@@ -799,6 +811,18 @@ P_General::P_General()
                                     10, 1,
                                     _("Relay 2"), _("Relay 2")))
                        ->with_min_max(0, 1));
+    slots.emplace_back((new PA_Bits(156, 4,
+                                    0, 2,
+                                    _("Routing"), _("Routing")))
+                       ->with_min_max(0, 2)
+                       ->with_string_fn([](int v) -> std::string {
+                                            switch (v) {
+                                            case 0: return "Serial";
+                                            case 1: return "Semi Parallel";
+                                            case 2: return "Parallel";
+                                            default: assert(false); return "";
+                                            }
+                                        }));
 
     pitch.reset(new P_Pitch(type_pitch()));
     delay.reset(new P_Delay(type_delay()));

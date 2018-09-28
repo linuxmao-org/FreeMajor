@@ -7,6 +7,7 @@
 #include <string>
 #include <vector>
 #include <memory>
+#include <functional>
 class Patch;
 
 enum Parameter_Type {
@@ -18,6 +19,7 @@ public:
     Parameter_Access(const char *name, const char *description)
         : name(name), description(description) {}
     virtual ~Parameter_Access() {}
+    Parameter_Access *with_string_fn(std::function<std::string(int)> fn);
 
     virtual Parameter_Type type() const = 0;
     virtual int get(const Patch &pat) const = 0;
@@ -28,6 +30,7 @@ public:
 
     const char *name = nullptr;
     const char *description = nullptr;
+    std::function<std::string(int)> to_string_fn;
 };
 
 class Parameter_Collection {
@@ -481,6 +484,7 @@ public:
     DEFPARAMETER(13, PA_Integer, tap_tempo)
     DEFPARAMETER(14, PA_Bits, relay1)
     DEFPARAMETER(15, PA_Bits, relay2)
+    DEFPARAMETER(16, PA_Bits, routing)
 
     P_Compressor compressor;
     P_Equalizer equalizer;

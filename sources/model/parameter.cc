@@ -733,6 +733,10 @@ P_General::P_General()
                                       {_("Spring"), _("Hall"), _("Room"), _("Plate")},
                                       _("Reverb type"), _("Type of reverb effect"))));
 
+    slots.emplace_back((new PA_Integer(160, 4,
+                                      _("Tap tempo"), _("Sets the Tap Tempo.")))
+                       ->with_min_max(100, 3000));
+
     pitch.reset(new P_Pitch(type_pitch()));
     delay.reset(new P_Delay(type_delay()));
     filter.reset(new P_Filter(type_filter()));

@@ -130,6 +130,11 @@ void Main_Component::refresh_patch_display()
     assoc_.clear();
     assoc_entered_.clear();
 
+    Association *a = setup_slider(sl_tap_tempo, pgen.tap_tempo());
+    a->value_update_callback = [this](int v) {
+                                   lbl_tap_tempo->copy_label((std::to_string(v) + " ms").c_str());
+                               };
+
     setup_checkbox(chk_compressor, pgen.enable_compressor(), Assoc_Refresh_Full);
     setup_checkbox(chk_filter, pgen.enable_filter(), Assoc_Refresh_Full);
     setup_checkbox(chk_pitch, pgen.enable_pitch(), Assoc_Refresh_Full);
@@ -182,6 +187,22 @@ void Main_Component::refresh_patch_display()
             w->callback(&on_edited_parameter, this);
         a->update_value(pat);
     }
+}
+
+Association *Main_Component::setup_slider(Fl_Slider_Ex *sl, PA_Integer &p, int flags)
+{
+    std::unique_ptr<Association> a(new Association);
+    a->access = &p;
+    a->value_widget = sl;
+    a->kind = Assoc_Slider;
+    a->flags |= flags;
+
+    sl->range(p.min(), p.max());
+    sl->enter_callback(&on_enter_parameter_control, this);
+    sl->leave_callback(&on_leave_parameter_control, this);
+
+    assoc_.emplace_back(a.get());
+    return a.release();
 }
 
 void Main_Component::setup_checkbox(Fl_Check_Button_Ex *chk, PA_Boolean &p, int flags)

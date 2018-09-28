@@ -4,6 +4,7 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 
 #pragma once
+#include <functional>
 class Parameter_Access;
 class Fl_Group;
 class Fl_Widget;
@@ -14,6 +15,7 @@ enum Association_Kind {
     Assoc_Dial,
     Assoc_Check,
     Assoc_Choice,
+    Assoc_Slider,
 };
 
 enum Association_Flag {
@@ -28,6 +30,7 @@ struct Association {
     Fl_Widget *value_widget = nullptr;
     Association_Kind kind = Assoc_Undefined;
     int flags = 0;
+    std::function<void(int)> value_update_callback;
     void update_value(const Patch &pat);
     void update_from_widget(Patch &pat);
 };

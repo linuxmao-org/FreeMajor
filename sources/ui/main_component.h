@@ -5,12 +5,14 @@
 #include <FL/Fl.H>
 #include <FL/Fl_Check_Button.H>
 #include <FL/Fl_Hold_Browser.H>
+#include <FL/Fl_Slider.H>
 #include <list>
 #include <vector>
 #include <memory>
 class Patch;
 class Patch_Bank;
 class Parameter_Collection;
+class PA_Integer;
 class PA_Boolean;
 class PA_Choice;
 class P_General;
@@ -18,9 +20,11 @@ class Association;
 class Midi_Out_Queue;
 class Fl_Choice;
 class Fl_Check_Button;
+class Fl_Slider;
 class Fl_Dial;
 template <class T> class Fl_Widget_Ex; 
 typedef Fl_Widget_Ex<Fl_Choice> Fl_Choice_Ex;
+typedef Fl_Widget_Ex<Fl_Slider> Fl_Slider_Ex;
 typedef Fl_Widget_Ex<Fl_Check_Button> Fl_Check_Button_Ex;
 typedef Fl_Widget_Ex<Fl_Dial> Fl_Dial_Ex;
 typedef Fl_Widget_Ex<Fl_Group> Fl_Group_Ex;
@@ -46,6 +50,7 @@ public:
   void refresh_bank_browser(); 
   void refresh_patch_display(); 
 private:
+  Association *setup_slider(Fl_Slider_Ex *sl, PA_Integer &p, int flags = 0); 
   void setup_checkbox(Fl_Check_Button_Ex *chk, PA_Boolean &p, int flags = 0); 
   void setup_choice(Fl_Choice_Ex *cb, PA_Choice &p, int flags = 0); 
   void setup_boxes(bool enable, const Parameter_Collection &pc, Fl_Group_Ex *boxes[], unsigned nboxes); 
@@ -224,5 +229,8 @@ public:
 private:
   inline void cb_txt_patch_name_i(Fl_Input*, void*);
   static void cb_txt_patch_name(Fl_Input*, void*);
+public:
+  Fl_Widget_Ex<Fl_Slider> *sl_tap_tempo;
+  Fl_Box *lbl_tap_tempo;
 };
 #endif

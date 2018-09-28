@@ -457,6 +457,8 @@ public:
     DEFPARAMETER(11, PA_Choice, type_delay)
     DEFPARAMETER(12, PA_Choice, type_reverb)
 
+    DEFPARAMETER(13, PA_Integer, tap_tempo)
+
     P_Compressor compressor;
     P_Equalizer equalizer;
     P_Noise_Gate noise_gate;

@@ -1430,15 +1430,28 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
   btn_delete->labelsize(12);
   btn_delete->callback((Fl_Callback*)cb_btn_delete);
 } // Fl_Button* btn_delete
-{ Fl_Box* o = new Fl_Box(30, 155, 120, 20, _("Patch name:"));
-  o->labelsize(12);
-  o->align(Fl_Align(FL_ALIGN_LEFT|FL_ALIGN_INSIDE));
-} // Fl_Box* o
-{ txt_patch_name = new Fl_Input(30, 175, 120, 20);
+{ txt_patch_name = new Fl_Input(30, 175, 120, 20, _("Patch name:"));
   txt_patch_name->labelsize(12);
   txt_patch_name->textsize(12);
   txt_patch_name->callback((Fl_Callback*)cb_txt_patch_name);
+  txt_patch_name->align(Fl_Align(FL_ALIGN_TOP_LEFT));
 } // Fl_Input* txt_patch_name
+{ sl_tap_tempo = new Fl_Widget_Ex<Fl_Slider>(235, 174, 200, 22, _("Tap Tempo"));
+  sl_tap_tempo->type(5);
+  sl_tap_tempo->box(FL_DOWN_BOX);
+  sl_tap_tempo->color(FL_BACKGROUND_COLOR);
+  sl_tap_tempo->selection_color(FL_BACKGROUND_COLOR);
+  sl_tap_tempo->labeltype(FL_NORMAL_LABEL);
+  sl_tap_tempo->labelfont(0);
+  sl_tap_tempo->labelsize(12);
+  sl_tap_tempo->labelcolor(FL_FOREGROUND_COLOR);
+  sl_tap_tempo->align(Fl_Align(FL_ALIGN_TOP_LEFT));
+  sl_tap_tempo->when(FL_WHEN_CHANGED);
+} // Fl_Widget_Ex<Fl_Slider>* sl_tap_tempo
+{ lbl_tap_tempo = new Fl_Box(370, 155, 65, 20, _("ms"));
+  lbl_tap_tempo->labelsize(12);
+  lbl_tap_tempo->align(Fl_Align(FL_ALIGN_RIGHT|FL_ALIGN_INSIDE));
+} // Fl_Box* lbl_tap_tempo
 init();
 end();
 }

@@ -9,6 +9,7 @@
 #include <FL/Fl_Dial.H>
 #include <FL/Fl_Check_Button.H>
 #include <FL/Fl_Choice.H>
+#include <FL/Fl_Slider.H>
 #include <math.h>
 
 void Association::update_value(const Patch &pat)
@@ -28,6 +29,10 @@ void Association::update_value(const Patch &pat)
         if (Fl_Choice *cb = static_cast<Fl_Choice *>(value_widget))
             cb->value(pv);
         break;
+    case Assoc_Slider:
+        if (Fl_Slider *sl = static_cast<Fl_Slider *>(value_widget))
+            sl->value(pv);
+        break;
     default:
         break;
     }
@@ -36,6 +41,8 @@ void Association::update_value(const Patch &pat)
         group_box->copy_label(access->name);
     if (value_widget && (flags & Assoc_Value_On_Label))
         value_widget->copy_label(access->to_string(pv).c_str());
+    if(value_update_callback)
+        value_update_callback(pv);
 }
 
 void Association::update_from_widget(Patch &pat)
@@ -59,6 +66,11 @@ void Association::update_from_widget(Patch &pat)
     case Assoc_Choice: {
         Fl_Choice *cb = static_cast<Fl_Choice *>(value_widget);
         new_value = cb->value();
+        break;
+    }
+    case Assoc_Slider: {
+        Fl_Slider *sl = static_cast<Fl_Slider *>(value_widget);
+        new_value = (int)lround(sl->value());
         break;
     }
     default:

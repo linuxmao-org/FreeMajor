@@ -26,6 +26,9 @@ decl {\#include <FL/Fl_Check_Button.H>} {public global
 decl {\#include <FL/Fl_Hold_Browser.H>} {public global
 }
 
+decl {\#include <FL/Fl_Slider.H>} {public global
+}
+
 decl {\#include <list>} {public global
 }
 
@@ -42,6 +45,9 @@ decl {class Patch_Bank;} {public global
 }
 
 decl {class Parameter_Collection;} {public global
+}
+
+decl {class PA_Integer;} {public global
 }
 
 decl {class PA_Boolean;} {public global
@@ -65,6 +71,9 @@ decl {class Fl_Choice;} {public global
 decl {class Fl_Check_Button;} {public global
 }
 
+decl {class Fl_Slider;} {public global
+}
+
 decl {class Fl_Dial;} {public global
 }
 
@@ -72,6 +81,9 @@ decl {template <class T> class Fl_Widget_Ex;} {public global
 }
 
 decl {typedef Fl_Widget_Ex<Fl_Choice> Fl_Choice_Ex;} {public global
+}
+
+decl {typedef Fl_Widget_Ex<Fl_Slider> Fl_Slider_Ex;} {public global
 }
 
 decl {typedef Fl_Widget_Ex<Fl_Check_Button> Fl_Check_Button_Ex;} {public global
@@ -100,6 +112,8 @@ widget_class Main_Component {open
   decl {void refresh_bank_browser();} {public local
   }
   decl {void refresh_patch_display();} {public local
+  }
+  decl {Association *setup_slider(Fl_Slider_Ex *sl, PA_Integer &p, int flags = 0);} {private local
   }
   decl {void setup_checkbox(Fl_Check_Button_Ex *chk, PA_Boolean &p, int flags = 0);} {private local
   }
@@ -141,7 +155,7 @@ widget_class Main_Component {open
   }
   decl {void on_clicked_send();} {private local
   }
-  decl {void on_edited_patch_name();} {selected private local
+  decl {void on_edited_patch_name();} {private local
   }
   decl {static void on_edited_parameter(Fl_Widget *w, void *user_data);} {private local
   }
@@ -660,12 +674,18 @@ widget_class Main_Component {open
     callback {on_clicked_delete();}
     xywh {595 60 70 20} labelsize 12
   }
-  Fl_Box {} {
-    label {Patch name:}
-    xywh {30 155 120 20} labelsize 12 align 20
-  }
   Fl_Input txt_patch_name {
+    label {Patch name:}
     callback {on_edited_patch_name();}
-    xywh {30 175 120 20} labelsize 12 textsize 12
+    xywh {30 175 120 20} labelsize 12 align 5 textsize 12
+  }
+  Fl_Slider sl_tap_tempo {
+    label {Tap Tempo}
+    xywh {235 174 200 22} type {Horz Knob} labelsize 12 align 5
+    class {Fl_Widget_Ex<Fl_Slider>}
+  }
+  Fl_Box lbl_tap_tempo {
+    label ms selected
+    xywh {370 155 65 20} labelsize 12 align 24
   }
 }

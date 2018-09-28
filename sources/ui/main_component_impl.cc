@@ -334,7 +334,7 @@ void Main_Component::on_clicked_export()
 
     if (fl_access(filename.c_str(), 0) == 0) {
         fl_message_title(_("Confirm overwrite"));
-        if (fl_choice(_("The file already exists. Replace it?"), _("No"), _("Yes"), nullptr))
+        if (fl_choice(_("The file already exists. Replace it?"), _("Yes"), _("No"), nullptr))
             return;
     }
 
@@ -355,6 +355,57 @@ void Main_Component::on_clicked_change()
 
     uint8_t msg[2] = {0xc0, (uint8_t)patchno};
     midi_out_q_->enqueue_message(msg, sizeof(msg), 0.0);
+}
+
+void Main_Component::on_clicked_new()
+{
+    Patch_Chooser p_chooser(*pbank_);
+    unsigned patchno = p_chooser.show(_("Create into..."), _("Select the patch number:"));
+    if ((int)patchno == -1)
+        return;
+
+    Patch_Bank &pbank = *pbank_;
+    pbank.slot[patchno] = Patch::create_empty();
+    pbank.used[patchno] = true;
+
+    refresh_bank_browser();
+    refresh_patch_display();
+}
+
+void Main_Component::on_clicked_copy()
+{
+    unsigned src_patchno = get_patch_number();
+    if (src_patchno == ~0u)
+        return;
+
+    Patch_Chooser p_chooser(*pbank_);
+    unsigned dst_patchno = p_chooser.show(_("Copy into..."), _("Select the patch number:"));
+    if ((int)dst_patchno == -1)
+        return;
+
+    Patch_Bank &pbank = *pbank_;
+    pbank.slot[dst_patchno] = pbank.slot[src_patchno];
+    pbank.used[dst_patchno] = true;
+
+    refresh_bank_browser();
+    refresh_patch_display();
+}
+
+void Main_Component::on_clicked_delete()
+{
+    unsigned patchno = get_patch_number();
+    if (patchno == ~0u)
+        return;
+
+    fl_message_title(_("Confirm delete"));
+    if (fl_choice(_("Delete the current patch?"), _("Yes"), _("No"), nullptr))
+        return;
+
+    Patch_Bank &pbank = *pbank_;
+    pbank.used[patchno] = false;
+
+    refresh_bank_browser();
+    refresh_patch_display();
 }
 
 void Main_Component::on_clicked_send()

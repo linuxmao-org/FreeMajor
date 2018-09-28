@@ -49,6 +49,27 @@ void Main_Component::cb_btn_send_i(Fl_Button*, void*) {
 void Main_Component::cb_btn_send(Fl_Button* o, void* v) {
   ((Main_Component*)(o->parent()))->cb_btn_send_i(o,v);
 }
+
+void Main_Component::cb_btn_new_i(Fl_Button*, void*) {
+  on_clicked_new();
+}
+void Main_Component::cb_btn_new(Fl_Button* o, void* v) {
+  ((Main_Component*)(o->parent()))->cb_btn_new_i(o,v);
+}
+
+void Main_Component::cb_btn_copy_i(Fl_Button*, void*) {
+  on_clicked_copy();
+}
+void Main_Component::cb_btn_copy(Fl_Button* o, void* v) {
+  ((Main_Component*)(o->parent()))->cb_btn_copy_i(o,v);
+}
+
+void Main_Component::cb_btn_delete_i(Fl_Button*, void*) {
+  on_clicked_delete();
+}
+void Main_Component::cb_btn_delete(Fl_Button* o, void* v) {
+  ((Main_Component*)(o->parent()))->cb_btn_delete_i(o,v);
+}
 Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
   : Fl_Group(X, Y, W, H, L) {
 { Fl_Box* o = new Fl_Box(700, 1, 300, 39, _("Toto Major"));
@@ -83,7 +104,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
   ch_midi_out->textsize(12);
   ch_midi_out->callback((Fl_Callback*)cb_ch_midi_out);
 } // Fl_Choice* ch_midi_out
-{ btn_change = new Fl_Button(560, 60, 70, 20, _("Change"));
+{ btn_change = new Fl_Button(595, 40, 70, 20, _("Change"));
   btn_change->labelsize(12);
   btn_change->callback((Fl_Callback*)cb_btn_change);
 } // Fl_Button* btn_change
@@ -1390,6 +1411,18 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
   chk_realtime->value(1);
   chk_realtime->labelsize(12);
 } // Fl_Check_Button* chk_realtime
+{ btn_new = new Fl_Button(525, 40, 70, 20, _("New"));
+  btn_new->labelsize(12);
+  btn_new->callback((Fl_Callback*)cb_btn_new);
+} // Fl_Button* btn_new
+{ btn_copy = new Fl_Button(525, 60, 70, 20, _("Copy"));
+  btn_copy->labelsize(12);
+  btn_copy->callback((Fl_Callback*)cb_btn_copy);
+} // Fl_Button* btn_copy
+{ btn_delete = new Fl_Button(595, 60, 70, 20, _("Delete"));
+  btn_delete->labelsize(12);
+  btn_delete->callback((Fl_Callback*)cb_btn_delete);
+} // Fl_Button* btn_delete
 init();
 end();
 }

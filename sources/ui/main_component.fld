@@ -133,6 +133,12 @@ widget_class Main_Component {open
   }
   decl {void on_clicked_change();} {private local
   }
+  decl {void on_clicked_new();} {private local
+  }
+  decl {void on_clicked_copy();} {private local
+  }
+  decl {void on_clicked_delete();} {selected private local
+  }
   decl {void on_clicked_send();} {private local
   }
   decl {static void on_edited_parameter(Fl_Widget *w, void *user_data);} {private local
@@ -163,7 +169,7 @@ widget_class Main_Component {open
   Fl_Button btn_change {
     label Change
     callback {on_clicked_change();}
-    xywh {560 60 70 20} labelsize 12
+    xywh {595 40 70 20} labelsize 12
   }
   Fl_Group {} {open
     xywh {0 280 261 225} box THIN_UP_BOX
@@ -634,7 +640,22 @@ widget_class Main_Component {open
     xywh {680 60 140 25} labelsize 12 align 20
   }
   Fl_Check_Button chk_realtime {
-    label {Real time} selected
+    label {Real time}
     xywh {910 60 85 25} down_box DOWN_BOX value 1 labelsize 12
+  }
+  Fl_Button btn_new {
+    label New
+    callback {on_clicked_new();}
+    xywh {525 40 70 20} labelsize 12
+  }
+  Fl_Button btn_copy {
+    label Copy
+    callback {on_clicked_copy();}
+    xywh {525 60 70 20} labelsize 12
+  }
+  Fl_Button btn_delete {
+    label Delete
+    callback {on_clicked_delete();}
+    xywh {595 60 70 20} labelsize 12
   }
 }

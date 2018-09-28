@@ -64,6 +64,9 @@ private:
   void on_clicked_import(); 
   void on_clicked_export(); 
   void on_clicked_change(); 
+  void on_clicked_new(); 
+  void on_clicked_copy(); 
+  void on_clicked_delete(); 
   void on_clicked_send(); 
   static void on_edited_parameter(Fl_Widget *w, void *user_data); 
   static void on_enter_parameter_control(Fl_Widget *w, void *user_data); 
@@ -200,5 +203,19 @@ private:
 public:
   Fl_Box *txt_description;
   Fl_Check_Button *chk_realtime;
+  Fl_Button *btn_new;
+private:
+  inline void cb_btn_new_i(Fl_Button*, void*);
+  static void cb_btn_new(Fl_Button*, void*);
+public:
+  Fl_Button *btn_copy;
+private:
+  inline void cb_btn_copy_i(Fl_Button*, void*);
+  static void cb_btn_copy(Fl_Button*, void*);
+public:
+  Fl_Button *btn_delete;
+private:
+  inline void cb_btn_delete_i(Fl_Button*, void*);
+  static void cb_btn_delete(Fl_Button*, void*);
 };
 #endif

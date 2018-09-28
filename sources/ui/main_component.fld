@@ -98,13 +98,15 @@ decl {typedef Fl_Widget_Ex<Fl_Dial> Fl_Dial_Ex;} {public global
 decl {typedef Fl_Widget_Ex<Fl_Group> Fl_Group_Ex;} {public global
 }
 
-widget_class Main_Component {open
-  xywh {5 59 1000 840} type Double
+widget_class Main_Component {open selected
+  xywh {5 59 910 735} type Double
   code0 {init();} visible
 } {
   decl {void init();} {private local
   }
   decl {~Main_Component();} {public local
+  }
+  decl {void reset_description_text();} {public local
   }
   decl {unsigned get_patch_number() const;} {public local
   }
@@ -116,7 +118,7 @@ widget_class Main_Component {open
   }
   decl {void refresh_patch_display();} {public local
   }
-  decl {Association *setup_slider(Fl_Slider_Ex *sl, Parameter_Access &p, int flags = 0);} {selected private local
+  decl {Association *setup_slider(Fl_Slider_Ex *sl, Parameter_Access &p, int flags = 0);} {private local
   }
   decl {void setup_checkbox(Fl_Check_Button_Ex *chk, Parameter_Access &p, int flags = 0);} {private local
   }
@@ -131,18 +133,18 @@ widget_class Main_Component {open
   decl {void on_changed_midi_out();} {private local
   }
   Fl_Box {} {
-    label {Toto Major}
-    xywh {700 1 300 39} box UP_BOX labeltype SHADOW_LABEL labelsize 28
+    label {G-Major Editor}
+    xywh {595 1 315 39} box UP_BOX labeltype SHADOW_LABEL labelsize 28
   }
   Fl_Button btn_import {
     label Import
     callback {on_clicked_import();}
-    xywh {525 80 70 20} labelsize 12
+    xywh {445 85 70 20} labelsize 12
   }
   Fl_Button btn_export {
     label Export
     callback {on_clicked_export();}
-    xywh {595 80 70 20} labelsize 12
+    xywh {515 85 70 20} labelsize 12
   }
   decl {void on_clicked_import();} {private local
   }
@@ -168,7 +170,7 @@ widget_class Main_Component {open
   }
   Fl_Browser br_bank {
     callback {on_selected_patch();}
-    xywh {345 30 180 70} labelsize 12 textsize 12
+    xywh {265 10 180 95} labelsize 12 textsize 12
     class Fl_Hold_Browser
   }
   decl {std::unique_ptr<Patch_Bank> pbank_;} {private local
@@ -183,464 +185,464 @@ widget_class Main_Component {open
   }
   Fl_Choice ch_midi_out {
     callback {on_changed_midi_out();} open
-    xywh {680 85 225 20} down_box BORDER_BOX labelsize 12 textsize 12
+    xywh {595 85 220 20} down_box BORDER_BOX labelsize 12 textsize 12
   } {}
   Fl_Button btn_change {
     label Change
     callback {on_clicked_change();}
-    xywh {595 40 70 20} labelsize 12
+    xywh {515 45 70 20} labelsize 12
   }
   Fl_Group {} {open
-    xywh {0 280 261 225} box THIN_UP_BOX
+    xywh {0 225 261 225} box THIN_UP_BOX
   } {
     Fl_Check_Button chk_noise_gate {
       label {Noise gate}
-      xywh {1 281 128 23} down_box DOWN_BOX labelsize 12
+      xywh {1 226 128 23} down_box DOWN_BOX labelsize 12
       class Fl_Check_Button_Ex
     }
     Fl_Group box_ng1 {open
-      xywh {5 305 60 60} box BORDER_BOX
+      xywh {5 250 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_ng2 {open
-      xywh {65 305 60 60} box BORDER_BOX
+      xywh {65 250 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_ng3 {open
-      xywh {5 370 60 60} box BORDER_BOX
+      xywh {5 315 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_ng4 {open
-      xywh {65 370 60 60} box BORDER_BOX
+      xywh {65 315 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_ng5 {open
-      xywh {5 435 60 60} box BORDER_BOX
+      xywh {5 380 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_ng6 {open
-      xywh {65 435 60 60} box BORDER_BOX
+      xywh {65 380 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group {} {open
-      xywh {130 280 131 225} box THIN_UP_BOX
+      xywh {130 225 131 225} box THIN_UP_BOX
     } {
       Fl_Check_Button chk_compressor {
         label Compressor
-        xywh {131 281 128 23} down_box DOWN_BOX labelsize 12
+        xywh {131 226 128 23} down_box DOWN_BOX labelsize 12
         class Fl_Check_Button_Ex
       }
       Fl_Group box_cpr1 {open
-        xywh {135 305 60 60} box BORDER_BOX
+        xywh {135 250 60 60} box BORDER_BOX
         class Fl_Group_Ex
       } {}
       Fl_Group box_cpr2 {open
-        xywh {195 305 60 60} box BORDER_BOX
+        xywh {195 250 60 60} box BORDER_BOX
         class Fl_Group_Ex
       } {}
       Fl_Group box_cpr3 {open
-        xywh {135 370 60 60} box BORDER_BOX
+        xywh {135 315 60 60} box BORDER_BOX
         class Fl_Group_Ex
       } {}
       Fl_Group box_cpr4 {open
-        xywh {195 370 60 60} box BORDER_BOX
+        xywh {195 315 60 60} box BORDER_BOX
         class Fl_Group_Ex
       } {}
       Fl_Group box_cpr5 {open
-        xywh {135 435 60 60} box BORDER_BOX
+        xywh {135 380 60 60} box BORDER_BOX
         class Fl_Group_Ex
       } {}
       Fl_Group box_cpr6 {open
-        xywh {195 435 60 60} box BORDER_BOX
+        xywh {195 380 60 60} box BORDER_BOX
         class Fl_Group_Ex
       } {}
     }
   }
   Fl_Group {} {open
-    xywh {0 505 261 285} box THIN_UP_BOX
+    xywh {0 450 261 285} box THIN_UP_BOX
   } {
     Fl_Check_Button chk_equalizer {
       label Equalizer
-      xywh {1 506 258 23} down_box DOWN_BOX labelsize 12
+      xywh {1 451 258 23} down_box DOWN_BOX labelsize 12
       class Fl_Check_Button_Ex
     }
     Fl_Group box_eq1 {open
-      xywh {20 530 60 60} box BORDER_BOX
+      xywh {20 475 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_eq2 {open
-      xywh {100 530 60 60} box BORDER_BOX
+      xywh {100 475 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_eq4 {open
-      xywh {20 595 60 60} box BORDER_BOX
+      xywh {20 540 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_eq5 {open
-      xywh {100 595 60 60} box BORDER_BOX
+      xywh {100 540 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_eq7 {open
-      xywh {20 660 60 60} box BORDER_BOX
+      xywh {20 605 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_eq8 {open
-      xywh {100 660 60 60} box BORDER_BOX
+      xywh {100 605 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_eq3 {open
-      xywh {180 530 60 60} box BORDER_BOX
+      xywh {180 475 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_eq6 {open
-      xywh {180 595 60 60} box BORDER_BOX
+      xywh {180 540 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_eq9 {open
-      xywh {180 660 60 60} box BORDER_BOX
+      xywh {180 605 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
   }
   Fl_Group {} {open
-    xywh {260 280 131 510} box THIN_UP_BOX
+    xywh {260 225 131 510} box THIN_UP_BOX
   } {
     Fl_Check_Button chk_filter {
       label Filter
-      xywh {261 281 128 23} down_box DOWN_BOX labelsize 12
+      xywh {261 226 128 23} down_box DOWN_BOX labelsize 12
       class Fl_Check_Button_Ex
     }
     Fl_Group box_flt1 {open
-      xywh {265 330 60 60} box BORDER_BOX
+      xywh {265 275 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_flt2 {open
-      xywh {325 330 60 60} box BORDER_BOX
+      xywh {325 275 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_flt3 {open
-      xywh {265 395 60 60} box BORDER_BOX
+      xywh {265 340 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_flt4 {open
-      xywh {325 395 60 60} box BORDER_BOX
+      xywh {325 340 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_flt5 {open
-      xywh {265 460 60 60} box BORDER_BOX
+      xywh {265 405 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_flt6 {open
-      xywh {325 460 60 60} box BORDER_BOX
+      xywh {325 405 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_flt7 {open
-      xywh {265 525 60 60} box BORDER_BOX
+      xywh {265 470 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_flt8 {open
-      xywh {325 525 60 60} box BORDER_BOX
+      xywh {325 470 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_flt9 {open
-      xywh {265 590 60 60} box BORDER_BOX
+      xywh {265 535 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_flt10 {open
-      xywh {325 590 60 60} box BORDER_BOX
+      xywh {325 535 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_flt11 {open
-      xywh {265 655 60 60} box BORDER_BOX
+      xywh {265 600 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_flt12 {open
-      xywh {325 655 60 60} box BORDER_BOX
+      xywh {325 600 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_flt13 {open
-      xywh {265 720 60 60} box BORDER_BOX
+      xywh {265 665 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_flt14 {open
-      xywh {325 720 60 60} box BORDER_BOX
+      xywh {325 665 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Choice cb_filter {open
-      xywh {265 305 120 20} down_box BORDER_BOX labelsize 12 textsize 12
+      xywh {265 250 120 20} down_box BORDER_BOX labelsize 12 textsize 12
       class Fl_Choice_Ex
     } {}
   }
   Fl_Group {} {open
-    xywh {390 280 131 510} box THIN_UP_BOX
+    xywh {390 225 131 510} box THIN_UP_BOX
   } {
     Fl_Check_Button chk_pitch {
       label Pitch
-      xywh {391 281 128 23} down_box DOWN_BOX labelsize 12
+      xywh {391 226 128 23} down_box DOWN_BOX labelsize 12
       class Fl_Check_Button_Ex
     }
     Fl_Group box_pit1 {open
-      xywh {395 330 60 60} box BORDER_BOX
+      xywh {395 275 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_pit2 {open
-      xywh {455 330 60 60} box BORDER_BOX
+      xywh {455 275 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_pit3 {open
-      xywh {395 395 60 60} box BORDER_BOX
+      xywh {395 340 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_pit4 {open
-      xywh {455 395 60 60} box BORDER_BOX
+      xywh {455 340 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_pit5 {open
-      xywh {395 460 60 60} box BORDER_BOX
+      xywh {395 405 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_pit6 {open
-      xywh {455 460 60 60} box BORDER_BOX
+      xywh {455 405 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_pit7 {open
-      xywh {395 525 60 60} box BORDER_BOX
+      xywh {395 470 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_pit8 {open
-      xywh {455 525 60 60} box BORDER_BOX
+      xywh {455 470 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_pit9 {open
-      xywh {395 590 60 60} box BORDER_BOX
+      xywh {395 535 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_pit10 {open
-      xywh {455 590 60 60} box BORDER_BOX
+      xywh {455 535 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_pit11 {open
-      xywh {395 655 60 60} box BORDER_BOX
+      xywh {395 600 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_pit12 {open
-      xywh {455 655 60 60} box BORDER_BOX
+      xywh {455 600 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_pit13 {open
-      xywh {395 720 60 60} box BORDER_BOX
+      xywh {395 665 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_pit14 {open
-      xywh {455 720 60 60} box BORDER_BOX
+      xywh {455 665 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Choice cb_pitch {open
-      xywh {395 305 120 20} down_box BORDER_BOX labelsize 12 textsize 12
+      xywh {395 250 120 20} down_box BORDER_BOX labelsize 12 textsize 12
       class Fl_Choice_Ex
     } {}
   }
   Fl_Group {} {open
-    xywh {520 280 391 510} box THIN_UP_BOX
+    xywh {520 225 391 510} box THIN_UP_BOX
   } {
     Fl_Check_Button chk_chorus {
       label {Chorus/Flanger}
-      xywh {521 281 128 23} down_box DOWN_BOX labelsize 12
+      xywh {521 226 128 23} down_box DOWN_BOX labelsize 12
       class Fl_Check_Button_Ex
     }
     Fl_Group box_cho1 {open
-      xywh {525 330 60 60} box BORDER_BOX
+      xywh {525 275 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_cho2 {open
-      xywh {585 330 60 60} box BORDER_BOX
+      xywh {585 275 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_cho3 {open
-      xywh {525 395 60 60} box BORDER_BOX
+      xywh {525 340 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_cho4 {open
-      xywh {585 395 60 60} box BORDER_BOX
+      xywh {585 340 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_cho5 {open
-      xywh {525 460 60 60} box BORDER_BOX
+      xywh {525 405 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_cho6 {open
-      xywh {585 460 60 60} box BORDER_BOX
+      xywh {585 405 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_cho7 {open
-      xywh {525 525 60 60} box BORDER_BOX
+      xywh {525 470 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_cho8 {open
-      xywh {585 525 60 60} box BORDER_BOX
+      xywh {585 470 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_cho9 {open
-      xywh {525 590 60 60} box BORDER_BOX
+      xywh {525 535 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_cho10 {open
-      xywh {585 590 60 60} box BORDER_BOX
+      xywh {585 535 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_cho11 {open
-      xywh {525 655 60 60} box BORDER_BOX
+      xywh {525 600 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_cho12 {open
-      xywh {585 655 60 60} box BORDER_BOX
+      xywh {585 600 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_cho13 {open
-      xywh {525 720 60 60} box BORDER_BOX
+      xywh {525 665 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_cho14 {open
-      xywh {585 720 60 60} box BORDER_BOX
+      xywh {585 665 60 60} box BORDER_BOX
       class Fl_Group_Ex
     } {}
     Fl_Choice cb_chorus {open
-      xywh {525 305 120 20} down_box BORDER_BOX labelsize 12 textsize 12
+      xywh {525 250 120 20} down_box BORDER_BOX labelsize 12 textsize 12
       class Fl_Choice_Ex
     } {}
     Fl_Group {} {open
-      xywh {650 280 261 510} box THIN_UP_BOX
+      xywh {650 225 261 510} box THIN_UP_BOX
     } {
       Fl_Check_Button chk_delay {
         label Delay
-        xywh {651 281 128 23} down_box DOWN_BOX labelsize 12
+        xywh {651 226 128 23} down_box DOWN_BOX labelsize 12
         class Fl_Check_Button_Ex
       }
       Fl_Group box_del1 {open
-        xywh {655 330 60 60} box BORDER_BOX
+        xywh {655 275 60 60} box BORDER_BOX
         class Fl_Group_Ex
       } {}
       Fl_Group box_del2 {open
-        xywh {715 330 60 60} box BORDER_BOX
+        xywh {715 275 60 60} box BORDER_BOX
         class Fl_Group_Ex
       } {}
       Fl_Group box_del3 {open
-        xywh {655 395 60 60} box BORDER_BOX
+        xywh {655 340 60 60} box BORDER_BOX
         class Fl_Group_Ex
       } {}
       Fl_Group box_del4 {open
-        xywh {715 395 60 60} box BORDER_BOX
+        xywh {715 340 60 60} box BORDER_BOX
         class Fl_Group_Ex
       } {}
       Fl_Group box_del5 {open
-        xywh {655 460 60 60} box BORDER_BOX
+        xywh {655 405 60 60} box BORDER_BOX
         class Fl_Group_Ex
       } {}
       Fl_Group box_del6 {open
-        xywh {715 460 60 60} box BORDER_BOX
+        xywh {715 405 60 60} box BORDER_BOX
         class Fl_Group_Ex
       } {}
       Fl_Group box_del7 {open
-        xywh {655 525 60 60} box BORDER_BOX
+        xywh {655 470 60 60} box BORDER_BOX
         class Fl_Group_Ex
       } {}
       Fl_Group box_del8 {open
-        xywh {715 525 60 60} box BORDER_BOX
+        xywh {715 470 60 60} box BORDER_BOX
         class Fl_Group_Ex
       } {}
       Fl_Group box_del9 {open
-        xywh {655 590 60 60} box BORDER_BOX
+        xywh {655 535 60 60} box BORDER_BOX
         class Fl_Group_Ex
       } {}
       Fl_Group box_del10 {open
-        xywh {715 590 60 60} box BORDER_BOX
+        xywh {715 535 60 60} box BORDER_BOX
         class Fl_Group_Ex
       } {}
       Fl_Group box_del11 {open
-        xywh {655 655 60 60} box BORDER_BOX
+        xywh {655 600 60 60} box BORDER_BOX
         class Fl_Group_Ex
       } {}
       Fl_Group box_del12 {open
-        xywh {715 655 60 60} box BORDER_BOX
+        xywh {715 600 60 60} box BORDER_BOX
         class Fl_Group_Ex
       } {}
       Fl_Group box_del13 {open
-        xywh {655 720 60 60} box BORDER_BOX
+        xywh {655 665 60 60} box BORDER_BOX
         class Fl_Group_Ex
       } {}
       Fl_Group box_del14 {open
-        xywh {715 720 60 60} box BORDER_BOX
+        xywh {715 665 60 60} box BORDER_BOX
         class Fl_Group_Ex
       } {}
       Fl_Choice cb_delay {open
-        xywh {655 305 120 20} down_box BORDER_BOX labelsize 12 textsize 12
+        xywh {655 250 120 20} down_box BORDER_BOX labelsize 12 textsize 12
         class Fl_Choice_Ex
       } {}
       Fl_Group {} {open
-        xywh {780 280 131 510} box THIN_UP_BOX
+        xywh {780 225 131 510} box THIN_UP_BOX
       } {
         Fl_Check_Button chk_reverb {
           label Reverb
-          xywh {781 281 128 23} down_box DOWN_BOX labelsize 12
+          xywh {781 226 128 23} down_box DOWN_BOX labelsize 12
           class Fl_Check_Button_Ex
         }
         Fl_Group box_rev1 {open
-          xywh {785 330 60 60} box BORDER_BOX
+          xywh {785 275 60 60} box BORDER_BOX
           class Fl_Group_Ex
         } {}
         Fl_Group box_rev2 {open
-          xywh {845 330 60 60} box BORDER_BOX
+          xywh {845 275 60 60} box BORDER_BOX
           class Fl_Group_Ex
         } {}
         Fl_Group box_rev3 {open
-          xywh {785 395 60 60} box BORDER_BOX
+          xywh {785 340 60 60} box BORDER_BOX
           class Fl_Group_Ex
         } {}
         Fl_Group box_rev4 {open
-          xywh {845 395 60 60} box BORDER_BOX
+          xywh {845 340 60 60} box BORDER_BOX
           class Fl_Group_Ex
         } {}
         Fl_Group box_rev5 {open
-          xywh {785 460 60 60} box BORDER_BOX
+          xywh {785 405 60 60} box BORDER_BOX
           class Fl_Group_Ex
         } {}
         Fl_Group box_rev6 {open
-          xywh {845 460 60 60} box BORDER_BOX
+          xywh {845 405 60 60} box BORDER_BOX
           class Fl_Group_Ex
         } {}
         Fl_Group box_rev7 {open
-          xywh {785 525 60 60} box BORDER_BOX
+          xywh {785 470 60 60} box BORDER_BOX
           class Fl_Group_Ex
         } {}
         Fl_Group box_rev8 {open
-          xywh {845 525 60 60} box BORDER_BOX
+          xywh {845 470 60 60} box BORDER_BOX
           class Fl_Group_Ex
         } {}
         Fl_Group box_rev9 {open
-          xywh {785 590 60 60} box BORDER_BOX
+          xywh {785 535 60 60} box BORDER_BOX
           class Fl_Group_Ex
         } {}
         Fl_Group box_rev10 {open
-          xywh {845 590 60 60} box BORDER_BOX
+          xywh {845 535 60 60} box BORDER_BOX
           class Fl_Group_Ex
         } {}
         Fl_Group box_rev11 {open
-          xywh {785 655 60 60} box BORDER_BOX
+          xywh {785 600 60 60} box BORDER_BOX
           class Fl_Group_Ex
         } {}
         Fl_Group box_rev12 {open
-          xywh {845 655 60 60} box BORDER_BOX
+          xywh {845 600 60 60} box BORDER_BOX
           class Fl_Group_Ex
         } {}
         Fl_Group box_rev13 {open
-          xywh {785 720 60 60} box BORDER_BOX
+          xywh {785 665 60 60} box BORDER_BOX
           class Fl_Group_Ex
         } {}
         Fl_Group box_rev14 {open
-          xywh {845 720 60 60} box BORDER_BOX
+          xywh {845 665 60 60} box BORDER_BOX
           class Fl_Group_Ex
         } {}
         Fl_Choice cb_reverb {open
-          xywh {785 305 120 20} down_box BORDER_BOX labelsize 12 textsize 12
+          xywh {785 250 120 20} down_box BORDER_BOX labelsize 12 textsize 12
           class Fl_Choice_Ex
         } {}
       }
@@ -649,70 +651,74 @@ widget_class Main_Component {open
   Fl_Button btn_send {
     label Send
     callback {on_clicked_send();}
-    xywh {910 85 85 20} labelsize 12
+    xywh {820 85 85 20} labelsize 12
   }
   Fl_Box txt_description {
-    xywh {680 115 315 100} box THIN_DOWN_BOX labelsize 12 align 149
+    xywh {595 115 315 100} box THIN_DOWN_BOX labelsize 12 align 149
   }
   Fl_Box {} {
     label {Midi Out Devices:}
-    xywh {680 65 225 20} labelsize 12 align 20
+    xywh {595 65 220 20} labelsize 12 align 20
   }
   Fl_Check_Button chk_realtime {
     label {Real time}
-    xywh {910 60 85 25} down_box DOWN_BOX value 1 labelsize 12
+    xywh {820 60 85 25} down_box DOWN_BOX value 1 labelsize 12
   }
   Fl_Button btn_new {
     label New
     callback {on_clicked_new();}
-    xywh {525 40 70 20} labelsize 12
+    xywh {445 45 70 20} labelsize 12
   }
   Fl_Button btn_copy {
     label Copy
     callback {on_clicked_copy();}
-    xywh {525 60 70 20} labelsize 12
+    xywh {445 65 70 20} labelsize 12
   }
   Fl_Button btn_delete {
     label Delete
     callback {on_clicked_delete();}
-    xywh {595 60 70 20} labelsize 12
+    xywh {515 65 70 20} labelsize 12
   }
-  Fl_Input txt_patch_name {
-    label {Patch name:}
-    callback {on_edited_patch_name();}
-    xywh {30 175 120 20} labelsize 12 align 5 textsize 12
-  }
-  Fl_Slider sl_tap_tempo {
-    label {Tap Tempo}
-    xywh {425 174 200 22} type {Horz Knob} labelsize 12 align 5
-    class {Fl_Widget_Ex<Fl_Slider>}
-  }
-  Fl_Box lbl_tap_tempo {
-    label ms
-    xywh {560 155 65 20} labelsize 12 align 24
-  }
-  Fl_Check_Button chk_relay1 {
-    label {Relay 1}
-    xywh {190 160 90 20} down_box DOWN_BOX labelsize 12
-    class Fl_Check_Button_Ex
-  }
-  Fl_Check_Button chk_relay2 {
-    label {Relay 2}
-    xywh {190 180 90 20} down_box DOWN_BOX labelsize 12
-    class Fl_Check_Button_Ex
-  }
-  Fl_Choice cb_routing {
-    label Routing open
-    xywh {270 175 145 20} down_box BORDER_BOX labelsize 12 align 5 textsize 12
-    class Fl_Choice_Ex
-  } {}
-  Fl_Slider sl_out_level {
-    label {Output Level}
-    xywh {425 213 200 22} type {Horz Knob} labelsize 12 align 5
-    class {Fl_Widget_Ex<Fl_Slider>}
-  }
-  Fl_Box lbl_out_level {
-    label dB
-    xywh {560 195 65 20} labelsize 12 align 24
+  Fl_Group {} {open
+    xywh {0 115 585 100} box THIN_UP_BOX
+  } {
+    Fl_Input txt_patch_name {
+      label {Patch name:}
+      callback {on_edited_patch_name();}
+      xywh {5 135 120 20} labelsize 12 align 5 textsize 12
+    }
+    Fl_Slider sl_tap_tempo {
+      label {Tap Tempo}
+      xywh {380 134 200 22} type {Horz Knob} labelsize 12 align 5
+      class {Fl_Widget_Ex<Fl_Slider>}
+    }
+    Fl_Check_Button chk_relay1 {
+      label {Relay 1}
+      xywh {140 120 80 20} down_box DOWN_BOX labelsize 12
+      class Fl_Check_Button_Ex
+    }
+    Fl_Check_Button chk_relay2 {
+      label {Relay 2}
+      xywh {140 140 80 20} down_box DOWN_BOX labelsize 12
+      class Fl_Check_Button_Ex
+    }
+    Fl_Choice cb_routing {
+      label Routing open
+      xywh {225 135 145 20} down_box BORDER_BOX labelsize 12 align 5 textsize 12
+      class Fl_Choice_Ex
+    } {}
+    Fl_Slider sl_out_level {
+      label {Output Level}
+      xywh {380 178 200 22} type {Horz Knob} labelsize 12 align 5
+      class {Fl_Widget_Ex<Fl_Slider>}
+    }
+    Fl_Box lbl_tap_tempo {
+      label ms
+      xywh {515 115 65 20} labelsize 12 align 24
+    }
+    Fl_Box lbl_out_level {
+      label dB
+      xywh {515 155 65 20} labelsize 12 align 24
+    }
   }
 }

@@ -5,11 +5,14 @@
 
 #include "main_window.h"
 #include "main_component.h"
+#include "app_i18n.h"
 
 Main_Window::Main_Window()
-    : Fl_Double_Window(1000, 840)
+    : Fl_Double_Window(910, 735)
 {
-    component_.reset(new Main_Component(0, 0, w(), h()));
+    Main_Component *component = new Main_Component(0, 0, w(), h());
+    component_.reset(component);
+    this->copy_label(_("G-Major Editor"));
 }
 
 Main_Window::~Main_Window()

@@ -75,24 +75,24 @@ void Main_Component::cb_txt_patch_name_i(Fl_Input*, void*) {
   on_edited_patch_name();
 }
 void Main_Component::cb_txt_patch_name(Fl_Input* o, void* v) {
-  ((Main_Component*)(o->parent()))->cb_txt_patch_name_i(o,v);
+  ((Main_Component*)(o->parent()->parent()))->cb_txt_patch_name_i(o,v);
 }
 Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
   : Fl_Group(X, Y, W, H, L) {
-{ Fl_Box* o = new Fl_Box(700, 1, 300, 39, _("Toto Major"));
+{ Fl_Box* o = new Fl_Box(595, 1, 315, 39, _("G-Major Editor"));
   o->box(FL_UP_BOX);
   o->labeltype(FL_SHADOW_LABEL);
   o->labelsize(28);
 } // Fl_Box* o
-{ btn_import = new Fl_Button(525, 80, 70, 20, _("Import"));
+{ btn_import = new Fl_Button(445, 85, 70, 20, _("Import"));
   btn_import->labelsize(12);
   btn_import->callback((Fl_Callback*)cb_btn_import);
 } // Fl_Button* btn_import
-{ btn_export = new Fl_Button(595, 80, 70, 20, _("Export"));
+{ btn_export = new Fl_Button(515, 85, 70, 20, _("Export"));
   btn_export->labelsize(12);
   btn_export->callback((Fl_Callback*)cb_btn_export);
 } // Fl_Button* btn_export
-{ br_bank = new Fl_Hold_Browser(345, 30, 180, 70);
+{ br_bank = new Fl_Hold_Browser(265, 10, 180, 95);
   br_bank->box(FL_NO_BOX);
   br_bank->color(FL_BACKGROUND2_COLOR);
   br_bank->selection_color(FL_SELECTION_COLOR);
@@ -105,19 +105,19 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
   br_bank->align(Fl_Align(FL_ALIGN_BOTTOM));
   br_bank->when(FL_WHEN_RELEASE_ALWAYS);
 } // Fl_Hold_Browser* br_bank
-{ ch_midi_out = new Fl_Choice(680, 85, 225, 20);
+{ ch_midi_out = new Fl_Choice(595, 85, 220, 20);
   ch_midi_out->down_box(FL_BORDER_BOX);
   ch_midi_out->labelsize(12);
   ch_midi_out->textsize(12);
   ch_midi_out->callback((Fl_Callback*)cb_ch_midi_out);
 } // Fl_Choice* ch_midi_out
-{ btn_change = new Fl_Button(595, 40, 70, 20, _("Change"));
+{ btn_change = new Fl_Button(515, 45, 70, 20, _("Change"));
   btn_change->labelsize(12);
   btn_change->callback((Fl_Callback*)cb_btn_change);
 } // Fl_Button* btn_change
-{ Fl_Group* o = new Fl_Group(0, 280, 261, 225);
+{ Fl_Group* o = new Fl_Group(0, 225, 261, 225);
   o->box(FL_THIN_UP_BOX);
-  { chk_noise_gate = new Fl_Check_Button_Ex(1, 281, 128, 23, _("Noise gate"));
+  { chk_noise_gate = new Fl_Check_Button_Ex(1, 226, 128, 23, _("Noise gate"));
     chk_noise_gate->box(FL_NO_BOX);
     chk_noise_gate->down_box(FL_DOWN_BOX);
     chk_noise_gate->color(FL_BACKGROUND_COLOR);
@@ -129,7 +129,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     chk_noise_gate->align(Fl_Align(FL_ALIGN_LEFT|FL_ALIGN_INSIDE));
     chk_noise_gate->when(FL_WHEN_RELEASE);
   } // Fl_Check_Button_Ex* chk_noise_gate
-  { box_ng1 = new Fl_Group_Ex(5, 305, 60, 60);
+  { box_ng1 = new Fl_Group_Ex(5, 250, 60, 60);
     box_ng1->box(FL_BORDER_BOX);
     box_ng1->color(FL_BACKGROUND_COLOR);
     box_ng1->selection_color(FL_BACKGROUND_COLOR);
@@ -141,7 +141,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_ng1->when(FL_WHEN_RELEASE);
     box_ng1->end();
   } // Fl_Group_Ex* box_ng1
-  { box_ng2 = new Fl_Group_Ex(65, 305, 60, 60);
+  { box_ng2 = new Fl_Group_Ex(65, 250, 60, 60);
     box_ng2->box(FL_BORDER_BOX);
     box_ng2->color(FL_BACKGROUND_COLOR);
     box_ng2->selection_color(FL_BACKGROUND_COLOR);
@@ -153,7 +153,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_ng2->when(FL_WHEN_RELEASE);
     box_ng2->end();
   } // Fl_Group_Ex* box_ng2
-  { box_ng3 = new Fl_Group_Ex(5, 370, 60, 60);
+  { box_ng3 = new Fl_Group_Ex(5, 315, 60, 60);
     box_ng3->box(FL_BORDER_BOX);
     box_ng3->color(FL_BACKGROUND_COLOR);
     box_ng3->selection_color(FL_BACKGROUND_COLOR);
@@ -165,7 +165,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_ng3->when(FL_WHEN_RELEASE);
     box_ng3->end();
   } // Fl_Group_Ex* box_ng3
-  { box_ng4 = new Fl_Group_Ex(65, 370, 60, 60);
+  { box_ng4 = new Fl_Group_Ex(65, 315, 60, 60);
     box_ng4->box(FL_BORDER_BOX);
     box_ng4->color(FL_BACKGROUND_COLOR);
     box_ng4->selection_color(FL_BACKGROUND_COLOR);
@@ -177,7 +177,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_ng4->when(FL_WHEN_RELEASE);
     box_ng4->end();
   } // Fl_Group_Ex* box_ng4
-  { box_ng5 = new Fl_Group_Ex(5, 435, 60, 60);
+  { box_ng5 = new Fl_Group_Ex(5, 380, 60, 60);
     box_ng5->box(FL_BORDER_BOX);
     box_ng5->color(FL_BACKGROUND_COLOR);
     box_ng5->selection_color(FL_BACKGROUND_COLOR);
@@ -189,7 +189,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_ng5->when(FL_WHEN_RELEASE);
     box_ng5->end();
   } // Fl_Group_Ex* box_ng5
-  { box_ng6 = new Fl_Group_Ex(65, 435, 60, 60);
+  { box_ng6 = new Fl_Group_Ex(65, 380, 60, 60);
     box_ng6->box(FL_BORDER_BOX);
     box_ng6->color(FL_BACKGROUND_COLOR);
     box_ng6->selection_color(FL_BACKGROUND_COLOR);
@@ -201,9 +201,9 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_ng6->when(FL_WHEN_RELEASE);
     box_ng6->end();
   } // Fl_Group_Ex* box_ng6
-  { Fl_Group* o = new Fl_Group(130, 280, 131, 225);
+  { Fl_Group* o = new Fl_Group(130, 225, 131, 225);
     o->box(FL_THIN_UP_BOX);
-    { chk_compressor = new Fl_Check_Button_Ex(131, 281, 128, 23, _("Compressor"));
+    { chk_compressor = new Fl_Check_Button_Ex(131, 226, 128, 23, _("Compressor"));
       chk_compressor->box(FL_NO_BOX);
       chk_compressor->down_box(FL_DOWN_BOX);
       chk_compressor->color(FL_BACKGROUND_COLOR);
@@ -215,7 +215,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
       chk_compressor->align(Fl_Align(FL_ALIGN_LEFT|FL_ALIGN_INSIDE));
       chk_compressor->when(FL_WHEN_RELEASE);
     } // Fl_Check_Button_Ex* chk_compressor
-    { box_cpr1 = new Fl_Group_Ex(135, 305, 60, 60);
+    { box_cpr1 = new Fl_Group_Ex(135, 250, 60, 60);
       box_cpr1->box(FL_BORDER_BOX);
       box_cpr1->color(FL_BACKGROUND_COLOR);
       box_cpr1->selection_color(FL_BACKGROUND_COLOR);
@@ -227,7 +227,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
       box_cpr1->when(FL_WHEN_RELEASE);
       box_cpr1->end();
     } // Fl_Group_Ex* box_cpr1
-    { box_cpr2 = new Fl_Group_Ex(195, 305, 60, 60);
+    { box_cpr2 = new Fl_Group_Ex(195, 250, 60, 60);
       box_cpr2->box(FL_BORDER_BOX);
       box_cpr2->color(FL_BACKGROUND_COLOR);
       box_cpr2->selection_color(FL_BACKGROUND_COLOR);
@@ -239,7 +239,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
       box_cpr2->when(FL_WHEN_RELEASE);
       box_cpr2->end();
     } // Fl_Group_Ex* box_cpr2
-    { box_cpr3 = new Fl_Group_Ex(135, 370, 60, 60);
+    { box_cpr3 = new Fl_Group_Ex(135, 315, 60, 60);
       box_cpr3->box(FL_BORDER_BOX);
       box_cpr3->color(FL_BACKGROUND_COLOR);
       box_cpr3->selection_color(FL_BACKGROUND_COLOR);
@@ -251,7 +251,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
       box_cpr3->when(FL_WHEN_RELEASE);
       box_cpr3->end();
     } // Fl_Group_Ex* box_cpr3
-    { box_cpr4 = new Fl_Group_Ex(195, 370, 60, 60);
+    { box_cpr4 = new Fl_Group_Ex(195, 315, 60, 60);
       box_cpr4->box(FL_BORDER_BOX);
       box_cpr4->color(FL_BACKGROUND_COLOR);
       box_cpr4->selection_color(FL_BACKGROUND_COLOR);
@@ -263,7 +263,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
       box_cpr4->when(FL_WHEN_RELEASE);
       box_cpr4->end();
     } // Fl_Group_Ex* box_cpr4
-    { box_cpr5 = new Fl_Group_Ex(135, 435, 60, 60);
+    { box_cpr5 = new Fl_Group_Ex(135, 380, 60, 60);
       box_cpr5->box(FL_BORDER_BOX);
       box_cpr5->color(FL_BACKGROUND_COLOR);
       box_cpr5->selection_color(FL_BACKGROUND_COLOR);
@@ -275,7 +275,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
       box_cpr5->when(FL_WHEN_RELEASE);
       box_cpr5->end();
     } // Fl_Group_Ex* box_cpr5
-    { box_cpr6 = new Fl_Group_Ex(195, 435, 60, 60);
+    { box_cpr6 = new Fl_Group_Ex(195, 380, 60, 60);
       box_cpr6->box(FL_BORDER_BOX);
       box_cpr6->color(FL_BACKGROUND_COLOR);
       box_cpr6->selection_color(FL_BACKGROUND_COLOR);
@@ -291,9 +291,9 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
   } // Fl_Group* o
   o->end();
 } // Fl_Group* o
-{ Fl_Group* o = new Fl_Group(0, 505, 261, 285);
+{ Fl_Group* o = new Fl_Group(0, 450, 261, 285);
   o->box(FL_THIN_UP_BOX);
-  { chk_equalizer = new Fl_Check_Button_Ex(1, 506, 258, 23, _("Equalizer"));
+  { chk_equalizer = new Fl_Check_Button_Ex(1, 451, 258, 23, _("Equalizer"));
     chk_equalizer->box(FL_NO_BOX);
     chk_equalizer->down_box(FL_DOWN_BOX);
     chk_equalizer->color(FL_BACKGROUND_COLOR);
@@ -305,7 +305,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     chk_equalizer->align(Fl_Align(FL_ALIGN_LEFT|FL_ALIGN_INSIDE));
     chk_equalizer->when(FL_WHEN_RELEASE);
   } // Fl_Check_Button_Ex* chk_equalizer
-  { box_eq1 = new Fl_Group_Ex(20, 530, 60, 60);
+  { box_eq1 = new Fl_Group_Ex(20, 475, 60, 60);
     box_eq1->box(FL_BORDER_BOX);
     box_eq1->color(FL_BACKGROUND_COLOR);
     box_eq1->selection_color(FL_BACKGROUND_COLOR);
@@ -317,7 +317,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_eq1->when(FL_WHEN_RELEASE);
     box_eq1->end();
   } // Fl_Group_Ex* box_eq1
-  { box_eq2 = new Fl_Group_Ex(100, 530, 60, 60);
+  { box_eq2 = new Fl_Group_Ex(100, 475, 60, 60);
     box_eq2->box(FL_BORDER_BOX);
     box_eq2->color(FL_BACKGROUND_COLOR);
     box_eq2->selection_color(FL_BACKGROUND_COLOR);
@@ -329,7 +329,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_eq2->when(FL_WHEN_RELEASE);
     box_eq2->end();
   } // Fl_Group_Ex* box_eq2
-  { box_eq4 = new Fl_Group_Ex(20, 595, 60, 60);
+  { box_eq4 = new Fl_Group_Ex(20, 540, 60, 60);
     box_eq4->box(FL_BORDER_BOX);
     box_eq4->color(FL_BACKGROUND_COLOR);
     box_eq4->selection_color(FL_BACKGROUND_COLOR);
@@ -341,7 +341,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_eq4->when(FL_WHEN_RELEASE);
     box_eq4->end();
   } // Fl_Group_Ex* box_eq4
-  { box_eq5 = new Fl_Group_Ex(100, 595, 60, 60);
+  { box_eq5 = new Fl_Group_Ex(100, 540, 60, 60);
     box_eq5->box(FL_BORDER_BOX);
     box_eq5->color(FL_BACKGROUND_COLOR);
     box_eq5->selection_color(FL_BACKGROUND_COLOR);
@@ -353,7 +353,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_eq5->when(FL_WHEN_RELEASE);
     box_eq5->end();
   } // Fl_Group_Ex* box_eq5
-  { box_eq7 = new Fl_Group_Ex(20, 660, 60, 60);
+  { box_eq7 = new Fl_Group_Ex(20, 605, 60, 60);
     box_eq7->box(FL_BORDER_BOX);
     box_eq7->color(FL_BACKGROUND_COLOR);
     box_eq7->selection_color(FL_BACKGROUND_COLOR);
@@ -365,7 +365,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_eq7->when(FL_WHEN_RELEASE);
     box_eq7->end();
   } // Fl_Group_Ex* box_eq7
-  { box_eq8 = new Fl_Group_Ex(100, 660, 60, 60);
+  { box_eq8 = new Fl_Group_Ex(100, 605, 60, 60);
     box_eq8->box(FL_BORDER_BOX);
     box_eq8->color(FL_BACKGROUND_COLOR);
     box_eq8->selection_color(FL_BACKGROUND_COLOR);
@@ -377,7 +377,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_eq8->when(FL_WHEN_RELEASE);
     box_eq8->end();
   } // Fl_Group_Ex* box_eq8
-  { box_eq3 = new Fl_Group_Ex(180, 530, 60, 60);
+  { box_eq3 = new Fl_Group_Ex(180, 475, 60, 60);
     box_eq3->box(FL_BORDER_BOX);
     box_eq3->color(FL_BACKGROUND_COLOR);
     box_eq3->selection_color(FL_BACKGROUND_COLOR);
@@ -389,7 +389,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_eq3->when(FL_WHEN_RELEASE);
     box_eq3->end();
   } // Fl_Group_Ex* box_eq3
-  { box_eq6 = new Fl_Group_Ex(180, 595, 60, 60);
+  { box_eq6 = new Fl_Group_Ex(180, 540, 60, 60);
     box_eq6->box(FL_BORDER_BOX);
     box_eq6->color(FL_BACKGROUND_COLOR);
     box_eq6->selection_color(FL_BACKGROUND_COLOR);
@@ -401,7 +401,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_eq6->when(FL_WHEN_RELEASE);
     box_eq6->end();
   } // Fl_Group_Ex* box_eq6
-  { box_eq9 = new Fl_Group_Ex(180, 660, 60, 60);
+  { box_eq9 = new Fl_Group_Ex(180, 605, 60, 60);
     box_eq9->box(FL_BORDER_BOX);
     box_eq9->color(FL_BACKGROUND_COLOR);
     box_eq9->selection_color(FL_BACKGROUND_COLOR);
@@ -415,9 +415,9 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
   } // Fl_Group_Ex* box_eq9
   o->end();
 } // Fl_Group* o
-{ Fl_Group* o = new Fl_Group(260, 280, 131, 510);
+{ Fl_Group* o = new Fl_Group(260, 225, 131, 510);
   o->box(FL_THIN_UP_BOX);
-  { chk_filter = new Fl_Check_Button_Ex(261, 281, 128, 23, _("Filter"));
+  { chk_filter = new Fl_Check_Button_Ex(261, 226, 128, 23, _("Filter"));
     chk_filter->box(FL_NO_BOX);
     chk_filter->down_box(FL_DOWN_BOX);
     chk_filter->color(FL_BACKGROUND_COLOR);
@@ -429,7 +429,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     chk_filter->align(Fl_Align(FL_ALIGN_LEFT|FL_ALIGN_INSIDE));
     chk_filter->when(FL_WHEN_RELEASE);
   } // Fl_Check_Button_Ex* chk_filter
-  { box_flt1 = new Fl_Group_Ex(265, 330, 60, 60);
+  { box_flt1 = new Fl_Group_Ex(265, 275, 60, 60);
     box_flt1->box(FL_BORDER_BOX);
     box_flt1->color(FL_BACKGROUND_COLOR);
     box_flt1->selection_color(FL_BACKGROUND_COLOR);
@@ -441,7 +441,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_flt1->when(FL_WHEN_RELEASE);
     box_flt1->end();
   } // Fl_Group_Ex* box_flt1
-  { box_flt2 = new Fl_Group_Ex(325, 330, 60, 60);
+  { box_flt2 = new Fl_Group_Ex(325, 275, 60, 60);
     box_flt2->box(FL_BORDER_BOX);
     box_flt2->color(FL_BACKGROUND_COLOR);
     box_flt2->selection_color(FL_BACKGROUND_COLOR);
@@ -453,7 +453,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_flt2->when(FL_WHEN_RELEASE);
     box_flt2->end();
   } // Fl_Group_Ex* box_flt2
-  { box_flt3 = new Fl_Group_Ex(265, 395, 60, 60);
+  { box_flt3 = new Fl_Group_Ex(265, 340, 60, 60);
     box_flt3->box(FL_BORDER_BOX);
     box_flt3->color(FL_BACKGROUND_COLOR);
     box_flt3->selection_color(FL_BACKGROUND_COLOR);
@@ -465,7 +465,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_flt3->when(FL_WHEN_RELEASE);
     box_flt3->end();
   } // Fl_Group_Ex* box_flt3
-  { box_flt4 = new Fl_Group_Ex(325, 395, 60, 60);
+  { box_flt4 = new Fl_Group_Ex(325, 340, 60, 60);
     box_flt4->box(FL_BORDER_BOX);
     box_flt4->color(FL_BACKGROUND_COLOR);
     box_flt4->selection_color(FL_BACKGROUND_COLOR);
@@ -477,7 +477,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_flt4->when(FL_WHEN_RELEASE);
     box_flt4->end();
   } // Fl_Group_Ex* box_flt4
-  { box_flt5 = new Fl_Group_Ex(265, 460, 60, 60);
+  { box_flt5 = new Fl_Group_Ex(265, 405, 60, 60);
     box_flt5->box(FL_BORDER_BOX);
     box_flt5->color(FL_BACKGROUND_COLOR);
     box_flt5->selection_color(FL_BACKGROUND_COLOR);
@@ -489,7 +489,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_flt5->when(FL_WHEN_RELEASE);
     box_flt5->end();
   } // Fl_Group_Ex* box_flt5
-  { box_flt6 = new Fl_Group_Ex(325, 460, 60, 60);
+  { box_flt6 = new Fl_Group_Ex(325, 405, 60, 60);
     box_flt6->box(FL_BORDER_BOX);
     box_flt6->color(FL_BACKGROUND_COLOR);
     box_flt6->selection_color(FL_BACKGROUND_COLOR);
@@ -501,7 +501,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_flt6->when(FL_WHEN_RELEASE);
     box_flt6->end();
   } // Fl_Group_Ex* box_flt6
-  { box_flt7 = new Fl_Group_Ex(265, 525, 60, 60);
+  { box_flt7 = new Fl_Group_Ex(265, 470, 60, 60);
     box_flt7->box(FL_BORDER_BOX);
     box_flt7->color(FL_BACKGROUND_COLOR);
     box_flt7->selection_color(FL_BACKGROUND_COLOR);
@@ -513,7 +513,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_flt7->when(FL_WHEN_RELEASE);
     box_flt7->end();
   } // Fl_Group_Ex* box_flt7
-  { box_flt8 = new Fl_Group_Ex(325, 525, 60, 60);
+  { box_flt8 = new Fl_Group_Ex(325, 470, 60, 60);
     box_flt8->box(FL_BORDER_BOX);
     box_flt8->color(FL_BACKGROUND_COLOR);
     box_flt8->selection_color(FL_BACKGROUND_COLOR);
@@ -525,7 +525,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_flt8->when(FL_WHEN_RELEASE);
     box_flt8->end();
   } // Fl_Group_Ex* box_flt8
-  { box_flt9 = new Fl_Group_Ex(265, 590, 60, 60);
+  { box_flt9 = new Fl_Group_Ex(265, 535, 60, 60);
     box_flt9->box(FL_BORDER_BOX);
     box_flt9->color(FL_BACKGROUND_COLOR);
     box_flt9->selection_color(FL_BACKGROUND_COLOR);
@@ -537,7 +537,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_flt9->when(FL_WHEN_RELEASE);
     box_flt9->end();
   } // Fl_Group_Ex* box_flt9
-  { box_flt10 = new Fl_Group_Ex(325, 590, 60, 60);
+  { box_flt10 = new Fl_Group_Ex(325, 535, 60, 60);
     box_flt10->box(FL_BORDER_BOX);
     box_flt10->color(FL_BACKGROUND_COLOR);
     box_flt10->selection_color(FL_BACKGROUND_COLOR);
@@ -549,7 +549,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_flt10->when(FL_WHEN_RELEASE);
     box_flt10->end();
   } // Fl_Group_Ex* box_flt10
-  { box_flt11 = new Fl_Group_Ex(265, 655, 60, 60);
+  { box_flt11 = new Fl_Group_Ex(265, 600, 60, 60);
     box_flt11->box(FL_BORDER_BOX);
     box_flt11->color(FL_BACKGROUND_COLOR);
     box_flt11->selection_color(FL_BACKGROUND_COLOR);
@@ -561,7 +561,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_flt11->when(FL_WHEN_RELEASE);
     box_flt11->end();
   } // Fl_Group_Ex* box_flt11
-  { box_flt12 = new Fl_Group_Ex(325, 655, 60, 60);
+  { box_flt12 = new Fl_Group_Ex(325, 600, 60, 60);
     box_flt12->box(FL_BORDER_BOX);
     box_flt12->color(FL_BACKGROUND_COLOR);
     box_flt12->selection_color(FL_BACKGROUND_COLOR);
@@ -573,7 +573,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_flt12->when(FL_WHEN_RELEASE);
     box_flt12->end();
   } // Fl_Group_Ex* box_flt12
-  { box_flt13 = new Fl_Group_Ex(265, 720, 60, 60);
+  { box_flt13 = new Fl_Group_Ex(265, 665, 60, 60);
     box_flt13->box(FL_BORDER_BOX);
     box_flt13->color(FL_BACKGROUND_COLOR);
     box_flt13->selection_color(FL_BACKGROUND_COLOR);
@@ -585,7 +585,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_flt13->when(FL_WHEN_RELEASE);
     box_flt13->end();
   } // Fl_Group_Ex* box_flt13
-  { box_flt14 = new Fl_Group_Ex(325, 720, 60, 60);
+  { box_flt14 = new Fl_Group_Ex(325, 665, 60, 60);
     box_flt14->box(FL_BORDER_BOX);
     box_flt14->color(FL_BACKGROUND_COLOR);
     box_flt14->selection_color(FL_BACKGROUND_COLOR);
@@ -597,7 +597,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_flt14->when(FL_WHEN_RELEASE);
     box_flt14->end();
   } // Fl_Group_Ex* box_flt14
-  { cb_filter = new Fl_Choice_Ex(265, 305, 120, 20);
+  { cb_filter = new Fl_Choice_Ex(265, 250, 120, 20);
     cb_filter->box(FL_FLAT_BOX);
     cb_filter->down_box(FL_BORDER_BOX);
     cb_filter->color(FL_BACKGROUND_COLOR);
@@ -612,9 +612,9 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
   } // Fl_Choice_Ex* cb_filter
   o->end();
 } // Fl_Group* o
-{ Fl_Group* o = new Fl_Group(390, 280, 131, 510);
+{ Fl_Group* o = new Fl_Group(390, 225, 131, 510);
   o->box(FL_THIN_UP_BOX);
-  { chk_pitch = new Fl_Check_Button_Ex(391, 281, 128, 23, _("Pitch"));
+  { chk_pitch = new Fl_Check_Button_Ex(391, 226, 128, 23, _("Pitch"));
     chk_pitch->box(FL_NO_BOX);
     chk_pitch->down_box(FL_DOWN_BOX);
     chk_pitch->color(FL_BACKGROUND_COLOR);
@@ -626,7 +626,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     chk_pitch->align(Fl_Align(FL_ALIGN_LEFT|FL_ALIGN_INSIDE));
     chk_pitch->when(FL_WHEN_RELEASE);
   } // Fl_Check_Button_Ex* chk_pitch
-  { box_pit1 = new Fl_Group_Ex(395, 330, 60, 60);
+  { box_pit1 = new Fl_Group_Ex(395, 275, 60, 60);
     box_pit1->box(FL_BORDER_BOX);
     box_pit1->color(FL_BACKGROUND_COLOR);
     box_pit1->selection_color(FL_BACKGROUND_COLOR);
@@ -638,7 +638,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_pit1->when(FL_WHEN_RELEASE);
     box_pit1->end();
   } // Fl_Group_Ex* box_pit1
-  { box_pit2 = new Fl_Group_Ex(455, 330, 60, 60);
+  { box_pit2 = new Fl_Group_Ex(455, 275, 60, 60);
     box_pit2->box(FL_BORDER_BOX);
     box_pit2->color(FL_BACKGROUND_COLOR);
     box_pit2->selection_color(FL_BACKGROUND_COLOR);
@@ -650,7 +650,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_pit2->when(FL_WHEN_RELEASE);
     box_pit2->end();
   } // Fl_Group_Ex* box_pit2
-  { box_pit3 = new Fl_Group_Ex(395, 395, 60, 60);
+  { box_pit3 = new Fl_Group_Ex(395, 340, 60, 60);
     box_pit3->box(FL_BORDER_BOX);
     box_pit3->color(FL_BACKGROUND_COLOR);
     box_pit3->selection_color(FL_BACKGROUND_COLOR);
@@ -662,7 +662,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_pit3->when(FL_WHEN_RELEASE);
     box_pit3->end();
   } // Fl_Group_Ex* box_pit3
-  { box_pit4 = new Fl_Group_Ex(455, 395, 60, 60);
+  { box_pit4 = new Fl_Group_Ex(455, 340, 60, 60);
     box_pit4->box(FL_BORDER_BOX);
     box_pit4->color(FL_BACKGROUND_COLOR);
     box_pit4->selection_color(FL_BACKGROUND_COLOR);
@@ -674,7 +674,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_pit4->when(FL_WHEN_RELEASE);
     box_pit4->end();
   } // Fl_Group_Ex* box_pit4
-  { box_pit5 = new Fl_Group_Ex(395, 460, 60, 60);
+  { box_pit5 = new Fl_Group_Ex(395, 405, 60, 60);
     box_pit5->box(FL_BORDER_BOX);
     box_pit5->color(FL_BACKGROUND_COLOR);
     box_pit5->selection_color(FL_BACKGROUND_COLOR);
@@ -686,7 +686,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_pit5->when(FL_WHEN_RELEASE);
     box_pit5->end();
   } // Fl_Group_Ex* box_pit5
-  { box_pit6 = new Fl_Group_Ex(455, 460, 60, 60);
+  { box_pit6 = new Fl_Group_Ex(455, 405, 60, 60);
     box_pit6->box(FL_BORDER_BOX);
     box_pit6->color(FL_BACKGROUND_COLOR);
     box_pit6->selection_color(FL_BACKGROUND_COLOR);
@@ -698,7 +698,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_pit6->when(FL_WHEN_RELEASE);
     box_pit6->end();
   } // Fl_Group_Ex* box_pit6
-  { box_pit7 = new Fl_Group_Ex(395, 525, 60, 60);
+  { box_pit7 = new Fl_Group_Ex(395, 470, 60, 60);
     box_pit7->box(FL_BORDER_BOX);
     box_pit7->color(FL_BACKGROUND_COLOR);
     box_pit7->selection_color(FL_BACKGROUND_COLOR);
@@ -710,7 +710,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_pit7->when(FL_WHEN_RELEASE);
     box_pit7->end();
   } // Fl_Group_Ex* box_pit7
-  { box_pit8 = new Fl_Group_Ex(455, 525, 60, 60);
+  { box_pit8 = new Fl_Group_Ex(455, 470, 60, 60);
     box_pit8->box(FL_BORDER_BOX);
     box_pit8->color(FL_BACKGROUND_COLOR);
     box_pit8->selection_color(FL_BACKGROUND_COLOR);
@@ -722,7 +722,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_pit8->when(FL_WHEN_RELEASE);
     box_pit8->end();
   } // Fl_Group_Ex* box_pit8
-  { box_pit9 = new Fl_Group_Ex(395, 590, 60, 60);
+  { box_pit9 = new Fl_Group_Ex(395, 535, 60, 60);
     box_pit9->box(FL_BORDER_BOX);
     box_pit9->color(FL_BACKGROUND_COLOR);
     box_pit9->selection_color(FL_BACKGROUND_COLOR);
@@ -734,7 +734,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_pit9->when(FL_WHEN_RELEASE);
     box_pit9->end();
   } // Fl_Group_Ex* box_pit9
-  { box_pit10 = new Fl_Group_Ex(455, 590, 60, 60);
+  { box_pit10 = new Fl_Group_Ex(455, 535, 60, 60);
     box_pit10->box(FL_BORDER_BOX);
     box_pit10->color(FL_BACKGROUND_COLOR);
     box_pit10->selection_color(FL_BACKGROUND_COLOR);
@@ -746,7 +746,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_pit10->when(FL_WHEN_RELEASE);
     box_pit10->end();
   } // Fl_Group_Ex* box_pit10
-  { box_pit11 = new Fl_Group_Ex(395, 655, 60, 60);
+  { box_pit11 = new Fl_Group_Ex(395, 600, 60, 60);
     box_pit11->box(FL_BORDER_BOX);
     box_pit11->color(FL_BACKGROUND_COLOR);
     box_pit11->selection_color(FL_BACKGROUND_COLOR);
@@ -758,7 +758,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_pit11->when(FL_WHEN_RELEASE);
     box_pit11->end();
   } // Fl_Group_Ex* box_pit11
-  { box_pit12 = new Fl_Group_Ex(455, 655, 60, 60);
+  { box_pit12 = new Fl_Group_Ex(455, 600, 60, 60);
     box_pit12->box(FL_BORDER_BOX);
     box_pit12->color(FL_BACKGROUND_COLOR);
     box_pit12->selection_color(FL_BACKGROUND_COLOR);
@@ -770,7 +770,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_pit12->when(FL_WHEN_RELEASE);
     box_pit12->end();
   } // Fl_Group_Ex* box_pit12
-  { box_pit13 = new Fl_Group_Ex(395, 720, 60, 60);
+  { box_pit13 = new Fl_Group_Ex(395, 665, 60, 60);
     box_pit13->box(FL_BORDER_BOX);
     box_pit13->color(FL_BACKGROUND_COLOR);
     box_pit13->selection_color(FL_BACKGROUND_COLOR);
@@ -782,7 +782,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_pit13->when(FL_WHEN_RELEASE);
     box_pit13->end();
   } // Fl_Group_Ex* box_pit13
-  { box_pit14 = new Fl_Group_Ex(455, 720, 60, 60);
+  { box_pit14 = new Fl_Group_Ex(455, 665, 60, 60);
     box_pit14->box(FL_BORDER_BOX);
     box_pit14->color(FL_BACKGROUND_COLOR);
     box_pit14->selection_color(FL_BACKGROUND_COLOR);
@@ -794,7 +794,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_pit14->when(FL_WHEN_RELEASE);
     box_pit14->end();
   } // Fl_Group_Ex* box_pit14
-  { cb_pitch = new Fl_Choice_Ex(395, 305, 120, 20);
+  { cb_pitch = new Fl_Choice_Ex(395, 250, 120, 20);
     cb_pitch->box(FL_FLAT_BOX);
     cb_pitch->down_box(FL_BORDER_BOX);
     cb_pitch->color(FL_BACKGROUND_COLOR);
@@ -809,9 +809,9 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
   } // Fl_Choice_Ex* cb_pitch
   o->end();
 } // Fl_Group* o
-{ Fl_Group* o = new Fl_Group(520, 280, 391, 510);
+{ Fl_Group* o = new Fl_Group(520, 225, 391, 510);
   o->box(FL_THIN_UP_BOX);
-  { chk_chorus = new Fl_Check_Button_Ex(521, 281, 128, 23, _("Chorus/Flanger"));
+  { chk_chorus = new Fl_Check_Button_Ex(521, 226, 128, 23, _("Chorus/Flanger"));
     chk_chorus->box(FL_NO_BOX);
     chk_chorus->down_box(FL_DOWN_BOX);
     chk_chorus->color(FL_BACKGROUND_COLOR);
@@ -823,7 +823,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     chk_chorus->align(Fl_Align(FL_ALIGN_LEFT|FL_ALIGN_INSIDE));
     chk_chorus->when(FL_WHEN_RELEASE);
   } // Fl_Check_Button_Ex* chk_chorus
-  { box_cho1 = new Fl_Group_Ex(525, 330, 60, 60);
+  { box_cho1 = new Fl_Group_Ex(525, 275, 60, 60);
     box_cho1->box(FL_BORDER_BOX);
     box_cho1->color(FL_BACKGROUND_COLOR);
     box_cho1->selection_color(FL_BACKGROUND_COLOR);
@@ -835,7 +835,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_cho1->when(FL_WHEN_RELEASE);
     box_cho1->end();
   } // Fl_Group_Ex* box_cho1
-  { box_cho2 = new Fl_Group_Ex(585, 330, 60, 60);
+  { box_cho2 = new Fl_Group_Ex(585, 275, 60, 60);
     box_cho2->box(FL_BORDER_BOX);
     box_cho2->color(FL_BACKGROUND_COLOR);
     box_cho2->selection_color(FL_BACKGROUND_COLOR);
@@ -847,7 +847,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_cho2->when(FL_WHEN_RELEASE);
     box_cho2->end();
   } // Fl_Group_Ex* box_cho2
-  { box_cho3 = new Fl_Group_Ex(525, 395, 60, 60);
+  { box_cho3 = new Fl_Group_Ex(525, 340, 60, 60);
     box_cho3->box(FL_BORDER_BOX);
     box_cho3->color(FL_BACKGROUND_COLOR);
     box_cho3->selection_color(FL_BACKGROUND_COLOR);
@@ -859,7 +859,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_cho3->when(FL_WHEN_RELEASE);
     box_cho3->end();
   } // Fl_Group_Ex* box_cho3
-  { box_cho4 = new Fl_Group_Ex(585, 395, 60, 60);
+  { box_cho4 = new Fl_Group_Ex(585, 340, 60, 60);
     box_cho4->box(FL_BORDER_BOX);
     box_cho4->color(FL_BACKGROUND_COLOR);
     box_cho4->selection_color(FL_BACKGROUND_COLOR);
@@ -871,7 +871,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_cho4->when(FL_WHEN_RELEASE);
     box_cho4->end();
   } // Fl_Group_Ex* box_cho4
-  { box_cho5 = new Fl_Group_Ex(525, 460, 60, 60);
+  { box_cho5 = new Fl_Group_Ex(525, 405, 60, 60);
     box_cho5->box(FL_BORDER_BOX);
     box_cho5->color(FL_BACKGROUND_COLOR);
     box_cho5->selection_color(FL_BACKGROUND_COLOR);
@@ -883,7 +883,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_cho5->when(FL_WHEN_RELEASE);
     box_cho5->end();
   } // Fl_Group_Ex* box_cho5
-  { box_cho6 = new Fl_Group_Ex(585, 460, 60, 60);
+  { box_cho6 = new Fl_Group_Ex(585, 405, 60, 60);
     box_cho6->box(FL_BORDER_BOX);
     box_cho6->color(FL_BACKGROUND_COLOR);
     box_cho6->selection_color(FL_BACKGROUND_COLOR);
@@ -895,7 +895,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_cho6->when(FL_WHEN_RELEASE);
     box_cho6->end();
   } // Fl_Group_Ex* box_cho6
-  { box_cho7 = new Fl_Group_Ex(525, 525, 60, 60);
+  { box_cho7 = new Fl_Group_Ex(525, 470, 60, 60);
     box_cho7->box(FL_BORDER_BOX);
     box_cho7->color(FL_BACKGROUND_COLOR);
     box_cho7->selection_color(FL_BACKGROUND_COLOR);
@@ -907,7 +907,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_cho7->when(FL_WHEN_RELEASE);
     box_cho7->end();
   } // Fl_Group_Ex* box_cho7
-  { box_cho8 = new Fl_Group_Ex(585, 525, 60, 60);
+  { box_cho8 = new Fl_Group_Ex(585, 470, 60, 60);
     box_cho8->box(FL_BORDER_BOX);
     box_cho8->color(FL_BACKGROUND_COLOR);
     box_cho8->selection_color(FL_BACKGROUND_COLOR);
@@ -919,7 +919,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_cho8->when(FL_WHEN_RELEASE);
     box_cho8->end();
   } // Fl_Group_Ex* box_cho8
-  { box_cho9 = new Fl_Group_Ex(525, 590, 60, 60);
+  { box_cho9 = new Fl_Group_Ex(525, 535, 60, 60);
     box_cho9->box(FL_BORDER_BOX);
     box_cho9->color(FL_BACKGROUND_COLOR);
     box_cho9->selection_color(FL_BACKGROUND_COLOR);
@@ -931,7 +931,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_cho9->when(FL_WHEN_RELEASE);
     box_cho9->end();
   } // Fl_Group_Ex* box_cho9
-  { box_cho10 = new Fl_Group_Ex(585, 590, 60, 60);
+  { box_cho10 = new Fl_Group_Ex(585, 535, 60, 60);
     box_cho10->box(FL_BORDER_BOX);
     box_cho10->color(FL_BACKGROUND_COLOR);
     box_cho10->selection_color(FL_BACKGROUND_COLOR);
@@ -943,7 +943,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_cho10->when(FL_WHEN_RELEASE);
     box_cho10->end();
   } // Fl_Group_Ex* box_cho10
-  { box_cho11 = new Fl_Group_Ex(525, 655, 60, 60);
+  { box_cho11 = new Fl_Group_Ex(525, 600, 60, 60);
     box_cho11->box(FL_BORDER_BOX);
     box_cho11->color(FL_BACKGROUND_COLOR);
     box_cho11->selection_color(FL_BACKGROUND_COLOR);
@@ -955,7 +955,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_cho11->when(FL_WHEN_RELEASE);
     box_cho11->end();
   } // Fl_Group_Ex* box_cho11
-  { box_cho12 = new Fl_Group_Ex(585, 655, 60, 60);
+  { box_cho12 = new Fl_Group_Ex(585, 600, 60, 60);
     box_cho12->box(FL_BORDER_BOX);
     box_cho12->color(FL_BACKGROUND_COLOR);
     box_cho12->selection_color(FL_BACKGROUND_COLOR);
@@ -967,7 +967,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_cho12->when(FL_WHEN_RELEASE);
     box_cho12->end();
   } // Fl_Group_Ex* box_cho12
-  { box_cho13 = new Fl_Group_Ex(525, 720, 60, 60);
+  { box_cho13 = new Fl_Group_Ex(525, 665, 60, 60);
     box_cho13->box(FL_BORDER_BOX);
     box_cho13->color(FL_BACKGROUND_COLOR);
     box_cho13->selection_color(FL_BACKGROUND_COLOR);
@@ -979,7 +979,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_cho13->when(FL_WHEN_RELEASE);
     box_cho13->end();
   } // Fl_Group_Ex* box_cho13
-  { box_cho14 = new Fl_Group_Ex(585, 720, 60, 60);
+  { box_cho14 = new Fl_Group_Ex(585, 665, 60, 60);
     box_cho14->box(FL_BORDER_BOX);
     box_cho14->color(FL_BACKGROUND_COLOR);
     box_cho14->selection_color(FL_BACKGROUND_COLOR);
@@ -991,7 +991,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_cho14->when(FL_WHEN_RELEASE);
     box_cho14->end();
   } // Fl_Group_Ex* box_cho14
-  { cb_chorus = new Fl_Choice_Ex(525, 305, 120, 20);
+  { cb_chorus = new Fl_Choice_Ex(525, 250, 120, 20);
     cb_chorus->box(FL_FLAT_BOX);
     cb_chorus->down_box(FL_BORDER_BOX);
     cb_chorus->color(FL_BACKGROUND_COLOR);
@@ -1004,9 +1004,9 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     cb_chorus->align(Fl_Align(FL_ALIGN_LEFT));
     cb_chorus->when(FL_WHEN_RELEASE);
   } // Fl_Choice_Ex* cb_chorus
-  { Fl_Group* o = new Fl_Group(650, 280, 261, 510);
+  { Fl_Group* o = new Fl_Group(650, 225, 261, 510);
     o->box(FL_THIN_UP_BOX);
-    { chk_delay = new Fl_Check_Button_Ex(651, 281, 128, 23, _("Delay"));
+    { chk_delay = new Fl_Check_Button_Ex(651, 226, 128, 23, _("Delay"));
       chk_delay->box(FL_NO_BOX);
       chk_delay->down_box(FL_DOWN_BOX);
       chk_delay->color(FL_BACKGROUND_COLOR);
@@ -1018,7 +1018,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
       chk_delay->align(Fl_Align(FL_ALIGN_LEFT|FL_ALIGN_INSIDE));
       chk_delay->when(FL_WHEN_RELEASE);
     } // Fl_Check_Button_Ex* chk_delay
-    { box_del1 = new Fl_Group_Ex(655, 330, 60, 60);
+    { box_del1 = new Fl_Group_Ex(655, 275, 60, 60);
       box_del1->box(FL_BORDER_BOX);
       box_del1->color(FL_BACKGROUND_COLOR);
       box_del1->selection_color(FL_BACKGROUND_COLOR);
@@ -1030,7 +1030,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
       box_del1->when(FL_WHEN_RELEASE);
       box_del1->end();
     } // Fl_Group_Ex* box_del1
-    { box_del2 = new Fl_Group_Ex(715, 330, 60, 60);
+    { box_del2 = new Fl_Group_Ex(715, 275, 60, 60);
       box_del2->box(FL_BORDER_BOX);
       box_del2->color(FL_BACKGROUND_COLOR);
       box_del2->selection_color(FL_BACKGROUND_COLOR);
@@ -1042,7 +1042,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
       box_del2->when(FL_WHEN_RELEASE);
       box_del2->end();
     } // Fl_Group_Ex* box_del2
-    { box_del3 = new Fl_Group_Ex(655, 395, 60, 60);
+    { box_del3 = new Fl_Group_Ex(655, 340, 60, 60);
       box_del3->box(FL_BORDER_BOX);
       box_del3->color(FL_BACKGROUND_COLOR);
       box_del3->selection_color(FL_BACKGROUND_COLOR);
@@ -1054,7 +1054,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
       box_del3->when(FL_WHEN_RELEASE);
       box_del3->end();
     } // Fl_Group_Ex* box_del3
-    { box_del4 = new Fl_Group_Ex(715, 395, 60, 60);
+    { box_del4 = new Fl_Group_Ex(715, 340, 60, 60);
       box_del4->box(FL_BORDER_BOX);
       box_del4->color(FL_BACKGROUND_COLOR);
       box_del4->selection_color(FL_BACKGROUND_COLOR);
@@ -1066,7 +1066,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
       box_del4->when(FL_WHEN_RELEASE);
       box_del4->end();
     } // Fl_Group_Ex* box_del4
-    { box_del5 = new Fl_Group_Ex(655, 460, 60, 60);
+    { box_del5 = new Fl_Group_Ex(655, 405, 60, 60);
       box_del5->box(FL_BORDER_BOX);
       box_del5->color(FL_BACKGROUND_COLOR);
       box_del5->selection_color(FL_BACKGROUND_COLOR);
@@ -1078,7 +1078,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
       box_del5->when(FL_WHEN_RELEASE);
       box_del5->end();
     } // Fl_Group_Ex* box_del5
-    { box_del6 = new Fl_Group_Ex(715, 460, 60, 60);
+    { box_del6 = new Fl_Group_Ex(715, 405, 60, 60);
       box_del6->box(FL_BORDER_BOX);
       box_del6->color(FL_BACKGROUND_COLOR);
       box_del6->selection_color(FL_BACKGROUND_COLOR);
@@ -1090,7 +1090,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
       box_del6->when(FL_WHEN_RELEASE);
       box_del6->end();
     } // Fl_Group_Ex* box_del6
-    { box_del7 = new Fl_Group_Ex(655, 525, 60, 60);
+    { box_del7 = new Fl_Group_Ex(655, 470, 60, 60);
       box_del7->box(FL_BORDER_BOX);
       box_del7->color(FL_BACKGROUND_COLOR);
       box_del7->selection_color(FL_BACKGROUND_COLOR);
@@ -1102,7 +1102,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
       box_del7->when(FL_WHEN_RELEASE);
       box_del7->end();
     } // Fl_Group_Ex* box_del7
-    { box_del8 = new Fl_Group_Ex(715, 525, 60, 60);
+    { box_del8 = new Fl_Group_Ex(715, 470, 60, 60);
       box_del8->box(FL_BORDER_BOX);
       box_del8->color(FL_BACKGROUND_COLOR);
       box_del8->selection_color(FL_BACKGROUND_COLOR);
@@ -1114,7 +1114,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
       box_del8->when(FL_WHEN_RELEASE);
       box_del8->end();
     } // Fl_Group_Ex* box_del8
-    { box_del9 = new Fl_Group_Ex(655, 590, 60, 60);
+    { box_del9 = new Fl_Group_Ex(655, 535, 60, 60);
       box_del9->box(FL_BORDER_BOX);
       box_del9->color(FL_BACKGROUND_COLOR);
       box_del9->selection_color(FL_BACKGROUND_COLOR);
@@ -1126,7 +1126,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
       box_del9->when(FL_WHEN_RELEASE);
       box_del9->end();
     } // Fl_Group_Ex* box_del9
-    { box_del10 = new Fl_Group_Ex(715, 590, 60, 60);
+    { box_del10 = new Fl_Group_Ex(715, 535, 60, 60);
       box_del10->box(FL_BORDER_BOX);
       box_del10->color(FL_BACKGROUND_COLOR);
       box_del10->selection_color(FL_BACKGROUND_COLOR);
@@ -1138,7 +1138,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
       box_del10->when(FL_WHEN_RELEASE);
       box_del10->end();
     } // Fl_Group_Ex* box_del10
-    { box_del11 = new Fl_Group_Ex(655, 655, 60, 60);
+    { box_del11 = new Fl_Group_Ex(655, 600, 60, 60);
       box_del11->box(FL_BORDER_BOX);
       box_del11->color(FL_BACKGROUND_COLOR);
       box_del11->selection_color(FL_BACKGROUND_COLOR);
@@ -1150,7 +1150,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
       box_del11->when(FL_WHEN_RELEASE);
       box_del11->end();
     } // Fl_Group_Ex* box_del11
-    { box_del12 = new Fl_Group_Ex(715, 655, 60, 60);
+    { box_del12 = new Fl_Group_Ex(715, 600, 60, 60);
       box_del12->box(FL_BORDER_BOX);
       box_del12->color(FL_BACKGROUND_COLOR);
       box_del12->selection_color(FL_BACKGROUND_COLOR);
@@ -1162,7 +1162,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
       box_del12->when(FL_WHEN_RELEASE);
       box_del12->end();
     } // Fl_Group_Ex* box_del12
-    { box_del13 = new Fl_Group_Ex(655, 720, 60, 60);
+    { box_del13 = new Fl_Group_Ex(655, 665, 60, 60);
       box_del13->box(FL_BORDER_BOX);
       box_del13->color(FL_BACKGROUND_COLOR);
       box_del13->selection_color(FL_BACKGROUND_COLOR);
@@ -1174,7 +1174,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
       box_del13->when(FL_WHEN_RELEASE);
       box_del13->end();
     } // Fl_Group_Ex* box_del13
-    { box_del14 = new Fl_Group_Ex(715, 720, 60, 60);
+    { box_del14 = new Fl_Group_Ex(715, 665, 60, 60);
       box_del14->box(FL_BORDER_BOX);
       box_del14->color(FL_BACKGROUND_COLOR);
       box_del14->selection_color(FL_BACKGROUND_COLOR);
@@ -1186,7 +1186,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
       box_del14->when(FL_WHEN_RELEASE);
       box_del14->end();
     } // Fl_Group_Ex* box_del14
-    { cb_delay = new Fl_Choice_Ex(655, 305, 120, 20);
+    { cb_delay = new Fl_Choice_Ex(655, 250, 120, 20);
       cb_delay->box(FL_FLAT_BOX);
       cb_delay->down_box(FL_BORDER_BOX);
       cb_delay->color(FL_BACKGROUND_COLOR);
@@ -1199,9 +1199,9 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
       cb_delay->align(Fl_Align(FL_ALIGN_LEFT));
       cb_delay->when(FL_WHEN_RELEASE);
     } // Fl_Choice_Ex* cb_delay
-    { Fl_Group* o = new Fl_Group(780, 280, 131, 510);
+    { Fl_Group* o = new Fl_Group(780, 225, 131, 510);
       o->box(FL_THIN_UP_BOX);
-      { chk_reverb = new Fl_Check_Button_Ex(781, 281, 128, 23, _("Reverb"));
+      { chk_reverb = new Fl_Check_Button_Ex(781, 226, 128, 23, _("Reverb"));
         chk_reverb->box(FL_NO_BOX);
         chk_reverb->down_box(FL_DOWN_BOX);
         chk_reverb->color(FL_BACKGROUND_COLOR);
@@ -1213,7 +1213,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
         chk_reverb->align(Fl_Align(FL_ALIGN_LEFT|FL_ALIGN_INSIDE));
         chk_reverb->when(FL_WHEN_RELEASE);
       } // Fl_Check_Button_Ex* chk_reverb
-      { box_rev1 = new Fl_Group_Ex(785, 330, 60, 60);
+      { box_rev1 = new Fl_Group_Ex(785, 275, 60, 60);
         box_rev1->box(FL_BORDER_BOX);
         box_rev1->color(FL_BACKGROUND_COLOR);
         box_rev1->selection_color(FL_BACKGROUND_COLOR);
@@ -1225,7 +1225,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
         box_rev1->when(FL_WHEN_RELEASE);
         box_rev1->end();
       } // Fl_Group_Ex* box_rev1
-      { box_rev2 = new Fl_Group_Ex(845, 330, 60, 60);
+      { box_rev2 = new Fl_Group_Ex(845, 275, 60, 60);
         box_rev2->box(FL_BORDER_BOX);
         box_rev2->color(FL_BACKGROUND_COLOR);
         box_rev2->selection_color(FL_BACKGROUND_COLOR);
@@ -1237,7 +1237,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
         box_rev2->when(FL_WHEN_RELEASE);
         box_rev2->end();
       } // Fl_Group_Ex* box_rev2
-      { box_rev3 = new Fl_Group_Ex(785, 395, 60, 60);
+      { box_rev3 = new Fl_Group_Ex(785, 340, 60, 60);
         box_rev3->box(FL_BORDER_BOX);
         box_rev3->color(FL_BACKGROUND_COLOR);
         box_rev3->selection_color(FL_BACKGROUND_COLOR);
@@ -1249,7 +1249,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
         box_rev3->when(FL_WHEN_RELEASE);
         box_rev3->end();
       } // Fl_Group_Ex* box_rev3
-      { box_rev4 = new Fl_Group_Ex(845, 395, 60, 60);
+      { box_rev4 = new Fl_Group_Ex(845, 340, 60, 60);
         box_rev4->box(FL_BORDER_BOX);
         box_rev4->color(FL_BACKGROUND_COLOR);
         box_rev4->selection_color(FL_BACKGROUND_COLOR);
@@ -1261,7 +1261,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
         box_rev4->when(FL_WHEN_RELEASE);
         box_rev4->end();
       } // Fl_Group_Ex* box_rev4
-      { box_rev5 = new Fl_Group_Ex(785, 460, 60, 60);
+      { box_rev5 = new Fl_Group_Ex(785, 405, 60, 60);
         box_rev5->box(FL_BORDER_BOX);
         box_rev5->color(FL_BACKGROUND_COLOR);
         box_rev5->selection_color(FL_BACKGROUND_COLOR);
@@ -1273,7 +1273,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
         box_rev5->when(FL_WHEN_RELEASE);
         box_rev5->end();
       } // Fl_Group_Ex* box_rev5
-      { box_rev6 = new Fl_Group_Ex(845, 460, 60, 60);
+      { box_rev6 = new Fl_Group_Ex(845, 405, 60, 60);
         box_rev6->box(FL_BORDER_BOX);
         box_rev6->color(FL_BACKGROUND_COLOR);
         box_rev6->selection_color(FL_BACKGROUND_COLOR);
@@ -1285,7 +1285,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
         box_rev6->when(FL_WHEN_RELEASE);
         box_rev6->end();
       } // Fl_Group_Ex* box_rev6
-      { box_rev7 = new Fl_Group_Ex(785, 525, 60, 60);
+      { box_rev7 = new Fl_Group_Ex(785, 470, 60, 60);
         box_rev7->box(FL_BORDER_BOX);
         box_rev7->color(FL_BACKGROUND_COLOR);
         box_rev7->selection_color(FL_BACKGROUND_COLOR);
@@ -1297,7 +1297,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
         box_rev7->when(FL_WHEN_RELEASE);
         box_rev7->end();
       } // Fl_Group_Ex* box_rev7
-      { box_rev8 = new Fl_Group_Ex(845, 525, 60, 60);
+      { box_rev8 = new Fl_Group_Ex(845, 470, 60, 60);
         box_rev8->box(FL_BORDER_BOX);
         box_rev8->color(FL_BACKGROUND_COLOR);
         box_rev8->selection_color(FL_BACKGROUND_COLOR);
@@ -1309,7 +1309,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
         box_rev8->when(FL_WHEN_RELEASE);
         box_rev8->end();
       } // Fl_Group_Ex* box_rev8
-      { box_rev9 = new Fl_Group_Ex(785, 590, 60, 60);
+      { box_rev9 = new Fl_Group_Ex(785, 535, 60, 60);
         box_rev9->box(FL_BORDER_BOX);
         box_rev9->color(FL_BACKGROUND_COLOR);
         box_rev9->selection_color(FL_BACKGROUND_COLOR);
@@ -1321,7 +1321,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
         box_rev9->when(FL_WHEN_RELEASE);
         box_rev9->end();
       } // Fl_Group_Ex* box_rev9
-      { box_rev10 = new Fl_Group_Ex(845, 590, 60, 60);
+      { box_rev10 = new Fl_Group_Ex(845, 535, 60, 60);
         box_rev10->box(FL_BORDER_BOX);
         box_rev10->color(FL_BACKGROUND_COLOR);
         box_rev10->selection_color(FL_BACKGROUND_COLOR);
@@ -1333,7 +1333,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
         box_rev10->when(FL_WHEN_RELEASE);
         box_rev10->end();
       } // Fl_Group_Ex* box_rev10
-      { box_rev11 = new Fl_Group_Ex(785, 655, 60, 60);
+      { box_rev11 = new Fl_Group_Ex(785, 600, 60, 60);
         box_rev11->box(FL_BORDER_BOX);
         box_rev11->color(FL_BACKGROUND_COLOR);
         box_rev11->selection_color(FL_BACKGROUND_COLOR);
@@ -1345,7 +1345,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
         box_rev11->when(FL_WHEN_RELEASE);
         box_rev11->end();
       } // Fl_Group_Ex* box_rev11
-      { box_rev12 = new Fl_Group_Ex(845, 655, 60, 60);
+      { box_rev12 = new Fl_Group_Ex(845, 600, 60, 60);
         box_rev12->box(FL_BORDER_BOX);
         box_rev12->color(FL_BACKGROUND_COLOR);
         box_rev12->selection_color(FL_BACKGROUND_COLOR);
@@ -1357,7 +1357,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
         box_rev12->when(FL_WHEN_RELEASE);
         box_rev12->end();
       } // Fl_Group_Ex* box_rev12
-      { box_rev13 = new Fl_Group_Ex(785, 720, 60, 60);
+      { box_rev13 = new Fl_Group_Ex(785, 665, 60, 60);
         box_rev13->box(FL_BORDER_BOX);
         box_rev13->color(FL_BACKGROUND_COLOR);
         box_rev13->selection_color(FL_BACKGROUND_COLOR);
@@ -1369,7 +1369,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
         box_rev13->when(FL_WHEN_RELEASE);
         box_rev13->end();
       } // Fl_Group_Ex* box_rev13
-      { box_rev14 = new Fl_Group_Ex(845, 720, 60, 60);
+      { box_rev14 = new Fl_Group_Ex(845, 665, 60, 60);
         box_rev14->box(FL_BORDER_BOX);
         box_rev14->color(FL_BACKGROUND_COLOR);
         box_rev14->selection_color(FL_BACKGROUND_COLOR);
@@ -1381,7 +1381,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
         box_rev14->when(FL_WHEN_RELEASE);
         box_rev14->end();
       } // Fl_Group_Ex* box_rev14
-      { cb_reverb = new Fl_Choice_Ex(785, 305, 120, 20);
+      { cb_reverb = new Fl_Choice_Ex(785, 250, 120, 20);
         cb_reverb->box(FL_FLAT_BOX);
         cb_reverb->down_box(FL_BORDER_BOX);
         cb_reverb->color(FL_BACKGROUND_COLOR);
@@ -1400,111 +1400,115 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
   } // Fl_Group* o
   o->end();
 } // Fl_Group* o
-{ btn_send = new Fl_Button(910, 85, 85, 20, _("Send"));
+{ btn_send = new Fl_Button(820, 85, 85, 20, _("Send"));
   btn_send->labelsize(12);
   btn_send->callback((Fl_Callback*)cb_btn_send);
 } // Fl_Button* btn_send
-{ txt_description = new Fl_Box(680, 115, 315, 100);
+{ txt_description = new Fl_Box(595, 115, 315, 100);
   txt_description->box(FL_THIN_DOWN_BOX);
   txt_description->labelsize(12);
   txt_description->align(Fl_Align(133|FL_ALIGN_INSIDE));
 } // Fl_Box* txt_description
-{ Fl_Box* o = new Fl_Box(680, 65, 225, 20, _("Midi Out Devices:"));
+{ Fl_Box* o = new Fl_Box(595, 65, 220, 20, _("Midi Out Devices:"));
   o->labelsize(12);
   o->align(Fl_Align(FL_ALIGN_LEFT|FL_ALIGN_INSIDE));
 } // Fl_Box* o
-{ chk_realtime = new Fl_Check_Button(910, 60, 85, 25, _("Real time"));
+{ chk_realtime = new Fl_Check_Button(820, 60, 85, 25, _("Real time"));
   chk_realtime->down_box(FL_DOWN_BOX);
   chk_realtime->value(1);
   chk_realtime->labelsize(12);
 } // Fl_Check_Button* chk_realtime
-{ btn_new = new Fl_Button(525, 40, 70, 20, _("New"));
+{ btn_new = new Fl_Button(445, 45, 70, 20, _("New"));
   btn_new->labelsize(12);
   btn_new->callback((Fl_Callback*)cb_btn_new);
 } // Fl_Button* btn_new
-{ btn_copy = new Fl_Button(525, 60, 70, 20, _("Copy"));
+{ btn_copy = new Fl_Button(445, 65, 70, 20, _("Copy"));
   btn_copy->labelsize(12);
   btn_copy->callback((Fl_Callback*)cb_btn_copy);
 } // Fl_Button* btn_copy
-{ btn_delete = new Fl_Button(595, 60, 70, 20, _("Delete"));
+{ btn_delete = new Fl_Button(515, 65, 70, 20, _("Delete"));
   btn_delete->labelsize(12);
   btn_delete->callback((Fl_Callback*)cb_btn_delete);
 } // Fl_Button* btn_delete
-{ txt_patch_name = new Fl_Input(30, 175, 120, 20, _("Patch name:"));
-  txt_patch_name->labelsize(12);
-  txt_patch_name->textsize(12);
-  txt_patch_name->callback((Fl_Callback*)cb_txt_patch_name);
-  txt_patch_name->align(Fl_Align(FL_ALIGN_TOP_LEFT));
-} // Fl_Input* txt_patch_name
-{ sl_tap_tempo = new Fl_Widget_Ex<Fl_Slider>(425, 174, 200, 22, _("Tap Tempo"));
-  sl_tap_tempo->type(5);
-  sl_tap_tempo->box(FL_DOWN_BOX);
-  sl_tap_tempo->color(FL_BACKGROUND_COLOR);
-  sl_tap_tempo->selection_color(FL_BACKGROUND_COLOR);
-  sl_tap_tempo->labeltype(FL_NORMAL_LABEL);
-  sl_tap_tempo->labelfont(0);
-  sl_tap_tempo->labelsize(12);
-  sl_tap_tempo->labelcolor(FL_FOREGROUND_COLOR);
-  sl_tap_tempo->align(Fl_Align(FL_ALIGN_TOP_LEFT));
-  sl_tap_tempo->when(FL_WHEN_CHANGED);
-} // Fl_Widget_Ex<Fl_Slider>* sl_tap_tempo
-{ lbl_tap_tempo = new Fl_Box(560, 155, 65, 20, _("ms"));
-  lbl_tap_tempo->labelsize(12);
-  lbl_tap_tempo->align(Fl_Align(FL_ALIGN_RIGHT|FL_ALIGN_INSIDE));
-} // Fl_Box* lbl_tap_tempo
-{ chk_relay1 = new Fl_Check_Button_Ex(190, 160, 90, 20, _("Relay 1"));
-  chk_relay1->box(FL_NO_BOX);
-  chk_relay1->down_box(FL_DOWN_BOX);
-  chk_relay1->color(FL_BACKGROUND_COLOR);
-  chk_relay1->selection_color(FL_FOREGROUND_COLOR);
-  chk_relay1->labeltype(FL_NORMAL_LABEL);
-  chk_relay1->labelfont(0);
-  chk_relay1->labelsize(12);
-  chk_relay1->labelcolor(FL_FOREGROUND_COLOR);
-  chk_relay1->align(Fl_Align(FL_ALIGN_LEFT|FL_ALIGN_INSIDE));
-  chk_relay1->when(FL_WHEN_RELEASE);
-} // Fl_Check_Button_Ex* chk_relay1
-{ chk_relay2 = new Fl_Check_Button_Ex(190, 180, 90, 20, _("Relay 2"));
-  chk_relay2->box(FL_NO_BOX);
-  chk_relay2->down_box(FL_DOWN_BOX);
-  chk_relay2->color(FL_BACKGROUND_COLOR);
-  chk_relay2->selection_color(FL_FOREGROUND_COLOR);
-  chk_relay2->labeltype(FL_NORMAL_LABEL);
-  chk_relay2->labelfont(0);
-  chk_relay2->labelsize(12);
-  chk_relay2->labelcolor(FL_FOREGROUND_COLOR);
-  chk_relay2->align(Fl_Align(FL_ALIGN_LEFT|FL_ALIGN_INSIDE));
-  chk_relay2->when(FL_WHEN_RELEASE);
-} // Fl_Check_Button_Ex* chk_relay2
-{ cb_routing = new Fl_Choice_Ex(270, 175, 145, 20, _("Routing"));
-  cb_routing->box(FL_FLAT_BOX);
-  cb_routing->down_box(FL_BORDER_BOX);
-  cb_routing->color(FL_BACKGROUND_COLOR);
-  cb_routing->selection_color(FL_SELECTION_COLOR);
-  cb_routing->labeltype(FL_NORMAL_LABEL);
-  cb_routing->labelfont(0);
-  cb_routing->labelsize(12);
-  cb_routing->labelcolor(FL_FOREGROUND_COLOR);
-  cb_routing->textsize(12);
-  cb_routing->align(Fl_Align(FL_ALIGN_TOP_LEFT));
-  cb_routing->when(FL_WHEN_RELEASE);
-} // Fl_Choice_Ex* cb_routing
-{ sl_out_level = new Fl_Widget_Ex<Fl_Slider>(425, 213, 200, 22, _("Output Level"));
-  sl_out_level->type(5);
-  sl_out_level->box(FL_DOWN_BOX);
-  sl_out_level->color(FL_BACKGROUND_COLOR);
-  sl_out_level->selection_color(FL_BACKGROUND_COLOR);
-  sl_out_level->labeltype(FL_NORMAL_LABEL);
-  sl_out_level->labelfont(0);
-  sl_out_level->labelsize(12);
-  sl_out_level->labelcolor(FL_FOREGROUND_COLOR);
-  sl_out_level->align(Fl_Align(FL_ALIGN_TOP_LEFT));
-  sl_out_level->when(FL_WHEN_CHANGED);
-} // Fl_Widget_Ex<Fl_Slider>* sl_out_level
-{ lbl_out_level = new Fl_Box(560, 195, 65, 20, _("dB"));
-  lbl_out_level->labelsize(12);
-  lbl_out_level->align(Fl_Align(FL_ALIGN_RIGHT|FL_ALIGN_INSIDE));
-} // Fl_Box* lbl_out_level
+{ Fl_Group* o = new Fl_Group(0, 115, 585, 100);
+  o->box(FL_THIN_UP_BOX);
+  { txt_patch_name = new Fl_Input(5, 135, 120, 20, _("Patch name:"));
+    txt_patch_name->labelsize(12);
+    txt_patch_name->textsize(12);
+    txt_patch_name->callback((Fl_Callback*)cb_txt_patch_name);
+    txt_patch_name->align(Fl_Align(FL_ALIGN_TOP_LEFT));
+  } // Fl_Input* txt_patch_name
+  { sl_tap_tempo = new Fl_Widget_Ex<Fl_Slider>(380, 134, 200, 22, _("Tap Tempo"));
+    sl_tap_tempo->type(5);
+    sl_tap_tempo->box(FL_DOWN_BOX);
+    sl_tap_tempo->color(FL_BACKGROUND_COLOR);
+    sl_tap_tempo->selection_color(FL_BACKGROUND_COLOR);
+    sl_tap_tempo->labeltype(FL_NORMAL_LABEL);
+    sl_tap_tempo->labelfont(0);
+    sl_tap_tempo->labelsize(12);
+    sl_tap_tempo->labelcolor(FL_FOREGROUND_COLOR);
+    sl_tap_tempo->align(Fl_Align(FL_ALIGN_TOP_LEFT));
+    sl_tap_tempo->when(FL_WHEN_CHANGED);
+  } // Fl_Widget_Ex<Fl_Slider>* sl_tap_tempo
+  { chk_relay1 = new Fl_Check_Button_Ex(140, 120, 80, 20, _("Relay 1"));
+    chk_relay1->box(FL_NO_BOX);
+    chk_relay1->down_box(FL_DOWN_BOX);
+    chk_relay1->color(FL_BACKGROUND_COLOR);
+    chk_relay1->selection_color(FL_FOREGROUND_COLOR);
+    chk_relay1->labeltype(FL_NORMAL_LABEL);
+    chk_relay1->labelfont(0);
+    chk_relay1->labelsize(12);
+    chk_relay1->labelcolor(FL_FOREGROUND_COLOR);
+    chk_relay1->align(Fl_Align(FL_ALIGN_LEFT|FL_ALIGN_INSIDE));
+    chk_relay1->when(FL_WHEN_RELEASE);
+  } // Fl_Check_Button_Ex* chk_relay1
+  { chk_relay2 = new Fl_Check_Button_Ex(140, 140, 80, 20, _("Relay 2"));
+    chk_relay2->box(FL_NO_BOX);
+    chk_relay2->down_box(FL_DOWN_BOX);
+    chk_relay2->color(FL_BACKGROUND_COLOR);
+    chk_relay2->selection_color(FL_FOREGROUND_COLOR);
+    chk_relay2->labeltype(FL_NORMAL_LABEL);
+    chk_relay2->labelfont(0);
+    chk_relay2->labelsize(12);
+    chk_relay2->labelcolor(FL_FOREGROUND_COLOR);
+    chk_relay2->align(Fl_Align(FL_ALIGN_LEFT|FL_ALIGN_INSIDE));
+    chk_relay2->when(FL_WHEN_RELEASE);
+  } // Fl_Check_Button_Ex* chk_relay2
+  { cb_routing = new Fl_Choice_Ex(225, 135, 145, 20, _("Routing"));
+    cb_routing->box(FL_FLAT_BOX);
+    cb_routing->down_box(FL_BORDER_BOX);
+    cb_routing->color(FL_BACKGROUND_COLOR);
+    cb_routing->selection_color(FL_SELECTION_COLOR);
+    cb_routing->labeltype(FL_NORMAL_LABEL);
+    cb_routing->labelfont(0);
+    cb_routing->labelsize(12);
+    cb_routing->labelcolor(FL_FOREGROUND_COLOR);
+    cb_routing->textsize(12);
+    cb_routing->align(Fl_Align(FL_ALIGN_TOP_LEFT));
+    cb_routing->when(FL_WHEN_RELEASE);
+  } // Fl_Choice_Ex* cb_routing
+  { sl_out_level = new Fl_Widget_Ex<Fl_Slider>(380, 178, 200, 22, _("Output Level"));
+    sl_out_level->type(5);
+    sl_out_level->box(FL_DOWN_BOX);
+    sl_out_level->color(FL_BACKGROUND_COLOR);
+    sl_out_level->selection_color(FL_BACKGROUND_COLOR);
+    sl_out_level->labeltype(FL_NORMAL_LABEL);
+    sl_out_level->labelfont(0);
+    sl_out_level->labelsize(12);
+    sl_out_level->labelcolor(FL_FOREGROUND_COLOR);
+    sl_out_level->align(Fl_Align(FL_ALIGN_TOP_LEFT));
+    sl_out_level->when(FL_WHEN_CHANGED);
+  } // Fl_Widget_Ex<Fl_Slider>* sl_out_level
+  { lbl_tap_tempo = new Fl_Box(515, 115, 65, 20, _("ms"));
+    lbl_tap_tempo->labelsize(12);
+    lbl_tap_tempo->align(Fl_Align(FL_ALIGN_RIGHT|FL_ALIGN_INSIDE));
+  } // Fl_Box* lbl_tap_tempo
+  { lbl_out_level = new Fl_Box(515, 155, 65, 20, _("dB"));
+    lbl_out_level->labelsize(12);
+    lbl_out_level->align(Fl_Align(FL_ALIGN_RIGHT|FL_ALIGN_INSIDE));
+  } // Fl_Box* lbl_out_level
+  o->end();
+} // Fl_Group* o
 init();
 end();
 }

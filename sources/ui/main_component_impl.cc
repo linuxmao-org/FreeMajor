@@ -24,9 +24,7 @@ static constexpr double sysex_send_interval = 0.100;
 
 void Main_Component::init()
 {
-    txt_description->label(_("TC Electronic G-Major controller, © 2018\n"
-                             "Free and open source software controller by\n"
-                             "Jean Pierre Cimalando & Julien Taverna"));
+    reset_description_text();
 
     Patch_Bank *pbank = new Patch_Bank;
     pbank_.reset(pbank);
@@ -45,6 +43,13 @@ void Main_Component::init()
 
 Main_Component::~Main_Component()
 {
+}
+
+void Main_Component::reset_description_text()
+{
+    txt_description->label(_("TC Electronic G-Major controller, © 2018\n"
+                             "Free and open source software controller by\n"
+                             "Jean Pierre Cimalando & Julien Taverna"));
 }
 
 unsigned Main_Component::get_patch_number() const
@@ -578,6 +583,8 @@ void Main_Component::on_leave_parameter_control(Fl_Widget *w, void *user_data)
     if (it != assoc_entered.end())
         assoc_entered.erase(it);
 
-    self->txt_description->label(assoc_entered.empty() ?
-        "" : assoc_entered.front()->access->description);
+    if (assoc_entered.empty())
+        self->reset_description_text();
+    else
+        self->txt_description->copy_label(assoc_entered.front()->access->description);
 }

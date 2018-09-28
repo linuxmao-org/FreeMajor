@@ -19,6 +19,7 @@ enum Association_Kind {
 enum Association_Flag {
     Assoc_Name_On_Box =    1 << 0,
     Assoc_Value_On_Label = 1 << 1,
+    Assoc_Refresh_Full =   1 << 2,
 };
 
 struct Association {

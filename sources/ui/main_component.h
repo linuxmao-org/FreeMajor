@@ -43,8 +43,8 @@ public:
   void refresh_bank_browser(); 
   void refresh_patch_display(); 
 private:
-  void setup_checkbox(Fl_Check_Button_Ex *chk, PA_Boolean &p); 
-  void setup_choice(Fl_Choice_Ex *cb, PA_Choice &p); 
+  void setup_checkbox(Fl_Check_Button_Ex *chk, PA_Boolean &p, int flags = 0); 
+  void setup_choice(Fl_Choice_Ex *cb, PA_Choice &p, int flags = 0); 
   void setup_boxes(bool enable, const Parameter_Collection &pc, Fl_Group_Ex *boxes[], unsigned nboxes); 
   void update_midi_outs(); 
   void on_selected_patch(); 

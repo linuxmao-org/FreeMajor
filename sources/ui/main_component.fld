@@ -95,9 +95,9 @@ widget_class Main_Component {open
   }
   decl {void refresh_patch_display();} {public local
   }
-  decl {void setup_checkbox(Fl_Check_Button_Ex *chk, PA_Boolean &p);} {private local
+  decl {void setup_checkbox(Fl_Check_Button_Ex *chk, PA_Boolean &p, int flags = 0);} {selected private local
   }
-  decl {void setup_choice(Fl_Choice_Ex *cb, PA_Choice &p);} {private local
+  decl {void setup_choice(Fl_Choice_Ex *cb, PA_Choice &p, int flags = 0);} {private local
   }
   decl {void setup_boxes(bool enable, const Parameter_Collection &pc, Fl_Group_Ex *boxes[], unsigned nboxes);} {private local
   }
@@ -146,7 +146,7 @@ widget_class Main_Component {open
   }
   decl {std::vector<std::unique_ptr<Association>> assoc_;} {private local
   }
-  decl {std::list<Association *> assoc_entered_;} {selected private local
+  decl {std::list<Association *> assoc_entered_;} {private local
   }
   Fl_Choice ch_midi_out {
     callback {on_changed_midi_out();} open

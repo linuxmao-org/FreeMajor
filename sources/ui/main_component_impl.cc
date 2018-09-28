@@ -96,20 +96,20 @@ void Main_Component::refresh_patch_display()
     assoc_.clear();
     assoc_entered_.clear();
 
-    setup_checkbox(chk_compressor, pgen.enable_compressor());
-    setup_checkbox(chk_filter, pgen.enable_filter());
-    setup_checkbox(chk_pitch, pgen.enable_pitch());
-    setup_checkbox(chk_chorus, pgen.enable_modulator());
-    setup_checkbox(chk_delay, pgen.enable_delay());
-    setup_checkbox(chk_reverb, pgen.enable_reverb());
-    setup_checkbox(chk_equalizer, pgen.enable_equalizer());
-    setup_checkbox(chk_noise_gate, pgen.enable_noisegate());
+    setup_checkbox(chk_compressor, pgen.enable_compressor(), Assoc_Refresh_Full);
+    setup_checkbox(chk_filter, pgen.enable_filter(), Assoc_Refresh_Full);
+    setup_checkbox(chk_pitch, pgen.enable_pitch(), Assoc_Refresh_Full);
+    setup_checkbox(chk_chorus, pgen.enable_modulator(), Assoc_Refresh_Full);
+    setup_checkbox(chk_delay, pgen.enable_delay(), Assoc_Refresh_Full);
+    setup_checkbox(chk_reverb, pgen.enable_reverb(), Assoc_Refresh_Full);
+    setup_checkbox(chk_equalizer, pgen.enable_equalizer(), Assoc_Refresh_Full);
+    setup_checkbox(chk_noise_gate, pgen.enable_noisegate(), Assoc_Refresh_Full);
 
-    setup_choice(cb_filter, pgen.type_filter());
-    setup_choice(cb_pitch, pgen.type_pitch());
-    setup_choice(cb_chorus, pgen.type_modulation());
-    setup_choice(cb_delay, pgen.type_delay());
-    setup_choice(cb_reverb, pgen.type_reverb());
+    setup_choice(cb_filter, pgen.type_filter(), Assoc_Refresh_Full);
+    setup_choice(cb_pitch, pgen.type_pitch(), Assoc_Refresh_Full);
+    setup_choice(cb_chorus, pgen.type_modulation(), Assoc_Refresh_Full);
+    setup_choice(cb_delay, pgen.type_delay(), Assoc_Refresh_Full);
+    setup_choice(cb_reverb, pgen.type_reverb(), Assoc_Refresh_Full);
 
     std::array<Fl_Group_Ex *, 6> box_cpr
         {{ box_cpr1, box_cpr2, box_cpr3, box_cpr4, box_cpr5, box_cpr6 }};
@@ -146,12 +146,13 @@ void Main_Component::refresh_patch_display()
     }
 }
 
-void Main_Component::setup_checkbox(Fl_Check_Button_Ex *chk, PA_Boolean &p)
+void Main_Component::setup_checkbox(Fl_Check_Button_Ex *chk, PA_Boolean &p, int flags)
 {
     std::unique_ptr<Association> a(new Association);
     a->access = &p;
     a->value_widget = chk;
     a->kind = Assoc_Check;
+    a->flags |= flags;
 
     chk->enter_callback(&on_enter_parameter_control, this);
     chk->leave_callback(&on_leave_parameter_control, this);
@@ -159,7 +160,7 @@ void Main_Component::setup_checkbox(Fl_Check_Button_Ex *chk, PA_Boolean &p)
     assoc_.push_back(std::move(a));
 }
 
-void Main_Component::setup_choice(Fl_Choice_Ex *cb, PA_Choice &p)
+void Main_Component::setup_choice(Fl_Choice_Ex *cb, PA_Choice &p, int flags)
 {
     std::unique_ptr<Association> a(new Association);
 
@@ -170,6 +171,7 @@ void Main_Component::setup_choice(Fl_Choice_Ex *cb, PA_Choice &p)
     a->access = &p;
     a->value_widget = cb;
     a->kind = Assoc_Choice;
+    a->flags |= flags;
 
     cb->enter_callback(&on_enter_parameter_control, this);
     cb->leave_callback(&on_leave_parameter_control, this);
@@ -378,6 +380,9 @@ void Main_Component::on_edited_parameter(Fl_Widget *w, void *user_data)
     }
 
     a->update_from_widget(pat);
+
+    if (a->flags & Assoc_Refresh_Full)
+        self->refresh_patch_display();
 }
 
 void Main_Component::on_enter_parameter_control(Fl_Widget *w, void *user_data)

@@ -130,15 +130,21 @@ void Main_Component::refresh_patch_display()
     assoc_.clear();
     assoc_entered_.clear();
 
-    Association *a = setup_slider(sl_tap_tempo, pgen.tap_tempo());
+    Association *a;
+
+    a = setup_slider(sl_tap_tempo, pgen.tap_tempo());
     a->value_update_callback = [this](int v) {
                                    lbl_tap_tempo->copy_label((std::to_string(v) + " ms").c_str());
                                };
 
     setup_checkbox(chk_relay1, pgen.relay1());
     setup_checkbox(chk_relay2, pgen.relay2());
-
     setup_choice(cb_routing, pgen.routing());
+
+    a = setup_slider(sl_out_level, pgen.out_level());
+    a->value_update_callback = [this](int v) {
+                                   lbl_out_level->copy_label((std::to_string(v) + " dB").c_str());
+                               };
 
     setup_checkbox(chk_compressor, pgen.enable_compressor(), Assoc_Refresh_Full);
     setup_checkbox(chk_filter, pgen.enable_filter(), Assoc_Refresh_Full);
@@ -194,7 +200,7 @@ void Main_Component::refresh_patch_display()
     }
 }
 
-Association *Main_Component::setup_slider(Fl_Slider_Ex *sl, PA_Integer &p, int flags)
+Association *Main_Component::setup_slider(Fl_Slider_Ex *sl, Parameter_Access &p, int flags)
 {
     std::unique_ptr<Association> a(new Association);
     a->access = &p;

@@ -51,7 +51,7 @@ public:
   void refresh_bank_browser(); 
   void refresh_patch_display(); 
 private:
-  Association *setup_slider(Fl_Slider_Ex *sl, PA_Integer &p, int flags = 0); 
+  Association *setup_slider(Fl_Slider_Ex *sl, Parameter_Access &p, int flags = 0); 
   void setup_checkbox(Fl_Check_Button_Ex *chk, Parameter_Access &p, int flags = 0); 
   void setup_choice(Fl_Choice_Ex *cb, Parameter_Access &p, int flags = 0); 
   void setup_boxes(bool enable, const Parameter_Collection &pc, Fl_Group_Ex *boxes[], unsigned nboxes); 
@@ -236,5 +236,7 @@ public:
   Fl_Check_Button_Ex *chk_relay1;
   Fl_Check_Button_Ex *chk_relay2;
   Fl_Choice_Ex *cb_routing;
+  Fl_Widget_Ex<Fl_Slider> *sl_out_level;
+  Fl_Box *lbl_out_level;
 };
 #endif

@@ -1489,6 +1489,22 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
   cb_routing->align(Fl_Align(FL_ALIGN_TOP_LEFT));
   cb_routing->when(FL_WHEN_RELEASE);
 } // Fl_Choice_Ex* cb_routing
+{ sl_out_level = new Fl_Widget_Ex<Fl_Slider>(425, 213, 200, 22, _("Output Level"));
+  sl_out_level->type(5);
+  sl_out_level->box(FL_DOWN_BOX);
+  sl_out_level->color(FL_BACKGROUND_COLOR);
+  sl_out_level->selection_color(FL_BACKGROUND_COLOR);
+  sl_out_level->labeltype(FL_NORMAL_LABEL);
+  sl_out_level->labelfont(0);
+  sl_out_level->labelsize(12);
+  sl_out_level->labelcolor(FL_FOREGROUND_COLOR);
+  sl_out_level->align(Fl_Align(FL_ALIGN_TOP_LEFT));
+  sl_out_level->when(FL_WHEN_CHANGED);
+} // Fl_Widget_Ex<Fl_Slider>* sl_out_level
+{ lbl_out_level = new Fl_Box(560, 195, 65, 20, _("dB"));
+  lbl_out_level->labelsize(12);
+  lbl_out_level->align(Fl_Align(FL_ALIGN_RIGHT|FL_ALIGN_INSIDE));
+} // Fl_Box* lbl_out_level
 init();
 end();
 }

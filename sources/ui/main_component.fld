@@ -116,11 +116,11 @@ widget_class Main_Component {open
   }
   decl {void refresh_patch_display();} {public local
   }
-  decl {Association *setup_slider(Fl_Slider_Ex *sl, PA_Integer &p, int flags = 0);} {private local
+  decl {Association *setup_slider(Fl_Slider_Ex *sl, Parameter_Access &p, int flags = 0);} {selected private local
   }
   decl {void setup_checkbox(Fl_Check_Button_Ex *chk, Parameter_Access &p, int flags = 0);} {private local
   }
-  decl {void setup_choice(Fl_Choice_Ex *cb, Parameter_Access &p, int flags = 0);} {selected private local
+  decl {void setup_choice(Fl_Choice_Ex *cb, Parameter_Access &p, int flags = 0);} {private local
   }
   decl {void setup_boxes(bool enable, const Parameter_Collection &pc, Fl_Group_Ex *boxes[], unsigned nboxes);} {private local
   }
@@ -706,4 +706,13 @@ widget_class Main_Component {open
     xywh {270 175 145 20} down_box BORDER_BOX labelsize 12 align 5 textsize 12
     class Fl_Choice_Ex
   } {}
+  Fl_Slider sl_out_level {
+    label {Output Level}
+    xywh {425 213 200 22} type {Horz Knob} labelsize 12 align 5
+    class {Fl_Widget_Ex<Fl_Slider>}
+  }
+  Fl_Box lbl_out_level {
+    label dB
+    xywh {560 195 65 20} labelsize 12 align 24
+  }
 }

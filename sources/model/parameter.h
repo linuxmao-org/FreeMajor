@@ -108,6 +108,7 @@ public:
         : Parameter_Access(name, description),
           bit_offset(bit_offset), bit_size(bit_size), index(index), size(size) {}
     PA_Bits *with_min_max(int vmin, int vmax);
+    PA_Bits *with_offset(int offset);
 
     virtual Parameter_Type type() const override { return PT_Bits; }
     int get(const Patch &pat) const override;
@@ -122,6 +123,7 @@ public:
     unsigned size = 0;
     int vmin = 0;
     int vmax = 1;
+    int offset = 0;
 };
 
 ///
@@ -485,6 +487,7 @@ public:
     DEFPARAMETER(14, PA_Bits, relay1)
     DEFPARAMETER(15, PA_Bits, relay2)
     DEFPARAMETER(16, PA_Bits, routing)
+    DEFPARAMETER(17, PA_Bits, out_level)
 
     P_Compressor compressor;
     P_Equalizer equalizer;

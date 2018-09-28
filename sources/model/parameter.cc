@@ -162,18 +162,24 @@ PA_Bits *PA_Bits::with_min_max(int vmin, int vmax)
     return this;
 }
 
+PA_Bits *PA_Bits::with_offset(int offset)
+{
+    this->offset = offset;
+    return this;
+}
+
 int PA_Bits::get(const Patch &pat) const
 {
     std::vector<bool> bits = read_bits7(&pat.raw_data[index], size);
     int v = 0;
     for (unsigned i = 0; i < bit_size; ++i)
         v |= (unsigned)bits[bit_offset + i] << i;
-    return clamp(v);
+    return clamp(v - offset);
 }
 
 void PA_Bits::set(Patch &pat, int value)
 {
-    int v = clamp(value);
+    int v = clamp(value) + offset;
     std::vector<bool> bits = read_bits7(&pat.raw_data[index], size);
     for (unsigned i = 0; i < bit_size; ++i)
         bits[bit_offset + i] = (v & (1u << i)) != 0;
@@ -823,6 +829,11 @@ P_General::P_General()
                                             default: assert(false); return "";
                                             }
                                         }));
+    slots.emplace_back((new PA_Bits(156, 4,
+                                    2, 7,
+                                    _("Out level"), _("Sets preset output level.")))
+                       ->with_min_max(-100, 0)
+                       ->with_offset(100));
 
     pitch.reset(new P_Pitch(type_pitch()));
     delay.reset(new P_Delay(type_delay()));

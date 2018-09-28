@@ -15,6 +15,7 @@ class PA_Boolean;
 class PA_Choice;
 class P_General;
 class Association;
+class Midi_Out_Queue;
 class Fl_Choice;
 class Fl_Check_Button;
 class Fl_Dial;
@@ -75,6 +76,7 @@ private:
   std::unique_ptr<P_General> pgen_; 
   std::vector<std::unique_ptr<Association>> assoc_; 
   std::list<Association *> assoc_entered_; 
+  std::unique_ptr<Midi_Out_Queue> midi_out_q_; 
 public:
   Fl_Choice *ch_midi_out;
 private:

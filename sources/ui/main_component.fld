@@ -8,6 +8,9 @@ code_name {.cxx}
 decl {\#include "association.h"} {private global
 }
 
+decl {\#include "midi_out_queue.h"} {selected private global
+}
+
 decl {\#include "widget_ex.h"} {private global
 }
 
@@ -53,6 +56,9 @@ decl {class P_General;} {public global
 decl {class Association;} {public global
 }
 
+decl {class Midi_Out_Queue;} {public global
+}
+
 decl {class Fl_Choice;} {public global
 }
 
@@ -78,8 +84,8 @@ decl {typedef Fl_Widget_Ex<Fl_Group> Fl_Group_Ex;} {public global
 }
 
 widget_class Main_Component {open
-  xywh {5 59 1000 840} type Double
-  code0 {init();} visible
+  xywh {5 59 1000 840} type Double hide
+  code0 {init();}
 } {
   decl {void init();} {private local
   }
@@ -95,7 +101,7 @@ widget_class Main_Component {open
   }
   decl {void refresh_patch_display();} {public local
   }
-  decl {void setup_checkbox(Fl_Check_Button_Ex *chk, PA_Boolean &p, int flags = 0);} {selected private local
+  decl {void setup_checkbox(Fl_Check_Button_Ex *chk, PA_Boolean &p, int flags = 0);} {private local
   }
   decl {void setup_choice(Fl_Choice_Ex *cb, PA_Choice &p, int flags = 0);} {private local
   }
@@ -147,6 +153,8 @@ widget_class Main_Component {open
   decl {std::vector<std::unique_ptr<Association>> assoc_;} {private local
   }
   decl {std::list<Association *> assoc_entered_;} {private local
+  }
+  decl {std::unique_ptr<Midi_Out_Queue> midi_out_q_;} {private local
   }
   Fl_Choice ch_midi_out {
     callback {on_changed_midi_out();} open

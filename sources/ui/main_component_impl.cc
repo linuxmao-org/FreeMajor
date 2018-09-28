@@ -7,17 +7,20 @@
 #include "patch_chooser.h"
 #include "widget_ex.h"
 #include "association.h"
+#include "midi_out_queue.h"
 #include "app_i18n.h"
-#include "device/midi.h"
 #include "model/patch.h"
 #include "model/patch_loader.h"
 #include "model/patch_writer.h"
 #include "model/parameter.h"
+#include "device/midi.h"
 #include "utility/misc.h"
 #include <FL/Fl_Dial.H>
 #include <FL/Fl_Native_File_Chooser.H>
 #include <algorithm>
 #include <assert.h>
+
+static constexpr double sysex_send_interval = 0.100;
 
 void Main_Component::init()
 {
@@ -29,6 +32,7 @@ void Main_Component::init()
 
     set_nth_patch(0, Patch::create_empty());
 
+    midi_out_q_.reset(new Midi_Out_Queue);
     update_midi_outs();
 }
 
@@ -338,20 +342,16 @@ void Main_Component::on_clicked_export()
 
 void Main_Component::on_clicked_change()
 {
-    Midi_Out &mido = Midi_Out::instance();
-
     unsigned patchno = get_patch_number();
     if (patchno == ~0u)
         return;
 
     uint8_t msg[2] = {0xc0, (uint8_t)patchno};
-    mido.send_message(msg, 2);
+    midi_out_q_->enqueue_message(msg, sizeof(msg), 0.0);
 }
 
 void Main_Component::on_clicked_send()
 {
-    Midi_Out &mido = Midi_Out::instance();
-
     unsigned patchno = get_patch_number();
     if (patchno == ~0u)
         return;
@@ -359,7 +359,13 @@ void Main_Component::on_clicked_send()
 
     std::vector<uint8_t> message;
     Patch_Writer::save_sysex_patch(pat, message);
-    mido.send_message(message.data(), message.size());
+
+    midi_out_q_->cancel_all_sysex();
+
+    uint8_t pgm_chg_msg[2] = {0xc0, (uint8_t)patchno};
+    midi_out_q_->enqueue_message(pgm_chg_msg, sizeof(pgm_chg_msg), 0.0);
+
+    midi_out_q_->enqueue_message(message.data(), message.size(), sysex_send_interval);
 }
 
 void Main_Component::on_edited_parameter(Fl_Widget *w, void *user_data)

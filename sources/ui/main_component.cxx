@@ -3,6 +3,7 @@
 #include "app_i18n.h"
 #include "main_component.h"
 #include "association.h"
+#include "midi_out_queue.h"
 #include "widget_ex.h"
 #include "model/patch.h"
 #include "model/parameter.h"

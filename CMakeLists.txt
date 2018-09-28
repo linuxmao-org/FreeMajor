@@ -19,7 +19,8 @@ add_executable(gmajctl
   "sources/ui/main_component.cxx"
   "sources/ui/main_component_impl.cc"
   "sources/ui/patch_chooser.cxx"
-  "sources/ui/association.cc")
+  "sources/ui/association.cc"
+  "sources/ui/midi_out_queue.cc")
 target_include_directories(gmajctl
   PRIVATE "sources" "${FLTK_INCLUDE_DIR}")
 target_link_libraries(gmajctl PRIVATE "${FLTK_LIBRARIES}")

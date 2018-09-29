@@ -11,7 +11,8 @@ cmake --build .
 # Mise à jour et compilation suivantes / build after some modifications
 
 ```
-git pull https://github.com/jpcima/gmajctl/
-make -C build
+cd gmajctl
+git pull
+cmake --build build
 ./build/gmajctl
 ```

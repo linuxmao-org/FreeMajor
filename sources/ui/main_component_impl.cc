@@ -442,8 +442,11 @@ void Main_Component::on_clicked_change()
     if (patchno == ~0u)
         return;
 
-    uint8_t msg[2] = {0xc0, (uint8_t)patchno};
-    midi_out_q_->enqueue_message(msg, sizeof(msg), 0.0);
+    uint8_t bank_chg_msg[3] = {0xb0, 0x00, 0x01};
+    midi_out_q_->enqueue_message(bank_chg_msg, sizeof(bank_chg_msg), 0.0);
+
+    uint8_t pgm_chg_msg[2] = {0xc0, (uint8_t)patchno};
+    midi_out_q_->enqueue_message(pgm_chg_msg, sizeof(pgm_chg_msg), 0.0);
 }
 
 void Main_Component::on_clicked_new()
@@ -508,6 +511,9 @@ void Main_Component::on_clicked_send()
     Patch_Writer::save_sysex_patch(pat, message);
 
     midi_out_q_->cancel_all_sysex();
+
+    uint8_t bank_chg_msg[3] = {0xb0, 0x00, 0x01};
+    midi_out_q_->enqueue_message(bank_chg_msg, sizeof(bank_chg_msg), 0.0);
 
     uint8_t pgm_chg_msg[2] = {0xc0, (uint8_t)patchno};
     midi_out_q_->enqueue_message(pgm_chg_msg, sizeof(pgm_chg_msg), 0.0);

@@ -52,11 +52,13 @@ void Patch::name(const char *name)
 
 unsigned Patch::patch_number() const
 {
-    return raw_data[6];
+    uint8_t lsb = raw_data[6];
+    uint8_t msb = raw_data[7];
+    return (lsb > 100) ? (lsb - 100) : (lsb + 28);
 }
 
 void Patch::patch_number(unsigned nth)
 {
-    raw_data[6] = nth ;
-    raw_data[7] = 1;  // select user bank
+    raw_data[6] = (nth < 27) ? (nth + 100) : (nth - 28);
+    raw_data[7] = (nth > 27) ? 1 : 0;  // select user bank
 }

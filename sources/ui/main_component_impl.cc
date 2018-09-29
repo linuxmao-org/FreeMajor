@@ -214,6 +214,7 @@ Association *Main_Component::setup_slider(Fl_Slider_Ex *sl, Parameter_Access &p,
     a->flags |= flags;
 
     sl->range(p.min(), p.max());
+    sl->step(1);
     sl->enter_callback(&on_enter_parameter_control, this);
     sl->leave_callback(&on_leave_parameter_control, this);
 

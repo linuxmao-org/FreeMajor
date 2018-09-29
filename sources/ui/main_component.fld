@@ -101,7 +101,7 @@ decl {typedef Fl_Valuator_Ex<Fl_Slider> Fl_Slider_Ex;} {public global
 decl {typedef Fl_Valuator_Ex<Fl_Dial> Fl_Dial_Ex;} {public global
 }
 
-widget_class Main_Component {open selected
+widget_class Main_Component {open
   xywh {5 59 910 735} type Double
   code0 {init();} visible
 } {
@@ -720,8 +720,8 @@ widget_class Main_Component {open selected
       xywh {515 115 65 20} labelsize 12 align 24
     }
     Fl_Box lbl_out_level {
-      label dB
-      xywh {515 155 65 20} labelsize 12 align 24
+      label dB selected
+      xywh {515 160 65 20} labelsize 12 align 24
     }
   }
 }

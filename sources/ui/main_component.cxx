@@ -1503,7 +1503,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     lbl_tap_tempo->labelsize(12);
     lbl_tap_tempo->align(Fl_Align(FL_ALIGN_RIGHT|FL_ALIGN_INSIDE));
   } // Fl_Box* lbl_tap_tempo
-  { lbl_out_level = new Fl_Box(515, 155, 65, 20, _("dB"));
+  { lbl_out_level = new Fl_Box(515, 160, 65, 20, _("dB"));
     lbl_out_level->labelsize(12);
     lbl_out_level->align(Fl_Align(FL_ALIGN_RIGHT|FL_ALIGN_INSIDE));
   } // Fl_Box* lbl_out_level

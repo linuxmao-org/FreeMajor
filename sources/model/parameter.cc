@@ -253,7 +253,7 @@ P_Noise_Gate::P_Noise_Gate()
                                       _("Mode"), _("General overall mode that determines how fast the Noise Gate should attenuate/dampen the signal when below Threshold."))));
     slots.emplace_back((new PA_Integer(552, 4, _("Threshold"), _("The Threshold point determines at what point the Noise Gate should start to dampen the signal.")))
                        ->with_min_max(-60, 0));
-    slots.emplace_back((new PA_Integer(556, 4, _("Max Damping"), _("The parameter determines how hard the signal should be attenuated when below the set Threshold.")))
+    slots.emplace_back((new PA_Integer(556, 4, _("Max Damp"/*Max Damping*/), _("The parameter determines how hard the signal should be attenuated when below the set Threshold.")))
                        ->with_min_max(0, 90));
     slots.emplace_back((new PA_Integer(560, 4, _("Release"), _("The Release parameter determines how fast the signal is released when the Input signal rises above the Threshold point.")))
                        ->with_min_max(3, 200));
@@ -283,7 +283,7 @@ P_Reverb::P_Reverb()
                        ->with_min_max(-25, 25));
     slots.emplace_back((new PA_Integer(520, 4, _("Room level"), _("This parameter adjusts the Reverb Diffuse field level. Lowering the Reverb Level will give you a more ambient sound, since the Early Reflection patterns will become more obvious.")))
                        ->with_min_max(-100, 0));
-    slots.emplace_back((new PA_Integer(524, 4, _("Reverb level"), _("The level of the Early Reflections.")))
+    slots.emplace_back((new PA_Integer(524, 4, _("Rev level"/*Reverb level*/), _("The level of the Early Reflections.")))
                        ->with_min_max(-100, 0));
     slots.emplace_back((new PA_Integer(528, 4, _("Diffuse"), _("Allows fine-tuning of the density of the Reverb Diffuse field.")))
                        ->with_min_max(-25, 25));
@@ -418,7 +418,7 @@ Parameter_Collection &P_Delay::dispatch(const Patch &pat)
 
 P_Delay::Ping_Pong::Ping_Pong()
 {
-    slots.emplace_back((new PA_Integer(424, 4, _("Delay Time"), _("The time between the repetitions.")))
+    slots.emplace_back((new PA_Integer(424, 4, _("Delay"/*Delay Time*/), _("The time between the repetitions.")))
                        ->with_min_max(0, 1800));
     slots.emplace_back((new PA_Choice(432, 4,
                                       {_("Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
@@ -443,7 +443,7 @@ P_Delay::Ping_Pong::Ping_Pong()
 
 P_Delay::Dynamic::Dynamic()
 {
-    slots.emplace_back((new PA_Integer(424, 4, _("Delay Time"), _("The time between the repetitions.")))
+    slots.emplace_back((new PA_Integer(424, 4, _("Delay"/*Delay Time*/), _("The time between the repetitions.")))
                        ->with_min_max(0, 1800));
     slots.emplace_back((new PA_Choice(432, 4,
                                       {_("Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
@@ -476,9 +476,9 @@ P_Delay::Dynamic::Dynamic()
 
 P_Delay::Dual::Dual()
 {
-    slots.emplace_back((new PA_Integer(424, 4, _("Delay Time 1"), _("Sets the Delay Time of the first Delay Line.")))
+    slots.emplace_back((new PA_Integer(424, 4, _("Delay 1"/*Delay Time 1*/), _("Sets the Delay Time of the first Delay Line.")))
                        ->with_min_max(0, 1800));
-    slots.emplace_back((new PA_Integer(428, 4, _("Delay Time 2"), _("Sets the Delay Time of the second Delay Line.")))
+    slots.emplace_back((new PA_Integer(428, 4, _("Delay 2"/*Delay Time 2*/), _("Sets the Delay Time of the second Delay Line.")))
                        ->with_min_max(0, 1800));
     slots.emplace_back((new PA_Choice(432, 4,
                                       {_("Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
@@ -545,7 +545,7 @@ P_Filter::Auto_Resonance::Auto_Resonance()
                                       _("Response"), _("Determines whether the sweep through a frequency range will be performed fast or slow."))));
     slots.emplace_back((new PA_Choice(252, 4,
                                       {"1.00k", "1.12k", "1.26k", "1.41k", "1.58k", "1.78k", "2.00k", "2.24k", "2.51k", "2.82k", "3.16k", "3.55k", "3.98k", "4.47k", "5.01k", "5.62k", "6.31k", "7.08k", "7.94k", "8.91k", "10.0k"},
-                                      _("Frequency Max"), _("Limits the frequency range in which the sweep will be performed."))));
+                                      _("Freq Max"/*Frequency Max*/), _("Limits the frequency range in which the sweep will be performed."))));
     slots.emplace_back((new PA_Integer(280, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
                        ->with_min_max(0, 100)
                        ->with_position(PP_Back));
@@ -562,7 +562,7 @@ P_Filter::Resonance::Resonance()
     slots.emplace_back((new PA_Choice(272, 4,
                                       {"158.5", "177.8", "199.5", "223.9", "251.2", "281.8", "316.2", "354.8", "398.1", "446.7", "501.2", "562.3", "631.0", "707.9", "794.3", "891.3", "1.00k", "1.12k", "1.26k", "1.41k", "1.58k", "1.78k", "2.00k", "2.24k", "2.51k", "2.82k", "3.16k", "3.55k", "3.98k", "4.47k", "5.01k", "5.62k", "6.31k", "7.08k", "7.94k", "8.91k", "10.0k", "11.2k", "12.6k", "14.1k"},
                                       _("Hi Cut"), _("Determines the frequency above which the Hi Cut filter will attenuate the high-end frequencies of the generated effect."))));
-    slots.emplace_back((new PA_Integer(276, 4, _("Hi Resonance"), _("Sets the amount of Resonance in the Hi Cut filter.")))
+    slots.emplace_back((new PA_Integer(276, 4, _("Hi Reso"/*Hi Resonance*/), _("Sets the amount of Resonance in the Hi Cut filter.")))
                        ->with_min_max(0, 100));
     slots.emplace_back((new PA_Integer(280, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
                        ->with_min_max(0, 100)
@@ -587,7 +587,7 @@ P_Filter::Vintage_Phaser::Vintage_Phaser()
     slots.emplace_back((new PA_Choice(264, 4,
                                       {"Low", "High"},
                                       _("Range"), _("Determines whether the phasing effect should be mainly on the high- of low-end frequencies."))));
-    slots.emplace_back((new PA_Boolean(268, 4, _("Phase reverse"), _("An LFO phase change that causes a small Delay in one of the waveform starting points. When applied to the Left and Right outputs will start the current waveform at two different points giving you a more extreme wide spread phasing effect.")))
+    slots.emplace_back((new PA_Boolean(268, 4, _("Phase Rev"/*Phase Reverse*/), _("An LFO phase change that causes a small Delay in one of the waveform starting points. When applied to the Left and Right outputs will start the current waveform at two different points giving you a more extreme wide spread phasing effect.")))
                        ->with_inversion());
     slots.emplace_back((new PA_Integer(280, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
                        ->with_min_max(0, 100)
@@ -612,7 +612,7 @@ P_Filter::Smooth_Phaser::Smooth_Phaser()
     slots.emplace_back((new PA_Choice(264, 4,
                                       {"Low", "High"},
                                       _("Range"), _("Determines whether the phasing effect should be mainly on the high- of low-end frequencies."))));
-    slots.emplace_back((new PA_Boolean(268, 4, _("Phase reverse"), _("An LFO phase change that causes a small Delay in one of the waveform starting points. When applied to the Left and Right outputs will start the current waveform at two different points giving you a more extreme wide spread phasing effect.")))
+    slots.emplace_back((new PA_Boolean(268, 4, _("Phase Rev"/*Phase Reverse*/), _("An LFO phase change that causes a small Delay in one of the waveform starting points. When applied to the Left and Right outputs will start the current waveform at two different points giving you a more extreme wide spread phasing effect.")))
                        ->with_inversion());
     slots.emplace_back((new PA_Integer(280, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
                        ->with_min_max(0, 100)
@@ -632,7 +632,7 @@ P_Filter::Tremolo::Tremolo()
     slots.emplace_back((new PA_Choice(252, 4,
                                       {_("Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
                                       _("Tempo"), _("The Tempo parameter sets the relationship to the global Tempo."))));
-    slots.emplace_back((new PA_Integer(260, 4, _("LFO Pulse Width"), _("Controls the division of the upper and the lower part of the current waveform, e.g. if Pulse Width is set to 75%, the upper half of the waveform will be on for 75% of the time.")))
+    slots.emplace_back((new PA_Integer(260, 4, _("LFO P Width"/*LFO Pulse Width*/), _("Controls the division of the upper and the lower part of the current waveform, e.g. if Pulse Width is set to 75%, the upper half of the waveform will be on for 75% of the time.")))
                        ->with_min_max(0, 100));
     slots.emplace_back((new PA_Choice(272, 4,
                                       {"19.95", "22.39", "25.12", "28.18", "31.62", "35.48", "39.81", "44.67", "50.12", "56.23", "63.10", "70.79", "79.43", "89.13", "100.0", "112.2", "125.9", "141.3", "158.5", "177.8", "199.5", "223.9", "251.2", "281.8", "316.2", "354.8", "398.1", "446.7", "501.2", "562.3", "631.0", "707.9", "794.3", "891.3", "1.00k", "1.12k", "1.26k", "1.41k", "1.58k", "1.78k", "2.00k", "2.24k", "2.51k", "2.82k", "3.16k", "3.55k", "3.98k", "4.47k", "5.01k", "5.62k", "6.31k", "7.08k", "7.94k", "8.91k", "10.0k", "11.2k", "12.6k", "14.1k", "15.8k", "17.8k", _("Off")},
@@ -724,7 +724,7 @@ P_Modulation::Advanced_Chorus::Advanced_Chorus()
                                       _("Gold Ratio"), _("When Speed is increased the Depth must be decreased to achieve the same amount of perceived Chorusing effect. When Golden Ratio is \"On\" this value is automatically calculated."))));
     slots.emplace_back((new PA_Choice(392, 4,
                                       {_("Off"), _("On")},
-                                      _("Phase Reverse"), _("Reverses the processed Chorus signal in the right channel. This gives a very wide Chorus effect and a less defined sound."))));
+                                      _("Phase Rev"/*Phase Reverse*/), _("Reverses the processed Chorus signal in the right channel. This gives a very wide Chorus effect and a less defined sound."))));
     slots.emplace_back((new PA_Integer(396, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
                        ->with_min_max(0, 100)
                        ->with_position(PP_Back));
@@ -784,7 +784,7 @@ P_Modulation::Advanced_Flanger::Advanced_Flanger()
                                       _("Gold Ratio"), _("When Speed is increased the Depth must be decreased to achieve the same amount of perceived Flanging effect. When Golden Ratio is \"On\" this value is automatically calculated."))));
     slots.emplace_back((new PA_Choice(392, 4,
                                       {_("Off"), _("On")},
-                                      _("Phase Reverse"), _("Reverses the processed Flanger signal in the right channel. This gives a very wide Flanger effect and a less defined sound."))));
+                                      _("Phase Rev"/*Phase Reverse*/), _("Reverses the processed Flanger signal in the right channel. This gives a very wide Flanger effect and a less defined sound."))));
     slots.emplace_back((new PA_Integer(396, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
                        ->with_min_max(0, 100)
                        ->with_position(PP_Back));

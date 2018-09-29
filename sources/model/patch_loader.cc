@@ -11,7 +11,7 @@
 #include <string.h>
 #include <stdio.h>
 
-bool Patch_Loader::load_realmajor_patch(const uint8_t *data, size_t length, Patch &pat)
+bool Patch_Loader::load_realmajor_patch(const uint8_t *data, size_t length, Patch &pat, const uint8_t **endp)
 {
     const uint8_t *startp = (const uint8_t *)memchr(data, '[', length);
     if (!startp)
@@ -19,8 +19,11 @@ bool Patch_Loader::load_realmajor_patch(const uint8_t *data, size_t length, Patc
     length -= startp - data + 1;
     data = startp + 1;
 
-    if (const uint8_t *endp = (const uint8_t *)memchr(data, ']', length))
-        length = endp - data;
+    const uint8_t *end = (const uint8_t *)memchr(data, ']', length);
+    if (end)
+        length = end - data;
+    if (endp)
+        *endp = end + 1;
 
     std::string input((const char *)data, length);
     std::vector<uint8_t> sysex;
@@ -38,10 +41,10 @@ bool Patch_Loader::load_realmajor_patch(const uint8_t *data, size_t length, Patc
     }
 
     bool validate_checksum = false;
-    return load_sysex_patch(sysex.data(), sysex.size(), pat, validate_checksum);
+    return load_sysex_patch(sysex.data(), sysex.size(), pat, nullptr, validate_checksum);
 }
 
-bool Patch_Loader::load_sysex_patch(const uint8_t *data, size_t length, Patch &pat, bool validate_checksum)
+bool Patch_Loader::load_sysex_patch(const uint8_t *data, size_t length, Patch &pat, const uint8_t **endp, bool validate_checksum)
 {
     const uint8_t *startp = (const uint8_t *)memchr(data, 0xf0, length);
     if (!startp)
@@ -49,10 +52,12 @@ bool Patch_Loader::load_sysex_patch(const uint8_t *data, size_t length, Patch &p
     length -= startp - data;
     data = startp;
 
-    const uint8_t *endp = (const uint8_t *)memchr(data + 1, 0xf7, length - 1);
-    if (!endp)
+    const uint8_t *end = (const uint8_t *)memchr(data + 1, 0xf7, length - 1);
+    if (!end)
         return false;
-    length = endp - data;
+    if (endp)
+        *endp = end + 1;
+    length = end - data;
 
     if (length < 614)
         return false;
@@ -60,25 +65,48 @@ bool Patch_Loader::load_sysex_patch(const uint8_t *data, size_t length, Patch &p
     Patch tmp;
     memcpy(tmp.raw_data, data + 1, 612);
 
-    if (validate_checksum) {
-        if (data[613] != tmp.checksum())
-            return false;
-    }
+    bool checksum_ok = data[613] == tmp.checksum();
+    // fprintf(stderr, "Checksum %s\n", checksum_ok ? "good" : "bad");
+
+    if (validate_checksum && !checksum_ok)
+        return false;
 
     pat = tmp;
     return true;
 }
 
-bool Patch_Loader::load_patch_file(const char *path, Patch &pat)
+bool Patch_Loader::load_realmajor_bank(const uint8_t *data, size_t length, Patch_Bank &pbank)
 {
-    FILE_u fh(fl_fopen(path, "rb"));
-    std::vector<uint8_t> data;
+    const uint8_t *curp = data;
+    Patch_Bank pbank_tmp;
+    Patch pat_tmp;
+    size_t count = 0;
 
-    if (!read_entire_file(fh.get(), 1 << 20, data))
-        return false;
+    while (load_realmajor_patch(curp, data + length - curp, pat_tmp, &curp)) {
+        unsigned patchno = pat_tmp.patch_number();
+        count += !pbank_tmp.used[patchno];
+        pbank_tmp.slot[patchno] = pat_tmp;
+        pbank_tmp.used[patchno] = true;
+    }
 
-    if (ends_with(path, ".syx"))
-        return load_sysex_patch(data.data(), data.size(), pat);
+    pbank = pbank_tmp;
+    return count > 0;
+}
 
-    return load_realmajor_patch(data.data(), data.size(), pat);
+bool Patch_Loader::load_sysex_bank(const uint8_t *data, size_t length, Patch_Bank &pbank, bool validate_checksum)
+{
+    const uint8_t *curp = data;
+    Patch_Bank pbank_tmp;
+    Patch pat_tmp;
+    size_t count = 0;
+
+    while (load_sysex_patch(curp, data + length - curp, pat_tmp, &curp, validate_checksum)) {
+        unsigned patchno = pat_tmp.patch_number();
+        count += !pbank_tmp.used[patchno];
+        pbank_tmp.slot[patchno] = pat_tmp;
+        pbank_tmp.used[patchno] = true;
+    }
+
+    pbank = pbank_tmp;
+    return count > 0;
 }

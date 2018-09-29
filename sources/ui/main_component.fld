@@ -155,6 +155,10 @@ widget_class Main_Component {open
   }
   decl {void on_clicked_change();} {private local
   }
+  decl {void on_clicked_load();} {private local
+  }
+  decl {void on_clicked_save();} {private local
+  }
   decl {void on_clicked_new();} {private local
   }
   decl {void on_clicked_copy();} {private local
@@ -720,8 +724,18 @@ widget_class Main_Component {open
       xywh {515 115 65 20} labelsize 12 align 24
     }
     Fl_Box lbl_out_level {
-      label dB selected
+      label dB
       xywh {515 160 65 20} labelsize 12 align 24
     }
+  }
+  Fl_Button btn_load {
+    label Load
+    callback {on_clicked_load();}
+    xywh {445 25 70 20} labelsize 12
+  }
+  Fl_Button btn_save {
+    label Save
+    callback {on_clicked_save();} selected
+    xywh {515 25 70 20} labelsize 12
   }
 }

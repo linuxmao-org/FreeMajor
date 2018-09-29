@@ -73,6 +73,8 @@ private:
   void on_clicked_import(); 
   void on_clicked_export(); 
   void on_clicked_change(); 
+  void on_clicked_load(); 
+  void on_clicked_save(); 
   void on_clicked_new(); 
   void on_clicked_copy(); 
   void on_clicked_delete(); 
@@ -240,5 +242,14 @@ public:
   Fl_Slider_Ex *sl_out_level;
   Fl_Box *lbl_tap_tempo;
   Fl_Box *lbl_out_level;
+  Fl_Button *btn_load;
+private:
+  inline void cb_btn_load_i(Fl_Button*, void*);
+  static void cb_btn_load(Fl_Button*, void*);
+public:
+  Fl_Button *btn_save;
+private:
+  inline void cb_btn_save_i(Fl_Button*, void*);
+  static void cb_btn_save(Fl_Button*, void*);
 };
 #endif

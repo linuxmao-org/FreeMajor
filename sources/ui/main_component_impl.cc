@@ -376,8 +376,27 @@ void Main_Component::on_clicked_import()
         return;
 
     const char *filename = f_chooser.filename();
+    std::vector<uint8_t> filedata;
+    FILE_u fh(fl_fopen(filename, "rb"));
+    if (!fh || !read_entire_file(fh.get(), 1 << 20, filedata)) {
+        fl_message_title(_("Error"));
+        fl_alert(_("Could not read the patch file."));
+        return;
+    }
+    fh.reset();
+
     Patch pat;
-    if (!Patch_Loader::load_patch_file(filename, pat)) {
+    bool loaded = false;
+    switch (f_chooser.filter_value()) {
+    case 0:
+        loaded = Patch_Loader::load_realmajor_patch(filedata.data(), filedata.size(), pat);
+        break;
+    case 1:
+        loaded = Patch_Loader::load_sysex_patch(filedata.data(), filedata.size(), pat);
+        break;
+    }
+
+    if (!loaded) {
         fl_message_title(_("Error"));
         fl_alert(_("Could not load the patch file."));
         return;
@@ -449,6 +468,91 @@ void Main_Component::on_clicked_change()
     midi_out_q_->enqueue_message(pgm_chg_msg, sizeof(pgm_chg_msg), 0.0);
 }
 
+void Main_Component::on_clicked_load()
+{
+    Fl_Native_File_Chooser f_chooser(Fl_Native_File_Chooser::BROWSE_FILE);
+    f_chooser.title(_("Load..."));
+    f_chooser.filter(_("Real Major bank\t*.realmajor\n"
+                       "Sysex bank\t*.syx"));
+
+    if (f_chooser.show() != 0)
+        return;
+
+    const char *filename = f_chooser.filename();
+    std::vector<uint8_t> filedata;
+    FILE_u fh(fl_fopen(filename, "rb"));
+    if (!fh || !read_entire_file(fh.get(), 1 << 20, filedata)) {
+        fl_message_title(_("Error"));
+        fl_alert(_("Could not read the bank file."));
+        return;
+    }
+    fh.reset();
+
+    bool loaded = false;
+    switch (f_chooser.filter_value()) {
+    case 0:
+        loaded = Patch_Loader::load_realmajor_bank(filedata.data(), filedata.size(), *pbank_);
+        break;
+    case 1:
+        loaded = Patch_Loader::load_sysex_bank(filedata.data(), filedata.size(), *pbank_);
+        break;
+    }
+
+    if (!loaded) {
+        fl_message_title(_("Error"));
+        fl_alert(_("Could not load the bank file."));
+        return;
+    }
+
+    for (unsigned i = 0; i < Patch_Bank::max_count; ++i) {
+        if (pbank_->used[i])
+            pbank_->slot[i].patch_number(i);
+    }
+
+    refresh_bank_browser();
+    refresh_patch_display();
+}
+
+void Main_Component::on_clicked_save()
+{
+    Fl_Native_File_Chooser chooser(Fl_Native_File_Chooser::BROWSE_SAVE_FILE);
+    chooser.title(_("Save..."));
+    chooser.filter(_("Real Major bank\t*.realmajor\n"
+                     "Sysex bank\t*.syx"));
+
+    if (chooser.show() != 0)
+        return;
+
+    std::string filename = chooser.filename();
+    std::vector<uint8_t> data;
+    switch (chooser.filter_value()) {
+    case 0:
+        Patch_Writer::save_realmajor_bank(*pbank_, data);
+        if (file_name_extension(filename).empty())
+            filename += ".realmajor";
+        break;
+    case 1:
+        Patch_Writer::save_sysex_bank(*pbank_, data);
+        if (file_name_extension(filename).empty())
+            filename += ".syx";
+        break;
+    }
+
+    if (fl_access(filename.c_str(), 0) == 0) {
+        fl_message_title(_("Confirm overwrite"));
+        if (fl_choice(_("The file already exists. Replace it?"), _("Yes"), _("No"), nullptr))
+            return;
+    }
+
+    FILE_u fh(fl_fopen(filename.c_str(), "wb"));
+    if (fwrite(data.data(), 1, data.size(), fh.get()) != data.size()) {
+        fl_unlink(filename.c_str());
+        fl_message_title(_("Error"));
+        fl_alert(_("Could not save the bank file."));
+        return;
+    }
+}
+
 void Main_Component::on_clicked_new()
 {
     Patch_Chooser p_chooser(*pbank_);
@@ -458,6 +562,7 @@ void Main_Component::on_clicked_new()
 
     Patch_Bank &pbank = *pbank_;
     pbank.slot[patchno] = Patch::create_empty();
+    pbank.slot[patchno].patch_number(patchno);
     pbank.used[patchno] = true;
 
     refresh_bank_browser();

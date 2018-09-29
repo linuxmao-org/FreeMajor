@@ -77,6 +77,20 @@ void Main_Component::cb_txt_patch_name_i(Fl_Input*, void*) {
 void Main_Component::cb_txt_patch_name(Fl_Input* o, void* v) {
   ((Main_Component*)(o->parent()->parent()))->cb_txt_patch_name_i(o,v);
 }
+
+void Main_Component::cb_btn_load_i(Fl_Button*, void*) {
+  on_clicked_load();
+}
+void Main_Component::cb_btn_load(Fl_Button* o, void* v) {
+  ((Main_Component*)(o->parent()))->cb_btn_load_i(o,v);
+}
+
+void Main_Component::cb_btn_save_i(Fl_Button*, void*) {
+  on_clicked_save();
+}
+void Main_Component::cb_btn_save(Fl_Button* o, void* v) {
+  ((Main_Component*)(o->parent()))->cb_btn_save_i(o,v);
+}
 Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
   : Fl_Group(X, Y, W, H, L) {
 { Fl_Box* o = new Fl_Box(595, 1, 315, 39, _("G-Major Editor"));
@@ -1509,6 +1523,14 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
   } // Fl_Box* lbl_out_level
   o->end();
 } // Fl_Group* o
+{ btn_load = new Fl_Button(445, 25, 70, 20, _("Load"));
+  btn_load->labelsize(12);
+  btn_load->callback((Fl_Callback*)cb_btn_load);
+} // Fl_Button* btn_load
+{ btn_save = new Fl_Button(515, 25, 70, 20, _("Save"));
+  btn_save->labelsize(12);
+  btn_save->callback((Fl_Callback*)cb_btn_save);
+} // Fl_Button* btn_save
 init();
 end();
 }

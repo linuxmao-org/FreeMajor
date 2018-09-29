@@ -65,6 +65,12 @@ Parameter_Access *Parameter_Access::with_string_fn(std::function<std::string(int
     return this;
 }
 
+Parameter_Access *Parameter_Access::with_position(Parameter_Position pos)
+{
+    position = pos;
+    return this;
+}
+
 std::string Parameter_Access::to_string(int value) const
 {
     if (to_string_fn)
@@ -282,9 +288,11 @@ P_Reverb::P_Reverb()
     slots.emplace_back((new PA_Integer(528, 4, _("Diffuse"), _("Allows fine-tuning of the density of the Reverb Diffuse field.")))
                        ->with_min_max(-25, 25));
     slots.emplace_back((new PA_Integer(532, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
-                       ->with_min_max(0, 100));
+                       ->with_min_max(0, 100)
+                       ->with_position(PP_Back));
     slots.emplace_back((new PA_Integer(536, 4, _("Out level"), _("Sets the overall Output level of this block.")))
-                       ->with_min_max(-100, 0));
+                       ->with_min_max(-100, 0)
+                       ->with_position(PP_Back));
 }
 
 P_Pitch::P_Pitch(const PA_Choice &tag)
@@ -319,9 +327,11 @@ P_Pitch::Detune::Detune()
     slots.emplace_back((new PA_Integer(316, 4, _("Delay 2"), _("Specifies the Delay on the second voice.")))
                        ->with_min_max(0, 50));
     slots.emplace_back((new PA_Integer(340, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
-                       ->with_min_max(0, 100));
+                       ->with_min_max(0, 100)
+                       ->with_position(PP_Back));
     slots.emplace_back((new PA_Integer(344, 4, _("Out level"), _("Sets the overall Output level of this block.")))
-                       ->with_min_max(-100, 0));
+                       ->with_min_max(-100, 0)
+                       ->with_position(PP_Back));
 }
 
 P_Pitch::Whammy::Whammy()
@@ -336,7 +346,8 @@ P_Pitch::Whammy::Whammy()
                                       _("Range"), _("Selects how the Whammy block will pitch your tone.")))
                        ->with_offset(1));
     slots.emplace_back((new PA_Integer(344, 4, _("Out level"), _("Sets the overall Output level of this block.")))
-                       ->with_min_max(-100, 0));
+                       ->with_min_max(-100, 0)
+                       ->with_position(PP_Back));
 }
 
 P_Pitch::Octaver::Octaver()
@@ -349,9 +360,11 @@ P_Pitch::Octaver::Octaver()
                                       _("Range"), _("Range.")))
                        ->with_offset(1));
     slots.emplace_back((new PA_Integer(340, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
-                       ->with_min_max(0, 100));
+                       ->with_min_max(0, 100)
+                       ->with_position(PP_Back));
     slots.emplace_back((new PA_Integer(344, 4, _("Out level"), _("Sets the overall Output level of this block.")))
-                       ->with_min_max(-100, 0));
+                       ->with_min_max(-100, 0)
+                       ->with_position(PP_Back));
 }
 
 P_Pitch::Shifter::Shifter()
@@ -377,9 +390,11 @@ P_Pitch::Shifter::Shifter()
     slots.emplace_back((new PA_Integer(332, 4, _("Level 2"), _("Sets the level for Voice 2.")))
                        ->with_min_max(-100, 0));
     slots.emplace_back((new PA_Integer(340, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
-                       ->with_min_max(0, 100));
+                       ->with_min_max(0, 100)
+                       ->with_position(PP_Back));
     slots.emplace_back((new PA_Integer(344, 4, _("Out level"), _("Sets the overall Output level of this block.")))
-                       ->with_min_max(-100, 0));
+                       ->with_min_max(-100, 0)
+                       ->with_position(PP_Back));
 }
 
 P_Delay::P_Delay(const PA_Choice &tag)
@@ -419,9 +434,11 @@ P_Delay::Ping_Pong::Ping_Pong()
                                       {_("Off"), "22.39", "25.12", "28.18", "31.62", "35.48", "39.81", "44.67", "50.12", "56.23", "63.10", "70.79", "79.43", "89.13", "100.0", "112.2", "125.9", "141.3", "158.5", "177.8", "199.5", "223.9", "251.2", "281.8", "316.2", "354.8", "398.1", "446.7", "501.2", "562.3", "631.0", "707.9", "794.3", "891.3", "1.00k", "1.12k", "1.26k", "1.41k", "1.58k", "1.78k", "2.00k"},
                                       _("FB Lo cut"), _("Attenuates the frequencies below the set frequency."))));
     slots.emplace_back((new PA_Integer(472, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
-                       ->with_min_max(0, 100));
+                       ->with_min_max(0, 100)
+                       ->with_position(PP_Back));
     slots.emplace_back((new PA_Integer(476, 4, _("Out level"), _("Sets the overall Output level of this block.")))
-                       ->with_min_max(-100, 0));
+                       ->with_min_max(-100, 0)
+                       ->with_position(PP_Back));
 }
 
 P_Delay::Dynamic::Dynamic()
@@ -450,9 +467,11 @@ P_Delay::Dynamic::Dynamic()
                                       _("Release"), _("A parameter relative to a Compressor release.")))
                        ->with_offset(3));
     slots.emplace_back((new PA_Integer(472, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
-                       ->with_min_max(0, 100));
+                       ->with_min_max(0, 100)
+                       ->with_position(PP_Back));
     slots.emplace_back((new PA_Integer(476, 4, _("Out level"), _("Sets the overall Output level of this block.")))
-                       ->with_min_max(-100, 0));
+                       ->with_min_max(-100, 0)
+                       ->with_position(PP_Back));
 }
 
 P_Delay::Dual::Dual()
@@ -482,9 +501,11 @@ P_Delay::Dual::Dual()
     slots.emplace_back((new PA_Integer(460, 4, _("Pan 2"), _("Pans the Delay repetitions of the second Delay Line.")))
                        ->with_min_max(-50, 50));
     slots.emplace_back((new PA_Integer(472, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
-                       ->with_min_max(0, 100));
+                       ->with_min_max(0, 100)
+                       ->with_position(PP_Back));
     slots.emplace_back((new PA_Integer(476, 4, _("Out level"), _("Sets the overall Output level of this block.")))
-                       ->with_min_max(-100, 0));
+                       ->with_min_max(-100, 0)
+                       ->with_position(PP_Back));
 }
 
 P_Filter::P_Filter(const PA_Choice &tag)
@@ -526,9 +547,11 @@ P_Filter::Auto_Resonance::Auto_Resonance()
                                       {"1.00k", "1.12k", "1.26k", "1.41k", "1.58k", "1.78k", "2.00k", "2.24k", "2.51k", "2.82k", "3.16k", "3.55k", "3.98k", "4.47k", "5.01k", "5.62k", "6.31k", "7.08k", "7.94k", "8.91k", "10.0k"},
                                       _("Frequency Max"), _("Limits the frequency range in which the sweep will be performed."))));
     slots.emplace_back((new PA_Integer(280, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
-                       ->with_min_max(0, 100));
+                       ->with_min_max(0, 100)
+                       ->with_position(PP_Back));
     slots.emplace_back((new PA_Integer(284, 4, _("Out level"), _("Sets the overall Output level of this block.")))
-                       ->with_min_max(-100, 0));
+                       ->with_min_max(-100, 0)
+                       ->with_position(PP_Back));
 }
 
 P_Filter::Resonance::Resonance()
@@ -542,9 +565,11 @@ P_Filter::Resonance::Resonance()
     slots.emplace_back((new PA_Integer(276, 4, _("Hi Resonance"), _("Sets the amount of Resonance in the Hi Cut filter.")))
                        ->with_min_max(0, 100));
     slots.emplace_back((new PA_Integer(280, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
-                       ->with_min_max(0, 100));
+                       ->with_min_max(0, 100)
+                       ->with_position(PP_Back));
     slots.emplace_back((new PA_Integer(284, 4, _("Out level"), _("Sets the overall Output level of this block.")))
-                       ->with_min_max(-100, 0));
+                       ->with_min_max(-100, 0)
+                       ->with_position(PP_Back));
 }
 
 P_Filter::Vintage_Phaser::Vintage_Phaser()
@@ -565,9 +590,11 @@ P_Filter::Vintage_Phaser::Vintage_Phaser()
     slots.emplace_back((new PA_Boolean(268, 4, _("Phase reverse"), _("An LFO phase change that causes a small Delay in one of the waveform starting points. When applied to the Left and Right outputs will start the current waveform at two different points giving you a more extreme wide spread phasing effect.")))
                        ->with_inversion());
     slots.emplace_back((new PA_Integer(280, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
-                       ->with_min_max(0, 100));
+                       ->with_min_max(0, 100)
+                       ->with_position(PP_Back));
     slots.emplace_back((new PA_Integer(284, 4, _("Out level"), _("Sets the overall Output level of this block.")))
-                       ->with_min_max(-100, 0));
+                       ->with_min_max(-100, 0)
+                       ->with_position(PP_Back));
 }
 
 P_Filter::Smooth_Phaser::Smooth_Phaser()
@@ -588,9 +615,11 @@ P_Filter::Smooth_Phaser::Smooth_Phaser()
     slots.emplace_back((new PA_Boolean(268, 4, _("Phase reverse"), _("An LFO phase change that causes a small Delay in one of the waveform starting points. When applied to the Left and Right outputs will start the current waveform at two different points giving you a more extreme wide spread phasing effect.")))
                        ->with_inversion());
     slots.emplace_back((new PA_Integer(280, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
-                       ->with_min_max(0, 100));
+                       ->with_min_max(0, 100)
+                       ->with_position(PP_Back));
     slots.emplace_back((new PA_Integer(284, 4, _("Out level"), _("Sets the overall Output level of this block.")))
-                       ->with_min_max(-100, 0));
+                       ->with_min_max(-100, 0)
+                       ->with_position(PP_Back));
 }
 
 P_Filter::Tremolo::Tremolo()
@@ -612,7 +641,8 @@ P_Filter::Tremolo::Tremolo()
                                       {_("Soft"), _("Hard")},
                                       _("Type"), _("Two variations of the steepness of the Tremolo Curve are available. Listen and select."))));
     slots.emplace_back((new PA_Integer(284, 4, _("Out level"), _("Sets the overall Output level of this block.")))
-                       ->with_min_max(-100, 0));
+                       ->with_min_max(-100, 0)
+                       ->with_position(PP_Back));
 }
 
 P_Filter::Panner::Panner()
@@ -626,7 +656,8 @@ P_Filter::Panner::Panner()
                                       {_("Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
                                       _("Tempo"), _("The Tempo parameter sets the relationship to the global Tempo."))));
     slots.emplace_back((new PA_Integer(284, 4, _("Out level"), _("Sets the overall Output level of this block.")))
-                       ->with_min_max(-100, 0));
+                       ->with_min_max(-100, 0)
+                       ->with_position(PP_Back));
 }
 
 P_Modulation::P_Modulation(const PA_Choice &tag)
@@ -666,9 +697,11 @@ P_Modulation::Classic_Chorus::Classic_Chorus()
                                       {"19.95", "22.39", "25.12", "28.18", "31.62", "35.48", "39.81", "44.67", "50.12", "56.23", "63.10", "70.79", "79.43", "89.13", "100.0", "112.2", "125.9", "141.3", "158.5", "177.8", "199.5", "223.9", "251.2", "281.8", "316.2", "354.8", "398.1", "446.7", "501.2", "562.3", "631.0", "707.9", "794.3", "891.3", "1.00k", "1.12k", "1.26k", "1.41k", "1.58k", "1.78k", "2.00k", "2.24k", "2.51k", "2.82k", "3.16k", "3.55k", "3.98k", "4.47k", "5.01k", "5.62k", "6.31k", "7.08k", "7.94k", "8.91k", "10.0k", "11.2k", "12.6k", "14.1k", "15.8k", "17.8k", _("Off")},
                                       _("Hi Cut"), _("Reduces the high-end frequencies in the Chorus effect. Try using the Hi Cut parameter as an option if you feel the Chorus effect is too dominant in your sound and turning down the Mix or Out level doesn't give you the dampening of the Chorus effect you are looking for."))));
     slots.emplace_back((new PA_Integer(396, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
-                       ->with_min_max(0, 100));
+                       ->with_min_max(0, 100)
+                       ->with_position(PP_Back));
     slots.emplace_back((new PA_Integer(400, 4, _("Out level"), _("Sets the overall Output level of this block.")))
-                       ->with_min_max(-100, 0));
+                       ->with_min_max(-100, 0)
+                       ->with_position(PP_Back));
 }
 
 P_Modulation::Advanced_Chorus::Advanced_Chorus()
@@ -693,9 +726,11 @@ P_Modulation::Advanced_Chorus::Advanced_Chorus()
                                       {_("Off"), _("On")},
                                       _("Phase Reverse"), _("Reverses the processed Chorus signal in the right channel. This gives a very wide Chorus effect and a less defined sound."))));
     slots.emplace_back((new PA_Integer(396, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
-                       ->with_min_max(0, 100));
+                       ->with_min_max(0, 100)
+                       ->with_position(PP_Back));
     slots.emplace_back((new PA_Integer(400, 4, _("Out level"), _("Sets the overall Output level of this block.")))
-                       ->with_min_max(-100, 0));
+                       ->with_min_max(-100, 0)
+                       ->with_position(PP_Back));
 }
 
 P_Modulation::Classic_Flanger::Classic_Flanger()
@@ -717,9 +752,11 @@ P_Modulation::Classic_Flanger::Classic_Flanger()
                                       {"19.95", "22.39", "25.12", "28.18", "31.62", "35.48", "39.81", "44.67", "50.12", "56.23", "63.10", "70.79", "79.43", "89.13", "100.0", "112.2", "125.9", "141.3", "158.5", "177.8", "199.5", "223.9", "251.2", "281.8", "316.2", "354.8", "398.1", "446.7", "501.2", "562.3", "631.0", "707.9", "794.3", "891.3", "1.00k", "1.12k", "1.26k", "1.41k", "1.58k", "1.78k", "2.00k", "2.24k", "2.51k", "2.82k", "3.16k", "3.55k", "3.98k", "4.47k", "5.01k", "5.62k", "6.31k", "7.08k", "7.94k", "8.91k", "10.0k", "11.2k", "12.6k", "14.1k", "15.8k", "17.8k", _("Off")},
                                       _("FB Hi Cut"), _("A parameter than can attenuate the high-end frequencies of the resonance created via the Feedback parameter."))));
     slots.emplace_back((new PA_Integer(396, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
-                       ->with_min_max(0, 100));
+                       ->with_min_max(0, 100)
+                       ->with_position(PP_Back));
     slots.emplace_back((new PA_Integer(400, 4, _("Out level"), _("Sets the overall Output level of this block.")))
-                       ->with_min_max(-100, 0));
+                       ->with_min_max(-100, 0)
+                       ->with_position(PP_Back));
 }
 
 P_Modulation::Advanced_Flanger::Advanced_Flanger()
@@ -749,9 +786,11 @@ P_Modulation::Advanced_Flanger::Advanced_Flanger()
                                       {_("Off"), _("On")},
                                       _("Phase Reverse"), _("Reverses the processed Flanger signal in the right channel. This gives a very wide Flanger effect and a less defined sound."))));
     slots.emplace_back((new PA_Integer(396, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
-                       ->with_min_max(0, 100));
+                       ->with_min_max(0, 100)
+                       ->with_position(PP_Back));
     slots.emplace_back((new PA_Integer(400, 4, _("Out level"), _("Sets the overall Output level of this block.")))
-                       ->with_min_max(-100, 0));
+                       ->with_min_max(-100, 0)
+                       ->with_position(PP_Back));
 }
 
 P_Modulation::Vibrato::Vibrato()
@@ -768,7 +807,8 @@ P_Modulation::Vibrato::Vibrato()
                                       {"19.95", "22.39", "25.12", "28.18", "31.62", "35.48", "39.81", "44.67", "50.12", "56.23", "63.10", "70.79", "79.43", "89.13", "100.0", "112.2", "125.9", "141.3", "158.5", "177.8", "199.5", "223.9", "251.2", "281.8", "316.2", "354.8", "398.1", "446.7", "501.2", "562.3", "631.0", "707.9", "794.3", "891.3", "1.00k", "1.12k", "1.26k", "1.41k", "1.58k", "1.78k", "2.00k", "2.24k", "2.51k", "2.82k", "3.16k", "3.55k", "3.98k", "4.47k", "5.01k", "5.62k", "6.31k", "7.08k", "7.94k", "8.91k", "10.0k", "11.2k", "12.6k", "14.1k", "15.8k", "17.8k", _("Off")},
                                       _("Hi Cut"), _("Determines the frequency above which the Hi Cut filter will attenuate the high-end frequencies of the generated effect. Hi Cut filters can be used to give a less dominant effect even at high mix levels."))));
     slots.emplace_back((new PA_Integer(400, 4, _("Out level"), _("Sets the overall Output level of this block.")))
-                       ->with_min_max(-100, 0));
+                       ->with_min_max(-100, 0)
+                       ->with_position(PP_Back));
 }
 
 P_General::P_General()

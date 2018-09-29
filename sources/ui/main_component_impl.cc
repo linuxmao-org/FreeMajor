@@ -264,19 +264,36 @@ void Main_Component::setup_choice(Fl_Choice_Ex *cb, Parameter_Access &p, int fla
 void Main_Component::setup_boxes(bool enable, const Parameter_Collection &pc, Fl_Group_Ex *boxes[], unsigned nboxes)
 {
     for (unsigned i = 0; i < nboxes; ++i) {
-        Fl_Group *box = boxes[i];
+        Fl_Group_Ex *box = boxes[i];
         box->clear();
         box->labeltype(FL_NO_LABEL);
     }
     if (enable) {
-        for (size_t i = 0, n = pc.slots.size(); i < n; ++i) {
+        size_t slot_count = pc.slots.size();
+        Fl_Group_Ex **box_frontp = boxes;
+        Fl_Group_Ex **box_backp = boxes + nboxes;
+
+        std::unique_ptr<Fl_Group_Ex *[]> box_alloc(new Fl_Group_Ex *[nboxes]); 
+        for (size_t i = 0; i < slot_count; ++i) {
+            Parameter_Access *p = pc.slots[i].get();
+            switch (p->position) {
+            case PP_Front:
+                box_alloc[i] = *box_frontp++; break;
+            case PP_Back:
+                box_alloc[i] = *--box_backp; break;
+            default:
+                assert(false); abort();
+            }
+        }
+
+        for (size_t i = 0; i < slot_count; ++i) {
             std::unique_ptr<Association> a(new Association);
             a->flags = Assoc_Name_On_Box|Assoc_Value_On_Label;
 
             Parameter_Access *pa = pc.slots[i].get();
             a->access = pa;
 
-            Fl_Group_Ex *box = boxes[i];
+            Fl_Group_Ex *box = box_alloc[i];
             a->group_box = box;
             int bx = box->x(), by = box->y(), bw = box->w(), bh = box->h();
 
@@ -308,7 +325,7 @@ void Main_Component::setup_boxes(bool enable, const Parameter_Collection &pc, Fl
         }
     }
     for (unsigned i = 0; i < nboxes; ++i) {
-        Fl_Group *box = boxes[i];
+        Fl_Group_Ex *box = boxes[i];
         box->redraw();
     }
 }

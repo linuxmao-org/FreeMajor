@@ -14,12 +14,17 @@ enum Parameter_Type {
     PT_Integer, PT_Boolean, PT_Choice, PT_Bits,
 };
 
+enum Parameter_Position {
+    PP_Front, PP_Back,
+};
+
 class Parameter_Access {
 public:
     Parameter_Access(const char *name, const char *description)
         : name(name), description(description) {}
     virtual ~Parameter_Access() {}
     Parameter_Access *with_string_fn(std::function<std::string(int)> fn);
+    Parameter_Access *with_position(Parameter_Position pos);
 
     virtual Parameter_Type type() const = 0;
     virtual int get(const Patch &pat) const = 0;
@@ -31,6 +36,7 @@ public:
     const char *name = nullptr;
     const char *description = nullptr;
     std::function<std::string(int)> to_string_fn;
+    Parameter_Position position = PP_Front;
 };
 
 class Parameter_Collection {

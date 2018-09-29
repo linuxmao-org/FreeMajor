@@ -89,8 +89,11 @@ bool Patch_Loader::load_realmajor_bank(const uint8_t *data, size_t length, Patch
         pbank_tmp.used[patchno] = true;
     }
 
+    if (count == 0)
+        return false;
+
     pbank = pbank_tmp;
-    return count > 0;
+    return true;
 }
 
 bool Patch_Loader::load_sysex_bank(const uint8_t *data, size_t length, Patch_Bank &pbank, bool validate_checksum)
@@ -107,6 +110,9 @@ bool Patch_Loader::load_sysex_bank(const uint8_t *data, size_t length, Patch_Ban
         pbank_tmp.used[patchno] = true;
     }
 
+    if (count == 0)
+        return false;
+
     pbank = pbank_tmp;
-    return count > 0;
+    return true;
 }

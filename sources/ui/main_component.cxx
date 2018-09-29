@@ -106,7 +106,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
   btn_export->labelsize(12);
   btn_export->callback((Fl_Callback*)cb_btn_export);
 } // Fl_Button* btn_export
-{ br_bank = new Fl_Hold_Browser(265, 10, 180, 95);
+{ br_bank = new Fl_Hold_Browser(240, 10, 205, 95);
   br_bank->box(FL_NO_BOX);
   br_bank->color(FL_BACKGROUND2_COLOR);
   br_bank->selection_color(FL_SELECTION_COLOR);

@@ -176,8 +176,8 @@ widget_class Main_Component {open
   decl {static void on_leave_parameter_control(Fl_Widget *w, void *user_data);} {private local
   }
   Fl_Browser br_bank {
-    callback {on_selected_patch();}
-    xywh {265 10 180 95} labelsize 12 textsize 12
+    callback {on_selected_patch();} selected
+    xywh {240 10 205 95} labelsize 12 textsize 12
     class Fl_Hold_Browser
   }
   decl {std::unique_ptr<Patch_Bank> pbank_;} {private local
@@ -735,7 +735,7 @@ widget_class Main_Component {open
   }
   Fl_Button btn_save {
     label Save
-    callback {on_clicked_save();} selected
+    callback {on_clicked_save();}
     xywh {515 25 70 20} labelsize 12
   }
 }

@@ -1438,7 +1438,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     txt_patch_name->callback((Fl_Callback*)cb_txt_patch_name);
     txt_patch_name->align(Fl_Align(FL_ALIGN_TOP_LEFT));
   } // Fl_Input* txt_patch_name
-  { sl_tap_tempo = new Fl_Widget_Ex<Fl_Slider>(380, 134, 200, 22, _("Tap Tempo"));
+  { sl_tap_tempo = new Fl_Slider_Ex(380, 134, 200, 22, _("Tap Tempo"));
     sl_tap_tempo->type(5);
     sl_tap_tempo->box(FL_DOWN_BOX);
     sl_tap_tempo->color(FL_BACKGROUND_COLOR);
@@ -1449,7 +1449,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     sl_tap_tempo->labelcolor(FL_FOREGROUND_COLOR);
     sl_tap_tempo->align(Fl_Align(FL_ALIGN_TOP_LEFT));
     sl_tap_tempo->when(FL_WHEN_CHANGED);
-  } // Fl_Widget_Ex<Fl_Slider>* sl_tap_tempo
+  } // Fl_Slider_Ex* sl_tap_tempo
   { chk_relay1 = new Fl_Check_Button_Ex(140, 120, 80, 20, _("Relay 1"));
     chk_relay1->box(FL_NO_BOX);
     chk_relay1->down_box(FL_DOWN_BOX);
@@ -1487,7 +1487,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     cb_routing->align(Fl_Align(FL_ALIGN_TOP_LEFT));
     cb_routing->when(FL_WHEN_RELEASE);
   } // Fl_Choice_Ex* cb_routing
-  { sl_out_level = new Fl_Widget_Ex<Fl_Slider>(380, 178, 200, 22, _("Output Level"));
+  { sl_out_level = new Fl_Slider_Ex(380, 178, 200, 22, _("Output Level"));
     sl_out_level->type(5);
     sl_out_level->box(FL_DOWN_BOX);
     sl_out_level->color(FL_BACKGROUND_COLOR);
@@ -1498,7 +1498,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     sl_out_level->labelcolor(FL_FOREGROUND_COLOR);
     sl_out_level->align(Fl_Align(FL_ALIGN_TOP_LEFT));
     sl_out_level->when(FL_WHEN_CHANGED);
-  } // Fl_Widget_Ex<Fl_Slider>* sl_out_level
+  } // Fl_Slider_Ex* sl_out_level
   { lbl_tap_tempo = new Fl_Box(515, 115, 65, 20, _("ms"));
     lbl_tap_tempo->labelsize(12);
     lbl_tap_tempo->align(Fl_Align(FL_ALIGN_RIGHT|FL_ALIGN_INSIDE));

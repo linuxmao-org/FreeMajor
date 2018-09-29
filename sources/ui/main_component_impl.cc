@@ -296,6 +296,7 @@ void Main_Component::setup_boxes(bool enable, const Parameter_Collection &pc, Fl
             dial->labeltype(FL_NORMAL_LABEL);
             dial->labelsize(9);
             dial->align(FL_ALIGN_BOTTOM);
+            dial->step(1);
             box->end();
 
             box->enter_callback(&on_enter_parameter_control, this);

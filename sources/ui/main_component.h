@@ -24,11 +24,12 @@ class Fl_Check_Button;
 class Fl_Slider;
 class Fl_Dial;
 template <class T> class Fl_Widget_Ex; 
+template <class T> class Fl_Valuator_Ex; 
 typedef Fl_Widget_Ex<Fl_Choice> Fl_Choice_Ex;
-typedef Fl_Widget_Ex<Fl_Slider> Fl_Slider_Ex;
 typedef Fl_Widget_Ex<Fl_Check_Button> Fl_Check_Button_Ex;
-typedef Fl_Widget_Ex<Fl_Dial> Fl_Dial_Ex;
 typedef Fl_Widget_Ex<Fl_Group> Fl_Group_Ex;
+typedef Fl_Valuator_Ex<Fl_Slider> Fl_Slider_Ex;
+typedef Fl_Valuator_Ex<Fl_Dial> Fl_Dial_Ex;
 #include <FL/Fl_Group.H>
 #include <FL/Fl_Box.H>
 #include <FL/Fl_Button.H>
@@ -232,11 +233,11 @@ private:
   inline void cb_txt_patch_name_i(Fl_Input*, void*);
   static void cb_txt_patch_name(Fl_Input*, void*);
 public:
-  Fl_Widget_Ex<Fl_Slider> *sl_tap_tempo;
+  Fl_Slider_Ex *sl_tap_tempo;
   Fl_Check_Button_Ex *chk_relay1;
   Fl_Check_Button_Ex *chk_relay2;
   Fl_Choice_Ex *cb_routing;
-  Fl_Widget_Ex<Fl_Slider> *sl_out_level;
+  Fl_Slider_Ex *sl_out_level;
   Fl_Box *lbl_tap_tempo;
   Fl_Box *lbl_out_level;
 };

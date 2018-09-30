@@ -6,6 +6,7 @@ mkdir gmajctl/build
 cd gmajctl/build
 cmake ..
 cmake --build .
+cd ..
 ./build/gmajctl
 ```
 # Mise à jour et compilation suivantes / build after some modifications

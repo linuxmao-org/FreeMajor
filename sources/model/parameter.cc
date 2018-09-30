@@ -8,30 +8,50 @@
 #include "app_i18n.h"
 #include <assert.h>
 
-static int load_int(const uint8_t *src, unsigned size)
+static int32_t load_int24(const uint8_t *src)
 {
-    int v = 0;
-    bool negative = src[size - 1] == 7;
-    for (int i = 0; i < size - 1; ++i) {
-        int byte = src[i];
-        if (negative)
-            byte = (byte != 127) ? (byte -= 128) : 0;
-        v += byte * (1 << (7 * i));
-    }
-    return v;
+    uint32_t value24 = 0;
+    for (unsigned i = 0; i < 4; ++i)
+        value24 |= (src[i] & 127) << (7 * i);
+
+    uint32_t result;
+    if (value24 & (1u << 23))
+        result = value24 | ((1u << 8) - 1) << 24;
+    else
+        result = value24;
+
+    return result;
 }
 
-static void store_int(uint8_t *dst, unsigned size, int value)
+static void store_int24(uint8_t *dst, int32_t value)
 {
-    bool negative = value < 0;
-    int absv = std::abs(value);
-    dst[size - 1] = negative ? 7 : 0;
+    uint32_t value24;
+    if (value >= 0)
+        value24 = (uint32_t)value;
+    else
+        value24 = ((uint32_t)value & ((1u << 23) - 1)) | (1u << 23);
 
-    for (int i = 0; i < size - 1; ++i) {
-        int divisor = 1 << (7 * i);
-        dst[i] = (absv >= divisor) ?
-            (127 & (negative ? (128 - absv / divisor) : (absv / divisor))) :
-            (negative ? 127 : 0);
+    for (unsigned i = 0; i < 4; ++i)
+        dst[i] = (value24 >> (7 * i)) & 127;
+}
+
+static int32_t load_int(const uint8_t *src, unsigned size)
+{
+    switch (size) {
+    case 4:  // sign-extended 24 bit integer storage, LSB first
+        return load_int24(src);
+    default:
+        assert(false); abort();
+    }
+}
+
+static void store_int(uint8_t *dst, unsigned size, int32_t v)
+{
+    switch (size) {
+    case 4:  // sign-extended 24 bit integer storage, LSB first
+        store_int24(dst, v); break;
+    default:
+        assert(false); abort();
     }
 }
 

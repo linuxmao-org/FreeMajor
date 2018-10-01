@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.3)
 
-project(gmajctl LANGUAGES CXX)
+project(gmajctl VERSION "0.1" LANGUAGES CXX)
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
 
 # set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address")
@@ -37,3 +37,10 @@ target_link_libraries(gmajctl PRIVATE "${CMAKE_THREAD_LIBS_INIT}")
 
 target_sources(gmajctl PRIVATE "thirdparty/Fl_Knob/Fl_Knob/Fl_Knob.cxx")
 target_include_directories(gmajctl PRIVATE "thirdparty/Fl_Knob/Fl_Knob")
+
+# Installation
+include(GNUInstallDirs)
+install(TARGETS gmajctl DESTINATION "${CMAKE_INSTALL_BINDIR}")
+
+# Packaging
+include(CPackLists.txt)

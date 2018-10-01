@@ -1,0 +1,27 @@
+# -*- cmake -*-
+
+set(CPACK_PACKAGE_VERSION "${PROJECT_VERSION}")
+set(CPACK_PACKAGE_VERSION_MAJOR "${PROJECT_VERSION_MAJOR}")
+set(CPACK_PACKAGE_VERSION_MINOR "${PROJECT_VERSION_MINOR}")
+set(CPACK_PACKAGE_VERSION_PATCH "${PROJECT_VERSION_PATCH}")
+set(CPACK_PACKAGE_VENDOR "${PROJECT_VENDOR}")
+
+include(CPack)
+
+if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+  set(windows_bundle_DLLS
+    "libgcc_s_sjlj-1.dll" "libgcc_s_seh-1.dll"
+    "libstdc++-6.dll" "libwinpthread-1.dll"
+    "mgwfltknox-1.3.dll")
+  unset(_dllfile CACHE)
+  foreach(dll ${windows_bundle_DLLS})
+    find_file(_dllfile "${dll}" PATHS "${FLTK_BIN_DIR}" PATH_SUFFIXES "bin")
+    if(_dllfile)
+      message("!! DLL \"${dll}\" from \"${_dllfile}\"")
+      install(FILES "${_dllfile}" DESTINATION "bin")
+    else()
+      message("!! DLL \"${dll}\" not found")
+    endif()
+    unset(_dllfile CACHE)
+  endforeach()
+endif()

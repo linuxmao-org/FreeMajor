@@ -17,6 +17,7 @@
 #include "utility/misc.h"
 #include <FL/Fl_Dial.H>
 #include <FL/Fl_Native_File_Chooser.H>
+#include <FL/fl_ask.H>
 #include <algorithm>
 #include <assert.h>
 

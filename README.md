@@ -1,3 +1,5 @@
+[![Build Status](https://semaphoreci.com/api/v1/jpcima/gmajctl-2/branches/master/badge.svg)](https://semaphoreci.com/jpcima/gmajctl-2)
+
 # Première compilation / First compilation
 
 ```

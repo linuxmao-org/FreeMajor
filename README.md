@@ -1,5 +1,7 @@
 [![Build Status](https://semaphoreci.com/api/v1/jpcima/gmajctl-2/branches/master/badge.svg)](https://semaphoreci.com/jpcima/gmajctl-2)
 
+[Automatic development build for Windows](http://jpcima.sdf1.org/software/development/GMajCtl/gmajctl-dev-win32.zip)
+
 # Première compilation / First compilation
 
 ```

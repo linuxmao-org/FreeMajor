@@ -91,7 +91,7 @@ class PA_Choice : public Parameter_Access {
 public:
     explicit PA_Choice(unsigned index, unsigned size, std::vector<const char *> values, const char *name, const char *description)
         : Parameter_Access(name, description),
-          values(std::move(values)), index(index), size(size) {}
+          index(index), size(size), values(std::move(values)) {}
     PA_Choice *with_offset(int offset);
 
     Parameter_Type type() const override { return PT_Choice; }

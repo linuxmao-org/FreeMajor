@@ -11,7 +11,7 @@ set(FLTK_SKIP_IMAGES ON)
 set(FLTK_SKIP_FLUID ON)
 find_package(FLTK REQUIRED)
 
-add_executable(gmajctl
+add_executable(gmajctl WIN32
   "sources/main.cc"
   "sources/utility/misc.cc"
   "sources/device/midi.cc"

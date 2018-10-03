@@ -2,7 +2,7 @@
 
 [Automatic development build for Windows](http://jpcima.sdf1.org/software/development/GMajCtl/gmajctl-dev-win32.zip)
 
-# Première compilation / First compilation
+### First compilation
 
 ```
 git clone --recursive https://github.com/jpcima/gmajctl.git
@@ -13,7 +13,7 @@ cmake --build .
 cd ..
 ./build/gmajctl
 ```
-# Mise à jour et compilation suivantes / build after some modifications
+### Build after some modifications
 
 ```
 cd gmajctl

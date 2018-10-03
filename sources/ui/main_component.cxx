@@ -91,6 +91,13 @@ void Main_Component::cb_btn_save_i(Fl_Button*, void*) {
 void Main_Component::cb_btn_save(Fl_Button* o, void* v) {
   ((Main_Component*)(o->parent()))->cb_btn_save_i(o,v);
 }
+
+void Main_Component::cb_ch_midi_interface_i(Fl_Choice*, void*) {
+  on_changed_midi_interface();
+}
+void Main_Component::cb_ch_midi_interface(Fl_Choice* o, void* v) {
+  ((Main_Component*)(o->parent()))->cb_ch_midi_interface_i(o,v);
+}
 Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
   : Fl_Group(X, Y, W, H, L) {
 { Fl_Box* o = new Fl_Box(595, 1, 315, 39, _("G-Major Editor"));
@@ -1427,7 +1434,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
   o->labelsize(12);
   o->align(Fl_Align(FL_ALIGN_LEFT|FL_ALIGN_INSIDE));
 } // Fl_Box* o
-{ chk_realtime = new Fl_Check_Button(820, 60, 85, 25, _("Real time"));
+{ chk_realtime = new Fl_Check_Button(820, 40, 85, 20, _("Real time"));
   chk_realtime->down_box(FL_DOWN_BOX);
   chk_realtime->value(1);
   chk_realtime->labelsize(12);
@@ -1531,6 +1538,12 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
   btn_save->labelsize(12);
   btn_save->callback((Fl_Callback*)cb_btn_save);
 } // Fl_Button* btn_save
+{ ch_midi_interface = new Fl_Choice(820, 60, 85, 20);
+  ch_midi_interface->down_box(FL_BORDER_BOX);
+  ch_midi_interface->labelsize(12);
+  ch_midi_interface->textsize(12);
+  ch_midi_interface->callback((Fl_Callback*)cb_ch_midi_interface);
+} // Fl_Choice* ch_midi_interface
 init();
 end();
 }

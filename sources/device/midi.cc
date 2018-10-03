@@ -31,6 +31,22 @@ Midi_Out::~Midi_Out()
 {
 }
 
+RtMidi::Api Midi_Out::current_api() const
+{
+    return client_->getCurrentApi();
+}
+
+void Midi_Out::switch_api(RtMidi::Api api)
+{
+    if (api == client_->getCurrentApi())
+        return;
+
+    RtMidiOut *client = new RtMidiOut(api, _("TC G-Major Editor"));
+    client_.reset(client);
+    client->setErrorCallback(&on_midi_error, this);
+    has_open_port_ = false;
+}
+
 bool Midi_Out::supports_virtual_port() const
 {
     RtMidiOut &client = *client_;

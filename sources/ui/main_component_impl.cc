@@ -14,6 +14,7 @@
 #include "model/patch_writer.h"
 #include "model/parameter.h"
 #include "device/midi.h"
+#include "device/midi_apis.h"
 #include "utility/misc.h"
 #include <FL/Fl_Dial.H>
 #include <FL/Fl_Native_File_Chooser.H>
@@ -32,6 +33,20 @@ void Main_Component::init()
 
     P_General *pgen = new P_General;
     pgen_.reset(pgen);
+
+    Midi_Out &mido = Midi_Out::instance();
+    size_t num_midi_apis = midi_api_count();
+    if (compiled_midi_api_count() == 1)
+        ch_midi_interface->hide();
+    else {
+        for (size_t i = 0; i < num_midi_apis; ++i) {
+            if (!is_compiled_midi_api((RtMidi::Api)i))
+                continue;
+            const char *name = midi_api_name((RtMidi::Api)i);
+            ch_midi_interface->add(name, 0, nullptr);
+        }
+        ch_midi_interface->value(compiled_midi_api_index(mido.current_api()));
+    }
 
     midi_out_q_.reset(new Midi_Out_Queue);
     update_midi_outs();
@@ -342,16 +357,35 @@ void Main_Component::update_midi_outs()
     std::vector<std::string> out_ports = mido.get_real_ports();
     for (size_t i = 0, n = out_ports.size(); i < n; ++i)
         ch_midi_out->add(out_ports[i].c_str());
+
+    // needed to update text contents
+    ch_midi_out->redraw();
 }
 
 void Main_Component::on_changed_midi_out()
 {
-    int value = ch_midi_out->value();
+    unsigned value = ch_midi_out->value();
+    if ((int)value == -1)
+        return;
+
     Midi_Out &mido = Midi_Out::instance();
     if (mido.supports_virtual_port())
         --value;  // virtual port is the first entry
 
     mido.open_port(value);
+}
+
+void Main_Component::on_changed_midi_interface()
+{
+    unsigned value = ch_midi_interface->value();
+    if ((int)value == -1)
+        return;
+
+    Midi_Out &mido = Midi_Out::instance();
+    RtMidi::Api api = compiled_midi_api_by_index(value);
+
+    mido.switch_api(api);
+    update_midi_outs();
 }
 
 void Main_Component::on_selected_patch()

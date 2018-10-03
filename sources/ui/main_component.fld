@@ -102,7 +102,7 @@ decl {typedef Fl_Valuator_Ex<Fl_Dial> Fl_Dial_Ex;} {public global
 }
 
 widget_class Main_Component {open
-  xywh {5 59 910 735} type Double
+  xywh {221 134 910 735} type Double
   code0 {init();} visible
 } {
   decl {void init();} {private local
@@ -134,6 +134,8 @@ widget_class Main_Component {open
   decl {void on_selected_patch();} {private local
   }
   decl {void on_changed_midi_out();} {private local
+  }
+  decl {void on_changed_midi_interface();} {private local
   }
   Fl_Box {} {
     label {G-Major Editor}
@@ -176,7 +178,7 @@ widget_class Main_Component {open
   decl {static void on_leave_parameter_control(Fl_Widget *w, void *user_data);} {private local
   }
   Fl_Browser br_bank {
-    callback {on_selected_patch();} selected
+    callback {on_selected_patch();}
     xywh {240 10 205 95} labelsize 12 textsize 12
     class Fl_Hold_Browser
   }
@@ -669,7 +671,7 @@ widget_class Main_Component {open
   }
   Fl_Check_Button chk_realtime {
     label {Real time}
-    xywh {820 60 85 25} down_box DOWN_BOX value 1 labelsize 12
+    xywh {820 40 85 20} down_box DOWN_BOX value 1 labelsize 12
   }
   Fl_Button btn_new {
     label New
@@ -738,4 +740,8 @@ widget_class Main_Component {open
     callback {on_clicked_save();}
     xywh {515 25 70 20} labelsize 12
   }
+  Fl_Choice ch_midi_interface {
+    callback {on_changed_midi_interface();} open selected
+    xywh {820 60 85 20} down_box BORDER_BOX labelsize 12 textsize 12
+  } {}
 }

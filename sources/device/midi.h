@@ -16,6 +16,8 @@ public:
     Midi_Out();
     ~Midi_Out();
 
+    RtMidi::Api current_api() const;
+    void switch_api(RtMidi::Api api);
     bool supports_virtual_port() const;
     std::vector<std::string> get_real_ports();
 

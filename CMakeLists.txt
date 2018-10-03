@@ -15,6 +15,7 @@ add_executable(gmajctl WIN32
   "sources/main.cc"
   "sources/utility/misc.cc"
   "sources/device/midi.cc"
+  "sources/device/midi_apis.cc"
   "sources/model/parameter.cc"
   "sources/model/patch_loader.cc"
   "sources/model/patch_writer.cc"

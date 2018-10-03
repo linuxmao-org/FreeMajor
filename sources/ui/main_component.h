@@ -60,6 +60,7 @@ private:
   void update_midi_outs(); 
   void on_selected_patch(); 
   void on_changed_midi_out(); 
+  void on_changed_midi_interface(); 
 public:
   Fl_Button *btn_import;
 private:
@@ -251,5 +252,10 @@ public:
 private:
   inline void cb_btn_save_i(Fl_Button*, void*);
   static void cb_btn_save(Fl_Button*, void*);
+public:
+  Fl_Choice *ch_midi_interface;
+private:
+  inline void cb_ch_midi_interface_i(Fl_Choice*, void*);
+  static void cb_ch_midi_interface(Fl_Choice*, void*);
 };
 #endif

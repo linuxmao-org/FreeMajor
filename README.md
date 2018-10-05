@@ -2,6 +2,17 @@
 
 [Automatic development build for Windows](http://jpcima.sdf1.org/software/development/GMajCtl/gmajctl-dev-win32.zip)
 
+### Dependencies
+gmajctl is mostly tested on LibraZiK2 based on Debian stretch.
+Dependencies on this OS are:
+```
+git
+cmake
+build-essential
+libasound2-dev
+libjack-jackd2-dev
+libfltk1.3-dev
+```
 ### First compilation
 
 ```

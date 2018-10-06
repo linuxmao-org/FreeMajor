@@ -11,20 +11,20 @@ v0.1
 :toc:
 
 [.Lead]
-Ce manuel documente l'utilisation du programme gmajctl, Le controleur midi pour le multieffet de TC Electronic G-Major. +
+Ce manuel documente l'utilisation du programme gmajctl, un contrôleur midi pour le multieffet de TC Electronic G-Major. +
 gmajctl est un logiciel libre et gratuit. +
 Si le logiciel présente un problème, merci de déposer un rapport sur la page de projet&nbsp;: +
 https://github.com/linuxmao-org/gmajctl
 
 == Description
 
-gmajctl est un controleur midi compatible avec le multieffet G-Major de TC Electronic.
+gmajctl est un contrôleur midi compatible avec le multieffet G-Major de TC Electronic.
 
-Ce programme permet de rendre conviviale l'utilisation avancée du multieffet grace à une interface graphique qui regroupe tous les paramètres des presets.
+Ce programme permet de rendre conviviale l'utilisation avancée du multieffet grâce à une interface graphique qui regroupe tous les paramètres des préréglages.
 
-Il offre la possibilité de récuperer dans le G-Major des presets utilisateur, en créer, les modifier, les importer les exporter... etc...
+Il offre la possibilité de récuperer dans le G-Major des préréglages utilisateur, d'en créer de nouveaux, de modifier ceux qui existent déjà, de les importer, de les exporter, etc...
 
-Vous allez découvrir toutes les possibilités en lisant ce manuel.
+Vous allez découvrir toutes les possibilités offertes par gmajctl en lisant ce manuel.
 
 == Installation
 
@@ -32,16 +32,16 @@ Le projet met à disposition des téléchargements pour le système Windows. +
 https://github.com/linuxmao-org/gmajctl/releases
 
 À défaut de disposer d'une version téléchargeable pour son système d'exploitation, il faudra récupérer le code source et le construire soi-même.
-Visitez alors la page d'accueil du projet, et suivez les étapes de construction indiquées le fichier Readme.md.
+Visitez alors la page d'accueil du projet, et suivez les étapes de construction indiquées dans le fichier Readme.md.
 
 == Utilisation
 
-À l'ouverture du controleur, la fenêtre affiche l'interface graphique où l'on retrouve tout les réglages qui sont physiquement possibles sur le G-Major et les fonctions necessaires au transfert des données vers le G-Major.
+À l'ouverture du contrôleur, la fenêtre affiche l'interface graphique où l'on retrouve tous les réglages qui sont physiquement possibles sur le G-Major et les fonctions nécessaires au transfert des données vers le G-Major.
 
 .La fenêtre d'édition
 image::../resources/screen.png[500,500]
 
-Le disposition du controleur est la suivante&nbsp;:
+Le disposition du contrôleur est la suivante&nbsp;:
 
 - Patches - à écrire -
 - Midi - à écrire -

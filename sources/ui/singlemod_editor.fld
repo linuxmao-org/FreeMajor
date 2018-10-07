@@ -1,0 +1,39 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0304
+i18n_type 1
+i18n_include app_i18n.h
+i18n_function _
+header_name {.h}
+code_name {.cxx}
+widget_class Single_Mod_Editor {open selected
+  xywh {168 133 90 90} type Double visible
+} {
+  Fl_Slider sl_assignment {
+    xywh {5 20 20 70} type {Vert Fill} labelsize 12
+  }
+  Fl_Slider sl_min {
+    xywh {25 20 20 70} type {Vert Fill} labelsize 12
+  }
+  Fl_Slider sl_mid {
+    xywh {45 20 20 70} type {Vert Fill} labelsize 12
+  }
+  Fl_Slider sl_max {
+    xywh {65 20 20 70} type {Vert Fill} labelsize 12
+  }
+  Fl_Box lbl_assignment {
+    label off
+    xywh {5 0 20 20} labelsize 10
+  }
+  Fl_Box lbl_min {
+    label 100
+    xywh {25 0 20 20} labelsize 10
+  }
+  Fl_Box lbl_mid {
+    label 100
+    xywh {45 0 20 20} labelsize 10
+  }
+  Fl_Box lbl_max {
+    label 100
+    xywh {65 0 20 20} labelsize 10
+  }
+}

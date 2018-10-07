@@ -11,14 +11,14 @@ v0.1
 :toc:
 
 [.Lead]
-Ce manuel documente l'utilisation du programme gmajctl, un contrôleur midi pour le multi-effets de TC Electronic G-Major. +
+Ce manuel documente l'utilisation du programme gmajctl, un contrôleur MIDI pour le multi-effets de TC Electronic G-Major. +
 gmajctl est un logiciel libre et gratuit. +
 Si le logiciel présente un problème, veuillez déposer un rapport sur la page de projet&nbsp;: +
 https://github.com/linuxmao-org/gmajctl
 
 == Description
 
-gmajctl est un contrôleur midi compatible avec le multi-effets G-Major de TC Electronic.
+gmajctl est un contrôleur MIDI compatible avec le multi-effets G-Major de TC Electronic.
 
 Ce programme permet de rendre conviviale l'utilisation avancée du multi-effets grâce à une interface graphique qui regroupe tous les paramètres des préréglages.
 

@@ -6,7 +6,6 @@
 gmajctl is mostly tested on [LibraZiK-2](http://librazik.tuxfamily.org/), a Debian Stretch based OS.
 The build dependencies on this OS are:
 ```
-git
 cmake
 build-essential
 libasound2-dev

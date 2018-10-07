@@ -5,5 +5,9 @@
 
 #pragma once
 
-// TODO i18n function
+#if defined(ENABLE_GETTEXT)
+#include <libintl.h>
+#define _(x) ((const char *)gettext(x))
+#else
 #define _(x) x
+#endif

@@ -5,6 +5,21 @@ list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
 
 # set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address")
 
+include(GNUInstallDirs)
+
+if(CMAKE_SYSTEM_NAME STREQUAL "Windows" OR CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+  set(ENABLE_GETTEXT_INIT FALSE)
+else()
+  set(ENABLE_GETTEXT_INIT TRUE)
+endif()
+
+option(ENABLE_GETTEXT "Enable internationalization with gettext" "${ENABLE_GETTEXT_INIT}")
+
+if(ENABLE_GETTEXT)
+  find_package(Intl REQUIRED)
+  find_package(Gettext REQUIRED)
+endif()
+
 set(FLTK_SKIP_OPENGL ON)
 set(FLTK_SKIP_FORMS ON)
 set(FLTK_SKIP_IMAGES ON)
@@ -29,6 +44,8 @@ add_executable(gmajctl WIN32
   "sources/ui/singlemod_editor.cxx"
   "sources/ui/association.cc"
   "sources/ui/midi_out_queue.cc")
+target_compile_definitions(gmajctl
+  PRIVATE "LOCALE_DIRECTORY=\"${CMAKE_INSTALL_FULL_LOCALEDIR}\"")
 target_include_directories(gmajctl
   PRIVATE "sources" "${FLTK_INCLUDE_DIR}")
 target_link_libraries(gmajctl PRIVATE "${FLTK_LIBRARIES}")
@@ -39,12 +56,26 @@ target_link_libraries(gmajctl PRIVATE RtMidi)
 find_package(Threads REQUIRED)
 target_link_libraries(gmajctl PRIVATE "${CMAKE_THREAD_LIBS_INIT}")
 
-target_sources(gmajctl PRIVATE "thirdparty/Fl_Knob/Fl_Knob/Fl_Knob.cxx")
-target_include_directories(gmajctl PRIVATE "thirdparty/Fl_Knob/Fl_Knob")
+if(ENABLE_GETTEXT)
+  target_compile_definitions(gmajctl PRIVATE "ENABLE_GETTEXT=")
+  target_include_directories(gmajctl PRIVATE ${Intl_INCLUDE_DIRS})
+  target_link_libraries(gmajctl PRIVATE ${Intl_LIBRARIES})
+endif()
 
-# Installation
-include(GNUInstallDirs)
+# target_sources(gmajctl PRIVATE "thirdparty/Fl_Knob/Fl_Knob/Fl_Knob.cxx")
+# target_include_directories(gmajctl PRIVATE "thirdparty/Fl_Knob/Fl_Knob")
+
+## Installation
 install(TARGETS gmajctl DESTINATION "${CMAKE_INSTALL_BINDIR}")
 
-# Packaging
+## Translations
+if(ENABLE_GETTEXT)
+  set(TRANSLATIONS "fr")
+  foreach(translation ${TRANSLATIONS})
+    gettext_process_po_files("${translation}" ALL INSTALL_DESTINATION "${CMAKE_INSTALL_LOCALEDIR}" PO_FILES
+      "po/${translation}/gmajctl.po")
+  endforeach()
+endif()
+
+## Packaging
 include(CPackLists.txt)

@@ -24,6 +24,7 @@ add_executable(gmajctl WIN32
   "sources/ui/main_component.cxx"
   "sources/ui/main_component_impl.cc"
   "sources/ui/patch_chooser.cxx"
+  "sources/ui/modifiers_editor.cxx"
   "sources/ui/association.cc"
   "sources/ui/midi_out_queue.cc")
 target_include_directories(gmajctl

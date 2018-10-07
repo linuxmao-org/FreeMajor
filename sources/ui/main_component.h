@@ -6,6 +6,7 @@
 #include <FL/Fl_Check_Button.H>
 #include <FL/Fl_Hold_Browser.H>
 #include <FL/Fl_Slider.H>
+#include <FL/Fl_Double_Window.H>
 #include <list>
 #include <vector>
 #include <memory>
@@ -19,6 +20,7 @@ class PA_Choice;
 class P_General;
 class Association;
 class Midi_Out_Queue;
+class Modifiers_Editor;
 class Fl_Choice;
 class Fl_Check_Button;
 class Fl_Slider;
@@ -80,6 +82,7 @@ private:
   void on_clicked_copy(); 
   void on_clicked_delete(); 
   void on_clicked_send(); 
+  void on_clicked_modifiers(); 
   void on_edited_patch_name(); 
   static void on_edited_parameter(Fl_Widget *w, void *user_data); 
   static void on_enter_parameter_control(Fl_Widget *w, void *user_data); 
@@ -94,6 +97,8 @@ private:
   std::vector<std::unique_ptr<Association>> assoc_; 
   std::list<Association *> assoc_entered_; 
   std::unique_ptr<Midi_Out_Queue> midi_out_q_; 
+  std::unique_ptr<Fl_Double_Window> win_modifiers_; 
+  Modifiers_Editor *edt_modifiers_ = nullptr; 
 public:
   Fl_Choice *ch_midi_out;
 private:
@@ -257,5 +262,10 @@ public:
 private:
   inline void cb_ch_midi_interface_i(Fl_Choice*, void*);
   static void cb_ch_midi_interface(Fl_Choice*, void*);
+public:
+  Fl_Button *btn_modifiers;
+private:
+  inline void cb_btn_modifiers_i(Fl_Button*, void*);
+  static void cb_btn_modifiers(Fl_Button*, void*);
 };
 #endif

@@ -5,6 +5,7 @@
 
 #include "main_component.h"
 #include "patch_chooser.h"
+#include "modifiers_editor.h"
 #include "widget_ex.h"
 #include "association.h"
 #include "midi_out_queue.h"
@@ -18,6 +19,7 @@
 #include "utility/misc.h"
 #include <FL/Fl_Dial.H>
 #include <FL/Fl_Native_File_Chooser.H>
+#include <FL/Fl_Double_Window.H>
 #include <FL/fl_ask.H>
 #include <algorithm>
 #include <assert.h>
@@ -27,6 +29,15 @@ static constexpr double sysex_send_interval = 0.100;
 void Main_Component::init()
 {
     reset_description_text();
+
+    Fl_Double_Window *win_modifiers = new Fl_Double_Window(810, 635);
+    win_modifiers_.reset(win_modifiers);
+    win_modifiers->label(_("Modifiers"));
+
+    win_modifiers->begin();
+    Modifiers_Editor *edt_modifiers = new Modifiers_Editor(0, 0, win_modifiers->w(), win_modifiers->h());
+    edt_modifiers_ = edt_modifiers;
+    win_modifiers->end();
 
     Patch_Bank *pbank = new Patch_Bank;
     pbank_.reset(pbank);
@@ -663,6 +674,12 @@ void Main_Component::on_clicked_send()
     midi_out_q_->enqueue_message(pgm_chg_msg, sizeof(pgm_chg_msg), 0.0);
 
     midi_out_q_->enqueue_message(message.data(), message.size(), sysex_send_interval);
+}
+
+void Main_Component::on_clicked_modifiers()
+{
+    Fl_Double_Window &win = *win_modifiers_;
+    win.show();
 }
 
 void Main_Component::on_edited_patch_name()

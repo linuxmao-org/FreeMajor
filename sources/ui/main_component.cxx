@@ -98,6 +98,13 @@ void Main_Component::cb_ch_midi_interface_i(Fl_Choice*, void*) {
 void Main_Component::cb_ch_midi_interface(Fl_Choice* o, void* v) {
   ((Main_Component*)(o->parent()))->cb_ch_midi_interface_i(o,v);
 }
+
+void Main_Component::cb_btn_modifiers_i(Fl_Button*, void*) {
+  on_clicked_modifiers();
+}
+void Main_Component::cb_btn_modifiers(Fl_Button* o, void* v) {
+  ((Main_Component*)(o->parent()))->cb_btn_modifiers_i(o,v);
+}
 Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
   : Fl_Group(X, Y, W, H, L) {
 { Fl_Box* o = new Fl_Box(595, 1, 315, 39, _("G-Major Editor"));
@@ -1544,6 +1551,10 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
   ch_midi_interface->textsize(12);
   ch_midi_interface->callback((Fl_Callback*)cb_ch_midi_interface);
 } // Fl_Choice* ch_midi_interface
+{ btn_modifiers = new Fl_Button(5, 165, 120, 20, _("Modifiers"));
+  btn_modifiers->labelsize(12);
+  btn_modifiers->callback((Fl_Callback*)cb_btn_modifiers);
+} // Fl_Button* btn_modifiers
 init();
 end();
 }

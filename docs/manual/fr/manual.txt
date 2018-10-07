@@ -11,14 +11,14 @@ v0.1
 :toc:
 
 [.Lead]
-Ce manuel documente l'utilisation du programme gmajctl, un contrôleur midi pour le multieffet de TC Electronic G-Major. +
+Ce manuel documente l'utilisation du programme gmajctl, un contrôleur midi pour le multi-effets de TC Electronic G-Major. +
 gmajctl est un logiciel libre et gratuit. +
 Si le logiciel présente un problème, merci de déposer un rapport sur la page de projet&nbsp;: +
 https://github.com/linuxmao-org/gmajctl
 
 == Description
 
-gmajctl est un contrôleur midi compatible avec le multieffet G-Major de TC Electronic.
+gmajctl est un contrôleur midi compatible avec le multi-effets G-Major de TC Electronic.
 
 Ce programme permet de rendre conviviale l'utilisation avancée du multieffet grâce à une interface graphique qui regroupe tous les paramètres des préréglages.
 
@@ -32,7 +32,7 @@ Le projet met à disposition des téléchargements pour le système Windows. +
 https://github.com/linuxmao-org/gmajctl/releases
 
 À défaut de disposer d'une version téléchargeable pour son système d'exploitation, il faudra récupérer le code source et le construire soi-même.
-Visitez alors la page d'accueil du projet, et suivez les étapes de construction indiquées dans le fichier Readme.md.
+Visitez alors la page d'accueil du projet, et suivez les étapes de construction indiquées dans le fichier README.md.
 
 == Utilisation
 
@@ -43,29 +43,29 @@ image::../resources/screen.png[500,500]
 
 Le disposition du contrôleur est la suivante&nbsp;:
 
-- Patches - à écrire -
-- Midi - à écrire -
-- Patch parameters - à écrire -
-- Parameters infos - à écrire -
-- Effects - à écrire -
+- Préréglages - à écrire -
+- MIDI - à écrire -
+- Paramètres préréglages- à écrire -
+- Infos paramètres - à écrire -
+- Effets - à écrire -
 
-=== Patches
+=== Préréglages
 
 - à écrire -.
 
-=== Midi
+=== MIDI
 
 - à écrire - .
 
-=== Patch parameters
+=== Paramètres préréglages
 
 - à écrire - .
 
-=== Parameters infos
+=== Infos paramètres
 
 - à écrire - .
 
-=== Effects
+=== Effets
 
 - à écrire - .
 
@@ -73,4 +73,4 @@ Le disposition du contrôleur est la suivante&nbsp;:
 
 gmajctl est un logiciel développé par Jean Pierre Cimalando en 2018. +
 
-Ce logiciel est réalisé avec un objectif&nbsp;: faciliter l'utilisation du multieffet G-Major qui n'est pilotable que par les boutons présents en façade ou l'injection de dump Sysex.
+Ce logiciel est réalisé avec un objectif&nbsp;: faciliter l'utilisation du multieffet G-Major qui n'est pilotable que par les boutons présents en façade ou par injection d'un message Sysex.

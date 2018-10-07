@@ -3,15 +3,17 @@
 #ifndef singlemod_editor_h
 #define singlemod_editor_h
 #include <FL/Fl.H>
-#include <FL/Fl_Group.H>
 #include <FL/Fl_Slider.H>
+template <class T> class Fl_Valuator_Ex; 
+typedef Fl_Valuator_Ex<Fl_Slider> Fl_Slider_Ex;
+#include <FL/Fl_Group.H>
 
 class Single_Mod_Editor : public Fl_Group {
 public:
   Single_Mod_Editor(int X, int Y, int W, int H, const char *L = 0);
-  Fl_Slider *sl_assignment;
-  Fl_Slider *sl_min;
-  Fl_Slider *sl_mid;
-  Fl_Slider *sl_max;
+  Fl_Slider_Ex *sl_assignment;
+  Fl_Slider_Ex *sl_min;
+  Fl_Slider_Ex *sl_mid;
+  Fl_Slider_Ex *sl_max;
 };
 #endif

@@ -3,7 +3,7 @@
 [Automatic development build for Windows](http://jpcima.sdf1.org/software/development/GMajCtl/gmajctl-dev-win32.zip)
 
 ### Dependencies
-gmajctl is mostly tested on LibraZiK2 based on Debian stretch.
+gmajctl is mostly tested on [LibraZiK-2](http://librazik.tuxfamily.org/), a Debian Stretch based OS.
 The build dependencies on this OS are:
 ```
 git

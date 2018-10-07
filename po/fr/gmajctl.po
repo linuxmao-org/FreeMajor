@@ -1,7 +1,7 @@
 # French translations for PACKAGE package.
 # Copyright (C) 2018 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#  <jp-dev@inbox.ru>, 2018.
+#  <jujudusud@gmail.com>, 2018.
 #
 msgid ""
 msgstr ""
@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-07 07:24+0200\n"
 "PO-Revision-Date: 2018-10-07 07:24+0200\n"
-"Last-Translator: Jean Pierre Cimalando <jp-dev@inbox.ru>\n"
+"Last-Translator: Julien Taverna <jujudusud@gmail.com>\n"
 "Language-Team: French\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -19,27 +19,27 @@ msgstr ""
 
 #: sources/model/parameter.cc:399 sources/model/parameter.cc:414
 msgid "1 oct"
-msgstr ""
+msgstr "1 oct"
 
 #: sources/model/parameter.cc:399 sources/model/parameter.cc:414
 msgid "2 oct"
-msgstr ""
+msgstr "2 oct"
 
 #: sources/model/parameter.cc:626 sources/model/parameter.cc:649
 msgid "2nd"
-msgstr ""
+msgstr "2nde"
 
 #: sources/model/parameter.cc:626 sources/model/parameter.cc:649
 msgid "4th"
-msgstr ""
+msgstr "4rte"
 
 #: sources/model/parameter.cc:325
 msgid "7 different Hi Colors can be selected."
-msgstr ""
+msgstr "7eme, différentes 'Hi Colors' sélectionnables"
 
 #: sources/model/parameter.cc:330
 msgid "7 different Lo Colors can be selected."
-msgstr ""
+msgstr "7eme, différentes 'Lo Colors' sélectionnables"
 
 #: sources/model/parameter.cc:761
 #, c-format
@@ -48,47 +48,52 @@ msgid ""
 "Very often a more subtle setting will be more applicable and blend better "
 "with the overall sound."
 msgstr ""
+"Un réglage à 100% balancera complètement le signal de gauche à droite."
+"Très souvent, un réglage plus subtil sera plus applicable et se fondra mieux"
+"avec le son global."
 
 #: sources/model/parameter.cc:542
 msgid "A parameter relative to a Compressor release."
-msgstr ""
+msgstr "Paramètre relatif à la relâche du compresseur."
 
 #: sources/model/parameter.cc:877 sources/model/parameter.cc:910
 msgid ""
 "A parameter than can attenuate the high-end frequencies of the resonance "
 "created via the Feedback parameter."
-msgstr ""
+msgstr "Paramètre capable d'atténuer les hautes fréquences de la résonance"
+"créées via le paramètre 'Feedback'."
 
 #: sources/model/parameter.cc:315
 msgid ""
 "A short Delay placed between the direct signal and the Reverb Diffuse field."
-msgstr ""
+msgstr "Un court délai placé entre le signal direct et le champ diffus de la réverbération."
 
 #: sources/model/parameter.cc:326
 msgid "Adds or substracts the selected Hi Color type."
-msgstr ""
+msgstr "Ajoute ou soustrait le type de 'Hi Color' sélectionné."
 
 #: sources/model/parameter.cc:331
 msgid "Adds or substracts the selected Lo Color type."
-msgstr ""
+msgstr "Ajoute ou soustrait le type de 'Lo Color' sélectionné."
 
 #: sources/model/parameter.cc:862 sources/model/parameter.cc:895
 msgid ""
 "Adjusts the Depth of the Flanger, also known as Intensity. The value "
 "represents the amount of modulation applied."
-msgstr ""
+msgstr "Règle la profondeur du flanger, également appelée intensité."
+"La valeur représente la quantité de modulation appliquée."
 
 #: sources/model/parameter.cc:977
 msgid "Advanced chorus"
-msgstr ""
+msgstr "Chorus avancé"
 
 #: sources/model/parameter.cc:977
 msgid "Advanced flanger"
-msgstr ""
+msgstr "Flanger avancé"
 
 #: sources/model/parameter.cc:337
 msgid "Allows fine-tuning of the density of the Reverb Diffuse field."
-msgstr ""
+msgstr "Permet d'affiner la densité du champ diffus de la réverbération."
 
 #: sources/model/parameter.cc:686 sources/model/parameter.cc:716
 msgid ""
@@ -97,14 +102,18 @@ msgid ""
 "current waveform at two different points giving you a more extreme wide "
 "spread phasing effect."
 msgstr ""
+"Un changement de phase du LFO qui provoque un petit retard dans le point de départ"
+"d'une des formes d'onde. Une fois appliqués aux sorties gauche et droite,"
+"demarrera la forme d'onde actuelle en deux points différents vous donnant"
+"une largeur plus extrême propagation de l'effet de phasing."
 
 #: sources/model/parameter.cc:99
 msgid "Assignment"
-msgstr ""
+msgstr "Affectation"
 
 #: sources/model/parameter.cc:262
 msgid "Attack"
-msgstr ""
+msgstr "Attaque"
 
 #: sources/model/parameter.cc:499 sources/model/parameter.cc:528
 #: sources/model/parameter.cc:576
@@ -112,29 +121,33 @@ msgid ""
 "Attenuates the frequencies above the set frequency thereby giving you a more "
 "analog Delay sound that in many cases will blend better in the overall sound."
 msgstr ""
+"Atténue les fréquences supérieures à la fréquence définie, ce qui vous donne un son plus"
+"proche d'un son de retard analogique qui, dans de nombreux cas, se fondra mieux dans le son général."
 
 #: sources/model/parameter.cc:503 sources/model/parameter.cc:532
 #: sources/model/parameter.cc:580
 msgid "Attenuates the frequencies below the set frequency."
-msgstr ""
+msgstr "Atténue les fréquences inférieures à la fréquence définie."
 
 #: sources/model/parameter.cc:744
 msgid ""
 "Attenuates the high frequencies of the Tremolo effect. Use the Hi Cut filter "
 "to create a less dominant Tremolo effect while keeping the Depth."
 msgstr ""
+"Atténue les hautes fréquences de l'effet Tremolo. Utilisez le filtre Hi Cut"
+"pour créer un effet de trémolo moins dominant tout en gardant la profondeur."
 
 #: sources/model/parameter.cc:971
 msgid "Auto filter"
-msgstr ""
+msgstr "Filtre automatique"
 
 #: sources/model/parameter.cc:321
 msgid "Box"
-msgstr ""
+msgstr "Boîte"
 
 #: sources/model/parameter.cc:324
 msgid "Bright"
-msgstr ""
+msgstr "Brillance"
 
 #: sources/model/parameter.cc:838
 msgid ""
@@ -142,45 +155,50 @@ msgid ""
 "it possible to change the length of that Delay. A typical chorus uses Delays "
 "at approximately 10 ms."
 msgstr ""
+"Le chorus est fondamentalement un retard modulé par un LFO. Ce paramètre permet"
+"de changer la durée de ce délai. Un chorus typique utilise des retards"
+"d'environ 10 ms."
 
 #: sources/ui/main_component_impl.cc:231
 msgid "Chorus/Flanger"
-msgstr ""
+msgstr "Chorus/Flanger"
 
 #: sources/model/parameter.cc:977
 msgid "Classic chorus"
-msgstr ""
+msgstr "Chorus classique"
 
 #: sources/model/parameter.cc:977
 msgid "Classic flanger"
-msgstr ""
+msgstr "Flanger classique"
 
 #: sources/model/parameter.cc:324
 msgid "Clear"
-msgstr ""
+msgstr "Effacer"
 
 #: sources/ui/main_component_impl.cc:729
 msgid "Confirm delete"
-msgstr ""
+msgstr "Confirmer l'effacement"
 
 #: sources/ui/main_component_impl.cc:574 sources/ui/main_component_impl.cc:674
 msgid "Confirm overwrite"
-msgstr ""
+msgstr "Confirmer l'écrasement"
 
 #: sources/model/parameter.cc:674 sources/model/parameter.cc:704
 #: sources/model/parameter.cc:734
 msgid "Controls the Depth of the Phaser."
-msgstr ""
+msgstr "Contrôle la profondeur du phaser"
 
 #: sources/model/parameter.cc:672 sources/model/parameter.cc:702
 msgid "Controls the Speed of the Phaser."
-msgstr ""
+msgstr "Contrôle la vitesse du phaser"
 
 #: sources/model/parameter.cc:872 sources/model/parameter.cc:905
 msgid ""
 "Controls the amount of Feedback/Resonance of the short modulated Delay that "
 "causes the Flange effect."
 msgstr ""
+"Contrôle la quantité de feedback/résonance du délai modulé court"
+"provoque l'effet flanger."
 
 #: sources/model/parameter.cc:680 sources/model/parameter.cc:710
 msgid ""

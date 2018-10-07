@@ -11,6 +11,7 @@ build-essential
 libasound2-dev
 libjack-jackd2-dev
 libfltk1.3-dev
+gettext
 ```
 Note that you might need to install `git` as well to fetch the sources.
 

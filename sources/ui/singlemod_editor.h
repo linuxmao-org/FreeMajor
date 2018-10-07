@@ -5,7 +5,6 @@
 #include <FL/Fl.H>
 #include <FL/Fl_Group.H>
 #include <FL/Fl_Slider.H>
-#include <FL/Fl_Box.H>
 
 class Single_Mod_Editor : public Fl_Group {
 public:
@@ -14,9 +13,5 @@ public:
   Fl_Slider *sl_min;
   Fl_Slider *sl_mid;
   Fl_Slider *sl_max;
-  Fl_Box *lbl_assignment;
-  Fl_Box *lbl_min;
-  Fl_Box *lbl_mid;
-  Fl_Box *lbl_max;
 };
 #endif

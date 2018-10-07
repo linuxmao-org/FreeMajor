@@ -71,7 +71,7 @@ decl {class Association;} {public global
 decl {class Midi_Out_Queue;} {public global
 }
 
-decl {class Modifiers_Editor;} {selected public global
+decl {class Modifiers_Editor;} {public global
 }
 
 decl {class Fl_Choice;} {public global
@@ -134,6 +134,8 @@ widget_class Main_Component {open
   decl {void setup_choice(Fl_Choice_Ex *cb, Parameter_Access &p, int flags = 0);} {private local
   }
   decl {void setup_boxes(bool enable, const Parameter_Collection &pc, Fl_Group_Ex *boxes[], unsigned nboxes);} {private local
+  }
+  decl {void setup_modifier_row(const char *title, bool enable, int row, Parameter_Collection &pc);} {selected private local
   }
   decl {void update_midi_outs();} {private local
   }

@@ -9,6 +9,9 @@
 class Modifiers_Editor : public Fl_Group {
 public:
   Modifiers_Editor(int X, int Y, int W, int H, const char *L = 0);
+  enum { rows = 5, columns = 10 }; 
+  Fl_Group *box_from_coords(int row, int column); 
+  Fl_Box *label_for_row(int row); 
   Fl_Group *mod_A1;
   Fl_Group *mod_A2;
   Fl_Group *mod_A3;

@@ -5,9 +5,15 @@ i18n_include app_i18n.h
 i18n_function _
 header_name {.h}
 code_name {.cxx}
-widget_class Modifiers_Editor {open selected
+widget_class Modifiers_Editor {open
   xywh {5 59 810 635} type Double visible
 } {
+  decl {enum { rows = 5, columns = 10 };} {public local
+  }
+  decl {Fl_Group *box_from_coords(int row, int column);} {public local
+  }
+  decl {Fl_Box *label_for_row(int row);} {selected public local
+  }
   Fl_Group mod_A1 {
     label Label open
     xywh {5 30 80 80} box BORDER_BOX labelsize 12 align 2

@@ -4,33 +4,29 @@
 #include "singlemod_editor.h"
 Single_Mod_Editor::Single_Mod_Editor(int X, int Y, int W, int H, const char *L)
   : Fl_Group(X, Y, W, H, L) {
-{ sl_assignment = new Fl_Slider(5, 20, 20, 70);
+{ sl_assignment = new Fl_Slider(2, 15, 15, 60, _("Off"));
   sl_assignment->type(2);
-  sl_assignment->labelsize(12);
+  sl_assignment->box(FL_THIN_DOWN_BOX);
+  sl_assignment->labelsize(10);
+  sl_assignment->align(Fl_Align(FL_ALIGN_TOP));
 } // Fl_Slider* sl_assignment
-{ sl_min = new Fl_Slider(25, 20, 20, 70);
+{ sl_min = new Fl_Slider(22, 15, 15, 60, _("100"));
   sl_min->type(2);
-  sl_min->labelsize(12);
+  sl_min->box(FL_THIN_DOWN_BOX);
+  sl_min->labelsize(10);
+  sl_min->align(Fl_Align(FL_ALIGN_TOP));
 } // Fl_Slider* sl_min
-{ sl_mid = new Fl_Slider(45, 20, 20, 70);
+{ sl_mid = new Fl_Slider(42, 15, 15, 60, _("100"));
   sl_mid->type(2);
-  sl_mid->labelsize(12);
+  sl_mid->box(FL_THIN_DOWN_BOX);
+  sl_mid->labelsize(10);
+  sl_mid->align(Fl_Align(FL_ALIGN_TOP));
 } // Fl_Slider* sl_mid
-{ sl_max = new Fl_Slider(65, 20, 20, 70);
+{ sl_max = new Fl_Slider(62, 15, 15, 60, _("100"));
   sl_max->type(2);
-  sl_max->labelsize(12);
+  sl_max->box(FL_THIN_DOWN_BOX);
+  sl_max->labelsize(10);
+  sl_max->align(Fl_Align(FL_ALIGN_TOP));
 } // Fl_Slider* sl_max
-{ lbl_assignment = new Fl_Box(5, 0, 20, 20, _("off"));
-  lbl_assignment->labelsize(10);
-} // Fl_Box* lbl_assignment
-{ lbl_min = new Fl_Box(25, 0, 20, 20, _("100"));
-  lbl_min->labelsize(10);
-} // Fl_Box* lbl_min
-{ lbl_mid = new Fl_Box(45, 0, 20, 20, _("100"));
-  lbl_mid->labelsize(10);
-} // Fl_Box* lbl_mid
-{ lbl_max = new Fl_Box(65, 0, 20, 20, _("100"));
-  lbl_max->labelsize(10);
-} // Fl_Box* lbl_max
 end();
 }

@@ -59,6 +59,7 @@ private:
   void setup_checkbox(Fl_Check_Button_Ex *chk, Parameter_Access &p, int flags = 0); 
   void setup_choice(Fl_Choice_Ex *cb, Parameter_Access &p, int flags = 0); 
   void setup_boxes(bool enable, const Parameter_Collection &pc, Fl_Group_Ex *boxes[], unsigned nboxes); 
+  void setup_modifier_row(const char *title, bool enable, int row, Parameter_Collection &pc); 
   void update_midi_outs(); 
   void on_selected_patch(); 
   void on_changed_midi_out(); 

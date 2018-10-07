@@ -6,6 +6,7 @@
 #include "main_component.h"
 #include "patch_chooser.h"
 #include "modifiers_editor.h"
+#include "singlemod_editor.h"
 #include "widget_ex.h"
 #include "association.h"
 #include "midi_out_queue.h"
@@ -225,6 +226,12 @@ void Main_Component::refresh_patch_display()
         {{ box_cho1, box_cho2, box_cho3, box_cho4, box_cho5, box_cho6, box_cho7, box_cho8, box_cho9, box_cho10, box_cho11, box_cho12, box_cho13, box_cho14 }};
     setup_boxes(pgen.enable_modulator().get(pat), pgen.modulation->dispatch(pat), box_cho.data(), box_cho.size());
 
+    setup_modifier_row(_("Filter"), pgen.enable_filter().get(pat), 0, pgen.filter->dispatch(pat));
+    setup_modifier_row(_("Pitch"), pgen.enable_pitch().get(pat), 1, pgen.pitch->dispatch(pat));
+    setup_modifier_row(_("Chorus/Flanger"), pgen.enable_modulator().get(pat), 2, pgen.modulation->dispatch(pat));
+    setup_modifier_row(_("Delay"), pgen.enable_delay().get(pat), 3, pgen.delay->dispatch(pat));
+    setup_modifier_row(_("Reverb"), pgen.enable_reverb().get(pat), 4, pgen.reverb);
+
     for (const auto &a : assoc_) {
         if (Fl_Widget *w = a->value_widget)
             w->callback(&on_edited_parameter, this);
@@ -304,14 +311,13 @@ void Main_Component::setup_boxes(bool enable, const Parameter_Collection &pc, Fl
         std::unique_ptr<Fl_Group_Ex *[]> box_alloc(new Fl_Group_Ex *[nboxes]); 
         for (size_t i = 0; i < slot_count; ++i) {
             Parameter_Access *p = pc.slots[i].get();
-            switch (p->position) {
-            case PP_Front:
-                box_alloc[i] = *box_frontp++; break;
-            case PP_Back:
-                box_alloc[i] = *--box_backp; break;
-            default:
-                assert(false); abort();
-            }
+            if (p->position == PP_Front)
+                box_alloc[i] = *box_frontp++;
+        }
+        for (size_t i = slot_count; i-- > 0;) {
+            Parameter_Access *p = pc.slots[i].get();
+            if (p->position != PP_Front)
+                box_alloc[i] = *--box_backp;
         }
 
         for (size_t i = 0; i < slot_count; ++i) {
@@ -356,6 +362,84 @@ void Main_Component::setup_boxes(bool enable, const Parameter_Collection &pc, Fl
         Fl_Group_Ex *box = boxes[i];
         box->redraw();
     }
+}
+
+void Main_Component::setup_modifier_row(const char *title, bool enable, int row, Parameter_Collection &pc)
+{
+    Modifiers_Editor *edt = edt_modifiers_;
+
+    for (unsigned i = 0, n = edt->columns; i < n; ++i) {
+        Fl_Group *box = edt->box_from_coords(row, i);
+        box->label("");
+        box->clear();
+    }
+
+    edt->label_for_row(row)->copy_label(title);
+
+    if (enable) {
+        std::vector<Parameter_Access *> slots;
+        slots.reserve(pc.slots.size());
+        for (size_t i = 0, n = pc.slots.size(); i < n; ++i) {
+            if (pc.slots[i]->modifiers)
+                slots.push_back(pc.slots[i].get());
+        }
+
+        size_t slot_count = slots.size();
+        std::unique_ptr<Fl_Group *[]> box_alloc(new Fl_Group *[slot_count]); 
+        for (size_t i = 0, n = slot_count, c = 0; i < n; ++i) {
+            Parameter_Access *p = slots[i];
+            if (p->position == PP_Front)
+                box_alloc[i] = edt->box_from_coords(row, c++);
+        }
+        for (size_t i = slot_count, c = edt->columns; i-- > 0;) {
+            Parameter_Access *p = slots[i];
+            if (p->position != PP_Front)
+                box_alloc[i] = edt->box_from_coords(row, --c);
+        }
+
+        for (size_t i = 0; i < slot_count; ++i) {
+            Parameter_Access *pa = slots[i];
+            Parameter_Modifiers *pm = pa->modifiers.get();
+
+            Fl_Group *box = box_alloc[i];
+            int bx = box->x(), by = box->y(), bw = box->w(), bh = box->h();
+
+            box->label(pa->name);
+            box->begin();
+            Single_Mod_Editor *me = new Single_Mod_Editor(0, 0, bw, bh);
+            me->position(bx, by);
+
+            Fl_Slider *valuators[4] = {
+                me->sl_assignment, me->sl_min, me->sl_mid, me->sl_max
+            };
+            Parameter_Access *parameters[4] = {
+                pm->assignment.get(), pm->min.get(), pm->mid.get(), pm->max.get()
+            };
+
+            for (unsigned i = 0; i < 4; ++i) {
+                std::unique_ptr<Association> a(new Association);
+                Fl_Slider *sl = valuators[i];
+                Parameter_Access *pa = parameters[i];
+                sl->range(pa->max(), pa->min());
+                sl->step(1);
+                a->flags = Assoc_Value_On_Label;
+                a->access = pa;
+                a->group_box = box;
+                a->value_widget = sl;
+                a->kind = Assoc_Slider;
+                assoc_.push_back(std::move(a));
+            }
+
+            box->end();
+        }
+    }
+
+    for (unsigned i = 0, n = edt->columns; i < n; ++i) {
+        Fl_Group *box = edt->box_from_coords(row, i);
+        box->redraw();
+    }
+
+    edt->redraw();
 }
 
 void Main_Component::update_midi_outs()

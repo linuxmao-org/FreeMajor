@@ -18,6 +18,8 @@ enum Parameter_Position {
     PP_Front, PP_Back,
 };
 
+class Parameter_Modifiers;
+
 class Parameter_Access {
 public:
     Parameter_Access(const char *name, const char *description)
@@ -25,6 +27,7 @@ public:
     virtual ~Parameter_Access() {}
     Parameter_Access *with_string_fn(std::function<std::string(int)> fn);
     Parameter_Access *with_position(Parameter_Position pos);
+    Parameter_Access *with_modifier_at(unsigned index);
 
     virtual Parameter_Type type() const = 0;
     virtual int get(const Patch &pat) const = 0;
@@ -37,6 +40,15 @@ public:
     const char *description = nullptr;
     std::function<std::string(int)> to_string_fn;
     Parameter_Position position = PP_Front;
+    std::unique_ptr<Parameter_Modifiers> modifiers;
+};
+
+class Parameter_Modifiers {
+public:
+    std::unique_ptr<Parameter_Access> assignment;
+    std::unique_ptr<Parameter_Access> min;
+    std::unique_ptr<Parameter_Access> mid;
+    std::unique_ptr<Parameter_Access> max;
 };
 
 class Parameter_Collection {

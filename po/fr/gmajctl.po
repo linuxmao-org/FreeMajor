@@ -1,4 +1,4 @@
-# French translations for gmajctlgmajctlgmajctl package.
+# French translations for gmajctl package.
 # Copyright (C) 2018 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the gmajctl package.
 # Jean Pierre Cimalando <jp-dev@inbox.ru>, 2018.

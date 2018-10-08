@@ -683,7 +683,7 @@ P_Filter::Vintage_Phaser::Vintage_Phaser()
     slots.emplace_back((new PA_Choice(264, 4,
                                       {"Low", "High"},
                                       _("Range"), _("Determines whether the phasing effect should be mainly on the high- of low-end frequencies."))));
-    slots.emplace_back((new PA_Boolean(268, 4, _("Phase Rev"/*Phase Reverse*/), _("An LFO phase change that causes a small Delay in one of the waveform starting points. When applied to the Left and Right outputs will start the current waveform at two different points giving you a more extreme wide spread phasing effect.")))
+    slots.emplace_back((new PA_Boolean(268, 4, _("Phase Rev"/*Phase Reverse*/), _("An LFO phase change that causes a small Delay in one of the waveform starting points. When applied, the Left and Right outputs will start the current waveform at two different points giving you a more extreme wide spread phasing effect.")))
                        ->with_inversion());
     slots.emplace_back((new PA_Integer(280, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
                        ->with_min_max(0, 100)
@@ -713,7 +713,7 @@ P_Filter::Smooth_Phaser::Smooth_Phaser()
     slots.emplace_back((new PA_Choice(264, 4,
                                       {"Low", "High"},
                                       _("Range"), _("Determines whether the phasing effect should be mainly on the high- of low-end frequencies."))));
-    slots.emplace_back((new PA_Boolean(268, 4, _("Phase Rev"/*Phase Reverse*/), _("An LFO phase change that causes a small Delay in one of the waveform starting points. When applied to the Left and Right outputs will start the current waveform at two different points giving you a more extreme wide spread phasing effect.")))
+    slots.emplace_back((new PA_Boolean(268, 4, _("Phase Rev"/*Phase Reverse*/), _("An LFO phase change that causes a small Delay in one of the waveform starting points. When applied, the Left and Right outputs will start the current waveform at two different points giving you a more extreme wide spread phasing effect.")))
                        ->with_inversion());
     slots.emplace_back((new PA_Integer(280, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
                        ->with_min_max(0, 100)

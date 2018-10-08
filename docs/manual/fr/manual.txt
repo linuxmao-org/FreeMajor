@@ -41,13 +41,21 @@ Visitez alors la page d'accueil du projet, et suivez les étapes de construction
 .La fenêtre d'édition
 image::../resources/screen.png[500,500]
 
-Le disposition du contrôleur est la suivante&nbsp;:
-
-- Préréglages - à écrire -
-- MIDI - à écrire -
-- Paramètres préréglages- à écrire -
-- Infos paramètres - à écrire -
-- Effets - à écrire -
+Le disposition du contrôleur se décompose en deux parties&nbsp;:
+La première partie, en haut de l'interface utilisateur regroupe :
+- Préréglages -
+- MIDI -
+- Paramètres préréglages -
+- Infos paramètres -
+La deuxième partie, en bas de l'interface utilisateur regroupe les effets :
+- Noise Gate -
+- Compresseur -
+- Egaliseur -
+- Filtre -
+- Pitch -
+- Chorus / Flanger -
+- Délai -
+- Réverbération -
 
 === Préréglages
 

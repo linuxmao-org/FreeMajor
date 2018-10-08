@@ -37,11 +37,11 @@ msgstr "4rte"
 
 #: sources/model/parameter.cc:325
 msgid "7 different Hi Colors can be selected."
-msgstr "7 hautes-colorations différentes peuvent être sélectionnées"
+msgstr "7 hautes-colorations différentes peuvent être sélectionnées."
 
 #: sources/model/parameter.cc:330
 msgid "7 different Lo Colors can be selected."
-msgstr "7 basses-colorations différentes peuvent être sélectionnées"
+msgstr "7 basses-colorations différentes peuvent être sélectionnées."
 
 #: sources/model/parameter.cc:761
 #, c-format
@@ -51,7 +51,7 @@ msgid ""
 "with the overall sound."
 msgstr ""
 "Un réglage à 100% balancera complètement le signal de gauche à droite. "
-"Très souvent, un réglage plus subtil sera approprié et s'harmonisera mieux "
+"Très souvent, un réglage plus subtil sera plus approprié et s'harmonisera mieux "
 "avec le son global."
 
 #: sources/model/parameter.cc:542
@@ -75,11 +75,11 @@ msgstr ""
 
 #: sources/model/parameter.cc:326
 msgid "Adds or substracts the selected Hi Color type."
-msgstr "Ajoute ou soustrait le type de 'Hi Color' sélectionné."
+msgstr "Ajoute ou soustrait le type de haute coloration sélectionné."
 
 #: sources/model/parameter.cc:331
 msgid "Adds or substracts the selected Lo Color type."
-msgstr "Ajoute ou soustrait le type de 'Lo Color' sélectionné."
+msgstr "Ajoute ou soustrait le type de basse coloration sélectionné."
 
 #: sources/model/parameter.cc:862 sources/model/parameter.cc:895
 msgid ""
@@ -108,7 +108,7 @@ msgid ""
 "current waveform at two different points giving you a more extreme wide "
 "spread phasing effect."
 msgstr ""
-"Un changement de phase du LFO qui provoque un petit retard dans l'un "
+"Un changement de phase du LFO qui provoque un petit délai dans l'un "
 "des points de départ de la formes d'onde. Lorsqu'appliqué, les sorties "
 "gauche et droite démarrent la forme d'onde actuelle en deux points "
 "différents, ce qui vous procure un effet de phasage plus large et plus "
@@ -129,7 +129,7 @@ msgid ""
 "analog Delay sound that in many cases will blend better in the overall sound."
 msgstr ""
 "Atténue les fréquences supérieures à la fréquence définie, ce qui vous donne "
-"un son de retard plus analogique qui, dans de nombreux cas, s'harmonisera "
+"un son de délai plus analogique qui, dans de nombreux cas, s'harmonisera "
 "mieux dans le son général."
 
 #: sources/model/parameter.cc:503 sources/model/parameter.cc:532
@@ -195,11 +195,11 @@ msgstr "Confirmer l'écrasement"
 #: sources/model/parameter.cc:674 sources/model/parameter.cc:704
 #: sources/model/parameter.cc:734
 msgid "Controls the Depth of the Phaser."
-msgstr "Contrôle la profondeur du phaser"
+msgstr "Contrôle la profondeur du phaser."
 
 #: sources/model/parameter.cc:672 sources/model/parameter.cc:702
 msgid "Controls the Speed of the Phaser."
-msgstr "Contrôle la vitesse du phaser"
+msgstr "Contrôle la vitesse du phaser."
 
 #: sources/model/parameter.cc:872 sources/model/parameter.cc:905
 msgid ""
@@ -215,7 +215,7 @@ msgid ""
 "\"-100\" reverses the phase of the signal that is fed back to the algorithm "
 "Input."
 msgstr ""
-"Contrôle la quantité de boucle de retour dans le phaser. Le réglage de"
+"Contrôle la quantité de boucle de retour dans le phaser. Le réglage de "
 "ce paramètre sur \"- 100\" inverse la phase du signal renvoyé à l'entrée "
 "de l'algorithme."
 
@@ -239,7 +239,7 @@ msgstr "Impossible de charger le fichier de banque."
 
 #: sources/ui/main_component_impl.cc:531
 msgid "Could not load the patch file."
-msgstr "Impossible de charger le fichier de patch."
+msgstr "Impossible de charger le fichier de préréglage."
 
 #: sources/ui/main_component_impl.cc:618
 msgid "Could not read the bank file."
@@ -247,7 +247,7 @@ msgstr "Impossible de lire le fichier de banque."
 
 #: sources/ui/main_component_impl.cc:513
 msgid "Could not read the patch file."
-msgstr "Impossible de lire le fichier de patch."
+msgstr "Impossible de lire le fichier de préréglage."
 
 #: sources/ui/main_component_impl.cc:683
 msgid "Could not save the bank file."
@@ -255,7 +255,7 @@ msgstr "Impossible d'enregistrer le fichier de banque."
 
 #: sources/ui/main_component_impl.cc:583
 msgid "Could not save the patch file."
-msgstr "Impossible d'enregistrer le fichier de patch."
+msgstr "Impossible d'enregistrer le fichier de préréglage."
 
 #: sources/ui/main_component_impl.cc:691
 msgid "Create into..."
@@ -299,7 +299,7 @@ msgstr "Type de délai"
 
 #: sources/ui/main_component_impl.cc:730
 msgid "Delete the current patch?"
-msgstr "Effacer le patch courant ?"
+msgstr "Effacer le préréglage courant ?"
 
 #: sources/model/parameter.cc:674 sources/model/parameter.cc:704
 #: sources/model/parameter.cc:734 sources/model/parameter.cc:802

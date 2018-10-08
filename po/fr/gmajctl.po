@@ -67,7 +67,7 @@ msgstr "Un paramètre capable d'atténuer les hautes fréquences de la résonanc
 #: sources/model/parameter.cc:315
 msgid ""
 "A short Delay placed between the direct signal and the Reverb Diffuse field."
-msgstr "Un court délai placé entre le signal direct et le champ diffus de la réverbération."
+msgstr "Un court délai placé entre le signal direct et le champ de réverbération diffuse."
 
 #: sources/model/parameter.cc:326
 msgid "Adds or substracts the selected Hi Color type."
@@ -94,7 +94,7 @@ msgstr "Flanger avancé"
 
 #: sources/model/parameter.cc:337
 msgid "Allows fine-tuning of the density of the Reverb Diffuse field."
-msgstr "Permet d'affiner la densité du champ diffus de la réverbération."
+msgstr "Permet d'affiner la densité du champ de réverbération diffuse."
 
 #: sources/model/parameter.cc:686 sources/model/parameter.cc:716
 msgid ""
@@ -1128,15 +1128,15 @@ msgstr ""
 
 #: sources/model/parameter.cc:800 sources/model/parameter.cc:826
 msgid "The Speed of the Chorus, also known as Rate."
-msgstr ""
+msgstr "La vitesse du chorus, également appelé taux."
 
 #: sources/model/parameter.cc:860 sources/model/parameter.cc:893
 msgid "The Speed of the Flanger, also known as Rate."
-msgstr ""
+msgstr "La vitesse du flanger, également appelé taux."
 
 #: sources/model/parameter.cc:934
 msgid "The Speed of the Vibrato, also known as Rate."
-msgstr ""
+msgstr "La vitesse du vibrato, également appelé taux."
 
 #: sources/model/parameter.cc:491 sources/model/parameter.cc:522
 #: sources/model/parameter.cc:564 sources/model/parameter.cc:567
@@ -1146,13 +1146,15 @@ msgstr ""
 #: sources/model/parameter.cc:867 sources/model/parameter.cc:900
 #: sources/model/parameter.cc:941
 msgid "The Tempo parameter sets the relationship to the global Tempo."
-msgstr ""
+msgstr "Le paramètre Tempo définit la relation avec le tempo global."
 
 #: sources/model/parameter.cc:303
 msgid ""
 "The Threshold point determines at what point the Noise Gate should start to "
 "dampen the signal."
 msgstr ""
+"Le point de seuil détermine à quel point la porte de bruit doit commencer à"
+"atténuer le signal."
 
 #: sources/model/parameter.cc:492
 #, c-format
@@ -1160,36 +1162,40 @@ msgid ""
 "The Width parameter determines whether the Left or Right repetitions are "
 "panned 100% or not."
 msgstr ""
+"Le paramètre Width détermine si les répétitions gauche ou droite sont"
+"pané 100% ou pas."
 
 #: sources/model/parameter.cc:936
 msgid "The amount of Pitch modulation applied."
-msgstr ""
+msgstr "La quantité de modulation de hauteur appliquée."
 
 #: sources/ui/main_component_impl.cc:575 sources/ui/main_component_impl.cc:675
 msgid "The file already exists. Replace it?"
-msgstr ""
+msgstr "Le fichier existe déjà. Remplacer ?"
 
 #: sources/model/parameter.cc:335
 msgid "The level of the Early Reflections."
-msgstr ""
+msgstr "Le niveau des premières réflexions."
 
 #: sources/model/parameter.cc:305
 msgid ""
 "The parameter determines how hard the signal should be attenuated when below "
 "the set Threshold."
 msgstr ""
+"Le paramètre détermine la dureté à laquelle le signal doit être atténué en dessous"
+"le seuil fixé."
 
 #: sources/model/parameter.cc:486 sources/model/parameter.cc:517
 msgid "The time between the repetitions."
-msgstr ""
+msgstr "Le temps entre les répétitions."
 
 #: sources/model/parameter.cc:329
 msgid "Thick"
-msgstr ""
+msgstr "Epais"
 
 #: sources/model/parameter.cc:329
 msgid "Thin"
-msgstr ""
+msgstr "Fin"
 
 #: sources/model/parameter.cc:333
 msgid ""
@@ -1197,18 +1203,25 @@ msgid ""
 "Level will give you a more ambient sound, since the Early Reflection "
 "patterns will become more obvious."
 msgstr ""
+"Ce paramètre ajuste le niveau du champ Reverb Diffuse. Réduire la réverbération"
+"Le niveau vous donnera un son plus ambiant, depuis le début de la réflexion"
+"les modèles deviendront plus évidents."
 
 #: sources/model/parameter.cc:538
 msgid ""
 "This parameter controls the actual attenuation of the Delay while Input is "
 "present."
 msgstr ""
+"Ce paramètre contrôle l'atténuation réelle du délai lorsque l'entrée est"
+"présent."
 
 #: sources/model/parameter.cc:397
 msgid ""
 "This parameter determines whether the attached Expression pedal should "
 "increase or decrease Pitch when moved either direction."
 msgstr ""
+"Ce paramètre détermine si la pédale d'expression attachée doit"
+"augmenter ou diminuer la hauteur quand on le déplace"
 
 #: sources/model/parameter.cc:392
 msgid ""
@@ -1216,90 +1229,97 @@ msgid ""
 "set to 100%, no direct guitar tone will be heard - only the processed "
 "\"pitched\" tone."
 msgstr ""
+"Ce paramètre définit le mélange entre le signal non traité et le signal traité. Si, par exemple,"
+"réglé à 100%, aucun son de guitare direct ne sera entendu - seulement le traité"
+"Ton \"pitched\"."
 
 #: sources/model/parameter.cc:255 sources/model/parameter.cc:303
 msgid "Threshold"
-msgstr ""
+msgstr "Seuil"
 
 #: sources/model/parameter.cc:329
 msgid "Tight"
-msgstr ""
+msgstr "Serré"
 
 #: sources/model/parameter.cc:321
 msgid "Tiny"
-msgstr ""
+msgstr "Minuscule"
 
 #: sources/model/parameter.cc:971
 msgid "Tremolo"
-msgstr ""
+msgstr "Trémolo"
 
 #: sources/model/parameter.cc:748
 msgid ""
 "Two variations of the steepness of the Tremolo Curve are available. Listen "
 "and select."
 msgstr ""
+"Deux variantes de l'inclinaison de la courbe du trémolo sont disponibles. Écoutez"
+"et sélectionnez."
 
 #: sources/model/parameter.cc:748
 msgid "Type"
-msgstr ""
+msgstr "Type"
 
 #: sources/model/parameter.cc:981
 msgid "Type of delay effect"
-msgstr ""
+msgstr "Type de retard"
 
 #: sources/model/parameter.cc:972
 msgid "Type of filter effect"
-msgstr ""
+msgstr "Type de filtre"
 
 #: sources/model/parameter.cc:978
 msgid "Type of modulation effect"
-msgstr ""
+msgstr "Type de modulation"
 
 #: sources/model/parameter.cc:975
 msgid "Type of pitch effect"
-msgstr ""
+msgstr "Type de pitch"
 
 #: sources/model/parameter.cc:984
 msgid "Type of reverb effect"
-msgstr ""
+msgstr "Type de réverbération"
 
 #: sources/model/parameter.cc:396 sources/model/parameter.cc:411
 msgid "Up"
-msgstr ""
+msgstr "Haut"
 
 #: sources/model/parameter.cc:268
 msgid ""
 "Use this Gain parameter to compensate for the level changes caused by the "
 "applied compression."
 msgstr ""
+"Utilisez ce paramètre de gain pour compenser les changements de niveau causés par"
+"compression appliquée."
 
 #: sources/model/parameter.cc:977
 msgid "Vibrato"
-msgstr ""
+msgstr "Vibrato"
 
 #: sources/model/parameter.cc:971
 msgid "Vintage phaser"
-msgstr ""
+msgstr "Phaser vintage"
 
 #: sources/ui/main_component_impl.cc:450
 msgid "Virtual port"
-msgstr ""
+msgstr "Port viruel"
 
 #: sources/model/parameter.cc:372 sources/model/parameter.cc:429
 msgid "Voice 1"
-msgstr ""
+msgstr "Voix 1"
 
 #: sources/model/parameter.cc:374 sources/model/parameter.cc:432
 msgid "Voice 2"
-msgstr ""
+msgstr "Voix 2"
 
 #: sources/model/parameter.cc:324
 msgid "Warm"
-msgstr ""
+msgstr "Chaleur"
 
 #: sources/model/parameter.cc:974
 msgid "Whammy"
-msgstr ""
+msgstr "Whammy"
 
 #: sources/model/parameter.cc:842
 msgid ""
@@ -1307,6 +1327,9 @@ msgid ""
 "amount of perceived Chorusing effect. When Golden Ratio is \"On\" this value "
 "is automatically calculated."
 msgstr ""
+"Lorsque la vitesse augmente, il faut diminuer la profondeur pour obtenir le même résultat"
+"montant de l'effet de chorus perçu. Lorsque le nombre d'or est activé, cette valeur "
+"est calculé automatiquement."
 
 #: sources/model/parameter.cc:916
 msgid ""
@@ -1314,6 +1337,9 @@ msgid ""
 "amount of perceived Flanging effect. When Golden Ratio is \"On\" this value "
 "is automatically calculated."
 msgstr ""
+"Lorsque la vitesse augmente, il faut diminuer la profondeur pour obtenir le même résultat"
+"montant de l’effet Flanging perçu. Lorsque le nombre d’or est égal à cette valeur "
+"est calculé automatiquement."
 
 #: sources/model/parameter.cc:255
 msgid ""
@@ -1321,17 +1347,22 @@ msgid ""
 "and the gain of any signal above the Threshold point is processed according "
 "to the Ratio, Attack and Release."
 msgstr ""
+"Lorsque le signal est supérieur au seuil défini, le compresseur est activé"
+"et le gain de tout signal au-dessus du point de seuil est traité conformément"
+"à la Ratio, Attaque et Libération."
 
 #: sources/model/parameter.cc:290 sources/model/parameter.cc:492
 #: sources/model/parameter.cc:761
 msgid "Width"
-msgstr ""
+msgstr "Profondeur"
 
 #: sources/model/parameter.cc:290
 msgid ""
 "Width defines the area around the set frequency that the EQ will amplify or "
 "attenuate."
 msgstr ""
+"Largeur définit la zone autour de la fréquence définie que l'égaliseur amplifiera ou"
+"atténuer."
 
 #: sources/model/parameter.cc:536
 msgid ""
@@ -1339,12 +1370,15 @@ msgid ""
 "function of the Delay repeats should be according to the signal present on "
 "the Input."
 msgstr ""
+"Avec ce paramètre, vous contrôlez la sensibilité du \" esquive \"ou de l'atténuation"
+"la fonction de répétition du délai doit être fonction du signal présent sur"
+"l'entrée."
 
 #: sources/model/parameter.cc:324
 msgid "Wool"
-msgstr ""
+msgstr "Laine"
 
 #: sources/ui/main_component_impl.cc:575 sources/ui/main_component_impl.cc:675
 #: sources/ui/main_component_impl.cc:730
 msgid "Yes"
-msgstr ""
+msgstr "Oui"

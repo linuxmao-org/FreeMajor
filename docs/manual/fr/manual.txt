@@ -41,19 +41,27 @@ Visitez alors la page d'accueil du projet, et suivez les étapes de construction
 .La fenêtre d'édition
 image::../resources/screen.png[500,500]
 
-Le disposition du contrôleur se décompose en deux parties&nbsp;:
+=== La disposition du contrôleur se décompose en deux parties&nbsp;:
 
-La première partie, en haut de l'interface utilisateur regroupe&nbsp;:
+==== La première partie, en haut de l'interface utilisateur regroupe&nbsp;:
 
-- Préréglages -
+* Préréglages
 
-- MIDI -
+image::../resources/presets.png[presets,357,105]
 
-- Paramètres préréglages -
+* MIDI
 
-- Infos paramètres -
+image::../resources/midi.png[midi,316,73]
 
-La deuxième partie, en bas de l'interface utilisateur regroupe les effets :
+* Paramètres préréglages
+
+image::../resources/parameters.png[parameters,586,100]
+
+* Infos paramètres
+
+image::../resources/infos.png[infos,321,110]
+
+==== La deuxième partie, en bas de l'interface utilisateur regroupe les effets :
 - Noise Gate -
 
 - Compresseur -

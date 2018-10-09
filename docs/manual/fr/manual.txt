@@ -42,36 +42,57 @@ Visitez alors la page d'accueil du projet, et suivez les étapes de construction
 image::../resources/screen.png[500,500]
 
 Le disposition du contrôleur se décompose en deux parties&nbsp;:
-La première partie, en haut de l'interface utilisateur regroupe :
+
+La première partie, en haut de l'interface utilisateur regroupe&nbsp;:
+
 - Préréglages -
+
 - MIDI -
+
 - Paramètres préréglages -
+
 - Infos paramètres -
+
 La deuxième partie, en bas de l'interface utilisateur regroupe les effets :
 - Noise Gate -
+
 - Compresseur -
+
 - Egaliseur -
+
 - Filtre -
+
 - Pitch -
+
 - Chorus / Flanger -
+
 - Délai -
+
 - Réverbération -
 
 === Préréglages
 
-- à écrire -.
+- Sélectionnez un patch sur lequel vous voulez travailler dans la liste des patchs.
+Si l’option Temps Réel est activée le G-Major chargera ce patch et changera de preset pour l’utiliser.
+Change - Si l’option Temps Réel est désactivée, Ce bouton fait changer  G-Major de patch.
+New – Crée un nouveau patch vide dans la position sélectionnée. Si un patch est présent sur cet emplacement il est détruit.
+Copy to – Copie un patch existant sur la position sélectionnée. Si un patch est présent sur cet emplacement il est détruit.
+Import – Importe un patch précédemment exporté ou téléchargé sur guitar patches
+Export - Exporte les patchs en fichier .realpatch, qui peuvent etre uploadés sur guitar patches.
 
 === MIDI
 
-- à écrire - .
+- Le menu midi permet de sélectionner l’interface midi-out à utiliser.
+La coche real time permet de basculer dans le mode temps réel. Ce mode permet d’appliquer les modification de manière instantanée.
+Send – Ce bouton envoi le patch courant au G-Major quand le mode real time n’est pas sélectioné.
 
 === Paramètres préréglages
 
-- à écrire - .
+- Ici on règle le routing, les relais, le tap tempo, le volume du preset du patch. Pour change le nom du patch en cours, en mode temps réel, il suffit d’écrire le nouveau nom dans le champ patchname et appuyer sur entrée pour qu’il soit envoyé au G-Major.
 
 === Infos paramètres
 
-- à écrire - .
+- Cette fenêtre affiche la description de chaque interrupteur ou potentiomètre pour les effets lors d’un survol avec le pointeur de la souris.
 
 === Effets
 

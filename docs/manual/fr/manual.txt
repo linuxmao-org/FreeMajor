@@ -120,8 +120,6 @@ Elle se présente sous la forme suivante&nbsp;:
 .La fenêtre d'assignation et de réglage modifiers.
 image::../resources/modifiers.png[500,500]
 
-Les nombreux potentiomètres linéaires présents dans cette fenêtre permettent de changer la valeur des paramètres auxquels ils sont rattachés.
-
 === Infos paramètres
 
 Cette fenêtre affiche la description de chaque interrupteur ou potentiomètre permettant le réglage des effets lors d’un survol avec le pointeur de la souris.

@@ -61,7 +61,7 @@ image::../resources/parameters.png[parameters,586,100]
 
 image::../resources/infos.png[infos,321,110]
 
-==== La deuxième partie, en bas de l'interface utilisateur regroupe les effets :
+==== La deuxième partie, en bas de l'interface utilisateur regroupe les effets&nbsp;:
 - Noise Gate -
 
 - Compresseur -
@@ -70,7 +70,7 @@ image::../resources/infos.png[infos,321,110]
 
 - Filtre -
 
-- Pitch -
+- Hauteur tonale -
 
 - Chorus / Flanger -
 
@@ -80,27 +80,40 @@ image::../resources/infos.png[infos,321,110]
 
 === Préréglages
 
-- Sélectionnez un patch sur lequel vous voulez travailler dans la liste des patchs.
-Si l’option Temps Réel est activée le G-Major chargera ce patch et changera de preset pour l’utiliser.
-Change - Si l’option Temps Réel est désactivée, Ce bouton fait changer  G-Major de patch.
-New – Crée un nouveau patch vide dans la position sélectionnée. Si un patch est présent sur cet emplacement il est détruit.
-Copy to – Copie un patch existant sur la position sélectionnée. Si un patch est présent sur cet emplacement il est détruit.
-Import – Importe un patch précédemment exporté ou téléchargé sur guitar patches
-Export - Exporte les patchs en fichier .realpatch, qui peuvent etre uploadés sur guitar patches.
+Fenêtre de selection - Sélectionnez un préréglage sur lequel vous voulez travailler dans la liste des préréglages. Si l’option temps réel est activée le préréglage sera envoyé au G-Major qui chargera ce patch dans la banque utilisateur et changera de preset pour l’utiliser.
+
+Load - Permet de charger un fichier de banque de préréglages .realmajor enregistré précédemment. Cela réinitialise gmajctl et affiche uniquement les préréglages contenus dans la banque chargée.
+
+Save - Enregistre l'ensemble des préréglages en cours d'édition dans gmajctl dans un fichier de banque de préréglages .realmajor.
+
+New - Crée un nouveau préréglage vide dans la position sélectionnée. Si un préréglage est présent sur cet emplacement il est détruit.
+
+Change - Si l’option temps réel est désactivée, ce bouton fait changer le G-Major de préréglage.
+
+Copy - Copie un préréglage existant sur la position sélectionnée. Si un préréglage est présent sur cet emplacement il est détruit.
+
+Delete - Détruit le préréglage sélectionné.
+
+Import - Importe un préréglage précédemment exporté ou téléchargé sur guitar patches
+
+Export - Exporte les préréglages en fichier .realpatch, qui peuvent etre déposés ensuite sur guitar patches ou échangés avec d'autres utilisateurs.
+
+Voilà un lien vers guitar patches pour les gourmands&nbsp;:
+https://guitarpatches.com/patches.php?unit=GMajor
 
 === MIDI
 
-- Le menu midi permet de sélectionner l’interface midi-out à utiliser.
+Le menu MIDI permet de sélectionner l’interface midi-out à utiliser.
 La coche real time permet de basculer dans le mode temps réel. Ce mode permet d’appliquer les modification de manière instantanée.
-Send – Ce bouton envoi le patch courant au G-Major quand le mode real time n’est pas sélectioné.
+Envoie – Ce bouton envoi le préréglage courant au G-Major quand le mode temps réel n’est pas activé.
 
 === Paramètres préréglages
 
-- Ici on règle le routing, les relais, le tap tempo, le volume du preset du patch. Pour change le nom du patch en cours, en mode temps réel, il suffit d’écrire le nouveau nom dans le champ patchname et appuyer sur entrée pour qu’il soit envoyé au G-Major.
+Ici on règle le routage, les relais, le tap tempo, le volume du préréglage. Pour changer le nom du préréglage en cours, il suffit d’écrire le nouveau nom dans le champ patchname et appuyer sur entrée. En mode temps réel, le nouveau nom est envoyé au G-Major qui le met à jour.
 
 === Infos paramètres
 
-- Cette fenêtre affiche la description de chaque interrupteur ou potentiomètre pour les effets lors d’un survol avec le pointeur de la souris.
+Cette fenêtre affiche la description de chaque interrupteur ou potentiomètre permettant le réglage des effets lors d’un survol avec le pointeur de la souris.
 
 === Effets
 

@@ -114,10 +114,10 @@ Envoie – Ce bouton envoi le préréglage courant au G-Major quand le mode temp
 
 Ici on règle le routage, les relais, le tap tempo, le volume du préréglage. Pour changer le nom du préréglage en cours, il suffit d’écrire le nouveau nom dans le champ patchname et appuyer sur entrée. En mode temps réel, le nouveau nom est envoyé au G-Major qui le met à jour.
 
-Le bouton modifiers ouvre une fenêtre qui permet de simuler l'emploi d'un controleur externe.
+Le bouton 'modifiers' ouvre une fenêtre qui permet d'affecter un paramètre à un 'modifier' et de permettre le réglage de la courbe de réponse.
 Elle se présente sous la forme suivante&nbsp;:
 
-.La fenêtre de simulation
+.La fenêtre d'assignation et de réglage modifiers.
 image::../resources/modifiers.png[500,500]
 
 Les nombreux potentiomètres linéaires présents dans cette fenêtre permettent de changer la valeur des paramètres auxquels ils sont rattachés.

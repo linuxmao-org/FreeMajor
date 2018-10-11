@@ -831,8 +831,8 @@ msgid ""
 "Real Major patch\t*.realpatch\n"
 "Sysex patch\t*.syx"
 msgstr ""
-"Banque Real Major\t*.realmajor\n"
-"Banque Sysex\t*.syx"
+"Préréglage Real Major\t*.realpatch\n"
+"Préréglage Sysex\t*.syx"
 
 #: sources/model/parameter.cc:810 sources/model/parameter.cc:836
 msgid ""

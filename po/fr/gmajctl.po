@@ -597,7 +597,7 @@ msgstr "Inf:1"
 
 #: sources/model/parameter.cc:740
 msgid "LFO P Width"
-msgstr "LFO P largeur"
+msgstr "Largeur P LFO"
 
 #: sources/model/parameter.cc:321
 msgid "Large"
@@ -1129,9 +1129,9 @@ msgid ""
 "attack time the sooner the Compressor will reach the specified Ratio after "
 "the signal rises above the Threshold."
 msgstr ""
-"L’attaque correspond au temps que met le compresseur à atteindre la réduction "
-"de gain fixée par le paramètre Ratio. Plus ce temps est court, plus le taux "
-"sélectionné sera atteint rapidement après que le signal ait dépassé le seuil."
+"Le temps d'attaque est le temps de réponse du compresseur. Plus le temps "
+"d'attaque est court, plus tôt le compresseur atteindra le taux spécifié après que "
+"le signal dépasse le seuil."
 
 #: sources/model/parameter.cc:313
 msgid "The Decay parameter determines the length of the Reverb Diffuse field."
@@ -1152,20 +1152,20 @@ msgid ""
 "Octave."
 msgstr ""
 "Le paramètre Ordre des filtres de résonance modifie la pente du filtre."
-"Les filtres du 2ème ordre présentent une pente de 12dB/Octave alors que "
-"les filtres du 4ème ordre présentent une pente de 24dB/Octave."
+"Les filtres du 2ème ordre sont de 12dB/Octave alors que "
+"les filtres du 4ème ordre sont de 24dB/Octave."
 
 #: sources/model/parameter.cc:259
 msgid "The Ratio setting determines how hard the signal is compressed."
-msgstr "Le paramètre Taux détermine la réduction du gain appliquée au signal."
+msgstr "Le paramètre Taux détermine le niveau de compression du signal."
 
 #: sources/model/parameter.cc:307
 msgid ""
 "The Release parameter determines how fast the signal is released when the "
 "Input signal rises above the Threshold point."
 msgstr ""
-"Détermine le temps que met le compresseur à se désactiver, une fois que "
-"le signal est repassé en dessous du seuil."
+"Le paramètre Release détermine la vitesse à laquelle le signal est libéré "
+"lorsque le signal d'entrée dépasse le point de seuil."
 
 #: sources/model/parameter.cc:266
 msgid ""
@@ -1173,8 +1173,9 @@ msgid ""
 "reduction of the signal after the Input signal drops below the Threshold "
 "point again."
 msgstr ""
-"Le temps de relâchement est le temps nécessaire au compresseur pour libérer "
-"le signal après que le signal d'entrée soit tombé en dessous du seuil."
+"Le temps de relâchement est le temps qu'il faut au compresseur pour relâcher "
+"la réduction de gain du signal après que le signal d'entrée soit retombé "
+"en dessous du point de seuil."
 
 #: sources/model/parameter.cc:322
 msgid ""
@@ -1219,7 +1220,7 @@ msgid ""
 "panned 100% or not."
 msgstr ""
 "Le paramètre Largeur détermine si les répétitions gauche ou droite sont "
-"pané à 100% ou pas."
+"panoramisé à 100% ou pas."
 
 #: sources/model/parameter.cc:936
 msgid "The amount of Pitch modulation applied."
@@ -1238,8 +1239,8 @@ msgid ""
 "The parameter determines how hard the signal should be attenuated when below "
 "the set Threshold."
 msgstr ""
-"Le paramètre détermine la dureté à laquelle le signal doit être atténué en dessous "
-"le seuil fixé."
+"Le paramètre détermine à quel point le signal doit être atténué lorsqu'il est "
+"inférieur au seuil fixé."
 
 #: sources/model/parameter.cc:486 sources/model/parameter.cc:517
 msgid "The time between the repetitions."
@@ -1285,9 +1286,9 @@ msgid ""
 "set to 100%, no direct guitar tone will be heard - only the processed "
 "\"pitched\" tone."
 msgstr ""
-"Ce paramètre définit le mélange entre le signal non traité et le signal traité. "
-"Lorsqu'il est réglé à 100%, aucun son de guitare direct ne sera entendu. "
-"Seul le son traité Ton \"pitched\" sera audible."
+"Ce paramètre définit le mélange entre le signal originel et le signal traité. "
+"Si, par exemple, il est réglé à 100%, aucun son direct de guitare ne sera "
+"entendu - seule la tonalité \"traitée\" sera audible."
 
 #: sources/model/parameter.cc:255 sources/model/parameter.cc:303
 msgid "Threshold"
@@ -1405,7 +1406,7 @@ msgid ""
 msgstr ""
 "Lorsque le signal est supérieur au seuil défini, le compresseur est activé "
 "et le gain de tout signal au-dessus du point de seuil est traité conformément "
-"à au taux, à l'attaque et la relâche."
+"au taux, à l'attaque et la relâche."
 
 #: sources/model/parameter.cc:290 sources/model/parameter.cc:492
 #: sources/model/parameter.cc:761

@@ -450,7 +450,7 @@ msgstr "Erreur"
 
 #: sources/model/parameter.cc:321
 msgid "Ex Large"
-msgstr "Ex large"
+msgstr "Extra large"
 
 #: sources/ui/main_component_impl.cc:551
 msgid "Export..."
@@ -463,12 +463,12 @@ msgstr "Boucle de retour coupe-haut"
 #: sources/model/parameter.cc:499 sources/model/parameter.cc:528
 #: sources/model/parameter.cc:576
 msgid "FB Hi cut"
-msgstr "Boucle de retoure coupe-haut"
+msgstr "Coupe-haut Boucle de retour"
 
 #: sources/model/parameter.cc:503 sources/model/parameter.cc:532
 #: sources/model/parameter.cc:580
 msgid "FB Lo cut"
-msgstr "Boucle de retour coupe-bas"
+msgstr "Coupe-bas Boucle de retour"
 
 #: sources/model/parameter.cc:631
 msgid "Fast"
@@ -678,11 +678,11 @@ msgstr "Type de modulation"
 #: sources/ui/main_component_impl.cc:575 sources/ui/main_component_impl.cc:675
 #: sources/ui/main_component_impl.cc:730
 msgid "No"
-msgstr "No"
+msgstr "Non"
 
 #: sources/model/parameter.cc:329
 msgid "No Base"
-msgstr "No base"
+msgstr "Aucune base"
 
 #: sources/model/parameter.cc:974
 msgid "Octaver"
@@ -841,8 +841,8 @@ msgid ""
 "sound and turning down the Mix or Out level doesn't give you the dampening "
 "of the Chorus effect you are looking for."
 msgstr ""
-"Réduit les hautes fréquences dans l’effet Chorus. Essayez d’utiliser paramètre "
-"le coupe-haut en option si vous sentez que l'effet Chorus est trop dominant "
+"Réduit les hautes fréquences dans l’effet Chorus. Essayez d’utiliser le paramètre "
+"coupe-haut en option si vous sentez que l'effet Chorus est trop dominant "
 "dans votre son et que le fait de baisser le niveau de Mix ou Sortie ne vous "
 "donne pas l'atténuation de l'effet Chorus que vous recherchez."
 
@@ -873,7 +873,7 @@ msgstr "Relâche"
 
 #: sources/model/parameter.cc:971
 msgid "Resonance filter"
-msgstr "Filtre de résonance"
+msgstr "Filtre résonant"
 
 #: sources/model/parameter.cc:632
 msgid "Response"
@@ -954,7 +954,7 @@ msgstr "Définit le temps de retard de la seconde ligne de delai."
 
 #: sources/model/parameter.cc:759
 msgid "Sets the Speed of the Panning."
-msgstr "Définit le vitesse de panoramisation."
+msgstr "Définit la vitesse de panoramisation."
 
 #: sources/model/parameter.cc:732
 msgid "Sets the Speed of the Tremolo."
@@ -1282,7 +1282,7 @@ msgstr ""
 
 #: sources/model/parameter.cc:392
 msgid ""
-"This parameters sets the mix between the dry and processed signal. If e.g. "
+"This parameter sets the mix between the dry and processed signal. If e.g. "
 "set to 100%, no direct guitar tone will be heard - only the processed "
 "\"pitched\" tone."
 msgstr ""

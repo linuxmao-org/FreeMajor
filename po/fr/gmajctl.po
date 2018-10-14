@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gmajctl 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-07 07:24+0200\n"
+"POT-Creation-Date: 2018-10-14 02:24+0200\n"
 "PO-Revision-Date: 2018-10-08 14:52+0200\n"
 "Last-Translator: Julien Taverna <jujudusud@gmail.com>\n"
 "Language-Team: French\n"
@@ -50,8 +50,8 @@ msgid ""
 "Very often a more subtle setting will be more applicable and blend better "
 "with the overall sound."
 msgstr ""
-"Un réglage à 100% balancera complètement le signal de gauche à droite. "
-"Très souvent, un réglage plus subtil sera plus approprié et s'harmonisera mieux "
+"Un réglage à 100% balancera complètement le signal de gauche à droite. Très "
+"souvent, un réglage plus subtil sera plus approprié et s'harmonisera mieux "
 "avec le son global."
 
 #: sources/model/parameter.cc:542
@@ -63,8 +63,8 @@ msgid ""
 "A parameter than can attenuate the high-end frequencies of the resonance "
 "created via the Feedback parameter."
 msgstr ""
-"Un paramètre capable d'atténuer les hautes fréquences de la résonance "
-"créée via le paramètre boucle de retour."
+"Un paramètre capable d'atténuer les hautes fréquences de la résonance créée "
+"via le paramètre boucle de retour."
 
 #: sources/model/parameter.cc:315
 msgid ""
@@ -86,8 +86,8 @@ msgid ""
 "Adjusts the Depth of the Flanger, also known as Intensity. The value "
 "represents the amount of modulation applied."
 msgstr ""
-"Ajuste la profondeur du flanger, également appelée intensité. "
-"La valeur représente la quantité de modulation appliquée."
+"Ajuste la profondeur du flanger, également appelée intensité. La valeur "
+"représente la quantité de modulation appliquée."
 
 #: sources/model/parameter.cc:977
 msgid "Advanced chorus"
@@ -108,9 +108,9 @@ msgid ""
 "current waveform at two different points giving you a more extreme wide "
 "spread phasing effect."
 msgstr ""
-"Un changement de phase du LFO qui provoque un petit délai dans l'un "
-"des points de départ de la forme d'onde. Lorsque ce changement est appliqué, "
-"les sorties gauche et droite démarrent la forme d'onde actuelle en deux points "
+"Un changement de phase du LFO qui provoque un petit délai dans l'un des "
+"points de départ de la forme d'onde. Lorsque ce changement est appliqué, les "
+"sorties gauche et droite démarrent la forme d'onde actuelle en deux points "
 "différents, ce qui vous procure un effet de phasage plus large et plus "
 "extrême."
 
@@ -142,9 +142,9 @@ msgid ""
 "Attenuates the high frequencies of the Tremolo effect. Use the Hi Cut filter "
 "to create a less dominant Tremolo effect while keeping the Depth."
 msgstr ""
-"Atténue les hautes fréquences de l'effet trémolo. Utilisez le filtre "
-"coupe-haut pour créer un effet de trémolo moins dominant tout en gardant "
-"de la profondeur."
+"Atténue les hautes fréquences de l'effet trémolo. Utilisez le filtre coupe-"
+"haut pour créer un effet de trémolo moins dominant tout en gardant de la "
+"profondeur."
 
 #: sources/model/parameter.cc:971
 msgid "Auto filter"
@@ -165,8 +165,8 @@ msgid ""
 "at approximately 10 ms."
 msgstr ""
 "Le chorus est essentiellement un délai modulé par un LFO. Ce paramètre "
-"permet de changer la durée de ce délai. Un chorus typique utilise des "
-"délais d'environ 10 ms."
+"permet de changer la durée de ce délai. Un chorus typique utilise des délais "
+"d'environ 10 ms."
 
 #: sources/ui/main_component_impl.cc:231
 msgid "Chorus/Flanger"
@@ -206,8 +206,8 @@ msgid ""
 "Controls the amount of Feedback/Resonance of the short modulated Delay that "
 "causes the Flange effect."
 msgstr ""
-"Contrôle la quantité de boucle de retour/résonance du délai modulé court "
-"qui provoque l'effet flanger."
+"Contrôle la quantité de boucle de retour/résonance du délai modulé court qui "
+"provoque l'effet flanger."
 
 #: sources/model/parameter.cc:680 sources/model/parameter.cc:710
 msgid ""
@@ -215,9 +215,9 @@ msgid ""
 "\"-100\" reverses the phase of the signal that is fed back to the algorithm "
 "Input."
 msgstr ""
-"Contrôle la quantité de boucle de retour dans le phaser. Le réglage de "
-"ce paramètre sur \"- 100\" inverse la phase du signal renvoyé à l'entrée "
-"de l'algorithme."
+"Contrôle la quantité de boucle de retour dans le phaser. Le réglage de ce "
+"paramètre sur \"- 100\" inverse la phase du signal renvoyé à l'entrée de "
+"l'algorithme."
 
 #: sources/model/parameter.cc:740
 msgid ""
@@ -226,8 +226,8 @@ msgid ""
 "will be on for 75% of the time."
 msgstr ""
 "Contrôle la division de la partie supérieure et inférieure de la forme "
-"d'onde courante, par exemple si la largeur d'impulsion est définie à 75%, "
-"la moitié supérieure de la forme d'onde sera active pendant 75% du temps."
+"d'onde courante, par exemple si la largeur d'impulsion est définie à 75%, la "
+"moitié supérieure de la forme d'onde sera active pendant 75% du temps."
 
 #: sources/ui/main_component_impl.cc:711
 msgid "Copy into..."
@@ -321,8 +321,8 @@ msgid ""
 "Determines how many repetitions there will be on the Delay of the second "
 "voice."
 msgstr ""
-"Détermine combien de répétitions seront présentes sur le délai de la "
-"seconde voix."
+"Détermine combien de répétitions seront présentes sur le délai de la seconde "
+"voix."
 
 #: sources/model/parameter.cc:494 sources/model/parameter.cc:523
 msgid "Determines how many repetitions there will be."
@@ -343,9 +343,9 @@ msgid ""
 "give a less dominant effect even at high mix levels."
 msgstr ""
 "Détermine la fréquence au-dessus de laquelle le filtre coupe-haut atténuera "
-"les fréquences hautes de l'effet généré. Les filtres coupe-haut peuvent "
-"être utilisés pour donner un effet moins dominant, même à des niveaux "
-"élevés de mixage."
+"les fréquences hautes de l'effet généré. Les filtres coupe-haut peuvent être "
+"utilisés pour donner un effet moins dominant, même à des niveaux élevés de "
+"mixage."
 
 #: sources/model/parameter.cc:568
 msgid ""
@@ -364,16 +364,16 @@ msgid ""
 "Determines whether the phasing effect should be mainly on the high- of low-"
 "end frequencies."
 msgstr ""
-"Détermine si l'effet de phasage devrait être principalement sur le haut "
-"ou le bas des fréquences."
+"Détermine si l'effet de phasage devrait être principalement sur le haut ou "
+"le bas des fréquences."
 
 #: sources/model/parameter.cc:632
 msgid ""
 "Determines whether the sweep through a frequency range will be performed "
 "fast or slow."
 msgstr ""
-"Détermine si le balayage d'une plage de fréquences sera effectué de "
-"manière rapide ou lente."
+"Détermine si le balayage d'une plage de fréquences sera effectué de manière "
+"rapide ou lente."
 
 #: sources/model/parameter.cc:974
 msgid "Detune"
@@ -432,7 +432,7 @@ msgstr "Activer le filtre"
 
 #: sources/model/parameter.cc:967
 msgid "Enable the noise gate"
-msgstr "Activer le trappe à bruit"
+msgstr "Activer la trappe à bruit"
 
 #: sources/model/parameter.cc:958
 msgid "Enable the pitch"
@@ -458,17 +458,17 @@ msgstr "Exporter..."
 
 #: sources/model/parameter.cc:877 sources/model/parameter.cc:910
 msgid "FB Hi Cut"
-msgstr "Boucle de retour coupe-haut"
+msgstr "coupe-h. ret."
 
 #: sources/model/parameter.cc:499 sources/model/parameter.cc:528
 #: sources/model/parameter.cc:576
 msgid "FB Hi cut"
-msgstr "Coupe-haut Boucle de retour"
+msgstr "Coupe-h. ret."
 
 #: sources/model/parameter.cc:503 sources/model/parameter.cc:532
 #: sources/model/parameter.cc:580
 msgid "FB Lo cut"
-msgstr "Coupe-bas Boucle de retour"
+msgstr "Coupe-b. ret."
 
 #: sources/model/parameter.cc:631
 msgid "Fast"
@@ -478,15 +478,15 @@ msgstr "Rapide"
 #: sources/model/parameter.cc:680 sources/model/parameter.cc:710
 #: sources/model/parameter.cc:872 sources/model/parameter.cc:905
 msgid "Feedback"
-msgstr "Boucle de retour"
+msgstr "Retour"
 
 #: sources/model/parameter.cc:445 sources/model/parameter.cc:568
 msgid "Feedback 1"
-msgstr "Boucle de retour 1"
+msgstr "Retour 1"
 
 #: sources/model/parameter.cc:448 sources/model/parameter.cc:571
 msgid "Feedback 2"
-msgstr "Boucle de retour 2"
+msgstr "Retour 2"
 
 #: sources/ui/main_component_impl.cc:229
 msgid "Filter"
@@ -536,7 +536,7 @@ msgstr ""
 
 #: sources/model/parameter.cc:842 sources/model/parameter.cc:916
 msgid "Gold Ratio"
-msgstr "Proportion du nombre d'or"
+msgstr "Taux nbr or"
 
 #: sources/model/parameter.cc:321 sources/model/parameter.cc:324
 msgid "Grand"
@@ -559,11 +559,11 @@ msgstr "Coupe-haut"
 
 #: sources/model/parameter.cc:655
 msgid "Hi Reso"
-msgstr "Haute résolution"
+msgstr "Haute résol."
 
 #: sources/model/parameter.cc:325
 msgid "Hi color"
-msgstr "Haute coloration"
+msgstr "Haute color."
 
 #: sources/model/parameter.cc:326
 msgid "Hi factor"
@@ -597,7 +597,7 @@ msgstr "Inf:1"
 
 #: sources/model/parameter.cc:740
 msgid "LFO P Width"
-msgstr "Largeur P LFO"
+msgstr "Larg. P LFO"
 
 #: sources/model/parameter.cc:321
 msgid "Large"
@@ -637,7 +637,7 @@ msgstr "Sortie MIDI"
 
 #: sources/model/parameter.cc:305
 msgid "Max Damp"
-msgstr "Atténuation max."
+msgstr "Atténu. max."
 
 #: sources/model/parameter.cc:117
 msgid "Maximum"
@@ -710,9 +710,9 @@ msgid ""
 "Offsets the Delay repeats in the Right channel only. For a true wide stereo "
 "Delay the Delay in the two channels should not appear at the exact same time."
 msgstr ""
-"Décale les répétitions du délai dans le canal droit uniquement."
-"Pour une véritable stéréo large, le délai dans les deux canaux ne devrait pas"
-"apparaître exactement au même moment."
+"Décale les répétitions du délai dans le canal droit uniquement.Pour une "
+"véritable stéréo large, le délai dans les deux canaux ne devrait "
+"pasapparaître exactement au même moment."
 
 #: sources/model/parameter.cc:372
 msgid "Offsets the first Voice in the Detune block."
@@ -742,7 +742,7 @@ msgstr "Ordre"
 #: sources/model/parameter.cc:883 sources/model/parameter.cc:924
 #: sources/model/parameter.cc:946 sources/model/parameter.cc:1012
 msgid "Out level"
-msgstr "Niveau de sortie"
+msgstr "Niv. sortie"
 
 #: sources/model/parameter.cc:435 sources/model/parameter.cc:582
 msgid "Pan 1"
@@ -772,10 +772,14 @@ msgstr "Panoramise les répétitions de retard de la première ligne de retard."
 msgid "Pans the Delay repetitions of the second Delay Line."
 msgstr "Panoramise les répétitions de retard de la deuxième ligne de retard."
 
+#: sources/model/parameter.cc:1006
+msgid "Parallel"
+msgstr "Parallèle"
+
 #: sources/model/parameter.cc:686 sources/model/parameter.cc:716
 #: sources/model/parameter.cc:845 sources/model/parameter.cc:919
 msgid "Phase Rev"
-msgstr "Inversion de phase"
+msgstr "Inv. phase"
 
 #: sources/model/parameter.cc:980
 msgid "Ping Pong"
@@ -841,10 +845,10 @@ msgid ""
 "sound and turning down the Mix or Out level doesn't give you the dampening "
 "of the Chorus effect you are looking for."
 msgstr ""
-"Réduit les hautes fréquences dans l’effet Chorus. Essayez d’utiliser le paramètre "
-"coupe-haut en option si vous sentez que l'effet Chorus est trop dominant "
-"dans votre son et que le fait de baisser le niveau de Mix ou Sortie ne vous "
-"donne pas l'atténuation de l'effet Chorus que vous recherchez."
+"Réduit les hautes fréquences dans l’effet Chorus. Essayez d’utiliser le "
+"paramètre coupe-haut en option si vous sentez que l'effet Chorus est trop "
+"dominant dans votre son et que le fait de baisser le niveau de Mix ou Sortie "
+"ne vous donne pas l'atténuation de l'effet Chorus que vous recherchez."
 
 #: sources/model/parameter.cc:870 sources/model/parameter.cc:903
 msgid ""
@@ -853,10 +857,10 @@ msgid ""
 "your sound and turning down the Mix or Out level doesn't give you the "
 "dampening of the Flanger effect you are looking for."
 msgstr ""
-"Réduit les hautes fréquences dans l’effet Flanger. Essayez d’utiliser le paramètre "
-"coupe-haut en option si vous sentez que l'effet Flanger est trop dominant "
-"dans votre son et que le fait de baisser le niveau Mix ou Sortie ne vous donne "
-"pas l'atténuation de l'effet Flanger que vous recherchez."
+"Réduit les hautes fréquences dans l’effet Flanger. Essayez d’utiliser le "
+"paramètre coupe-haut en option si vous sentez que l'effet Flanger est trop "
+"dominant dans votre son et que le fait de baisser le niveau Mix ou Sortie ne "
+"vous donne pas l'atténuation de l'effet Flanger que vous recherchez."
 
 #: sources/model/parameter.cc:992
 msgid "Relay 1"
@@ -896,16 +900,16 @@ msgid ""
 "Reverses the processed Chorus signal in the right channel. This gives a very "
 "wide Chorus effect and a less defined sound."
 msgstr ""
-"Inverse le signal de chorus traité dans le canal droit. Cela donne un "
-"effet de chorus large et un son moins défini."
+"Inverse le signal de chorus traité dans le canal droit. Cela donne un effet "
+"de chorus large et un son moins défini."
 
 #: sources/model/parameter.cc:919
 msgid ""
 "Reverses the processed Flanger signal in the right channel. This gives a "
 "very wide Flanger effect and a less defined sound."
 msgstr ""
-"Inverse le signal de Flanger traité dans le canal droit. Cela donne un "
-"effet Flanger très large et un son moins défini."
+"Inverse le signal de Flanger traité dans le canal droit. Cela donne un effet "
+"Flanger très large et un son moins défini."
 
 #: sources/model/parameter.cc:983
 msgid "Room"
@@ -923,6 +927,16 @@ msgstr "Rond"
 msgid "Routing"
 msgstr "Routage"
 
+#: sources/model/parameter.cc:1000
+msgid ""
+"Routing : Serial is routing the effects blocks in serial. Semi parallel is "
+"routing delay and reverb in parallel. Parallel is routing pitch, Chorus "
+"flanger, delay and reverb."
+msgstr ""
+"Routage : Serie route les effets en serie. Semi parallèle route délai et "
+"réverbération en parallèle. Parallèle route hauteur, chorus flanger, délai "
+"et réverbération en parallèle."
+
 #: sources/ui/main_component_impl.cc:651
 msgid "Save..."
 msgstr "Sauvegarder..."
@@ -936,9 +950,17 @@ msgstr "Sélectionne le numéro du préréglage."
 msgid "Selects how the Whammy block will pitch your tone."
 msgstr "Sélectionne la manière dont le bloc Whammy modifiera la tonalité."
 
+#: sources/model/parameter.cc:1005
+msgid "Semi Parallel"
+msgstr "Semi parallèle"
+
 #: sources/model/parameter.cc:536 sources/model/parameter.cc:628
 msgid "Sensitivity"
 msgstr "Sensibilité"
+
+#: sources/model/parameter.cc:1004
+msgid "Serial"
+msgstr "Série"
 
 #: sources/model/parameter.cc:1012
 msgid "Sets preset output level."
@@ -1018,7 +1040,9 @@ msgstr ""
 
 #: sources/model/parameter.cc:628
 msgid "Sets the sensitivity according to the Input you are feeding the unit."
-msgstr "Définit la sensibilité en fonction de l'entrée avec laquelle vous alimentez l'unité."
+msgstr ""
+"Définit la sensibilité en fonction de l'entrée avec laquelle vous alimentez "
+"l'unité."
 
 #: sources/model/parameter.cc:319
 msgid "Shape"
@@ -1058,9 +1082,9 @@ msgid ""
 "can select a pitch freely between one octave below the Input Pitch to one "
 "octave above."
 msgstr ""
-"Spécifie la hauteur de la première voix. Comme 100 est égal à 1 demi-ton,"
-"on peut choisir librement une hauteur entre une octave inférieure "
-"et une octave supérieure."
+"Spécifie la hauteur de la première voix. Comme 100 est égal à 1 demi-ton,on "
+"peut choisir librement une hauteur entre une octave inférieure et une octave "
+"supérieure."
 
 #: sources/model/parameter.cc:432
 msgid ""
@@ -1068,9 +1092,9 @@ msgid ""
 "can select a pitch freely between one octave below the Input Pitch to one "
 "octave above."
 msgstr ""
-"Spécifie la hauteur de la seconde voix. Comme 100 est égal à 1 demi-ton,"
-"on peut choisir librement une hauteur entre une octave inférieure "
-"et une octave supérieure."
+"Spécifie la hauteur de la seconde voix. Comme 100 est égal à 1 demi-ton,on "
+"peut choisir librement une hauteur entre une octave inférieure et une octave "
+"supérieure."
 
 #: sources/model/parameter.cc:672 sources/model/parameter.cc:702
 #: sources/model/parameter.cc:732 sources/model/parameter.cc:759
@@ -1130,8 +1154,8 @@ msgid ""
 "the signal rises above the Threshold."
 msgstr ""
 "Le temps d'attaque est le temps de réponse du compresseur. Plus le temps "
-"d'attaque est court, plus tôt le compresseur atteindra le taux spécifié après que "
-"le signal dépasse le seuil."
+"d'attaque est court, plus tôt le compresseur atteindra le taux spécifié "
+"après que le signal dépasse le seuil."
 
 #: sources/model/parameter.cc:313
 msgid "The Decay parameter determines the length of the Reverb Diffuse field."
@@ -1151,9 +1175,9 @@ msgid ""
 "filters. 2nd order filters are 12dB/Octave while 4th order filters are 24dB/"
 "Octave."
 msgstr ""
-"Le paramètre Ordre des filtres de résonance modifie la pente des filtres."
-"Les filtres du 2ème ordre sont de 12dB/Octave alors que "
-"les filtres du 4ème ordre sont de 24dB/Octave."
+"Le paramètre Ordre des filtres de résonance modifie la pente des filtres.Les "
+"filtres du 2ème ordre sont de 12dB/Octave alors que les filtres du 4ème "
+"ordre sont de 24dB/Octave."
 
 #: sources/model/parameter.cc:259
 msgid "The Ratio setting determines how hard the signal is compressed."
@@ -1174,8 +1198,8 @@ msgid ""
 "point again."
 msgstr ""
 "Le temps de relâchement est le temps qu'il faut au compresseur pour relâcher "
-"la réduction de gain du signal après que le signal d'entrée soit retombé "
-"en dessous du point de seuil."
+"la réduction de gain du signal après que le signal d'entrée soit retombé en "
+"dessous du point de seuil."
 
 #: sources/model/parameter.cc:322
 msgid ""
@@ -1239,8 +1263,8 @@ msgid ""
 "The parameter determines how hard the signal should be attenuated when below "
 "the set Threshold."
 msgstr ""
-"Le paramètre détermine à quel point le signal doit être atténué lorsqu'il est "
-"inférieur au seuil fixé."
+"Le paramètre détermine à quel point le signal doit être atténué lorsqu'il "
+"est inférieur au seuil fixé."
 
 #: sources/model/parameter.cc:486 sources/model/parameter.cc:517
 msgid "The time between the repetitions."
@@ -1260,9 +1284,9 @@ msgid ""
 "Level will give you a more ambient sound, since the Early Reflection "
 "patterns will become more obvious."
 msgstr ""
-"Ce paramètre ajuste le niveau du champ Reverb Diffuse. Réduire la réverbération "
-"Le niveau vous donnera un son plus ambiant, depuis le début de la réflexion "
-"les modèles deviendront plus évidents."
+"Ce paramètre ajuste le niveau du champ Reverb Diffuse. Réduire la "
+"réverbération Le niveau vous donnera un son plus ambiant, depuis le début de "
+"la réflexion les modèles deviendront plus évidents."
 
 #: sources/model/parameter.cc:538
 msgid ""
@@ -1277,8 +1301,8 @@ msgid ""
 "This parameter determines whether the attached Expression pedal should "
 "increase or decrease Pitch when moved either direction."
 msgstr ""
-"Ce paramètre détermine si la pédale d'expression attachée doit "
-"augmenter ou diminuer la hauteur quand on la déplace. "
+"Ce paramètre détermine si la pédale d'expression attachée doit augmenter ou "
+"diminuer la hauteur quand on la déplace. "
 
 #: sources/model/parameter.cc:392
 msgid ""
@@ -1286,9 +1310,9 @@ msgid ""
 "set to 100%, no direct guitar tone will be heard - only the processed "
 "\"pitched\" tone."
 msgstr ""
-"Ce paramètre définit le mélange entre le signal originel et le signal traité. "
-"Si, par exemple, il est réglé à 100%, aucun son direct de guitare ne sera "
-"entendu - seule la tonalité \"traitée\" sera audible."
+"Ce paramètre définit le mélange entre le signal originel et le signal "
+"traité. Si, par exemple, il est réglé à 100%, aucun son direct de guitare ne "
+"sera entendu - seule la tonalité \"traitée\" sera audible."
 
 #: sources/model/parameter.cc:255 sources/model/parameter.cc:303
 msgid "Threshold"
@@ -1311,8 +1335,8 @@ msgid ""
 "Two variations of the steepness of the Tremolo Curve are available. Listen "
 "and select."
 msgstr ""
-"Deux variantes de la pente de la courbe du trémolo sont disponibles. "
-"Écoutez et sélectionnez."
+"Deux variantes de la pente de la courbe du trémolo sont disponibles. Écoutez "
+"et sélectionnez."
 
 #: sources/model/parameter.cc:748
 msgid "Type"
@@ -1320,23 +1344,23 @@ msgstr "Type"
 
 #: sources/model/parameter.cc:981
 msgid "Type of delay effect"
-msgstr "Type de d'effet de délai"
+msgstr "Type d'effet de délai"
 
 #: sources/model/parameter.cc:972
 msgid "Type of filter effect"
-msgstr "Type de d'effet de filtre"
+msgstr "Type d'effet de filtre"
 
 #: sources/model/parameter.cc:978
 msgid "Type of modulation effect"
-msgstr "Type de d'effet de modulation"
+msgstr "Type d'effet de modulation"
 
 #: sources/model/parameter.cc:975
 msgid "Type of pitch effect"
-msgstr "Type de d'effet de hauteur tonale"
+msgstr "Type d'effet de hauteur tonale"
 
 #: sources/model/parameter.cc:984
 msgid "Type of reverb effect"
-msgstr "Type de d'effet de réverbération"
+msgstr "Type d'effet de réverbération"
 
 #: sources/model/parameter.cc:396 sources/model/parameter.cc:411
 msgid "Up"
@@ -1347,8 +1371,8 @@ msgid ""
 "Use this Gain parameter to compensate for the level changes caused by the "
 "applied compression."
 msgstr ""
-"Utilisez ce paramètre de gain pour compenser les changements de niveau causés "
-"par l'application d'une compression."
+"Utilisez ce paramètre de gain pour compenser les changements de niveau "
+"causés par l'application d'une compression."
 
 #: sources/model/parameter.cc:977
 msgid "Vibrato"
@@ -1384,8 +1408,8 @@ msgid ""
 "amount of perceived Chorusing effect. When Golden Ratio is \"On\" this value "
 "is automatically calculated."
 msgstr ""
-"Lorsque la vitesse augmente, il faut diminuer la profondeur pour obtenir "
-"la même quantité d'effet de chorus perçu. Lorsque le nombre d'or est activé, "
+"Lorsque la vitesse augmente, il faut diminuer la profondeur pour obtenir la "
+"même quantité d'effet de chorus perçu. Lorsque le nombre d'or est activé, "
 "cette valeur est calculée automatiquement."
 
 #: sources/model/parameter.cc:916
@@ -1394,8 +1418,8 @@ msgid ""
 "amount of perceived Flanging effect. When Golden Ratio is \"On\" this value "
 "is automatically calculated."
 msgstr ""
-"Lorsque la vitesse augmente, il faut diminuer la profondeur pour obtenir "
-"la même quantité d'effet Flanging perçu. Lorsque le nombre d’or est activé "
+"Lorsque la vitesse augmente, il faut diminuer la profondeur pour obtenir la "
+"même quantité d'effet Flanging perçu. Lorsque le nombre d’or est activé "
 "cette valeur est calculée automatiquement."
 
 #: sources/model/parameter.cc:255
@@ -1405,8 +1429,8 @@ msgid ""
 "to the Ratio, Attack and Release."
 msgstr ""
 "Lorsque le signal est supérieur au seuil défini, le compresseur est activé "
-"et le gain de tout signal au-dessus du seuil est traité conformément "
-"au taux, à l'attaque et à la relâche."
+"et le gain de tout signal au-dessus du seuil est traité conformément au "
+"taux, à l'attaque et à la relâche."
 
 #: sources/model/parameter.cc:290 sources/model/parameter.cc:492
 #: sources/model/parameter.cc:761
@@ -1427,9 +1451,9 @@ msgid ""
 "function of the Delay repeats should be according to the signal present on "
 "the Input."
 msgstr ""
-"Avec ce paramètre, vous contrôlez comment devrait être la sensibilité "
-"de la fonction \"ducking\" ou d'amortissement des répétitions du délai "
-"en fonction du signal présent sur l'entrée."
+"Avec ce paramètre, vous contrôlez comment devrait être la sensibilité de la "
+"fonction \"ducking\" ou d'amortissement des répétitions du délai en fonction "
+"du signal présent sur l'entrée."
 
 #: sources/model/parameter.cc:324
 msgid "Wool"

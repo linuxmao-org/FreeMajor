@@ -997,13 +997,13 @@ P_General::P_General()
                        ->with_min_max(0, 1));
     slots.emplace_back((new PA_Bits(156, 4,
                                     0, 2,
-                                    _("Routing"), _("Routing")))
+                                    _("Routing"), _("Routing : Serial is routing the effects blocks in serial. Semi parallel is routing delay and reverb in parallel. Parallel is routing pitch, Chorus flanger, delay and reverb.")))
                        ->with_min_max(0, 2)
                        ->with_string_fn([](int v) -> std::string {
                                             switch (v) {
-                                            case 0: return "Serial";
-                                            case 1: return "Semi Parallel";
-                                            case 2: return "Parallel";
+                                            case 0: return _("Serial");
+                                            case 1: return _("Semi Parallel");
+                                            case 2: return _("Parallel");
                                             default: assert(false); return "";
                                             }
                                         }));

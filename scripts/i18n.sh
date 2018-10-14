@@ -1,4 +1,5 @@
-#!/bin/sh -e
+#!/bin/bash
+set -e
 set -x
 
 po_update() {

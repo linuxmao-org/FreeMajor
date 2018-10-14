@@ -16,7 +16,7 @@ for locale in "fr"; do
              sources/*.{h,cc} \
              sources/device/*.{h,cc} \
              sources/model/*.{h,cc} \
-             sources/ui/*.{h,cc} \
+             sources/ui/*.{h,cc,cxx} \
              sources/utility/*.{h,cc}
     po_update po/"$locale"/gmajctl.po
     rm -f po/"$locale"/*.pot

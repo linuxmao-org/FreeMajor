@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gmajctl 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-14 02:24+0200\n"
+"POT-Creation-Date: 2018-10-14 03:03+0200\n"
 "PO-Revision-Date: 2018-10-08 14:52+0200\n"
 "Last-Translator: Julien Taverna <jujudusud@gmail.com>\n"
 "Language-Team: French\n"
@@ -22,6 +22,14 @@ msgstr ""
 #: sources/model/parameter.cc:399 sources/model/parameter.cc:414
 msgid "1 oct"
 msgstr "1 oct"
+
+#. Fl_Slider_Ex* sl_assignment
+#. Fl_Slider_Ex* sl_min
+#. Fl_Slider_Ex* sl_mid
+#: sources/ui/singlemod_editor.cxx:20 sources/ui/singlemod_editor.cxx:32
+#: sources/ui/singlemod_editor.cxx:44
+msgid "100"
+msgstr ""
 
 #: sources/model/parameter.cc:399 sources/model/parameter.cc:414
 msgid "2 oct"
@@ -158,6 +166,16 @@ msgstr "Boîte"
 msgid "Bright"
 msgstr "Brillance"
 
+#: sources/ui/patch_chooser.cxx:31
+msgid "Cancel"
+msgstr "Annuler"
+
+#. Fl_Choice* ch_midi_out
+#: sources/ui/main_component.cxx:142
+
+msgid "Change"
+msgstr "Changer"
+
 #: sources/model/parameter.cc:838
 msgid ""
 "Chorus is basically a Delay being modulated by an LFO. This parameter makes "
@@ -168,7 +186,7 @@ msgstr ""
 "permet de changer la durée de ce délai. Un chorus typique utilise des délais "
 "d'environ 10 ms."
 
-#: sources/ui/main_component_impl.cc:231
+#: sources/ui/main_component_impl.cc:231 sources/ui/main_component.cxx:842
 msgid "Chorus/Flanger"
 msgstr "Chorus/flanger"
 
@@ -183,6 +201,10 @@ msgstr "Flanger classique"
 #: sources/model/parameter.cc:324
 msgid "Clear"
 msgstr "Effacer"
+
+#: sources/ui/main_component.cxx:234
+msgid "Compressor"
+msgstr "Compresseur"
 
 #: sources/ui/main_component_impl.cc:729
 msgid "Confirm delete"
@@ -228,6 +250,11 @@ msgstr ""
 "Contrôle la division de la partie supérieure et inférieure de la forme "
 "d'onde courante, par exemple si la largeur d'impulsion est définie à 75%, la "
 "moitié supérieure de la forme d'onde sera active pendant 75% du temps."
+
+#. Fl_Button* btn_new
+#: sources/ui/main_component.cxx:1453
+msgid "Copy"
+msgstr "Copier"
 
 #: sources/ui/main_component_impl.cc:711
 msgid "Copy into..."
@@ -279,7 +306,7 @@ msgstr "Déclin"
 
 #: sources/model/parameter.cc:486 sources/model/parameter.cc:517
 #: sources/model/parameter.cc:838 sources/model/parameter.cc:912
-#: sources/ui/main_component_impl.cc:232
+#: sources/ui/main_component_impl.cc:232 sources/ui/main_component.cxx:1037
 msgid "Delay"
 msgstr "Délai"
 
@@ -296,6 +323,11 @@ msgstr "Délai 2"
 #: sources/model/parameter.cc:981
 msgid "Delay type"
 msgstr "Type de délai"
+
+#. Fl_Button* btn_copy
+#: sources/ui/main_component.cxx:1457
+msgid "Delete"
+msgstr "Effacer"
 
 #: sources/ui/main_component_impl.cc:730
 msgid "Delete the current patch?"
@@ -442,6 +474,11 @@ msgstr "Activer la modulation de hauteur"
 msgid "Enable the reverb"
 msgstr "Activer la réverbération"
 
+#: sources/ui/main_component.cxx:324
+
+msgid "Equalizer"
+msgstr "Égaliseur"
+
 #: sources/ui/main_component_impl.cc:512 sources/ui/main_component_impl.cc:530
 #: sources/ui/main_component_impl.cc:582 sources/ui/main_component_impl.cc:617
 #: sources/ui/main_component_impl.cc:634 sources/ui/main_component_impl.cc:682
@@ -452,13 +489,19 @@ msgstr "Erreur"
 msgid "Ex Large"
 msgstr "Extra large"
 
+#. Fl_Button* btn_import
+#: sources/ui/main_component.cxx:119
+
+msgid "Export"
+msgstr "Exporter"
+
 #: sources/ui/main_component_impl.cc:551
 msgid "Export..."
 msgstr "Exporter..."
 
 #: sources/model/parameter.cc:877 sources/model/parameter.cc:910
 msgid "FB Hi Cut"
-msgstr "coupe-h. ret."
+msgstr "Coupe-h. ret."
 
 #: sources/model/parameter.cc:499 sources/model/parameter.cc:528
 #: sources/model/parameter.cc:576
@@ -488,7 +531,7 @@ msgstr "Retour 1"
 msgid "Feedback 2"
 msgstr "Retour 2"
 
-#: sources/ui/main_component_impl.cc:229
+#: sources/ui/main_component_impl.cc:229 sources/ui/main_component.cxx:448
 msgid "Filter"
 msgstr "Filtre"
 
@@ -514,7 +557,7 @@ msgstr "Fréq. max"
 msgid "Frequency"
 msgstr "Fréquence"
 
-#: sources/ui/main_window.cc:15
+#: sources/ui/main_window.cc:15 sources/ui/main_component.cxx:110
 msgid "G-Major Editor"
 msgstr "Éditeur G-Major"
 
@@ -583,6 +626,12 @@ msgstr "Énorme"
 msgid "Ignored"
 msgstr "Ignoré"
 
+#. Fl_Box* o
+#: sources/ui/main_component.cxx:115
+
+msgid "Import"
+msgstr "Importer"
+
 #: sources/ui/main_component_impl.cc:536
 msgid "Import into..."
 msgstr "Importer dans..."
@@ -598,6 +647,83 @@ msgstr "Inf:1"
 #: sources/model/parameter.cc:740
 msgid "LFO P Width"
 msgstr "Larg. P LFO"
+
+#. Fl_Group* mod_A1
+#. Fl_Group* mod_A2
+#. Fl_Group* mod_A3
+#. Fl_Group* mod_A4
+#. Fl_Group* mod_A5
+#. Fl_Group* mod_A6
+#. Fl_Group* mod_A7
+#. Fl_Group* mod_A8
+#. Fl_Group* mod_A9
+#. Fl_Box* lbl_A
+#. Fl_Group* mod_B1
+#. Fl_Group* mod_B2
+#. Fl_Group* mod_B3
+#. Fl_Group* mod_B4
+#. Fl_Group* mod_B5
+#. Fl_Group* mod_B6
+#. Fl_Group* mod_B7
+#. Fl_Group* mod_B8
+#. Fl_Group* mod_B9
+#. Fl_Box* lbl_B
+#. Fl_Group* mod_C1
+#. Fl_Group* mod_C2
+#. Fl_Group* mod_C3
+#. Fl_Group* mod_C4
+#. Fl_Group* mod_C5
+#. Fl_Group* mod_C6
+#. Fl_Group* mod_C7
+#. Fl_Group* mod_C8
+#. Fl_Group* mod_C9
+#. Fl_Box* lbl_C
+#. Fl_Group* mod_D1
+#. Fl_Group* mod_D2
+#. Fl_Group* mod_D3
+#. Fl_Group* mod_D4
+#. Fl_Group* mod_D5
+#. Fl_Group* mod_D6
+#. Fl_Group* mod_D7
+#. Fl_Group* mod_D8
+#. Fl_Group* mod_D9
+#. Fl_Box* lbl_D
+#. Fl_Group* mod_E1
+#. Fl_Group* mod_E2
+#. Fl_Group* mod_E3
+#. Fl_Group* mod_E4
+#. Fl_Group* mod_E5
+#. Fl_Group* mod_E6
+#. Fl_Group* mod_E7
+#. Fl_Group* mod_E8
+#. Fl_Group* mod_E9
+#: sources/ui/modifiers_editor.cxx:7 sources/ui/modifiers_editor.cxx:13
+#: sources/ui/modifiers_editor.cxx:19 sources/ui/modifiers_editor.cxx:25
+#: sources/ui/modifiers_editor.cxx:31 sources/ui/modifiers_editor.cxx:37
+#: sources/ui/modifiers_editor.cxx:43 sources/ui/modifiers_editor.cxx:49
+#: sources/ui/modifiers_editor.cxx:55 sources/ui/modifiers_editor.cxx:61
+#: sources/ui/modifiers_editor.cxx:73 sources/ui/modifiers_editor.cxx:79
+#: sources/ui/modifiers_editor.cxx:85 sources/ui/modifiers_editor.cxx:91
+#: sources/ui/modifiers_editor.cxx:97 sources/ui/modifiers_editor.cxx:103
+#: sources/ui/modifiers_editor.cxx:109 sources/ui/modifiers_editor.cxx:115
+#: sources/ui/modifiers_editor.cxx:121 sources/ui/modifiers_editor.cxx:127
+#: sources/ui/modifiers_editor.cxx:139 sources/ui/modifiers_editor.cxx:145
+#: sources/ui/modifiers_editor.cxx:151 sources/ui/modifiers_editor.cxx:157
+#: sources/ui/modifiers_editor.cxx:163 sources/ui/modifiers_editor.cxx:169
+#: sources/ui/modifiers_editor.cxx:175 sources/ui/modifiers_editor.cxx:181
+#: sources/ui/modifiers_editor.cxx:187 sources/ui/modifiers_editor.cxx:193
+#: sources/ui/modifiers_editor.cxx:205 sources/ui/modifiers_editor.cxx:211
+#: sources/ui/modifiers_editor.cxx:217 sources/ui/modifiers_editor.cxx:223
+#: sources/ui/modifiers_editor.cxx:229 sources/ui/modifiers_editor.cxx:235
+#: sources/ui/modifiers_editor.cxx:241 sources/ui/modifiers_editor.cxx:247
+#: sources/ui/modifiers_editor.cxx:253 sources/ui/modifiers_editor.cxx:259
+#: sources/ui/modifiers_editor.cxx:271 sources/ui/modifiers_editor.cxx:277
+#: sources/ui/modifiers_editor.cxx:283 sources/ui/modifiers_editor.cxx:289
+#: sources/ui/modifiers_editor.cxx:295 sources/ui/modifiers_editor.cxx:301
+#: sources/ui/modifiers_editor.cxx:307 sources/ui/modifiers_editor.cxx:313
+#: sources/ui/modifiers_editor.cxx:319 sources/ui/modifiers_editor.cxx:325
+msgid "Label"
+msgstr "Étiquette"
 
 #: sources/model/parameter.cc:321
 msgid "Large"
@@ -627,6 +753,12 @@ msgstr "Couleur basse"
 msgid "Lo factor"
 msgstr "Facteur Bas"
 
+#. Fl_Group* o
+#: sources/ui/main_component.cxx:1540
+
+msgid "Load"
+msgstr "Chargement"
+
 #: sources/ui/main_component_impl.cc:606
 msgid "Load..."
 msgstr "Chargement..."
@@ -648,6 +780,11 @@ msgstr "Maximum"
 msgid "Medium"
 msgstr "Médium"
 
+#. Fl_Box* txt_description
+#: sources/ui/main_component.cxx:1440
+msgid "Midi Out Devices:"
+msgstr "Matériel de sortie MIDI :"
+
 #: sources/model/parameter.cc:109
 msgid "Minimum"
 msgstr "Minimum"
@@ -667,13 +804,19 @@ msgstr "Mélange"
 msgid "Mode"
 msgstr "Mode"
 
-#: sources/ui/main_component_impl.cc:36
+#. Fl_Choice* ch_midi_interface
+#: sources/ui/main_component_impl.cc:36 sources/ui/main_component.cxx:1554
 msgid "Modifiers"
 msgstr "Modificateurs"
 
 #: sources/model/parameter.cc:978
 msgid "Modulation type"
 msgstr "Type de modulation"
+
+#. Fl_Check_Button* chk_realtime
+#: sources/ui/main_component.cxx:1449
+msgid "New"
+msgstr "Nouveau"
 
 #: sources/ui/main_component_impl.cc:575 sources/ui/main_component_impl.cc:675
 #: sources/ui/main_component_impl.cc:730
@@ -683,6 +826,15 @@ msgstr "Non"
 #: sources/model/parameter.cc:329
 msgid "No Base"
 msgstr "Aucune base"
+
+#: sources/ui/main_component.cxx:148
+msgid "Noise gate"
+msgstr "Trappe à bruit"
+
+#. Fl_Button* o
+#: sources/ui/patch_chooser.cxx:34
+msgid "OK"
+msgstr "Ok"
 
 #: sources/model/parameter.cc:974
 msgid "Octaver"
@@ -697,7 +849,7 @@ msgstr "Octaveur"
 #: sources/model/parameter.cc:869 sources/model/parameter.cc:876
 #: sources/model/parameter.cc:902 sources/model/parameter.cc:909
 #: sources/model/parameter.cc:915 sources/model/parameter.cc:918
-#: sources/model/parameter.cc:943
+#: sources/model/parameter.cc:943 sources/ui/singlemod_editor.cxx:8
 msgid "Off"
 msgstr "Inactif"
 
@@ -744,6 +896,12 @@ msgstr "Ordre"
 msgid "Out level"
 msgstr "Niv. sortie"
 
+#. Fl_Choice_Ex* cb_routing
+#: sources/ui/main_component.cxx:1518
+
+msgid "Output Level"
+msgstr "Niv. sortie"
+
 #: sources/model/parameter.cc:435 sources/model/parameter.cc:582
 msgid "Pan 1"
 msgstr "Pan 1"
@@ -776,6 +934,21 @@ msgstr "Panoramise les répétitions de retard de la deuxième ligne de retard."
 msgid "Parallel"
 msgstr "Parallèle"
 
+#. Fl_Group* mod_A10
+#. Fl_Group* mod_B10
+#. Fl_Group* mod_C10
+#. Fl_Group* mod_D10
+#. Fl_Group* mod_E10
+#: sources/ui/modifiers_editor.cxx:67 sources/ui/modifiers_editor.cxx:133
+#: sources/ui/modifiers_editor.cxx:199 sources/ui/modifiers_editor.cxx:265
+#: sources/ui/modifiers_editor.cxx:331
+msgid "Part"
+msgstr "Partie"
+
+#: sources/ui/main_component.cxx:1463
+msgid "Patch name:"
+msgstr "Nom de préréglage :"
+
 #: sources/model/parameter.cc:686 sources/model/parameter.cc:716
 #: sources/model/parameter.cc:845 sources/model/parameter.cc:919
 msgid "Phase Rev"
@@ -786,6 +959,7 @@ msgid "Ping Pong"
 msgstr "Ping pong"
 
 #: sources/model/parameter.cc:392 sources/ui/main_component_impl.cc:230
+#: sources/ui/main_component.cxx:645
 msgid "Pitch"
 msgstr "Hauteur"
 
@@ -838,6 +1012,12 @@ msgstr ""
 "Préréglage Real Major\t*.realpatch\n"
 "Préréglage Sysex\t*.syx"
 
+#. Fl_Box* o
+#: sources/ui/main_component.cxx:1444
+
+msgid "Real time"
+msgstr "Temps réel"
+
 #: sources/model/parameter.cc:810 sources/model/parameter.cc:836
 msgid ""
 "Reduces the high-end frequencies in the Chorus effect. Try using the Hi Cut "
@@ -862,11 +1042,13 @@ msgstr ""
 "dominant dans votre son et que le fait de baisser le niveau Mix ou Sortie ne "
 "vous donne pas l'atténuation de l'effet Flanger que vous recherchez."
 
-#: sources/model/parameter.cc:992
+#. Fl_Slider_Ex* sl_tap_tempo
+#: sources/model/parameter.cc:992 sources/ui/main_component.cxx:1481
 msgid "Relay 1"
 msgstr "Relai 1"
 
-#: sources/model/parameter.cc:996
+#. Fl_Check_Button_Ex* chk_relay1
+#: sources/model/parameter.cc:996 sources/ui/main_component.cxx:1493
 msgid "Relay 2"
 msgstr "Relai 2"
 
@@ -887,7 +1069,7 @@ msgstr "Réponse"
 msgid "Rev level"
 msgstr "Niveau de réverbération"
 
-#: sources/ui/main_component_impl.cc:233
+#: sources/ui/main_component_impl.cc:233 sources/ui/main_component.cxx:1232
 msgid "Reverb"
 msgstr "Réverbération"
 
@@ -923,7 +1105,8 @@ msgstr "Niveau de pièce"
 msgid "Round"
 msgstr "Rond"
 
-#: sources/model/parameter.cc:1000
+#. Fl_Check_Button_Ex* chk_relay2
+#: sources/model/parameter.cc:1000 sources/ui/main_component.cxx:1505
 msgid "Routing"
 msgstr "Routage"
 
@@ -936,6 +1119,12 @@ msgstr ""
 "Routage : Serie route les effets en serie. Semi parallèle route délai et "
 "réverbération en parallèle. Parallèle route hauteur, chorus flanger, délai "
 "et réverbération en parallèle."
+
+#. Fl_Button* btn_load
+#: sources/ui/main_component.cxx:1544
+
+msgid "Save"
+msgstr "Sauvegarder"
 
 #: sources/ui/main_component_impl.cc:651
 msgid "Save..."
@@ -953,6 +1142,11 @@ msgstr "Sélectionne la manière dont le bloc Whammy modifiera la tonalité."
 #: sources/model/parameter.cc:1005
 msgid "Semi Parallel"
 msgstr "Semi parallèle"
+
+#. Fl_Group* o
+#: sources/ui/main_component.cxx:1431
+msgid "Send"
+msgstr "Envoyer"
 
 #: sources/model/parameter.cc:536 sources/model/parameter.cc:628
 msgid "Sensitivity"
@@ -1125,6 +1319,12 @@ msgstr ""
 #: sources/device/midi.cc:25 sources/device/midi.cc:44
 msgid "TC G-Major Editor"
 msgstr "Editeur TC G-Major"
+
+#. Fl_Input* txt_patch_name
+#: sources/ui/main_component.cxx:1469
+
+msgid "Tap Tempo"
+msgstr "Tap tempo"
 
 #: sources/model/parameter.cc:987
 msgid "Tap tempo"
@@ -1463,3 +1663,18 @@ msgstr "Laine"
 #: sources/ui/main_component_impl.cc:730
 msgid "Yes"
 msgstr "Oui"
+
+#. Fl_Box* lbl_tap_tempo
+#: sources/ui/main_component.cxx:1534
+msgid "dB"
+msgstr "dB"
+
+#. Fl_Hold_Browser* br_bank
+#: sources/ui/patch_chooser.cxx:48
+msgid "label"
+msgstr "étiquette"
+
+#. Fl_Slider_Ex* sl_out_level
+#: sources/ui/main_component.cxx:1530
+msgid "ms"
+msgstr "ms"

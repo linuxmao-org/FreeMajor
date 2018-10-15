@@ -753,11 +753,11 @@ msgstr "Facteur B"
 #. Fl_Group* o
 #: sources/ui/main_component.cxx:1540
 msgid "Load"
-msgstr "Chargmnt"
+msgstr "Charger"
 
 #: sources/ui/main_component_impl.cc:606
 msgid "Load..."
-msgstr "Chargement..."
+msgstr "Charger..."
 
 #: sources/device/midi.cc:88
 msgid "MIDI out"
@@ -1117,11 +1117,11 @@ msgstr ""
 #. Fl_Button* btn_load
 #: sources/ui/main_component.cxx:1544
 msgid "Save"
-msgstr "Sauvegard."
+msgstr "Sauver"
 
 #: sources/ui/main_component_impl.cc:651
 msgid "Save..."
-msgstr "Sauvegarder..."
+msgstr "Sauver..."
 
 #: sources/ui/main_component_impl.cc:536 sources/ui/main_component_impl.cc:691
 #: sources/ui/main_component_impl.cc:711

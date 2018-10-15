@@ -475,7 +475,6 @@ msgid "Enable the reverb"
 msgstr "Activer la réverbération"
 
 #: sources/ui/main_component.cxx:324
-
 msgid "Equalizer"
 msgstr "Égaliseur"
 
@@ -491,7 +490,6 @@ msgstr "Extra large"
 
 #. Fl_Button* btn_import
 #: sources/ui/main_component.cxx:119
-
 msgid "Export"
 msgstr "Exporter"
 
@@ -501,17 +499,17 @@ msgstr "Exporter..."
 
 #: sources/model/parameter.cc:877 sources/model/parameter.cc:910
 msgid "FB Hi Cut"
-msgstr "Coupe-h. ret."
+msgstr "CH B ret."
 
 #: sources/model/parameter.cc:499 sources/model/parameter.cc:528
 #: sources/model/parameter.cc:576
 msgid "FB Hi cut"
-msgstr "Coupe-h. ret."
+msgstr "CH B ret."
 
 #: sources/model/parameter.cc:503 sources/model/parameter.cc:532
 #: sources/model/parameter.cc:580
 msgid "FB Lo cut"
-msgstr "Coupe-b. ret."
+msgstr "CB B ret."
 
 #: sources/model/parameter.cc:631
 msgid "Fast"
@@ -628,7 +626,6 @@ msgstr "Ignoré"
 
 #. Fl_Box* o
 #: sources/ui/main_component.cxx:115
-
 msgid "Import"
 msgstr "Importer"
 
@@ -755,7 +752,6 @@ msgstr "Facteur Bas"
 
 #. Fl_Group* o
 #: sources/ui/main_component.cxx:1540
-
 msgid "Load"
 msgstr "Chargement"
 
@@ -783,7 +779,7 @@ msgstr "Médium"
 #. Fl_Box* txt_description
 #: sources/ui/main_component.cxx:1440
 msgid "Midi Out Devices:"
-msgstr "Matériel de sortie MIDI :"
+msgstr "Périphériques de sortie MIDI :"
 
 #: sources/model/parameter.cc:109
 msgid "Minimum"
@@ -862,9 +858,9 @@ msgid ""
 "Offsets the Delay repeats in the Right channel only. For a true wide stereo "
 "Delay the Delay in the two channels should not appear at the exact same time."
 msgstr ""
-"Décale les répétitions du délai dans le canal droit uniquement.Pour une "
+"Décale les répétitions du délai dans le canal droit uniquement. Pour une "
 "véritable stéréo large, le délai dans les deux canaux ne devrait "
-"pasapparaître exactement au même moment."
+"pas apparaître exactement au même moment."
 
 #: sources/model/parameter.cc:372
 msgid "Offsets the first Voice in the Detune block."
@@ -898,7 +894,6 @@ msgstr "Niv. sortie"
 
 #. Fl_Choice_Ex* cb_routing
 #: sources/ui/main_component.cxx:1518
-
 msgid "Output Level"
 msgstr "Niv. sortie"
 
@@ -1014,7 +1009,6 @@ msgstr ""
 
 #. Fl_Box* o
 #: sources/ui/main_component.cxx:1444
-
 msgid "Real time"
 msgstr "Temps réel"
 
@@ -1116,13 +1110,12 @@ msgid ""
 "routing delay and reverb in parallel. Parallel is routing pitch, Chorus "
 "flanger, delay and reverb."
 msgstr ""
-"Routage : Serie route les effets en serie. Semi parallèle route délai et "
+"Routage : Série route les blocs d'effets en série. Semi parallèle route délai et "
 "réverbération en parallèle. Parallèle route hauteur, chorus flanger, délai "
 "et réverbération en parallèle."
 
 #. Fl_Button* btn_load
 #: sources/ui/main_component.cxx:1544
-
 msgid "Save"
 msgstr "Sauvegarder"
 
@@ -1276,7 +1269,7 @@ msgid ""
 "can select a pitch freely between one octave below the Input Pitch to one "
 "octave above."
 msgstr ""
-"Spécifie la hauteur de la première voix. Comme 100 est égal à 1 demi-ton,on "
+"Spécifie la hauteur de la première voix. Comme 100 est égal à 1 demi-ton, on "
 "peut choisir librement une hauteur entre une octave inférieure et une octave "
 "supérieure."
 
@@ -1286,7 +1279,7 @@ msgid ""
 "can select a pitch freely between one octave below the Input Pitch to one "
 "octave above."
 msgstr ""
-"Spécifie la hauteur de la seconde voix. Comme 100 est égal à 1 demi-ton,on "
+"Spécifie la hauteur de la seconde voix. Comme 100 est égal à 1 demi-ton, on "
 "peut choisir librement une hauteur entre une octave inférieure et une octave "
 "supérieure."
 
@@ -1322,7 +1315,6 @@ msgstr "Editeur TC G-Major"
 
 #. Fl_Input* txt_patch_name
 #: sources/ui/main_component.cxx:1469
-
 msgid "Tap Tempo"
 msgstr "Tap tempo"
 
@@ -1375,7 +1367,7 @@ msgid ""
 "filters. 2nd order filters are 12dB/Octave while 4th order filters are 24dB/"
 "Octave."
 msgstr ""
-"Le paramètre Ordre des filtres de résonance modifie la pente des filtres.Les "
+"Le paramètre Ordre des filtres de résonance modifie la pente des filtres. Les "
 "filtres du 2ème ordre sont de 12dB/Octave alors que les filtres du 4ème "
 "ordre sont de 24dB/Octave."
 
@@ -1484,9 +1476,9 @@ msgid ""
 "Level will give you a more ambient sound, since the Early Reflection "
 "patterns will become more obvious."
 msgstr ""
-"Ce paramètre ajuste le niveau du champ Reverb Diffuse. Réduire la "
-"réverbération Le niveau vous donnera un son plus ambiant, depuis le début de "
-"la réflexion les modèles deviendront plus évidents."
+"Ce paramètre ajuste le niveau de réverbération de champ diffus. "
+"Réduire le niveau de réverbération vous donnera un son plus ambiant, "
+"puisque les motifs de réflexion précoce deviendront plus évidents."
 
 #: sources/model/parameter.cc:538
 msgid ""

@@ -298,7 +298,7 @@ msgstr "Courbé"
 
 #: sources/model/parameter.cc:538
 msgid "Damping"
-msgstr "Amortissement"
+msgstr "Amortismnt"
 
 #: sources/model/parameter.cc:313
 msgid "Decay"
@@ -600,15 +600,15 @@ msgstr "Coupe-haut"
 
 #: sources/model/parameter.cc:655
 msgid "Hi Reso"
-msgstr "Haute résol."
+msgstr "Haute réso."
 
 #: sources/model/parameter.cc:325
 msgid "Hi color"
-msgstr "Haute color."
+msgstr "Haute col"
 
 #: sources/model/parameter.cc:326
 msgid "Hi factor"
-msgstr "Facteur haut"
+msgstr "Facteur H"
 
 #: sources/model/parameter.cc:321
 msgid "Huge"
@@ -744,16 +744,16 @@ msgstr "Limite la plage de fréquences dans laquelle le balayage sera effectué.
 
 #: sources/model/parameter.cc:330
 msgid "Lo color"
-msgstr "Couleur basse"
+msgstr "Couleur B"
 
 #: sources/model/parameter.cc:331
 msgid "Lo factor"
-msgstr "Facteur Bas"
+msgstr "Facteur B"
 
 #. Fl_Group* o
 #: sources/ui/main_component.cxx:1540
 msgid "Load"
-msgstr "Chargement"
+msgstr "Chargmnt"
 
 #: sources/ui/main_component_impl.cc:606
 msgid "Load..."
@@ -851,7 +851,7 @@ msgstr "Inactif"
 
 #: sources/model/parameter.cc:534
 msgid "Offset R"
-msgstr "Décalage droite"
+msgstr "Décalage D"
 
 #: sources/model/parameter.cc:534
 msgid ""
@@ -1061,15 +1061,15 @@ msgstr "Réponse"
 
 #: sources/model/parameter.cc:335
 msgid "Rev level"
-msgstr "Niveau de réverbération"
+msgstr "Niv. réverb."
 
 #: sources/ui/main_component_impl.cc:233 sources/ui/main_component.cxx:1232
 msgid "Reverb"
-msgstr "Réverbération"
+msgstr "Réverb."
 
 #: sources/model/parameter.cc:984
 msgid "Reverb type"
-msgstr "Type de réverbération"
+msgstr "Type de réverb."
 
 #: sources/model/parameter.cc:845
 msgid ""
@@ -1093,7 +1093,7 @@ msgstr "Pièce"
 
 #: sources/model/parameter.cc:333
 msgid "Room level"
-msgstr "Niveau de pièce"
+msgstr "Niv. pièce"
 
 #: sources/model/parameter.cc:318 sources/model/parameter.cc:329
 msgid "Round"
@@ -1117,7 +1117,7 @@ msgstr ""
 #. Fl_Button* btn_load
 #: sources/ui/main_component.cxx:1544
 msgid "Save"
-msgstr "Sauvegarder"
+msgstr "Sauvegard."
 
 #: sources/ui/main_component_impl.cc:651
 msgid "Save..."

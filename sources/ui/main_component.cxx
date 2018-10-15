@@ -158,7 +158,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     chk_noise_gate->when(FL_WHEN_RELEASE);
   } // Fl_Check_Button_Ex* chk_noise_gate
   { box_ng1 = new Fl_Group_Ex(5, 250, 60, 60);
-    box_ng1->box(FL_BORDER_BOX);
+    box_ng1->box(FL_THIN_UP_BOX);
     box_ng1->color(FL_BACKGROUND_COLOR);
     box_ng1->selection_color(FL_BACKGROUND_COLOR);
     box_ng1->labeltype(FL_NORMAL_LABEL);
@@ -170,7 +170,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_ng1->end();
   } // Fl_Group_Ex* box_ng1
   { box_ng2 = new Fl_Group_Ex(65, 250, 60, 60);
-    box_ng2->box(FL_BORDER_BOX);
+    box_ng2->box(FL_THIN_UP_BOX);
     box_ng2->color(FL_BACKGROUND_COLOR);
     box_ng2->selection_color(FL_BACKGROUND_COLOR);
     box_ng2->labeltype(FL_NORMAL_LABEL);
@@ -182,7 +182,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_ng2->end();
   } // Fl_Group_Ex* box_ng2
   { box_ng3 = new Fl_Group_Ex(5, 315, 60, 60);
-    box_ng3->box(FL_BORDER_BOX);
+    box_ng3->box(FL_THIN_UP_BOX);
     box_ng3->color(FL_BACKGROUND_COLOR);
     box_ng3->selection_color(FL_BACKGROUND_COLOR);
     box_ng3->labeltype(FL_NORMAL_LABEL);
@@ -194,7 +194,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_ng3->end();
   } // Fl_Group_Ex* box_ng3
   { box_ng4 = new Fl_Group_Ex(65, 315, 60, 60);
-    box_ng4->box(FL_BORDER_BOX);
+    box_ng4->box(FL_THIN_UP_BOX);
     box_ng4->color(FL_BACKGROUND_COLOR);
     box_ng4->selection_color(FL_BACKGROUND_COLOR);
     box_ng4->labeltype(FL_NORMAL_LABEL);
@@ -206,7 +206,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_ng4->end();
   } // Fl_Group_Ex* box_ng4
   { box_ng5 = new Fl_Group_Ex(5, 380, 60, 60);
-    box_ng5->box(FL_BORDER_BOX);
+    box_ng5->box(FL_THIN_UP_BOX);
     box_ng5->color(FL_BACKGROUND_COLOR);
     box_ng5->selection_color(FL_BACKGROUND_COLOR);
     box_ng5->labeltype(FL_NORMAL_LABEL);
@@ -218,7 +218,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_ng5->end();
   } // Fl_Group_Ex* box_ng5
   { box_ng6 = new Fl_Group_Ex(65, 380, 60, 60);
-    box_ng6->box(FL_BORDER_BOX);
+    box_ng6->box(FL_THIN_UP_BOX);
     box_ng6->color(FL_BACKGROUND_COLOR);
     box_ng6->selection_color(FL_BACKGROUND_COLOR);
     box_ng6->labeltype(FL_NORMAL_LABEL);
@@ -244,7 +244,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
       chk_compressor->when(FL_WHEN_RELEASE);
     } // Fl_Check_Button_Ex* chk_compressor
     { box_cpr1 = new Fl_Group_Ex(135, 250, 60, 60);
-      box_cpr1->box(FL_BORDER_BOX);
+      box_cpr1->box(FL_THIN_UP_BOX);
       box_cpr1->color(FL_BACKGROUND_COLOR);
       box_cpr1->selection_color(FL_BACKGROUND_COLOR);
       box_cpr1->labeltype(FL_NORMAL_LABEL);
@@ -256,7 +256,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
       box_cpr1->end();
     } // Fl_Group_Ex* box_cpr1
     { box_cpr2 = new Fl_Group_Ex(195, 250, 60, 60);
-      box_cpr2->box(FL_BORDER_BOX);
+      box_cpr2->box(FL_THIN_UP_BOX);
       box_cpr2->color(FL_BACKGROUND_COLOR);
       box_cpr2->selection_color(FL_BACKGROUND_COLOR);
       box_cpr2->labeltype(FL_NORMAL_LABEL);
@@ -268,7 +268,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
       box_cpr2->end();
     } // Fl_Group_Ex* box_cpr2
     { box_cpr3 = new Fl_Group_Ex(135, 315, 60, 60);
-      box_cpr3->box(FL_BORDER_BOX);
+      box_cpr3->box(FL_THIN_UP_BOX);
       box_cpr3->color(FL_BACKGROUND_COLOR);
       box_cpr3->selection_color(FL_BACKGROUND_COLOR);
       box_cpr3->labeltype(FL_NORMAL_LABEL);
@@ -280,7 +280,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
       box_cpr3->end();
     } // Fl_Group_Ex* box_cpr3
     { box_cpr4 = new Fl_Group_Ex(195, 315, 60, 60);
-      box_cpr4->box(FL_BORDER_BOX);
+      box_cpr4->box(FL_THIN_UP_BOX);
       box_cpr4->color(FL_BACKGROUND_COLOR);
       box_cpr4->selection_color(FL_BACKGROUND_COLOR);
       box_cpr4->labeltype(FL_NORMAL_LABEL);
@@ -292,7 +292,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
       box_cpr4->end();
     } // Fl_Group_Ex* box_cpr4
     { box_cpr5 = new Fl_Group_Ex(135, 380, 60, 60);
-      box_cpr5->box(FL_BORDER_BOX);
+      box_cpr5->box(FL_THIN_UP_BOX);
       box_cpr5->color(FL_BACKGROUND_COLOR);
       box_cpr5->selection_color(FL_BACKGROUND_COLOR);
       box_cpr5->labeltype(FL_NORMAL_LABEL);
@@ -304,7 +304,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
       box_cpr5->end();
     } // Fl_Group_Ex* box_cpr5
     { box_cpr6 = new Fl_Group_Ex(195, 380, 60, 60);
-      box_cpr6->box(FL_BORDER_BOX);
+      box_cpr6->box(FL_THIN_UP_BOX);
       box_cpr6->color(FL_BACKGROUND_COLOR);
       box_cpr6->selection_color(FL_BACKGROUND_COLOR);
       box_cpr6->labeltype(FL_NORMAL_LABEL);
@@ -334,7 +334,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     chk_equalizer->when(FL_WHEN_RELEASE);
   } // Fl_Check_Button_Ex* chk_equalizer
   { box_eq1 = new Fl_Group_Ex(20, 475, 60, 60);
-    box_eq1->box(FL_BORDER_BOX);
+    box_eq1->box(FL_THIN_UP_BOX);
     box_eq1->color(FL_BACKGROUND_COLOR);
     box_eq1->selection_color(FL_BACKGROUND_COLOR);
     box_eq1->labeltype(FL_NORMAL_LABEL);
@@ -346,7 +346,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_eq1->end();
   } // Fl_Group_Ex* box_eq1
   { box_eq2 = new Fl_Group_Ex(100, 475, 60, 60);
-    box_eq2->box(FL_BORDER_BOX);
+    box_eq2->box(FL_THIN_UP_BOX);
     box_eq2->color(FL_BACKGROUND_COLOR);
     box_eq2->selection_color(FL_BACKGROUND_COLOR);
     box_eq2->labeltype(FL_NORMAL_LABEL);
@@ -358,7 +358,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_eq2->end();
   } // Fl_Group_Ex* box_eq2
   { box_eq4 = new Fl_Group_Ex(20, 540, 60, 60);
-    box_eq4->box(FL_BORDER_BOX);
+    box_eq4->box(FL_THIN_UP_BOX);
     box_eq4->color(FL_BACKGROUND_COLOR);
     box_eq4->selection_color(FL_BACKGROUND_COLOR);
     box_eq4->labeltype(FL_NORMAL_LABEL);
@@ -370,7 +370,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_eq4->end();
   } // Fl_Group_Ex* box_eq4
   { box_eq5 = new Fl_Group_Ex(100, 540, 60, 60);
-    box_eq5->box(FL_BORDER_BOX);
+    box_eq5->box(FL_THIN_UP_BOX);
     box_eq5->color(FL_BACKGROUND_COLOR);
     box_eq5->selection_color(FL_BACKGROUND_COLOR);
     box_eq5->labeltype(FL_NORMAL_LABEL);
@@ -382,7 +382,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_eq5->end();
   } // Fl_Group_Ex* box_eq5
   { box_eq7 = new Fl_Group_Ex(20, 605, 60, 60);
-    box_eq7->box(FL_BORDER_BOX);
+    box_eq7->box(FL_THIN_UP_BOX);
     box_eq7->color(FL_BACKGROUND_COLOR);
     box_eq7->selection_color(FL_BACKGROUND_COLOR);
     box_eq7->labeltype(FL_NORMAL_LABEL);
@@ -394,7 +394,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_eq7->end();
   } // Fl_Group_Ex* box_eq7
   { box_eq8 = new Fl_Group_Ex(100, 605, 60, 60);
-    box_eq8->box(FL_BORDER_BOX);
+    box_eq8->box(FL_THIN_UP_BOX);
     box_eq8->color(FL_BACKGROUND_COLOR);
     box_eq8->selection_color(FL_BACKGROUND_COLOR);
     box_eq8->labeltype(FL_NORMAL_LABEL);
@@ -406,7 +406,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_eq8->end();
   } // Fl_Group_Ex* box_eq8
   { box_eq3 = new Fl_Group_Ex(180, 475, 60, 60);
-    box_eq3->box(FL_BORDER_BOX);
+    box_eq3->box(FL_THIN_UP_BOX);
     box_eq3->color(FL_BACKGROUND_COLOR);
     box_eq3->selection_color(FL_BACKGROUND_COLOR);
     box_eq3->labeltype(FL_NORMAL_LABEL);
@@ -418,7 +418,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_eq3->end();
   } // Fl_Group_Ex* box_eq3
   { box_eq6 = new Fl_Group_Ex(180, 540, 60, 60);
-    box_eq6->box(FL_BORDER_BOX);
+    box_eq6->box(FL_THIN_UP_BOX);
     box_eq6->color(FL_BACKGROUND_COLOR);
     box_eq6->selection_color(FL_BACKGROUND_COLOR);
     box_eq6->labeltype(FL_NORMAL_LABEL);
@@ -430,7 +430,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_eq6->end();
   } // Fl_Group_Ex* box_eq6
   { box_eq9 = new Fl_Group_Ex(180, 605, 60, 60);
-    box_eq9->box(FL_BORDER_BOX);
+    box_eq9->box(FL_THIN_UP_BOX);
     box_eq9->color(FL_BACKGROUND_COLOR);
     box_eq9->selection_color(FL_BACKGROUND_COLOR);
     box_eq9->labeltype(FL_NORMAL_LABEL);
@@ -458,7 +458,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     chk_filter->when(FL_WHEN_RELEASE);
   } // Fl_Check_Button_Ex* chk_filter
   { box_flt1 = new Fl_Group_Ex(265, 275, 60, 60);
-    box_flt1->box(FL_BORDER_BOX);
+    box_flt1->box(FL_THIN_UP_BOX);
     box_flt1->color(FL_BACKGROUND_COLOR);
     box_flt1->selection_color(FL_BACKGROUND_COLOR);
     box_flt1->labeltype(FL_NORMAL_LABEL);
@@ -470,7 +470,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_flt1->end();
   } // Fl_Group_Ex* box_flt1
   { box_flt2 = new Fl_Group_Ex(325, 275, 60, 60);
-    box_flt2->box(FL_BORDER_BOX);
+    box_flt2->box(FL_THIN_UP_BOX);
     box_flt2->color(FL_BACKGROUND_COLOR);
     box_flt2->selection_color(FL_BACKGROUND_COLOR);
     box_flt2->labeltype(FL_NORMAL_LABEL);
@@ -482,7 +482,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_flt2->end();
   } // Fl_Group_Ex* box_flt2
   { box_flt3 = new Fl_Group_Ex(265, 340, 60, 60);
-    box_flt3->box(FL_BORDER_BOX);
+    box_flt3->box(FL_THIN_UP_BOX);
     box_flt3->color(FL_BACKGROUND_COLOR);
     box_flt3->selection_color(FL_BACKGROUND_COLOR);
     box_flt3->labeltype(FL_NORMAL_LABEL);
@@ -494,7 +494,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_flt3->end();
   } // Fl_Group_Ex* box_flt3
   { box_flt4 = new Fl_Group_Ex(325, 340, 60, 60);
-    box_flt4->box(FL_BORDER_BOX);
+    box_flt4->box(FL_THIN_UP_BOX);
     box_flt4->color(FL_BACKGROUND_COLOR);
     box_flt4->selection_color(FL_BACKGROUND_COLOR);
     box_flt4->labeltype(FL_NORMAL_LABEL);
@@ -506,7 +506,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_flt4->end();
   } // Fl_Group_Ex* box_flt4
   { box_flt5 = new Fl_Group_Ex(265, 405, 60, 60);
-    box_flt5->box(FL_BORDER_BOX);
+    box_flt5->box(FL_THIN_UP_BOX);
     box_flt5->color(FL_BACKGROUND_COLOR);
     box_flt5->selection_color(FL_BACKGROUND_COLOR);
     box_flt5->labeltype(FL_NORMAL_LABEL);
@@ -518,7 +518,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_flt5->end();
   } // Fl_Group_Ex* box_flt5
   { box_flt6 = new Fl_Group_Ex(325, 405, 60, 60);
-    box_flt6->box(FL_BORDER_BOX);
+    box_flt6->box(FL_THIN_UP_BOX);
     box_flt6->color(FL_BACKGROUND_COLOR);
     box_flt6->selection_color(FL_BACKGROUND_COLOR);
     box_flt6->labeltype(FL_NORMAL_LABEL);
@@ -530,7 +530,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_flt6->end();
   } // Fl_Group_Ex* box_flt6
   { box_flt7 = new Fl_Group_Ex(265, 470, 60, 60);
-    box_flt7->box(FL_BORDER_BOX);
+    box_flt7->box(FL_THIN_UP_BOX);
     box_flt7->color(FL_BACKGROUND_COLOR);
     box_flt7->selection_color(FL_BACKGROUND_COLOR);
     box_flt7->labeltype(FL_NORMAL_LABEL);
@@ -542,7 +542,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_flt7->end();
   } // Fl_Group_Ex* box_flt7
   { box_flt8 = new Fl_Group_Ex(325, 470, 60, 60);
-    box_flt8->box(FL_BORDER_BOX);
+    box_flt8->box(FL_THIN_UP_BOX);
     box_flt8->color(FL_BACKGROUND_COLOR);
     box_flt8->selection_color(FL_BACKGROUND_COLOR);
     box_flt8->labeltype(FL_NORMAL_LABEL);
@@ -554,7 +554,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_flt8->end();
   } // Fl_Group_Ex* box_flt8
   { box_flt9 = new Fl_Group_Ex(265, 535, 60, 60);
-    box_flt9->box(FL_BORDER_BOX);
+    box_flt9->box(FL_THIN_UP_BOX);
     box_flt9->color(FL_BACKGROUND_COLOR);
     box_flt9->selection_color(FL_BACKGROUND_COLOR);
     box_flt9->labeltype(FL_NORMAL_LABEL);
@@ -566,7 +566,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_flt9->end();
   } // Fl_Group_Ex* box_flt9
   { box_flt10 = new Fl_Group_Ex(325, 535, 60, 60);
-    box_flt10->box(FL_BORDER_BOX);
+    box_flt10->box(FL_THIN_UP_BOX);
     box_flt10->color(FL_BACKGROUND_COLOR);
     box_flt10->selection_color(FL_BACKGROUND_COLOR);
     box_flt10->labeltype(FL_NORMAL_LABEL);
@@ -578,7 +578,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_flt10->end();
   } // Fl_Group_Ex* box_flt10
   { box_flt11 = new Fl_Group_Ex(265, 600, 60, 60);
-    box_flt11->box(FL_BORDER_BOX);
+    box_flt11->box(FL_THIN_UP_BOX);
     box_flt11->color(FL_BACKGROUND_COLOR);
     box_flt11->selection_color(FL_BACKGROUND_COLOR);
     box_flt11->labeltype(FL_NORMAL_LABEL);
@@ -590,7 +590,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_flt11->end();
   } // Fl_Group_Ex* box_flt11
   { box_flt12 = new Fl_Group_Ex(325, 600, 60, 60);
-    box_flt12->box(FL_BORDER_BOX);
+    box_flt12->box(FL_THIN_UP_BOX);
     box_flt12->color(FL_BACKGROUND_COLOR);
     box_flt12->selection_color(FL_BACKGROUND_COLOR);
     box_flt12->labeltype(FL_NORMAL_LABEL);
@@ -602,7 +602,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_flt12->end();
   } // Fl_Group_Ex* box_flt12
   { box_flt13 = new Fl_Group_Ex(265, 665, 60, 60);
-    box_flt13->box(FL_BORDER_BOX);
+    box_flt13->box(FL_THIN_UP_BOX);
     box_flt13->color(FL_BACKGROUND_COLOR);
     box_flt13->selection_color(FL_BACKGROUND_COLOR);
     box_flt13->labeltype(FL_NORMAL_LABEL);
@@ -614,7 +614,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_flt13->end();
   } // Fl_Group_Ex* box_flt13
   { box_flt14 = new Fl_Group_Ex(325, 665, 60, 60);
-    box_flt14->box(FL_BORDER_BOX);
+    box_flt14->box(FL_THIN_UP_BOX);
     box_flt14->color(FL_BACKGROUND_COLOR);
     box_flt14->selection_color(FL_BACKGROUND_COLOR);
     box_flt14->labeltype(FL_NORMAL_LABEL);
@@ -655,7 +655,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     chk_pitch->when(FL_WHEN_RELEASE);
   } // Fl_Check_Button_Ex* chk_pitch
   { box_pit1 = new Fl_Group_Ex(395, 275, 60, 60);
-    box_pit1->box(FL_BORDER_BOX);
+    box_pit1->box(FL_THIN_UP_BOX);
     box_pit1->color(FL_BACKGROUND_COLOR);
     box_pit1->selection_color(FL_BACKGROUND_COLOR);
     box_pit1->labeltype(FL_NORMAL_LABEL);
@@ -667,7 +667,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_pit1->end();
   } // Fl_Group_Ex* box_pit1
   { box_pit2 = new Fl_Group_Ex(455, 275, 60, 60);
-    box_pit2->box(FL_BORDER_BOX);
+    box_pit2->box(FL_THIN_UP_BOX);
     box_pit2->color(FL_BACKGROUND_COLOR);
     box_pit2->selection_color(FL_BACKGROUND_COLOR);
     box_pit2->labeltype(FL_NORMAL_LABEL);
@@ -679,7 +679,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_pit2->end();
   } // Fl_Group_Ex* box_pit2
   { box_pit3 = new Fl_Group_Ex(395, 340, 60, 60);
-    box_pit3->box(FL_BORDER_BOX);
+    box_pit3->box(FL_THIN_UP_BOX);
     box_pit3->color(FL_BACKGROUND_COLOR);
     box_pit3->selection_color(FL_BACKGROUND_COLOR);
     box_pit3->labeltype(FL_NORMAL_LABEL);
@@ -691,7 +691,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_pit3->end();
   } // Fl_Group_Ex* box_pit3
   { box_pit4 = new Fl_Group_Ex(455, 340, 60, 60);
-    box_pit4->box(FL_BORDER_BOX);
+    box_pit4->box(FL_THIN_UP_BOX);
     box_pit4->color(FL_BACKGROUND_COLOR);
     box_pit4->selection_color(FL_BACKGROUND_COLOR);
     box_pit4->labeltype(FL_NORMAL_LABEL);
@@ -703,7 +703,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_pit4->end();
   } // Fl_Group_Ex* box_pit4
   { box_pit5 = new Fl_Group_Ex(395, 405, 60, 60);
-    box_pit5->box(FL_BORDER_BOX);
+    box_pit5->box(FL_THIN_UP_BOX);
     box_pit5->color(FL_BACKGROUND_COLOR);
     box_pit5->selection_color(FL_BACKGROUND_COLOR);
     box_pit5->labeltype(FL_NORMAL_LABEL);
@@ -715,7 +715,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_pit5->end();
   } // Fl_Group_Ex* box_pit5
   { box_pit6 = new Fl_Group_Ex(455, 405, 60, 60);
-    box_pit6->box(FL_BORDER_BOX);
+    box_pit6->box(FL_THIN_UP_BOX);
     box_pit6->color(FL_BACKGROUND_COLOR);
     box_pit6->selection_color(FL_BACKGROUND_COLOR);
     box_pit6->labeltype(FL_NORMAL_LABEL);
@@ -727,7 +727,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_pit6->end();
   } // Fl_Group_Ex* box_pit6
   { box_pit7 = new Fl_Group_Ex(395, 470, 60, 60);
-    box_pit7->box(FL_BORDER_BOX);
+    box_pit7->box(FL_THIN_UP_BOX);
     box_pit7->color(FL_BACKGROUND_COLOR);
     box_pit7->selection_color(FL_BACKGROUND_COLOR);
     box_pit7->labeltype(FL_NORMAL_LABEL);
@@ -739,7 +739,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_pit7->end();
   } // Fl_Group_Ex* box_pit7
   { box_pit8 = new Fl_Group_Ex(455, 470, 60, 60);
-    box_pit8->box(FL_BORDER_BOX);
+    box_pit8->box(FL_THIN_UP_BOX);
     box_pit8->color(FL_BACKGROUND_COLOR);
     box_pit8->selection_color(FL_BACKGROUND_COLOR);
     box_pit8->labeltype(FL_NORMAL_LABEL);
@@ -751,7 +751,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_pit8->end();
   } // Fl_Group_Ex* box_pit8
   { box_pit9 = new Fl_Group_Ex(395, 535, 60, 60);
-    box_pit9->box(FL_BORDER_BOX);
+    box_pit9->box(FL_THIN_UP_BOX);
     box_pit9->color(FL_BACKGROUND_COLOR);
     box_pit9->selection_color(FL_BACKGROUND_COLOR);
     box_pit9->labeltype(FL_NORMAL_LABEL);
@@ -763,7 +763,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_pit9->end();
   } // Fl_Group_Ex* box_pit9
   { box_pit10 = new Fl_Group_Ex(455, 535, 60, 60);
-    box_pit10->box(FL_BORDER_BOX);
+    box_pit10->box(FL_THIN_UP_BOX);
     box_pit10->color(FL_BACKGROUND_COLOR);
     box_pit10->selection_color(FL_BACKGROUND_COLOR);
     box_pit10->labeltype(FL_NORMAL_LABEL);
@@ -775,7 +775,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_pit10->end();
   } // Fl_Group_Ex* box_pit10
   { box_pit11 = new Fl_Group_Ex(395, 600, 60, 60);
-    box_pit11->box(FL_BORDER_BOX);
+    box_pit11->box(FL_THIN_UP_BOX);
     box_pit11->color(FL_BACKGROUND_COLOR);
     box_pit11->selection_color(FL_BACKGROUND_COLOR);
     box_pit11->labeltype(FL_NORMAL_LABEL);
@@ -787,7 +787,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_pit11->end();
   } // Fl_Group_Ex* box_pit11
   { box_pit12 = new Fl_Group_Ex(455, 600, 60, 60);
-    box_pit12->box(FL_BORDER_BOX);
+    box_pit12->box(FL_THIN_UP_BOX);
     box_pit12->color(FL_BACKGROUND_COLOR);
     box_pit12->selection_color(FL_BACKGROUND_COLOR);
     box_pit12->labeltype(FL_NORMAL_LABEL);
@@ -799,7 +799,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_pit12->end();
   } // Fl_Group_Ex* box_pit12
   { box_pit13 = new Fl_Group_Ex(395, 665, 60, 60);
-    box_pit13->box(FL_BORDER_BOX);
+    box_pit13->box(FL_THIN_UP_BOX);
     box_pit13->color(FL_BACKGROUND_COLOR);
     box_pit13->selection_color(FL_BACKGROUND_COLOR);
     box_pit13->labeltype(FL_NORMAL_LABEL);
@@ -811,7 +811,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_pit13->end();
   } // Fl_Group_Ex* box_pit13
   { box_pit14 = new Fl_Group_Ex(455, 665, 60, 60);
-    box_pit14->box(FL_BORDER_BOX);
+    box_pit14->box(FL_THIN_UP_BOX);
     box_pit14->color(FL_BACKGROUND_COLOR);
     box_pit14->selection_color(FL_BACKGROUND_COLOR);
     box_pit14->labeltype(FL_NORMAL_LABEL);
@@ -852,7 +852,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     chk_chorus->when(FL_WHEN_RELEASE);
   } // Fl_Check_Button_Ex* chk_chorus
   { box_cho1 = new Fl_Group_Ex(525, 275, 60, 60);
-    box_cho1->box(FL_BORDER_BOX);
+    box_cho1->box(FL_THIN_UP_BOX);
     box_cho1->color(FL_BACKGROUND_COLOR);
     box_cho1->selection_color(FL_BACKGROUND_COLOR);
     box_cho1->labeltype(FL_NORMAL_LABEL);
@@ -864,7 +864,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_cho1->end();
   } // Fl_Group_Ex* box_cho1
   { box_cho2 = new Fl_Group_Ex(585, 275, 60, 60);
-    box_cho2->box(FL_BORDER_BOX);
+    box_cho2->box(FL_THIN_UP_BOX);
     box_cho2->color(FL_BACKGROUND_COLOR);
     box_cho2->selection_color(FL_BACKGROUND_COLOR);
     box_cho2->labeltype(FL_NORMAL_LABEL);
@@ -876,7 +876,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_cho2->end();
   } // Fl_Group_Ex* box_cho2
   { box_cho3 = new Fl_Group_Ex(525, 340, 60, 60);
-    box_cho3->box(FL_BORDER_BOX);
+    box_cho3->box(FL_THIN_UP_BOX);
     box_cho3->color(FL_BACKGROUND_COLOR);
     box_cho3->selection_color(FL_BACKGROUND_COLOR);
     box_cho3->labeltype(FL_NORMAL_LABEL);
@@ -888,7 +888,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_cho3->end();
   } // Fl_Group_Ex* box_cho3
   { box_cho4 = new Fl_Group_Ex(585, 340, 60, 60);
-    box_cho4->box(FL_BORDER_BOX);
+    box_cho4->box(FL_THIN_UP_BOX);
     box_cho4->color(FL_BACKGROUND_COLOR);
     box_cho4->selection_color(FL_BACKGROUND_COLOR);
     box_cho4->labeltype(FL_NORMAL_LABEL);
@@ -900,7 +900,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_cho4->end();
   } // Fl_Group_Ex* box_cho4
   { box_cho5 = new Fl_Group_Ex(525, 405, 60, 60);
-    box_cho5->box(FL_BORDER_BOX);
+    box_cho5->box(FL_THIN_UP_BOX);
     box_cho5->color(FL_BACKGROUND_COLOR);
     box_cho5->selection_color(FL_BACKGROUND_COLOR);
     box_cho5->labeltype(FL_NORMAL_LABEL);
@@ -912,7 +912,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_cho5->end();
   } // Fl_Group_Ex* box_cho5
   { box_cho6 = new Fl_Group_Ex(585, 405, 60, 60);
-    box_cho6->box(FL_BORDER_BOX);
+    box_cho6->box(FL_THIN_UP_BOX);
     box_cho6->color(FL_BACKGROUND_COLOR);
     box_cho6->selection_color(FL_BACKGROUND_COLOR);
     box_cho6->labeltype(FL_NORMAL_LABEL);
@@ -924,7 +924,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_cho6->end();
   } // Fl_Group_Ex* box_cho6
   { box_cho7 = new Fl_Group_Ex(525, 470, 60, 60);
-    box_cho7->box(FL_BORDER_BOX);
+    box_cho7->box(FL_THIN_UP_BOX);
     box_cho7->color(FL_BACKGROUND_COLOR);
     box_cho7->selection_color(FL_BACKGROUND_COLOR);
     box_cho7->labeltype(FL_NORMAL_LABEL);
@@ -936,7 +936,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_cho7->end();
   } // Fl_Group_Ex* box_cho7
   { box_cho8 = new Fl_Group_Ex(585, 470, 60, 60);
-    box_cho8->box(FL_BORDER_BOX);
+    box_cho8->box(FL_THIN_UP_BOX);
     box_cho8->color(FL_BACKGROUND_COLOR);
     box_cho8->selection_color(FL_BACKGROUND_COLOR);
     box_cho8->labeltype(FL_NORMAL_LABEL);
@@ -948,7 +948,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_cho8->end();
   } // Fl_Group_Ex* box_cho8
   { box_cho9 = new Fl_Group_Ex(525, 535, 60, 60);
-    box_cho9->box(FL_BORDER_BOX);
+    box_cho9->box(FL_THIN_UP_BOX);
     box_cho9->color(FL_BACKGROUND_COLOR);
     box_cho9->selection_color(FL_BACKGROUND_COLOR);
     box_cho9->labeltype(FL_NORMAL_LABEL);
@@ -960,7 +960,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_cho9->end();
   } // Fl_Group_Ex* box_cho9
   { box_cho10 = new Fl_Group_Ex(585, 535, 60, 60);
-    box_cho10->box(FL_BORDER_BOX);
+    box_cho10->box(FL_THIN_UP_BOX);
     box_cho10->color(FL_BACKGROUND_COLOR);
     box_cho10->selection_color(FL_BACKGROUND_COLOR);
     box_cho10->labeltype(FL_NORMAL_LABEL);
@@ -972,7 +972,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_cho10->end();
   } // Fl_Group_Ex* box_cho10
   { box_cho11 = new Fl_Group_Ex(525, 600, 60, 60);
-    box_cho11->box(FL_BORDER_BOX);
+    box_cho11->box(FL_THIN_UP_BOX);
     box_cho11->color(FL_BACKGROUND_COLOR);
     box_cho11->selection_color(FL_BACKGROUND_COLOR);
     box_cho11->labeltype(FL_NORMAL_LABEL);
@@ -984,7 +984,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_cho11->end();
   } // Fl_Group_Ex* box_cho11
   { box_cho12 = new Fl_Group_Ex(585, 600, 60, 60);
-    box_cho12->box(FL_BORDER_BOX);
+    box_cho12->box(FL_THIN_UP_BOX);
     box_cho12->color(FL_BACKGROUND_COLOR);
     box_cho12->selection_color(FL_BACKGROUND_COLOR);
     box_cho12->labeltype(FL_NORMAL_LABEL);
@@ -996,7 +996,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_cho12->end();
   } // Fl_Group_Ex* box_cho12
   { box_cho13 = new Fl_Group_Ex(525, 665, 60, 60);
-    box_cho13->box(FL_BORDER_BOX);
+    box_cho13->box(FL_THIN_UP_BOX);
     box_cho13->color(FL_BACKGROUND_COLOR);
     box_cho13->selection_color(FL_BACKGROUND_COLOR);
     box_cho13->labeltype(FL_NORMAL_LABEL);
@@ -1008,7 +1008,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_cho13->end();
   } // Fl_Group_Ex* box_cho13
   { box_cho14 = new Fl_Group_Ex(585, 665, 60, 60);
-    box_cho14->box(FL_BORDER_BOX);
+    box_cho14->box(FL_THIN_UP_BOX);
     box_cho14->color(FL_BACKGROUND_COLOR);
     box_cho14->selection_color(FL_BACKGROUND_COLOR);
     box_cho14->labeltype(FL_NORMAL_LABEL);
@@ -1047,7 +1047,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
       chk_delay->when(FL_WHEN_RELEASE);
     } // Fl_Check_Button_Ex* chk_delay
     { box_del1 = new Fl_Group_Ex(655, 275, 60, 60);
-      box_del1->box(FL_BORDER_BOX);
+      box_del1->box(FL_THIN_UP_BOX);
       box_del1->color(FL_BACKGROUND_COLOR);
       box_del1->selection_color(FL_BACKGROUND_COLOR);
       box_del1->labeltype(FL_NORMAL_LABEL);
@@ -1059,7 +1059,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
       box_del1->end();
     } // Fl_Group_Ex* box_del1
     { box_del2 = new Fl_Group_Ex(715, 275, 60, 60);
-      box_del2->box(FL_BORDER_BOX);
+      box_del2->box(FL_THIN_UP_BOX);
       box_del2->color(FL_BACKGROUND_COLOR);
       box_del2->selection_color(FL_BACKGROUND_COLOR);
       box_del2->labeltype(FL_NORMAL_LABEL);
@@ -1071,7 +1071,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
       box_del2->end();
     } // Fl_Group_Ex* box_del2
     { box_del3 = new Fl_Group_Ex(655, 340, 60, 60);
-      box_del3->box(FL_BORDER_BOX);
+      box_del3->box(FL_THIN_UP_BOX);
       box_del3->color(FL_BACKGROUND_COLOR);
       box_del3->selection_color(FL_BACKGROUND_COLOR);
       box_del3->labeltype(FL_NORMAL_LABEL);
@@ -1083,7 +1083,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
       box_del3->end();
     } // Fl_Group_Ex* box_del3
     { box_del4 = new Fl_Group_Ex(715, 340, 60, 60);
-      box_del4->box(FL_BORDER_BOX);
+      box_del4->box(FL_THIN_UP_BOX);
       box_del4->color(FL_BACKGROUND_COLOR);
       box_del4->selection_color(FL_BACKGROUND_COLOR);
       box_del4->labeltype(FL_NORMAL_LABEL);
@@ -1095,7 +1095,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
       box_del4->end();
     } // Fl_Group_Ex* box_del4
     { box_del5 = new Fl_Group_Ex(655, 405, 60, 60);
-      box_del5->box(FL_BORDER_BOX);
+      box_del5->box(FL_THIN_UP_BOX);
       box_del5->color(FL_BACKGROUND_COLOR);
       box_del5->selection_color(FL_BACKGROUND_COLOR);
       box_del5->labeltype(FL_NORMAL_LABEL);
@@ -1107,7 +1107,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
       box_del5->end();
     } // Fl_Group_Ex* box_del5
     { box_del6 = new Fl_Group_Ex(715, 405, 60, 60);
-      box_del6->box(FL_BORDER_BOX);
+      box_del6->box(FL_THIN_UP_BOX);
       box_del6->color(FL_BACKGROUND_COLOR);
       box_del6->selection_color(FL_BACKGROUND_COLOR);
       box_del6->labeltype(FL_NORMAL_LABEL);
@@ -1119,7 +1119,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
       box_del6->end();
     } // Fl_Group_Ex* box_del6
     { box_del7 = new Fl_Group_Ex(655, 470, 60, 60);
-      box_del7->box(FL_BORDER_BOX);
+      box_del7->box(FL_THIN_UP_BOX);
       box_del7->color(FL_BACKGROUND_COLOR);
       box_del7->selection_color(FL_BACKGROUND_COLOR);
       box_del7->labeltype(FL_NORMAL_LABEL);
@@ -1131,7 +1131,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
       box_del7->end();
     } // Fl_Group_Ex* box_del7
     { box_del8 = new Fl_Group_Ex(715, 470, 60, 60);
-      box_del8->box(FL_BORDER_BOX);
+      box_del8->box(FL_THIN_UP_BOX);
       box_del8->color(FL_BACKGROUND_COLOR);
       box_del8->selection_color(FL_BACKGROUND_COLOR);
       box_del8->labeltype(FL_NORMAL_LABEL);
@@ -1143,7 +1143,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
       box_del8->end();
     } // Fl_Group_Ex* box_del8
     { box_del9 = new Fl_Group_Ex(655, 535, 60, 60);
-      box_del9->box(FL_BORDER_BOX);
+      box_del9->box(FL_THIN_UP_BOX);
       box_del9->color(FL_BACKGROUND_COLOR);
       box_del9->selection_color(FL_BACKGROUND_COLOR);
       box_del9->labeltype(FL_NORMAL_LABEL);
@@ -1155,7 +1155,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
       box_del9->end();
     } // Fl_Group_Ex* box_del9
     { box_del10 = new Fl_Group_Ex(715, 535, 60, 60);
-      box_del10->box(FL_BORDER_BOX);
+      box_del10->box(FL_THIN_UP_BOX);
       box_del10->color(FL_BACKGROUND_COLOR);
       box_del10->selection_color(FL_BACKGROUND_COLOR);
       box_del10->labeltype(FL_NORMAL_LABEL);
@@ -1167,7 +1167,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
       box_del10->end();
     } // Fl_Group_Ex* box_del10
     { box_del11 = new Fl_Group_Ex(655, 600, 60, 60);
-      box_del11->box(FL_BORDER_BOX);
+      box_del11->box(FL_THIN_UP_BOX);
       box_del11->color(FL_BACKGROUND_COLOR);
       box_del11->selection_color(FL_BACKGROUND_COLOR);
       box_del11->labeltype(FL_NORMAL_LABEL);
@@ -1179,7 +1179,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
       box_del11->end();
     } // Fl_Group_Ex* box_del11
     { box_del12 = new Fl_Group_Ex(715, 600, 60, 60);
-      box_del12->box(FL_BORDER_BOX);
+      box_del12->box(FL_THIN_UP_BOX);
       box_del12->color(FL_BACKGROUND_COLOR);
       box_del12->selection_color(FL_BACKGROUND_COLOR);
       box_del12->labeltype(FL_NORMAL_LABEL);
@@ -1191,7 +1191,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
       box_del12->end();
     } // Fl_Group_Ex* box_del12
     { box_del13 = new Fl_Group_Ex(655, 665, 60, 60);
-      box_del13->box(FL_BORDER_BOX);
+      box_del13->box(FL_THIN_UP_BOX);
       box_del13->color(FL_BACKGROUND_COLOR);
       box_del13->selection_color(FL_BACKGROUND_COLOR);
       box_del13->labeltype(FL_NORMAL_LABEL);
@@ -1203,7 +1203,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
       box_del13->end();
     } // Fl_Group_Ex* box_del13
     { box_del14 = new Fl_Group_Ex(715, 665, 60, 60);
-      box_del14->box(FL_BORDER_BOX);
+      box_del14->box(FL_THIN_UP_BOX);
       box_del14->color(FL_BACKGROUND_COLOR);
       box_del14->selection_color(FL_BACKGROUND_COLOR);
       box_del14->labeltype(FL_NORMAL_LABEL);
@@ -1242,7 +1242,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
         chk_reverb->when(FL_WHEN_RELEASE);
       } // Fl_Check_Button_Ex* chk_reverb
       { box_rev1 = new Fl_Group_Ex(785, 275, 60, 60);
-        box_rev1->box(FL_BORDER_BOX);
+        box_rev1->box(FL_THIN_UP_BOX);
         box_rev1->color(FL_BACKGROUND_COLOR);
         box_rev1->selection_color(FL_BACKGROUND_COLOR);
         box_rev1->labeltype(FL_NORMAL_LABEL);
@@ -1254,7 +1254,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
         box_rev1->end();
       } // Fl_Group_Ex* box_rev1
       { box_rev2 = new Fl_Group_Ex(845, 275, 60, 60);
-        box_rev2->box(FL_BORDER_BOX);
+        box_rev2->box(FL_THIN_UP_BOX);
         box_rev2->color(FL_BACKGROUND_COLOR);
         box_rev2->selection_color(FL_BACKGROUND_COLOR);
         box_rev2->labeltype(FL_NORMAL_LABEL);
@@ -1266,7 +1266,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
         box_rev2->end();
       } // Fl_Group_Ex* box_rev2
       { box_rev3 = new Fl_Group_Ex(785, 340, 60, 60);
-        box_rev3->box(FL_BORDER_BOX);
+        box_rev3->box(FL_THIN_UP_BOX);
         box_rev3->color(FL_BACKGROUND_COLOR);
         box_rev3->selection_color(FL_BACKGROUND_COLOR);
         box_rev3->labeltype(FL_NORMAL_LABEL);
@@ -1278,7 +1278,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
         box_rev3->end();
       } // Fl_Group_Ex* box_rev3
       { box_rev4 = new Fl_Group_Ex(845, 340, 60, 60);
-        box_rev4->box(FL_BORDER_BOX);
+        box_rev4->box(FL_THIN_UP_BOX);
         box_rev4->color(FL_BACKGROUND_COLOR);
         box_rev4->selection_color(FL_BACKGROUND_COLOR);
         box_rev4->labeltype(FL_NORMAL_LABEL);
@@ -1290,7 +1290,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
         box_rev4->end();
       } // Fl_Group_Ex* box_rev4
       { box_rev5 = new Fl_Group_Ex(785, 405, 60, 60);
-        box_rev5->box(FL_BORDER_BOX);
+        box_rev5->box(FL_THIN_UP_BOX);
         box_rev5->color(FL_BACKGROUND_COLOR);
         box_rev5->selection_color(FL_BACKGROUND_COLOR);
         box_rev5->labeltype(FL_NORMAL_LABEL);
@@ -1302,7 +1302,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
         box_rev5->end();
       } // Fl_Group_Ex* box_rev5
       { box_rev6 = new Fl_Group_Ex(845, 405, 60, 60);
-        box_rev6->box(FL_BORDER_BOX);
+        box_rev6->box(FL_THIN_UP_BOX);
         box_rev6->color(FL_BACKGROUND_COLOR);
         box_rev6->selection_color(FL_BACKGROUND_COLOR);
         box_rev6->labeltype(FL_NORMAL_LABEL);
@@ -1314,7 +1314,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
         box_rev6->end();
       } // Fl_Group_Ex* box_rev6
       { box_rev7 = new Fl_Group_Ex(785, 470, 60, 60);
-        box_rev7->box(FL_BORDER_BOX);
+        box_rev7->box(FL_THIN_UP_BOX);
         box_rev7->color(FL_BACKGROUND_COLOR);
         box_rev7->selection_color(FL_BACKGROUND_COLOR);
         box_rev7->labeltype(FL_NORMAL_LABEL);
@@ -1326,7 +1326,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
         box_rev7->end();
       } // Fl_Group_Ex* box_rev7
       { box_rev8 = new Fl_Group_Ex(845, 470, 60, 60);
-        box_rev8->box(FL_BORDER_BOX);
+        box_rev8->box(FL_THIN_UP_BOX);
         box_rev8->color(FL_BACKGROUND_COLOR);
         box_rev8->selection_color(FL_BACKGROUND_COLOR);
         box_rev8->labeltype(FL_NORMAL_LABEL);
@@ -1338,7 +1338,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
         box_rev8->end();
       } // Fl_Group_Ex* box_rev8
       { box_rev9 = new Fl_Group_Ex(785, 535, 60, 60);
-        box_rev9->box(FL_BORDER_BOX);
+        box_rev9->box(FL_THIN_UP_BOX);
         box_rev9->color(FL_BACKGROUND_COLOR);
         box_rev9->selection_color(FL_BACKGROUND_COLOR);
         box_rev9->labeltype(FL_NORMAL_LABEL);
@@ -1350,7 +1350,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
         box_rev9->end();
       } // Fl_Group_Ex* box_rev9
       { box_rev10 = new Fl_Group_Ex(845, 535, 60, 60);
-        box_rev10->box(FL_BORDER_BOX);
+        box_rev10->box(FL_THIN_UP_BOX);
         box_rev10->color(FL_BACKGROUND_COLOR);
         box_rev10->selection_color(FL_BACKGROUND_COLOR);
         box_rev10->labeltype(FL_NORMAL_LABEL);
@@ -1362,7 +1362,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
         box_rev10->end();
       } // Fl_Group_Ex* box_rev10
       { box_rev11 = new Fl_Group_Ex(785, 600, 60, 60);
-        box_rev11->box(FL_BORDER_BOX);
+        box_rev11->box(FL_THIN_UP_BOX);
         box_rev11->color(FL_BACKGROUND_COLOR);
         box_rev11->selection_color(FL_BACKGROUND_COLOR);
         box_rev11->labeltype(FL_NORMAL_LABEL);
@@ -1374,7 +1374,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
         box_rev11->end();
       } // Fl_Group_Ex* box_rev11
       { box_rev12 = new Fl_Group_Ex(845, 600, 60, 60);
-        box_rev12->box(FL_BORDER_BOX);
+        box_rev12->box(FL_THIN_UP_BOX);
         box_rev12->color(FL_BACKGROUND_COLOR);
         box_rev12->selection_color(FL_BACKGROUND_COLOR);
         box_rev12->labeltype(FL_NORMAL_LABEL);
@@ -1386,7 +1386,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
         box_rev12->end();
       } // Fl_Group_Ex* box_rev12
       { box_rev13 = new Fl_Group_Ex(785, 665, 60, 60);
-        box_rev13->box(FL_BORDER_BOX);
+        box_rev13->box(FL_THIN_UP_BOX);
         box_rev13->color(FL_BACKGROUND_COLOR);
         box_rev13->selection_color(FL_BACKGROUND_COLOR);
         box_rev13->labeltype(FL_NORMAL_LABEL);
@@ -1398,7 +1398,7 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
         box_rev13->end();
       } // Fl_Group_Ex* box_rev13
       { box_rev14 = new Fl_Group_Ex(845, 665, 60, 60);
-        box_rev14->box(FL_BORDER_BOX);
+        box_rev14->box(FL_THIN_UP_BOX);
         box_rev14->color(FL_BACKGROUND_COLOR);
         box_rev14->selection_color(FL_BACKGROUND_COLOR);
         box_rev14->labeltype(FL_NORMAL_LABEL);

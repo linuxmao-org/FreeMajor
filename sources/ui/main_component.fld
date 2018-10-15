@@ -108,7 +108,7 @@ decl {typedef Fl_Valuator_Ex<Fl_Dial> Fl_Dial_Ex;} {public global
 }
 
 widget_class Main_Component {open
-  xywh {5 93 910 735} type Double
+  xywh {179 107 910 735} type Double
   code0 {init();} visible
 } {
   decl {void init();} {private local
@@ -135,7 +135,7 @@ widget_class Main_Component {open
   }
   decl {void setup_boxes(bool enable, const Parameter_Collection &pc, Fl_Group_Ex *boxes[], unsigned nboxes);} {private local
   }
-  decl {void setup_modifier_row(const char *title, bool enable, int row, Parameter_Collection &pc);} {selected private local
+  decl {void setup_modifier_row(const char *title, bool enable, int row, Parameter_Collection &pc);} {private local
   }
   decl {void update_midi_outs();} {private local
   }
@@ -224,27 +224,27 @@ widget_class Main_Component {open
       class Fl_Check_Button_Ex
     }
     Fl_Group box_ng1 {open
-      xywh {5 250 60 60} box BORDER_BOX
+      xywh {5 250 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_ng2 {open
-      xywh {65 250 60 60} box BORDER_BOX
+      xywh {65 250 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_ng3 {open
-      xywh {5 315 60 60} box BORDER_BOX
+      xywh {5 315 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_ng4 {open
-      xywh {65 315 60 60} box BORDER_BOX
+      xywh {65 315 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_ng5 {open
-      xywh {5 380 60 60} box BORDER_BOX
+      xywh {5 380 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_ng6 {open
-      xywh {65 380 60 60} box BORDER_BOX
+      xywh {65 380 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group {} {open
@@ -256,27 +256,27 @@ widget_class Main_Component {open
         class Fl_Check_Button_Ex
       }
       Fl_Group box_cpr1 {open
-        xywh {135 250 60 60} box BORDER_BOX
+        xywh {135 250 60 60} box THIN_UP_BOX
         class Fl_Group_Ex
       } {}
       Fl_Group box_cpr2 {open
-        xywh {195 250 60 60} box BORDER_BOX
+        xywh {195 250 60 60} box THIN_UP_BOX
         class Fl_Group_Ex
       } {}
       Fl_Group box_cpr3 {open
-        xywh {135 315 60 60} box BORDER_BOX
+        xywh {135 315 60 60} box THIN_UP_BOX
         class Fl_Group_Ex
       } {}
       Fl_Group box_cpr4 {open
-        xywh {195 315 60 60} box BORDER_BOX
+        xywh {195 315 60 60} box THIN_UP_BOX
         class Fl_Group_Ex
       } {}
       Fl_Group box_cpr5 {open
-        xywh {135 380 60 60} box BORDER_BOX
+        xywh {135 380 60 60} box THIN_UP_BOX
         class Fl_Group_Ex
       } {}
       Fl_Group box_cpr6 {open
-        xywh {195 380 60 60} box BORDER_BOX
+        xywh {195 380 60 60} box THIN_UP_BOX
         class Fl_Group_Ex
       } {}
     }
@@ -290,43 +290,43 @@ widget_class Main_Component {open
       class Fl_Check_Button_Ex
     }
     Fl_Group box_eq1 {open
-      xywh {20 475 60 60} box BORDER_BOX
+      xywh {20 475 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_eq2 {open
-      xywh {100 475 60 60} box BORDER_BOX
+      xywh {100 475 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_eq4 {open
-      xywh {20 540 60 60} box BORDER_BOX
+      xywh {20 540 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_eq5 {open
-      xywh {100 540 60 60} box BORDER_BOX
+      xywh {100 540 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_eq7 {open
-      xywh {20 605 60 60} box BORDER_BOX
+      xywh {20 605 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_eq8 {open
-      xywh {100 605 60 60} box BORDER_BOX
+      xywh {100 605 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_eq3 {open
-      xywh {180 475 60 60} box BORDER_BOX
+      xywh {180 475 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_eq6 {open
-      xywh {180 540 60 60} box BORDER_BOX
+      xywh {180 540 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_eq9 {open
-      xywh {180 605 60 60} box BORDER_BOX
+      xywh {180 605 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
   }
-  Fl_Group {} {
+  Fl_Group {} {open
     xywh {260 225 131 510} box THIN_UP_BOX
   } {
     Fl_Check_Button chk_filter {
@@ -335,59 +335,59 @@ widget_class Main_Component {open
       class Fl_Check_Button_Ex
     }
     Fl_Group box_flt1 {open
-      xywh {265 275 60 60} box BORDER_BOX
+      xywh {265 275 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
-    Fl_Group box_flt2 {open
-      xywh {325 275 60 60} box BORDER_BOX
+    Fl_Group box_flt2 {open selected
+      xywh {325 275 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_flt3 {open
-      xywh {265 340 60 60} box BORDER_BOX
+      xywh {265 340 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_flt4 {open
-      xywh {325 340 60 60} box BORDER_BOX
+      xywh {325 340 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_flt5 {open
-      xywh {265 405 60 60} box BORDER_BOX
+      xywh {265 405 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_flt6 {open
-      xywh {325 405 60 60} box BORDER_BOX
+      xywh {325 405 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_flt7 {open
-      xywh {265 470 60 60} box BORDER_BOX
+      xywh {265 470 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_flt8 {open
-      xywh {325 470 60 60} box BORDER_BOX
+      xywh {325 470 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_flt9 {open
-      xywh {265 535 60 60} box BORDER_BOX
+      xywh {265 535 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_flt10 {open
-      xywh {325 535 60 60} box BORDER_BOX
+      xywh {325 535 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_flt11 {open
-      xywh {265 600 60 60} box BORDER_BOX
+      xywh {265 600 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_flt12 {open
-      xywh {325 600 60 60} box BORDER_BOX
+      xywh {325 600 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_flt13 {open
-      xywh {265 665 60 60} box BORDER_BOX
+      xywh {265 665 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_flt14 {open
-      xywh {325 665 60 60} box BORDER_BOX
+      xywh {325 665 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Choice cb_filter {open
@@ -404,59 +404,59 @@ widget_class Main_Component {open
       class Fl_Check_Button_Ex
     }
     Fl_Group box_pit1 {open
-      xywh {395 275 60 60} box BORDER_BOX
+      xywh {395 275 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_pit2 {open
-      xywh {455 275 60 60} box BORDER_BOX
+      xywh {455 275 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_pit3 {open
-      xywh {395 340 60 60} box BORDER_BOX
+      xywh {395 340 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_pit4 {open
-      xywh {455 340 60 60} box BORDER_BOX
+      xywh {455 340 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_pit5 {open
-      xywh {395 405 60 60} box BORDER_BOX
+      xywh {395 405 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_pit6 {open
-      xywh {455 405 60 60} box BORDER_BOX
+      xywh {455 405 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_pit7 {open
-      xywh {395 470 60 60} box BORDER_BOX
+      xywh {395 470 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_pit8 {open
-      xywh {455 470 60 60} box BORDER_BOX
+      xywh {455 470 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_pit9 {open
-      xywh {395 535 60 60} box BORDER_BOX
+      xywh {395 535 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_pit10 {open
-      xywh {455 535 60 60} box BORDER_BOX
+      xywh {455 535 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_pit11 {open
-      xywh {395 600 60 60} box BORDER_BOX
+      xywh {395 600 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_pit12 {open
-      xywh {455 600 60 60} box BORDER_BOX
+      xywh {455 600 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_pit13 {open
-      xywh {395 665 60 60} box BORDER_BOX
+      xywh {395 665 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_pit14 {open
-      xywh {455 665 60 60} box BORDER_BOX
+      xywh {455 665 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Choice cb_pitch {open
@@ -473,59 +473,59 @@ widget_class Main_Component {open
       class Fl_Check_Button_Ex
     }
     Fl_Group box_cho1 {open
-      xywh {525 275 60 60} box BORDER_BOX
+      xywh {525 275 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_cho2 {open
-      xywh {585 275 60 60} box BORDER_BOX
+      xywh {585 275 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_cho3 {open
-      xywh {525 340 60 60} box BORDER_BOX
+      xywh {525 340 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_cho4 {open
-      xywh {585 340 60 60} box BORDER_BOX
+      xywh {585 340 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_cho5 {open
-      xywh {525 405 60 60} box BORDER_BOX
+      xywh {525 405 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_cho6 {open
-      xywh {585 405 60 60} box BORDER_BOX
+      xywh {585 405 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_cho7 {open
-      xywh {525 470 60 60} box BORDER_BOX
+      xywh {525 470 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_cho8 {open
-      xywh {585 470 60 60} box BORDER_BOX
+      xywh {585 470 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_cho9 {open
-      xywh {525 535 60 60} box BORDER_BOX
+      xywh {525 535 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_cho10 {open
-      xywh {585 535 60 60} box BORDER_BOX
+      xywh {585 535 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_cho11 {open
-      xywh {525 600 60 60} box BORDER_BOX
+      xywh {525 600 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_cho12 {open
-      xywh {585 600 60 60} box BORDER_BOX
+      xywh {585 600 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_cho13 {open
-      xywh {525 665 60 60} box BORDER_BOX
+      xywh {525 665 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Group box_cho14 {open
-      xywh {585 665 60 60} box BORDER_BOX
+      xywh {585 665 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
     Fl_Choice cb_chorus {open
@@ -541,59 +541,59 @@ widget_class Main_Component {open
         class Fl_Check_Button_Ex
       }
       Fl_Group box_del1 {open
-        xywh {655 275 60 60} box BORDER_BOX
+        xywh {655 275 60 60} box THIN_UP_BOX
         class Fl_Group_Ex
       } {}
       Fl_Group box_del2 {open
-        xywh {715 275 60 60} box BORDER_BOX
+        xywh {715 275 60 60} box THIN_UP_BOX
         class Fl_Group_Ex
       } {}
       Fl_Group box_del3 {open
-        xywh {655 340 60 60} box BORDER_BOX
+        xywh {655 340 60 60} box THIN_UP_BOX
         class Fl_Group_Ex
       } {}
       Fl_Group box_del4 {open
-        xywh {715 340 60 60} box BORDER_BOX
+        xywh {715 340 60 60} box THIN_UP_BOX
         class Fl_Group_Ex
       } {}
       Fl_Group box_del5 {open
-        xywh {655 405 60 60} box BORDER_BOX
+        xywh {655 405 60 60} box THIN_UP_BOX
         class Fl_Group_Ex
       } {}
       Fl_Group box_del6 {open
-        xywh {715 405 60 60} box BORDER_BOX
+        xywh {715 405 60 60} box THIN_UP_BOX
         class Fl_Group_Ex
       } {}
       Fl_Group box_del7 {open
-        xywh {655 470 60 60} box BORDER_BOX
+        xywh {655 470 60 60} box THIN_UP_BOX
         class Fl_Group_Ex
       } {}
       Fl_Group box_del8 {open
-        xywh {715 470 60 60} box BORDER_BOX
+        xywh {715 470 60 60} box THIN_UP_BOX
         class Fl_Group_Ex
       } {}
       Fl_Group box_del9 {open
-        xywh {655 535 60 60} box BORDER_BOX
+        xywh {655 535 60 60} box THIN_UP_BOX
         class Fl_Group_Ex
       } {}
       Fl_Group box_del10 {open
-        xywh {715 535 60 60} box BORDER_BOX
+        xywh {715 535 60 60} box THIN_UP_BOX
         class Fl_Group_Ex
       } {}
       Fl_Group box_del11 {open
-        xywh {655 600 60 60} box BORDER_BOX
+        xywh {655 600 60 60} box THIN_UP_BOX
         class Fl_Group_Ex
       } {}
       Fl_Group box_del12 {open
-        xywh {715 600 60 60} box BORDER_BOX
+        xywh {715 600 60 60} box THIN_UP_BOX
         class Fl_Group_Ex
       } {}
       Fl_Group box_del13 {open
-        xywh {655 665 60 60} box BORDER_BOX
+        xywh {655 665 60 60} box THIN_UP_BOX
         class Fl_Group_Ex
       } {}
       Fl_Group box_del14 {open
-        xywh {715 665 60 60} box BORDER_BOX
+        xywh {715 665 60 60} box THIN_UP_BOX
         class Fl_Group_Ex
       } {}
       Fl_Choice cb_delay {open
@@ -609,59 +609,59 @@ widget_class Main_Component {open
           class Fl_Check_Button_Ex
         }
         Fl_Group box_rev1 {open
-          xywh {785 275 60 60} box BORDER_BOX
+          xywh {785 275 60 60} box THIN_UP_BOX
           class Fl_Group_Ex
         } {}
         Fl_Group box_rev2 {open
-          xywh {845 275 60 60} box BORDER_BOX
+          xywh {845 275 60 60} box THIN_UP_BOX
           class Fl_Group_Ex
         } {}
         Fl_Group box_rev3 {open
-          xywh {785 340 60 60} box BORDER_BOX
+          xywh {785 340 60 60} box THIN_UP_BOX
           class Fl_Group_Ex
         } {}
         Fl_Group box_rev4 {open
-          xywh {845 340 60 60} box BORDER_BOX
+          xywh {845 340 60 60} box THIN_UP_BOX
           class Fl_Group_Ex
         } {}
         Fl_Group box_rev5 {open
-          xywh {785 405 60 60} box BORDER_BOX
+          xywh {785 405 60 60} box THIN_UP_BOX
           class Fl_Group_Ex
         } {}
         Fl_Group box_rev6 {open
-          xywh {845 405 60 60} box BORDER_BOX
+          xywh {845 405 60 60} box THIN_UP_BOX
           class Fl_Group_Ex
         } {}
         Fl_Group box_rev7 {open
-          xywh {785 470 60 60} box BORDER_BOX
+          xywh {785 470 60 60} box THIN_UP_BOX
           class Fl_Group_Ex
         } {}
         Fl_Group box_rev8 {open
-          xywh {845 470 60 60} box BORDER_BOX
+          xywh {845 470 60 60} box THIN_UP_BOX
           class Fl_Group_Ex
         } {}
         Fl_Group box_rev9 {open
-          xywh {785 535 60 60} box BORDER_BOX
+          xywh {785 535 60 60} box THIN_UP_BOX
           class Fl_Group_Ex
         } {}
         Fl_Group box_rev10 {open
-          xywh {845 535 60 60} box BORDER_BOX
+          xywh {845 535 60 60} box THIN_UP_BOX
           class Fl_Group_Ex
         } {}
         Fl_Group box_rev11 {open
-          xywh {785 600 60 60} box BORDER_BOX
+          xywh {785 600 60 60} box THIN_UP_BOX
           class Fl_Group_Ex
         } {}
         Fl_Group box_rev12 {open
-          xywh {845 600 60 60} box BORDER_BOX
+          xywh {845 600 60 60} box THIN_UP_BOX
           class Fl_Group_Ex
         } {}
         Fl_Group box_rev13 {open
-          xywh {785 665 60 60} box BORDER_BOX
+          xywh {785 665 60 60} box THIN_UP_BOX
           class Fl_Group_Ex
         } {}
         Fl_Group box_rev14 {open
-          xywh {845 665 60 60} box BORDER_BOX
+          xywh {845 665 60 60} box THIN_UP_BOX
           class Fl_Group_Ex
         } {}
         Fl_Choice cb_reverb {open

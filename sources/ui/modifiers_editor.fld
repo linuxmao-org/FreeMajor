@@ -16,43 +16,43 @@ widget_class Modifiers_Editor {open
   }
   Fl_Group mod_A1 {
     label Label open
-    xywh {5 30 80 80} box BORDER_BOX labelsize 12 align 2
+    xywh {5 30 80 80} box THIN_UP_BOX labelsize 12 align 2
   } {}
   Fl_Group mod_A2 {
     label Label open
-    xywh {85 30 80 80} box BORDER_BOX labelsize 12 align 2
+    xywh {85 30 80 80} box THIN_UP_BOX labelsize 12 align 2
   } {}
   Fl_Group mod_A3 {
     label Label open
-    xywh {165 30 80 80} box BORDER_BOX labelsize 12 align 2
+    xywh {165 30 80 80} box THIN_UP_BOX labelsize 12 align 2
   } {}
   Fl_Group mod_A4 {
     label Label open
-    xywh {245 30 80 80} box BORDER_BOX labelsize 12 align 2
+    xywh {245 30 80 80} box THIN_UP_BOX labelsize 12 align 2
   } {}
   Fl_Group mod_A5 {
     label Label open
-    xywh {325 30 80 80} box BORDER_BOX labelsize 12 align 2
+    xywh {325 30 80 80} box THIN_UP_BOX labelsize 12 align 2
   } {}
   Fl_Group mod_A6 {
     label Label open
-    xywh {405 30 80 80} box BORDER_BOX labelsize 12 align 2
+    xywh {405 30 80 80} box THIN_UP_BOX labelsize 12 align 2
   } {}
   Fl_Group mod_A7 {
     label Label open
-    xywh {485 30 80 80} box BORDER_BOX labelsize 12 align 2
+    xywh {485 30 80 80} box THIN_UP_BOX labelsize 12 align 2
   } {}
   Fl_Group mod_A8 {
     label Label open
-    xywh {565 30 80 80} box BORDER_BOX labelsize 12 align 2
+    xywh {565 30 80 80} box THIN_UP_BOX labelsize 12 align 2
   } {}
   Fl_Group mod_A9 {
     label Label open
-    xywh {645 30 80 80} box BORDER_BOX labelsize 12 align 2
+    xywh {645 30 80 80} box THIN_UP_BOX labelsize 12 align 2
   } {}
   Fl_Group mod_A10 {
     label Label open
-    xywh {725 30 80 80} box BORDER_BOX labelsize 12 align 2
+    xywh {725 30 80 80} box THIN_UP_BOX labelsize 12 align 2
   } {}
   Fl_Box lbl_A {
     label Part
@@ -60,43 +60,43 @@ widget_class Modifiers_Editor {open
   }
   Fl_Group mod_B1 {
     label Label open
-    xywh {5 155 80 80} box BORDER_BOX labelsize 12 align 2
+    xywh {5 155 80 80} box THIN_UP_BOX labelsize 12 align 2
   } {}
   Fl_Group mod_B2 {
     label Label open
-    xywh {85 155 80 80} box BORDER_BOX labelsize 12 align 2
+    xywh {85 155 80 80} box THIN_UP_BOX labelsize 12 align 2
   } {}
   Fl_Group mod_B3 {
     label Label open
-    xywh {165 155 80 80} box BORDER_BOX labelsize 12 align 2
+    xywh {165 155 80 80} box THIN_UP_BOX labelsize 12 align 2
   } {}
   Fl_Group mod_B4 {
     label Label open
-    xywh {245 155 80 80} box BORDER_BOX labelsize 12 align 2
+    xywh {245 155 80 80} box THIN_UP_BOX labelsize 12 align 2
   } {}
   Fl_Group mod_B5 {
     label Label open
-    xywh {325 155 80 80} box BORDER_BOX labelsize 12 align 2
+    xywh {325 155 80 80} box THIN_UP_BOX labelsize 12 align 2
   } {}
   Fl_Group mod_B6 {
     label Label open
-    xywh {405 155 80 80} box BORDER_BOX labelsize 12 align 2
+    xywh {405 155 80 80} box THIN_UP_BOX labelsize 12 align 2
   } {}
   Fl_Group mod_B7 {
     label Label open
-    xywh {485 155 80 80} box BORDER_BOX labelsize 12 align 2
+    xywh {485 155 80 80} box THIN_UP_BOX labelsize 12 align 2
   } {}
   Fl_Group mod_B8 {
     label Label open
-    xywh {565 155 80 80} box BORDER_BOX labelsize 12 align 2
+    xywh {565 155 80 80} box THIN_UP_BOX labelsize 12 align 2
   } {}
   Fl_Group mod_B9 {
     label Label open
-    xywh {645 155 80 80} box BORDER_BOX labelsize 12 align 2
+    xywh {645 155 80 80} box THIN_UP_BOX labelsize 12 align 2
   } {}
   Fl_Group mod_B10 {
     label Label open
-    xywh {725 155 80 80} box BORDER_BOX labelsize 12 align 2
+    xywh {725 155 80 80} box THIN_UP_BOX labelsize 12 align 2
   } {}
   Fl_Box lbl_B {
     label Part
@@ -104,43 +104,43 @@ widget_class Modifiers_Editor {open
   }
   Fl_Group mod_C1 {
     label Label open
-    xywh {5 280 80 80} box BORDER_BOX labelsize 12 align 2
+    xywh {5 280 80 80} box THIN_UP_BOX labelsize 12 align 2
   } {}
   Fl_Group mod_C2 {
     label Label open
-    xywh {85 280 80 80} box BORDER_BOX labelsize 12 align 2
+    xywh {85 280 80 80} box THIN_UP_BOX labelsize 12 align 2
   } {}
   Fl_Group mod_C3 {
     label Label open
-    xywh {165 280 80 80} box BORDER_BOX labelsize 12 align 2
+    xywh {165 280 80 80} box THIN_UP_BOX labelsize 12 align 2
   } {}
   Fl_Group mod_C4 {
     label Label open
-    xywh {245 280 80 80} box BORDER_BOX labelsize 12 align 2
+    xywh {245 280 80 80} box THIN_UP_BOX labelsize 12 align 2
   } {}
   Fl_Group mod_C5 {
     label Label open
-    xywh {325 280 80 80} box BORDER_BOX labelsize 12 align 2
+    xywh {325 280 80 80} box THIN_UP_BOX labelsize 12 align 2
   } {}
   Fl_Group mod_C6 {
     label Label open
-    xywh {405 280 80 80} box BORDER_BOX labelsize 12 align 2
+    xywh {405 280 80 80} box THIN_UP_BOX labelsize 12 align 2
   } {}
   Fl_Group mod_C7 {
     label Label open
-    xywh {485 280 80 80} box BORDER_BOX labelsize 12 align 2
+    xywh {485 280 80 80} box THIN_UP_BOX labelsize 12 align 2
   } {}
   Fl_Group mod_C8 {
     label Label open
-    xywh {565 280 80 80} box BORDER_BOX labelsize 12 align 2
+    xywh {565 280 80 80} box THIN_UP_BOX labelsize 12 align 2
   } {}
   Fl_Group mod_C9 {
     label Label open
-    xywh {645 280 80 80} box BORDER_BOX labelsize 12 align 2
+    xywh {645 280 80 80} box THIN_UP_BOX labelsize 12 align 2
   } {}
   Fl_Group mod_C10 {
     label Label open
-    xywh {725 280 80 80} box BORDER_BOX labelsize 12 align 2
+    xywh {725 280 80 80} box THIN_UP_BOX labelsize 12 align 2
   } {}
   Fl_Box lbl_C {
     label Part
@@ -148,43 +148,43 @@ widget_class Modifiers_Editor {open
   }
   Fl_Group mod_D1 {
     label Label open
-    xywh {5 405 80 80} box BORDER_BOX labelsize 12 align 2
+    xywh {5 405 80 80} box THIN_UP_BOX labelsize 12 align 2
   } {}
   Fl_Group mod_D2 {
     label Label open
-    xywh {85 405 80 80} box BORDER_BOX labelsize 12 align 2
+    xywh {85 405 80 80} box THIN_UP_BOX labelsize 12 align 2
   } {}
   Fl_Group mod_D3 {
     label Label open
-    xywh {165 405 80 80} box BORDER_BOX labelsize 12 align 2
+    xywh {165 405 80 80} box THIN_UP_BOX labelsize 12 align 2
   } {}
   Fl_Group mod_D4 {
     label Label open
-    xywh {245 405 80 80} box BORDER_BOX labelsize 12 align 2
+    xywh {245 405 80 80} box THIN_UP_BOX labelsize 12 align 2
   } {}
   Fl_Group mod_D5 {
     label Label open
-    xywh {325 405 80 80} box BORDER_BOX labelsize 12 align 2
+    xywh {325 405 80 80} box THIN_UP_BOX labelsize 12 align 2
   } {}
   Fl_Group mod_D6 {
     label Label open
-    xywh {405 405 80 80} box BORDER_BOX labelsize 12 align 2
+    xywh {405 405 80 80} box THIN_UP_BOX labelsize 12 align 2
   } {}
   Fl_Group mod_D7 {
     label Label open
-    xywh {485 405 80 80} box BORDER_BOX labelsize 12 align 2
+    xywh {485 405 80 80} box THIN_UP_BOX labelsize 12 align 2
   } {}
   Fl_Group mod_D8 {
     label Label open
-    xywh {565 405 80 80} box BORDER_BOX labelsize 12 align 2
+    xywh {565 405 80 80} box THIN_UP_BOX labelsize 12 align 2
   } {}
   Fl_Group mod_D9 {
     label Label open
-    xywh {645 405 80 80} box BORDER_BOX labelsize 12 align 2
+    xywh {645 405 80 80} box THIN_UP_BOX labelsize 12 align 2
   } {}
   Fl_Group mod_D10 {
     label Label open
-    xywh {725 405 80 80} box BORDER_BOX labelsize 12 align 2
+    xywh {725 405 80 80} box THIN_UP_BOX labelsize 12 align 2
   } {}
   Fl_Box lbl_D {
     label Part
@@ -192,43 +192,43 @@ widget_class Modifiers_Editor {open
   }
   Fl_Group mod_E1 {
     label Label open
-    xywh {5 530 80 80} box BORDER_BOX labelsize 12 align 2
+    xywh {5 530 80 80} box THIN_UP_BOX labelsize 12 align 2
   } {}
   Fl_Group mod_E2 {
     label Label open
-    xywh {85 530 80 80} box BORDER_BOX labelsize 12 align 2
+    xywh {85 530 80 80} box THIN_UP_BOX labelsize 12 align 2
   } {}
   Fl_Group mod_E3 {
     label Label open
-    xywh {165 530 80 80} box BORDER_BOX labelsize 12 align 2
+    xywh {165 530 80 80} box THIN_UP_BOX labelsize 12 align 2
   } {}
   Fl_Group mod_E4 {
     label Label open
-    xywh {245 530 80 80} box BORDER_BOX labelsize 12 align 2
+    xywh {245 530 80 80} box THIN_UP_BOX labelsize 12 align 2
   } {}
   Fl_Group mod_E5 {
     label Label open
-    xywh {325 530 80 80} box BORDER_BOX labelsize 12 align 2
+    xywh {325 530 80 80} box THIN_UP_BOX labelsize 12 align 2
   } {}
   Fl_Group mod_E6 {
     label Label open
-    xywh {405 530 80 80} box BORDER_BOX labelsize 12 align 2
+    xywh {405 530 80 80} box THIN_UP_BOX labelsize 12 align 2
   } {}
   Fl_Group mod_E7 {
     label Label open
-    xywh {485 530 80 80} box BORDER_BOX labelsize 12 align 2
+    xywh {485 530 80 80} box THIN_UP_BOX labelsize 12 align 2
   } {}
   Fl_Group mod_E8 {
     label Label open
-    xywh {565 530 80 80} box BORDER_BOX labelsize 12 align 2
+    xywh {565 530 80 80} box THIN_UP_BOX labelsize 12 align 2
   } {}
   Fl_Group mod_E9 {
     label Label open
-    xywh {645 530 80 80} box BORDER_BOX labelsize 12 align 2
+    xywh {645 530 80 80} box THIN_UP_BOX labelsize 12 align 2
   } {}
   Fl_Group mod_E10 {
     label Label open
-    xywh {725 530 80 80} box BORDER_BOX labelsize 12 align 2
+    xywh {725 530 80 80} box THIN_UP_BOX labelsize 12 align 2
   } {}
   Fl_Box lbl_E {
     label Part

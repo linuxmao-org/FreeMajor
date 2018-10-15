@@ -5,61 +5,61 @@
 Modifiers_Editor::Modifiers_Editor(int X, int Y, int W, int H, const char *L)
   : Fl_Group(X, Y, W, H, L) {
 { mod_A1 = new Fl_Group(5, 30, 80, 80, _("Label"));
-  mod_A1->box(FL_BORDER_BOX);
+  mod_A1->box(FL_THIN_UP_BOX);
   mod_A1->labelsize(12);
   mod_A1->align(Fl_Align(FL_ALIGN_BOTTOM));
   mod_A1->end();
 } // Fl_Group* mod_A1
 { mod_A2 = new Fl_Group(85, 30, 80, 80, _("Label"));
-  mod_A2->box(FL_BORDER_BOX);
+  mod_A2->box(FL_THIN_UP_BOX);
   mod_A2->labelsize(12);
   mod_A2->align(Fl_Align(FL_ALIGN_BOTTOM));
   mod_A2->end();
 } // Fl_Group* mod_A2
 { mod_A3 = new Fl_Group(165, 30, 80, 80, _("Label"));
-  mod_A3->box(FL_BORDER_BOX);
+  mod_A3->box(FL_THIN_UP_BOX);
   mod_A3->labelsize(12);
   mod_A3->align(Fl_Align(FL_ALIGN_BOTTOM));
   mod_A3->end();
 } // Fl_Group* mod_A3
 { mod_A4 = new Fl_Group(245, 30, 80, 80, _("Label"));
-  mod_A4->box(FL_BORDER_BOX);
+  mod_A4->box(FL_THIN_UP_BOX);
   mod_A4->labelsize(12);
   mod_A4->align(Fl_Align(FL_ALIGN_BOTTOM));
   mod_A4->end();
 } // Fl_Group* mod_A4
 { mod_A5 = new Fl_Group(325, 30, 80, 80, _("Label"));
-  mod_A5->box(FL_BORDER_BOX);
+  mod_A5->box(FL_THIN_UP_BOX);
   mod_A5->labelsize(12);
   mod_A5->align(Fl_Align(FL_ALIGN_BOTTOM));
   mod_A5->end();
 } // Fl_Group* mod_A5
 { mod_A6 = new Fl_Group(405, 30, 80, 80, _("Label"));
-  mod_A6->box(FL_BORDER_BOX);
+  mod_A6->box(FL_THIN_UP_BOX);
   mod_A6->labelsize(12);
   mod_A6->align(Fl_Align(FL_ALIGN_BOTTOM));
   mod_A6->end();
 } // Fl_Group* mod_A6
 { mod_A7 = new Fl_Group(485, 30, 80, 80, _("Label"));
-  mod_A7->box(FL_BORDER_BOX);
+  mod_A7->box(FL_THIN_UP_BOX);
   mod_A7->labelsize(12);
   mod_A7->align(Fl_Align(FL_ALIGN_BOTTOM));
   mod_A7->end();
 } // Fl_Group* mod_A7
 { mod_A8 = new Fl_Group(565, 30, 80, 80, _("Label"));
-  mod_A8->box(FL_BORDER_BOX);
+  mod_A8->box(FL_THIN_UP_BOX);
   mod_A8->labelsize(12);
   mod_A8->align(Fl_Align(FL_ALIGN_BOTTOM));
   mod_A8->end();
 } // Fl_Group* mod_A8
 { mod_A9 = new Fl_Group(645, 30, 80, 80, _("Label"));
-  mod_A9->box(FL_BORDER_BOX);
+  mod_A9->box(FL_THIN_UP_BOX);
   mod_A9->labelsize(12);
   mod_A9->align(Fl_Align(FL_ALIGN_BOTTOM));
   mod_A9->end();
 } // Fl_Group* mod_A9
 { mod_A10 = new Fl_Group(725, 30, 80, 80, _("Label"));
-  mod_A10->box(FL_BORDER_BOX);
+  mod_A10->box(FL_THIN_UP_BOX);
   mod_A10->labelsize(12);
   mod_A10->align(Fl_Align(FL_ALIGN_BOTTOM));
   mod_A10->end();
@@ -71,61 +71,61 @@ Modifiers_Editor::Modifiers_Editor(int X, int Y, int W, int H, const char *L)
   lbl_A->align(Fl_Align(FL_ALIGN_LEFT|FL_ALIGN_INSIDE));
 } // Fl_Box* lbl_A
 { mod_B1 = new Fl_Group(5, 155, 80, 80, _("Label"));
-  mod_B1->box(FL_BORDER_BOX);
+  mod_B1->box(FL_THIN_UP_BOX);
   mod_B1->labelsize(12);
   mod_B1->align(Fl_Align(FL_ALIGN_BOTTOM));
   mod_B1->end();
 } // Fl_Group* mod_B1
 { mod_B2 = new Fl_Group(85, 155, 80, 80, _("Label"));
-  mod_B2->box(FL_BORDER_BOX);
+  mod_B2->box(FL_THIN_UP_BOX);
   mod_B2->labelsize(12);
   mod_B2->align(Fl_Align(FL_ALIGN_BOTTOM));
   mod_B2->end();
 } // Fl_Group* mod_B2
 { mod_B3 = new Fl_Group(165, 155, 80, 80, _("Label"));
-  mod_B3->box(FL_BORDER_BOX);
+  mod_B3->box(FL_THIN_UP_BOX);
   mod_B3->labelsize(12);
   mod_B3->align(Fl_Align(FL_ALIGN_BOTTOM));
   mod_B3->end();
 } // Fl_Group* mod_B3
 { mod_B4 = new Fl_Group(245, 155, 80, 80, _("Label"));
-  mod_B4->box(FL_BORDER_BOX);
+  mod_B4->box(FL_THIN_UP_BOX);
   mod_B4->labelsize(12);
   mod_B4->align(Fl_Align(FL_ALIGN_BOTTOM));
   mod_B4->end();
 } // Fl_Group* mod_B4
 { mod_B5 = new Fl_Group(325, 155, 80, 80, _("Label"));
-  mod_B5->box(FL_BORDER_BOX);
+  mod_B5->box(FL_THIN_UP_BOX);
   mod_B5->labelsize(12);
   mod_B5->align(Fl_Align(FL_ALIGN_BOTTOM));
   mod_B5->end();
 } // Fl_Group* mod_B5
 { mod_B6 = new Fl_Group(405, 155, 80, 80, _("Label"));
-  mod_B6->box(FL_BORDER_BOX);
+  mod_B6->box(FL_THIN_UP_BOX);
   mod_B6->labelsize(12);
   mod_B6->align(Fl_Align(FL_ALIGN_BOTTOM));
   mod_B6->end();
 } // Fl_Group* mod_B6
 { mod_B7 = new Fl_Group(485, 155, 80, 80, _("Label"));
-  mod_B7->box(FL_BORDER_BOX);
+  mod_B7->box(FL_THIN_UP_BOX);
   mod_B7->labelsize(12);
   mod_B7->align(Fl_Align(FL_ALIGN_BOTTOM));
   mod_B7->end();
 } // Fl_Group* mod_B7
 { mod_B8 = new Fl_Group(565, 155, 80, 80, _("Label"));
-  mod_B8->box(FL_BORDER_BOX);
+  mod_B8->box(FL_THIN_UP_BOX);
   mod_B8->labelsize(12);
   mod_B8->align(Fl_Align(FL_ALIGN_BOTTOM));
   mod_B8->end();
 } // Fl_Group* mod_B8
 { mod_B9 = new Fl_Group(645, 155, 80, 80, _("Label"));
-  mod_B9->box(FL_BORDER_BOX);
+  mod_B9->box(FL_THIN_UP_BOX);
   mod_B9->labelsize(12);
   mod_B9->align(Fl_Align(FL_ALIGN_BOTTOM));
   mod_B9->end();
 } // Fl_Group* mod_B9
 { mod_B10 = new Fl_Group(725, 155, 80, 80, _("Label"));
-  mod_B10->box(FL_BORDER_BOX);
+  mod_B10->box(FL_THIN_UP_BOX);
   mod_B10->labelsize(12);
   mod_B10->align(Fl_Align(FL_ALIGN_BOTTOM));
   mod_B10->end();
@@ -137,61 +137,61 @@ Modifiers_Editor::Modifiers_Editor(int X, int Y, int W, int H, const char *L)
   lbl_B->align(Fl_Align(FL_ALIGN_LEFT|FL_ALIGN_INSIDE));
 } // Fl_Box* lbl_B
 { mod_C1 = new Fl_Group(5, 280, 80, 80, _("Label"));
-  mod_C1->box(FL_BORDER_BOX);
+  mod_C1->box(FL_THIN_UP_BOX);
   mod_C1->labelsize(12);
   mod_C1->align(Fl_Align(FL_ALIGN_BOTTOM));
   mod_C1->end();
 } // Fl_Group* mod_C1
 { mod_C2 = new Fl_Group(85, 280, 80, 80, _("Label"));
-  mod_C2->box(FL_BORDER_BOX);
+  mod_C2->box(FL_THIN_UP_BOX);
   mod_C2->labelsize(12);
   mod_C2->align(Fl_Align(FL_ALIGN_BOTTOM));
   mod_C2->end();
 } // Fl_Group* mod_C2
 { mod_C3 = new Fl_Group(165, 280, 80, 80, _("Label"));
-  mod_C3->box(FL_BORDER_BOX);
+  mod_C3->box(FL_THIN_UP_BOX);
   mod_C3->labelsize(12);
   mod_C3->align(Fl_Align(FL_ALIGN_BOTTOM));
   mod_C3->end();
 } // Fl_Group* mod_C3
 { mod_C4 = new Fl_Group(245, 280, 80, 80, _("Label"));
-  mod_C4->box(FL_BORDER_BOX);
+  mod_C4->box(FL_THIN_UP_BOX);
   mod_C4->labelsize(12);
   mod_C4->align(Fl_Align(FL_ALIGN_BOTTOM));
   mod_C4->end();
 } // Fl_Group* mod_C4
 { mod_C5 = new Fl_Group(325, 280, 80, 80, _("Label"));
-  mod_C5->box(FL_BORDER_BOX);
+  mod_C5->box(FL_THIN_UP_BOX);
   mod_C5->labelsize(12);
   mod_C5->align(Fl_Align(FL_ALIGN_BOTTOM));
   mod_C5->end();
 } // Fl_Group* mod_C5
 { mod_C6 = new Fl_Group(405, 280, 80, 80, _("Label"));
-  mod_C6->box(FL_BORDER_BOX);
+  mod_C6->box(FL_THIN_UP_BOX);
   mod_C6->labelsize(12);
   mod_C6->align(Fl_Align(FL_ALIGN_BOTTOM));
   mod_C6->end();
 } // Fl_Group* mod_C6
 { mod_C7 = new Fl_Group(485, 280, 80, 80, _("Label"));
-  mod_C7->box(FL_BORDER_BOX);
+  mod_C7->box(FL_THIN_UP_BOX);
   mod_C7->labelsize(12);
   mod_C7->align(Fl_Align(FL_ALIGN_BOTTOM));
   mod_C7->end();
 } // Fl_Group* mod_C7
 { mod_C8 = new Fl_Group(565, 280, 80, 80, _("Label"));
-  mod_C8->box(FL_BORDER_BOX);
+  mod_C8->box(FL_THIN_UP_BOX);
   mod_C8->labelsize(12);
   mod_C8->align(Fl_Align(FL_ALIGN_BOTTOM));
   mod_C8->end();
 } // Fl_Group* mod_C8
 { mod_C9 = new Fl_Group(645, 280, 80, 80, _("Label"));
-  mod_C9->box(FL_BORDER_BOX);
+  mod_C9->box(FL_THIN_UP_BOX);
   mod_C9->labelsize(12);
   mod_C9->align(Fl_Align(FL_ALIGN_BOTTOM));
   mod_C9->end();
 } // Fl_Group* mod_C9
 { mod_C10 = new Fl_Group(725, 280, 80, 80, _("Label"));
-  mod_C10->box(FL_BORDER_BOX);
+  mod_C10->box(FL_THIN_UP_BOX);
   mod_C10->labelsize(12);
   mod_C10->align(Fl_Align(FL_ALIGN_BOTTOM));
   mod_C10->end();
@@ -203,61 +203,61 @@ Modifiers_Editor::Modifiers_Editor(int X, int Y, int W, int H, const char *L)
   lbl_C->align(Fl_Align(FL_ALIGN_LEFT|FL_ALIGN_INSIDE));
 } // Fl_Box* lbl_C
 { mod_D1 = new Fl_Group(5, 405, 80, 80, _("Label"));
-  mod_D1->box(FL_BORDER_BOX);
+  mod_D1->box(FL_THIN_UP_BOX);
   mod_D1->labelsize(12);
   mod_D1->align(Fl_Align(FL_ALIGN_BOTTOM));
   mod_D1->end();
 } // Fl_Group* mod_D1
 { mod_D2 = new Fl_Group(85, 405, 80, 80, _("Label"));
-  mod_D2->box(FL_BORDER_BOX);
+  mod_D2->box(FL_THIN_UP_BOX);
   mod_D2->labelsize(12);
   mod_D2->align(Fl_Align(FL_ALIGN_BOTTOM));
   mod_D2->end();
 } // Fl_Group* mod_D2
 { mod_D3 = new Fl_Group(165, 405, 80, 80, _("Label"));
-  mod_D3->box(FL_BORDER_BOX);
+  mod_D3->box(FL_THIN_UP_BOX);
   mod_D3->labelsize(12);
   mod_D3->align(Fl_Align(FL_ALIGN_BOTTOM));
   mod_D3->end();
 } // Fl_Group* mod_D3
 { mod_D4 = new Fl_Group(245, 405, 80, 80, _("Label"));
-  mod_D4->box(FL_BORDER_BOX);
+  mod_D4->box(FL_THIN_UP_BOX);
   mod_D4->labelsize(12);
   mod_D4->align(Fl_Align(FL_ALIGN_BOTTOM));
   mod_D4->end();
 } // Fl_Group* mod_D4
 { mod_D5 = new Fl_Group(325, 405, 80, 80, _("Label"));
-  mod_D5->box(FL_BORDER_BOX);
+  mod_D5->box(FL_THIN_UP_BOX);
   mod_D5->labelsize(12);
   mod_D5->align(Fl_Align(FL_ALIGN_BOTTOM));
   mod_D5->end();
 } // Fl_Group* mod_D5
 { mod_D6 = new Fl_Group(405, 405, 80, 80, _("Label"));
-  mod_D6->box(FL_BORDER_BOX);
+  mod_D6->box(FL_THIN_UP_BOX);
   mod_D6->labelsize(12);
   mod_D6->align(Fl_Align(FL_ALIGN_BOTTOM));
   mod_D6->end();
 } // Fl_Group* mod_D6
 { mod_D7 = new Fl_Group(485, 405, 80, 80, _("Label"));
-  mod_D7->box(FL_BORDER_BOX);
+  mod_D7->box(FL_THIN_UP_BOX);
   mod_D7->labelsize(12);
   mod_D7->align(Fl_Align(FL_ALIGN_BOTTOM));
   mod_D7->end();
 } // Fl_Group* mod_D7
 { mod_D8 = new Fl_Group(565, 405, 80, 80, _("Label"));
-  mod_D8->box(FL_BORDER_BOX);
+  mod_D8->box(FL_THIN_UP_BOX);
   mod_D8->labelsize(12);
   mod_D8->align(Fl_Align(FL_ALIGN_BOTTOM));
   mod_D8->end();
 } // Fl_Group* mod_D8
 { mod_D9 = new Fl_Group(645, 405, 80, 80, _("Label"));
-  mod_D9->box(FL_BORDER_BOX);
+  mod_D9->box(FL_THIN_UP_BOX);
   mod_D9->labelsize(12);
   mod_D9->align(Fl_Align(FL_ALIGN_BOTTOM));
   mod_D9->end();
 } // Fl_Group* mod_D9
 { mod_D10 = new Fl_Group(725, 405, 80, 80, _("Label"));
-  mod_D10->box(FL_BORDER_BOX);
+  mod_D10->box(FL_THIN_UP_BOX);
   mod_D10->labelsize(12);
   mod_D10->align(Fl_Align(FL_ALIGN_BOTTOM));
   mod_D10->end();
@@ -269,61 +269,61 @@ Modifiers_Editor::Modifiers_Editor(int X, int Y, int W, int H, const char *L)
   lbl_D->align(Fl_Align(FL_ALIGN_LEFT|FL_ALIGN_INSIDE));
 } // Fl_Box* lbl_D
 { mod_E1 = new Fl_Group(5, 530, 80, 80, _("Label"));
-  mod_E1->box(FL_BORDER_BOX);
+  mod_E1->box(FL_THIN_UP_BOX);
   mod_E1->labelsize(12);
   mod_E1->align(Fl_Align(FL_ALIGN_BOTTOM));
   mod_E1->end();
 } // Fl_Group* mod_E1
 { mod_E2 = new Fl_Group(85, 530, 80, 80, _("Label"));
-  mod_E2->box(FL_BORDER_BOX);
+  mod_E2->box(FL_THIN_UP_BOX);
   mod_E2->labelsize(12);
   mod_E2->align(Fl_Align(FL_ALIGN_BOTTOM));
   mod_E2->end();
 } // Fl_Group* mod_E2
 { mod_E3 = new Fl_Group(165, 530, 80, 80, _("Label"));
-  mod_E3->box(FL_BORDER_BOX);
+  mod_E3->box(FL_THIN_UP_BOX);
   mod_E3->labelsize(12);
   mod_E3->align(Fl_Align(FL_ALIGN_BOTTOM));
   mod_E3->end();
 } // Fl_Group* mod_E3
 { mod_E4 = new Fl_Group(245, 530, 80, 80, _("Label"));
-  mod_E4->box(FL_BORDER_BOX);
+  mod_E4->box(FL_THIN_UP_BOX);
   mod_E4->labelsize(12);
   mod_E4->align(Fl_Align(FL_ALIGN_BOTTOM));
   mod_E4->end();
 } // Fl_Group* mod_E4
 { mod_E5 = new Fl_Group(325, 530, 80, 80, _("Label"));
-  mod_E5->box(FL_BORDER_BOX);
+  mod_E5->box(FL_THIN_UP_BOX);
   mod_E5->labelsize(12);
   mod_E5->align(Fl_Align(FL_ALIGN_BOTTOM));
   mod_E5->end();
 } // Fl_Group* mod_E5
 { mod_E6 = new Fl_Group(405, 530, 80, 80, _("Label"));
-  mod_E6->box(FL_BORDER_BOX);
+  mod_E6->box(FL_THIN_UP_BOX);
   mod_E6->labelsize(12);
   mod_E6->align(Fl_Align(FL_ALIGN_BOTTOM));
   mod_E6->end();
 } // Fl_Group* mod_E6
 { mod_E7 = new Fl_Group(485, 530, 80, 80, _("Label"));
-  mod_E7->box(FL_BORDER_BOX);
+  mod_E7->box(FL_THIN_UP_BOX);
   mod_E7->labelsize(12);
   mod_E7->align(Fl_Align(FL_ALIGN_BOTTOM));
   mod_E7->end();
 } // Fl_Group* mod_E7
 { mod_E8 = new Fl_Group(565, 530, 80, 80, _("Label"));
-  mod_E8->box(FL_BORDER_BOX);
+  mod_E8->box(FL_THIN_UP_BOX);
   mod_E8->labelsize(12);
   mod_E8->align(Fl_Align(FL_ALIGN_BOTTOM));
   mod_E8->end();
 } // Fl_Group* mod_E8
 { mod_E9 = new Fl_Group(645, 530, 80, 80, _("Label"));
-  mod_E9->box(FL_BORDER_BOX);
+  mod_E9->box(FL_THIN_UP_BOX);
   mod_E9->labelsize(12);
   mod_E9->align(Fl_Align(FL_ALIGN_BOTTOM));
   mod_E9->end();
 } // Fl_Group* mod_E9
 { mod_E10 = new Fl_Group(725, 530, 80, 80, _("Label"));
-  mod_E10->box(FL_BORDER_BOX);
+  mod_E10->box(FL_THIN_UP_BOX);
   mod_E10->labelsize(12);
   mod_E10->align(Fl_Align(FL_ALIGN_BOTTOM));
   mod_E10->end();

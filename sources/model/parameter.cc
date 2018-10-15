@@ -389,7 +389,7 @@ P_Pitch::Detune::Detune()
 
 P_Pitch::Whammy::Whammy()
 {
-    slots.emplace_back((new PA_Integer(328, 4, _("Pitch"), _("This parameters sets the mix between the dry and processed signal. If e.g. set to 100%, no direct guitar tone will be heard - only the processed \"pitched\" tone.")))
+    slots.emplace_back((new PA_Integer(328, 4, _("Pitch"), _("This parameter sets the mix between the dry and processed signal. If e.g. set to 100%, no direct guitar tone will be heard - only the processed \"pitched\" tone.")))
                        ->with_min_max(0, 100)
                        ->with_modifier_at(48));
     slots.emplace_back((new PA_Choice(332, 4,
@@ -683,7 +683,7 @@ P_Filter::Vintage_Phaser::Vintage_Phaser()
     slots.emplace_back((new PA_Choice(264, 4,
                                       {"Low", "High"},
                                       _("Range"), _("Determines whether the phasing effect should be mainly on the high- of low-end frequencies."))));
-    slots.emplace_back((new PA_Boolean(268, 4, _("Phase Rev"/*Phase Reverse*/), _("An LFO phase change that causes a small Delay in one of the waveform starting points. When applied to the Left and Right outputs will start the current waveform at two different points giving you a more extreme wide spread phasing effect.")))
+    slots.emplace_back((new PA_Boolean(268, 4, _("Phase Rev"/*Phase Reverse*/), _("An LFO phase change that causes a small Delay in one of the waveform starting points. When applied, the Left and Right outputs will start the current waveform at two different points giving you a more extreme wide spread phasing effect.")))
                        ->with_inversion());
     slots.emplace_back((new PA_Integer(280, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
                        ->with_min_max(0, 100)
@@ -713,7 +713,7 @@ P_Filter::Smooth_Phaser::Smooth_Phaser()
     slots.emplace_back((new PA_Choice(264, 4,
                                       {"Low", "High"},
                                       _("Range"), _("Determines whether the phasing effect should be mainly on the high- of low-end frequencies."))));
-    slots.emplace_back((new PA_Boolean(268, 4, _("Phase Rev"/*Phase Reverse*/), _("An LFO phase change that causes a small Delay in one of the waveform starting points. When applied to the Left and Right outputs will start the current waveform at two different points giving you a more extreme wide spread phasing effect.")))
+    slots.emplace_back((new PA_Boolean(268, 4, _("Phase Rev"/*Phase Reverse*/), _("An LFO phase change that causes a small Delay in one of the waveform starting points. When applied, the Left and Right outputs will start the current waveform at two different points giving you a more extreme wide spread phasing effect.")))
                        ->with_inversion());
     slots.emplace_back((new PA_Integer(280, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
                        ->with_min_max(0, 100)
@@ -997,13 +997,13 @@ P_General::P_General()
                        ->with_min_max(0, 1));
     slots.emplace_back((new PA_Bits(156, 4,
                                     0, 2,
-                                    _("Routing"), _("Routing")))
+                                    _("Routing"), _("Routing : Serial is routing the effects blocks in serial. Semi parallel is routing delay and reverb in parallel. Parallel is routing pitch, Chorus flanger, delay and reverb.")))
                        ->with_min_max(0, 2)
                        ->with_string_fn([](int v) -> std::string {
                                             switch (v) {
-                                            case 0: return "Serial";
-                                            case 1: return "Semi Parallel";
-                                            case 2: return "Parallel";
+                                            case 0: return _("Serial");
+                                            case 1: return _("Semi Parallel");
+                                            case 2: return _("Parallel");
                                             default: assert(false); return "";
                                             }
                                         }));

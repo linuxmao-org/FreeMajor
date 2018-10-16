@@ -102,11 +102,6 @@ static std::string cents(int value)
     return std::to_string(value) + _P("Unit|", "cents");
 }
 
-static std::string oct(int value)
-{
-    return std::to_string(value) + _P("Unit|", "oct");
-}
-
 static std::string msec(int value)
 {
     return std::to_string(value) + _P("Unit|", "ms");
@@ -126,6 +121,11 @@ static std::string tenths_msec(int value)
     char buf[32];
     sprintf(buf, "%.1f", v);
     return std::string(buf) + _P("Unit|", "ms");
+}
+
+static std::string oct_choice(const char *choice)
+{
+    return std::string(choice) + _P("Unit|", "oct");
 }
 
 static std::string msec_choice(const char *choice)
@@ -229,6 +229,15 @@ std::string Parameter_Access::to_string(int value) const
     if (to_string_fn)
         return to_string_fn(value);
     return std::to_string(value);
+}
+
+bool Parameter_Collection::contains(const Parameter_Access &p) const
+{
+    for (size_t i = 0, n = slots.size(); i < n; ++i) {
+        if (slots[i].get() == &p)
+            return true;
+    }
+    return false;
 }
 
 PA_Integer *PA_Integer::with_min_max(int vmin, int vmax)
@@ -409,7 +418,7 @@ P_Equalizer::P_Equalizer()
                                       {"0.2", "0.25", "0.32", "0.4", "0.5", "0.63", "0.8", "1.0", "1.25", "1.6", "2.0", "2.5", "3.2", "4.0"},
                                       _("Width"), _("Width defines the area around the set frequency that the EQ will amplify or attenuate.")))
                        ->with_offset(3)
-                       ->with_string_fn(&Formatting::oct));
+                       ->with_choice_string_fn(&Formatting::oct_choice));
     slots.emplace_back((new PA_Choice(588, 4, width1().values, width1().name, width1().description))
                        ->with_offset(width1().offset)
                        ->with_string_fn(width1().to_string_fn));

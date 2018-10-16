@@ -4,6 +4,7 @@
 #include "main_component.h"
 #include "association.h"
 #include "midi_out_queue.h"
+#include "eq_display.h"
 #include "widget_ex.h"
 #include "model/patch.h"
 #include "model/parameter.h"
@@ -441,6 +442,17 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     box_eq9->when(FL_WHEN_RELEASE);
     box_eq9->end();
   } // Fl_Group_Ex* box_eq9
+  { d_eq = new Eq_Display(20, 675, 220, 50);
+    d_eq->box(FL_THIN_DOWN_BOX);
+    d_eq->color(FL_BACKGROUND_COLOR);
+    d_eq->selection_color(FL_BACKGROUND_COLOR);
+    d_eq->labeltype(FL_NORMAL_LABEL);
+    d_eq->labelfont(0);
+    d_eq->labelsize(14);
+    d_eq->labelcolor(FL_FOREGROUND_COLOR);
+    d_eq->align(Fl_Align(FL_ALIGN_CENTER));
+    d_eq->when(FL_WHEN_RELEASE);
+  } // Eq_Display* d_eq
   o->end();
 } // Fl_Group* o
 { Fl_Group* o = new Fl_Group(260, 225, 131, 510);

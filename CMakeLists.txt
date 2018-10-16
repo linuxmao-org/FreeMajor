@@ -43,6 +43,7 @@ add_executable(gmajctl WIN32
   "sources/ui/modifiers_editor.cxx"
   "sources/ui/modifiers_editor_impl.cc"
   "sources/ui/singlemod_editor.cxx"
+  "sources/ui/eq_display.cc"
   "sources/ui/association.cc"
   "sources/ui/midi_out_queue.cc")
 target_compile_definitions(gmajctl

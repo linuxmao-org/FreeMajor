@@ -11,6 +11,9 @@ decl {\#include "association.h"} {private global
 decl {\#include "midi_out_queue.h"} {private global
 }
 
+decl {\#include "eq_display.h"} {private global
+}
+
 decl {\#include "widget_ex.h"} {private global
 }
 
@@ -72,6 +75,9 @@ decl {class Midi_Out_Queue;} {public global
 }
 
 decl {class Modifiers_Editor;} {public global
+}
+
+decl {class Eq_Display;} {public global
 }
 
 decl {class Fl_Choice;} {public global
@@ -186,6 +192,8 @@ widget_class Main_Component {open
   decl {static void on_enter_parameter_control(Fl_Widget *w, void *user_data);} {private local
   }
   decl {static void on_leave_parameter_control(Fl_Widget *w, void *user_data);} {private local
+  }
+  decl {void update_eq_display();} {selected private local
   }
   Fl_Browser br_bank {
     callback {on_selected_patch();}
@@ -325,6 +333,10 @@ widget_class Main_Component {open
       xywh {180 605 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
+    Fl_Box d_eq {
+      xywh {20 675 220 50} box THIN_DOWN_BOX
+      class Eq_Display
+    }
   }
   Fl_Group {} {open
     xywh {260 225 131 510} box THIN_UP_BOX

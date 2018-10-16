@@ -54,6 +54,7 @@ public:
 class Parameter_Collection {
 public:
     virtual ~Parameter_Collection() {}
+    bool contains(const Parameter_Access &p) const;
     std::vector<std::unique_ptr<Parameter_Access>> slots;
 };
 

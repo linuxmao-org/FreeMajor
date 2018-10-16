@@ -5,6 +5,7 @@
 
 #include "main_component.h"
 #include "patch_chooser.h"
+#include "eq_display.h"
 #include "modifiers_editor.h"
 #include "singlemod_editor.h"
 #include "widget_ex.h"
@@ -23,6 +24,7 @@
 #include <FL/Fl_Double_Window.H>
 #include <FL/fl_ask.H>
 #include <algorithm>
+#include <math.h>
 #include <assert.h>
 
 static constexpr double sysex_send_interval = 0.100;
@@ -233,6 +235,8 @@ void Main_Component::refresh_patch_display()
             w->callback(&on_edited_parameter, this);
         a->update_value(pat);
     }
+
+    update_eq_display();
 }
 
 Association *Main_Component::setup_slider(Fl_Slider_Ex *sl, Parameter_Access &p, int flags)
@@ -789,7 +793,9 @@ void Main_Component::on_edited_parameter(Fl_Widget *w, void *user_data)
     unsigned patchno = self->get_patch_number();
     if (patchno == ~0u)
         return;
+
     Patch &pat = self->pbank_->slot[patchno];
+    P_General &pgen = *self->pgen_;
 
     Association *a = nullptr;
     for (unsigned i = 0, n = self->assoc_.size(); i < n && !a; ++i) {
@@ -807,6 +813,8 @@ void Main_Component::on_edited_parameter(Fl_Widget *w, void *user_data)
 
     if (a->flags & Assoc_Refresh_Full)
         self->refresh_patch_display();
+    else if (pgen.equalizer.contains(*a->access))
+        self->update_eq_display();
 
     if (self->chk_realtime->value())
         self->on_clicked_send();
@@ -858,4 +866,65 @@ void Main_Component::on_leave_parameter_control(Fl_Widget *w, void *user_data)
         self->reset_description_text();
     else
         self->txt_description->copy_label(assoc_entered.front()->access->description);
+}
+
+void Main_Component::update_eq_display()
+{
+    unsigned patchno = get_patch_number();
+    if (patchno == ~0u)
+        return;
+
+    Patch &pat = pbank_->slot[patchno];
+    P_General &pgen = *pgen_;
+    P_Equalizer &peq = pgen.equalizer;
+
+    Eq_Display::Band bands[3];
+    PA_Choice *peq_frequency[3] = {&peq.frequency1(), &peq.frequency2(), &peq.frequency3()};
+    PA_Integer *peq_gain[3] = {&peq.gain1(), &peq.gain2(), &peq.gain3()};
+    PA_Choice *peq_width[3] = {&peq.width1(), &peq.width2(), &peq.width3()};
+
+    locale_u loc_u(createlocale(LC_ALL, "C"));
+    locale_t loc = loc_u.get();
+    if (!loc)
+        throw std::runtime_error("cannot create the C locale");
+
+    auto frequency = [loc](const std::string &x) -> double {
+                         double v = 0.0;
+                         unsigned count = 0;
+                         if (sscanf_l(x.c_str(), "%lf%n", loc, &v, &count) != 1) {
+                             assert(false);
+                             abort();
+                         }
+                         if (x.size() > count && x[count] == 'k') {
+                             v *= 1000;
+                             ++count;
+                         }
+                         if (x.size() != count) {
+                             assert(false);
+                             abort();
+                         }
+                         return v;
+                     };
+    auto width = [loc](const std::string &x) -> double {
+                     double v = 0.0;
+                     unsigned count = 0;
+                     if (sscanf_l(x.c_str(), "%lf%n", loc, &v, &count) != 1 || x.size() != count) {
+                         assert(false);
+                         abort();
+                     }
+                     return v;
+                 };
+
+    for (unsigned i = 0; i < 3; ++i) {
+        PA_Choice *pf = peq_frequency[i];
+        PA_Integer *pg = peq_gain[i];
+        PA_Choice *pw = peq_width[i];
+        unsigned idf = pf->clamp(pf->get(pat));
+        unsigned idw = pw->clamp(pw->get(pat));
+        bands[i].freq = (idf + 1 == pf->values.size()) ? -1.0 : frequency(pf->values[idf]);
+        bands[i].gain = exp10(0.05 * pg->get(pat));
+        bands[i].width = width(pw->values[idw]);
+    }
+
+    d_eq->set_bands(bands, 3);
 }

@@ -21,6 +21,7 @@ class P_General;
 class Association;
 class Midi_Out_Queue;
 class Modifiers_Editor;
+class Eq_Display;
 class Fl_Choice;
 class Fl_Check_Button;
 class Fl_Slider;
@@ -88,6 +89,7 @@ private:
   static void on_edited_parameter(Fl_Widget *w, void *user_data); 
   static void on_enter_parameter_control(Fl_Widget *w, void *user_data); 
   static void on_leave_parameter_control(Fl_Widget *w, void *user_data); 
+  void update_eq_display(); 
 public:
   Fl_Hold_Browser *br_bank;
 private:
@@ -135,6 +137,7 @@ public:
   Fl_Group_Ex *box_eq3;
   Fl_Group_Ex *box_eq6;
   Fl_Group_Ex *box_eq9;
+  Eq_Display *d_eq;
   Fl_Check_Button_Ex *chk_filter;
   Fl_Group_Ex *box_flt1;
   Fl_Group_Ex *box_flt2;

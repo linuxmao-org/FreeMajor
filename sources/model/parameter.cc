@@ -1210,7 +1210,8 @@ P_General::P_General()
 
     slots.emplace_back((new PA_Integer(160, 4,
                                       _("Tap tempo"), _("Sets the Tap Tempo.")))
-                       ->with_min_max(100, 3000));
+                       ->with_min_max(100, 3000)
+                       ->with_string_fn(&Formatting::msec));
 
     slots.emplace_back((new PA_Bits(156, 4,
                                     9, 1,

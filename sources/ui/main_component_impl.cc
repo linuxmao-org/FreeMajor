@@ -166,18 +166,14 @@ void Main_Component::refresh_patch_display()
     Association *a;
 
     a = setup_slider(sl_tap_tempo, pgen.tap_tempo());
-    a->value_update_callback = [this](int v) {
-                                   lbl_tap_tempo->copy_label((std::to_string(v) + " ms").c_str());
-                               };
+    a->value_labels.push_back(lbl_tap_tempo);
 
     setup_checkbox(chk_relay1, pgen.relay1());
     setup_checkbox(chk_relay2, pgen.relay2());
     setup_choice(cb_routing, pgen.routing());
 
     a = setup_slider(sl_out_level, pgen.out_level());
-    a->value_update_callback = [this](int v) {
-                                   lbl_out_level->copy_label((std::to_string(v) + " dB").c_str());
-                               };
+    a->value_labels.push_back(lbl_out_level);
 
     setup_checkbox(chk_compressor, pgen.enable_compressor(), Assoc_Refresh_Full);
     setup_checkbox(chk_filter, pgen.enable_filter(), Assoc_Refresh_Full);
@@ -322,13 +318,13 @@ void Main_Component::setup_boxes(bool enable, const Parameter_Collection &pc, Fl
 
         for (size_t i = 0; i < slot_count; ++i) {
             std::unique_ptr<Association> a(new Association);
-            a->flags = Assoc_Name_On_Box|Assoc_Value_On_Label;
 
             Parameter_Access *pa = pc.slots[i].get();
             a->access = pa;
 
             Fl_Group_Ex *box = box_alloc[i];
             a->group_box = box;
+            a->name_labels.push_back(box);
             int bx = box->x(), by = box->y(), bw = box->w(), bh = box->h();
 
             int padding = 16;
@@ -349,6 +345,8 @@ void Main_Component::setup_boxes(bool enable, const Parameter_Collection &pc, Fl
             dial->align(FL_ALIGN_BOTTOM);
             dial->step(1);
             box->end();
+
+            a->value_labels.push_back(dial);
 
             box->enter_callback(&on_enter_parameter_control, this);
             box->leave_callback(&on_leave_parameter_control, this);
@@ -422,11 +420,11 @@ void Main_Component::setup_modifier_row(const char *title, bool enable, int row,
                 Parameter_Access *pa = parameters[i];
                 sl->range(pa->max(), pa->min());
                 sl->step(1);
-                a->flags = Assoc_Value_On_Label;
                 a->access = pa;
                 a->group_box = box;
                 a->value_widget = sl;
                 a->kind = Assoc_Slider;
+                a->value_labels.push_back(sl);
                 assoc_.push_back(std::move(a));
             }
 

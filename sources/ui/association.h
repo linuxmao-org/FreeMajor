@@ -4,7 +4,7 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 
 #pragma once
-#include <functional>
+#include <list>
 class Parameter_Access;
 class Fl_Group;
 class Fl_Widget;
@@ -19,9 +19,7 @@ enum Association_Kind {
 };
 
 enum Association_Flag {
-    Assoc_Name_On_Box =    1 << 0,
-    Assoc_Value_On_Label = 1 << 1,
-    Assoc_Refresh_Full =   1 << 2,
+    Assoc_Refresh_Full =   1 << 0,
 };
 
 struct Association {
@@ -30,7 +28,8 @@ struct Association {
     Fl_Widget *value_widget = nullptr;
     Association_Kind kind = Assoc_Undefined;
     int flags = 0;
-    std::function<void(int)> value_update_callback;
+    std::list<Fl_Widget *> value_labels;
+    std::list<Fl_Widget *> name_labels;
     void update_value(const Patch &pat);
     void update_from_widget(Patch &pat);
 };

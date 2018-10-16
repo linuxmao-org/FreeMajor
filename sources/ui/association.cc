@@ -37,12 +37,10 @@ void Association::update_value(const Patch &pat)
         break;
     }
 
-    if (group_box && (flags & Assoc_Name_On_Box))
-        group_box->copy_label(access->name);
-    if (value_widget && (flags & Assoc_Value_On_Label))
-        value_widget->copy_label(access->to_string(pv).c_str());
-    if(value_update_callback)
-        value_update_callback(pv);
+    for (Fl_Widget *w : name_labels)
+        w->copy_label(access->name);
+    for (Fl_Widget *w : value_labels)
+        w->copy_label(access->to_string(pv).c_str());
 }
 
 void Association::update_from_widget(Patch &pat)

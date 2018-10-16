@@ -38,7 +38,7 @@ msgstr ""
 #: sources/model/parameter.cc:536 sources/model/parameter.cc:552
 msgctxt "Pitch|Range|"
 msgid "1 oct"
-msgstr "1 oct"
+msgstr ""
 
 #: sources/model/parameter.cc:641 sources/model/parameter.cc:679
 #: sources/model/parameter.cc:732 sources/model/parameter.cc:735
@@ -216,17 +216,17 @@ msgstr ""
 #: sources/model/parameter.cc:536 sources/model/parameter.cc:552
 msgctxt "Pitch|Range|"
 msgid "2 oct"
-msgstr "2 oct"
+msgstr ""
 
 #: sources/model/parameter.cc:801 sources/model/parameter.cc:827
 msgctxt "Filter|Resonance|Order|"
 msgid "2nd"
-msgstr "D'ordre 2"
+msgstr "2"
 
 #: sources/model/parameter.cc:801 sources/model/parameter.cc:827
 msgctxt "Filter|Resonance|Order|"
 msgid "4th"
-msgstr "D'ordre 4"
+msgstr "4"
 
 #: sources/model/parameter.cc:453
 msgid "7 different Hi Colors can be selected."
@@ -391,7 +391,7 @@ msgstr "Flanger classique"
 #: sources/model/parameter.cc:452
 msgctxt "Reverb|Hi Color|"
 msgid "Clear"
-msgstr "Effacer"
+msgstr "Claire"
 
 #: sources/ui/main_component.cxx:234
 msgid "Compressor"
@@ -487,7 +487,7 @@ msgstr "Croustillant"
 #: sources/model/parameter.cc:446
 msgctxt "Reverb|Shape|"
 msgid "Curved"
-msgstr "Courbé"
+msgstr "Courbée"
 
 #: sources/model/parameter.cc:701
 msgid "Damping"
@@ -778,12 +778,12 @@ msgstr "Taux nbr or"
 #: sources/model/parameter.cc:452
 msgctxt "Reverb|Hi Color|"
 msgid "Grand"
-msgstr "Grand"
+msgstr "Grande"
 
 #: sources/model/parameter.cc:449
 msgctxt "Reverb|Size|"
 msgid "Grand"
-msgstr "Grand"
+msgstr "Grande"
 
 #: sources/model/parameter.cc:1208
 msgid "Hall"
@@ -992,7 +992,7 @@ msgstr "Sortie MIDI"
 
 #: sources/model/parameter.cc:429
 msgid "Max Damp"
-msgstr "Atténu. max."
+msgstr "Attén. max."
 
 #: sources/model/parameter.cc:221
 msgid "Maximum"
@@ -1329,7 +1329,7 @@ msgstr "Niv. réverb."
 
 #: sources/ui/main_component_impl.cc:233 sources/ui/main_component.cxx:1232
 msgid "Reverb"
-msgstr "Réverb."
+msgstr "Réverbération"
 
 #: sources/model/parameter.cc:1209
 msgid "Reverb type"
@@ -1362,12 +1362,12 @@ msgstr "Niv. pièce"
 #: sources/model/parameter.cc:457
 msgctxt "Reverb|Lo Color|"
 msgid "Round"
-msgstr "Rond"
+msgstr "Ronde"
 
 #: sources/model/parameter.cc:446
 msgctxt "Reverb|Shape|"
 msgid "Round"
-msgstr "Rond"
+msgstr "Ronde"
 
 #. Fl_Check_Button_Ex* chk_relay2
 #: sources/model/parameter.cc:1225 sources/ui/main_component.cxx:1505
@@ -1512,12 +1512,12 @@ msgstr "Taille"
 #: sources/model/parameter.cc:806
 msgctxt "Filter|Resonance|Response|"
 msgid "Slow"
-msgstr "Lent"
+msgstr "Lente"
 
 #: sources/model/parameter.cc:449
 msgctxt "Reverb|Size|"
 msgid "Small"
-msgstr "Petit"
+msgstr "Petite"
 
 #: sources/model/parameter.cc:1196
 msgid "Smooth phaser"
@@ -1576,7 +1576,7 @@ msgstr "Ressort"
 #: sources/model/parameter.cc:446
 msgctxt "Reverb|Shape|"
 msgid "Square"
-msgstr "Carré"
+msgstr "Carrée"
 
 #: sources/ui/main_component_impl.cc:78
 msgid ""

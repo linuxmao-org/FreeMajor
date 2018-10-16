@@ -922,7 +922,7 @@ void Main_Component::update_eq_display()
         unsigned idf = pf->clamp(pf->get(pat));
         unsigned idw = pw->clamp(pw->get(pat));
         bands[i].freq = (idf + 1 == pf->values.size()) ? -1.0 : frequency(pf->values[idf]);
-        bands[i].gain = exp10(0.05 * pg->get(pat));
+        bands[i].gain = pow(10.0, 0.05 * pg->get(pat));
         bands[i].width = width(pw->values[idw]);
     }
 

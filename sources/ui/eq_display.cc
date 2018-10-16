@@ -38,7 +38,6 @@ void Eq_Display::draw()
 
     double py = (y + h / 2) - lround(0.5 * plotdata[0] * h);
     for (unsigned i = 1; i < (unsigned)w; ++i) {
-        double v = plotdata[i];
         double oldpy = py;
         py = (y + h / 2) - lround(0.5 * plotdata[i] * h);
         fl_line(x + i - 1, lround(oldpy), x + i, lround(py));
@@ -78,7 +77,7 @@ void Eq_Display::create_plotdata(unsigned size)
     auto to_frequency =
         [](double r) -> double {
             const double lx1 = log10(10.0), lx2 = log10(20000.0);
-            return exp10(lx1 + r * (lx2 - lx1));
+            return pow(10.0, lx1 + r * (lx2 - lx1));
         };
 
     for (unsigned i = 0; i < size; ++i)
@@ -123,5 +122,5 @@ double Eq_Display::eval(unsigned band, double freq)
     double resultdb = std::abs(gaindb) * g;
     resultdb = (gaindb < 0) ? -resultdb : +resultdb;
 
-    return exp10(0.05 * resultdb);
+    return pow(10.0, 0.05 * resultdb);
 }

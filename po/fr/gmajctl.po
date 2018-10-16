@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gmajctl 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-16 05:33+0200\n"
+"POT-Creation-Date: 2018-10-16 05:38+0200\n"
 "PO-Revision-Date: 2018-10-08 14:52+0200\n"
 "Last-Translator: Julien Taverna <jujudusud@gmail.com>\n"
 "Language-Team: French\n"
@@ -1054,6 +1054,10 @@ msgstr "Type de modulation"
 #: sources/ui/main_component.cxx:1449
 msgid "New"
 msgstr "Nouveau"
+
+#: sources/model/patch.cc:16
+msgid "New patch"
+msgstr ""
 
 #: sources/ui/main_component_impl.cc:575 sources/ui/main_component_impl.cc:675
 #: sources/ui/main_component_impl.cc:730

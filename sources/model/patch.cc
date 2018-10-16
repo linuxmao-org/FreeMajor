@@ -4,6 +4,7 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 
 #include "patch.h"
+#include "app_i18n.h"
 #include <string.h>
 
 Patch Patch::create_empty()
@@ -12,7 +13,7 @@ Patch Patch::create_empty()
     memset(&pat.raw_data, 0, sizeof(pat.raw_data));
     const uint8_t head_data[] = { 0, 32, 31, 0, 72, 32 };
     memcpy(&pat.raw_data, head_data, sizeof(head_data));
-    pat.name("New patch");
+    pat.name(_("New patch"));
     return pat;
 }
 

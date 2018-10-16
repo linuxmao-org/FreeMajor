@@ -355,7 +355,7 @@ msgstr "Boîte"
 #: sources/model/parameter.cc:452
 msgctxt "Reverb|Hi Color|"
 msgid "Bright"
-msgstr "Brillance"
+msgstr "Brillante"
 
 #: sources/ui/patch_chooser.cxx:31
 msgid "Cancel"
@@ -812,7 +812,7 @@ msgstr "Haute réso."
 
 #: sources/model/parameter.cc:453
 msgid "Hi color"
-msgstr "Haute col"
+msgstr "Couleur H"
 
 #: sources/model/parameter.cc:454
 msgid "Hi factor"
@@ -958,7 +958,7 @@ msgstr "Niveau 2"
 #: sources/model/parameter.cc:457
 msgctxt "Reverb|Lo Color|"
 msgid "Light"
-msgstr "Léger"
+msgstr "Légère"
 
 #: sources/model/parameter.cc:810
 msgid "Limits the frequency range in which the sweep will be performed."
@@ -1006,12 +1006,12 @@ msgstr "Maximum"
 #: sources/model/parameter.cc:806
 msgctxt "Filter|Resonance|Response|"
 msgid "Medium"
-msgstr "Médium"
+msgstr "Moyenne"
 
 #: sources/model/parameter.cc:449
 msgctxt "Reverb|Size|"
 msgid "Medium"
-msgstr "Médium"
+msgstr "Moyenne"
 
 #: sources/model/parameter.cc:217
 msgid "Middle"
@@ -1077,7 +1077,7 @@ msgstr "Non"
 #: sources/model/parameter.cc:457
 msgctxt "Reverb|Lo Color|"
 msgid "No Base"
-msgstr "Aucune base"
+msgstr "Sans base"
 
 #: sources/ui/main_component.cxx:148
 msgid "Noise gate"
@@ -1248,12 +1248,12 @@ msgstr "Taux"
 #: sources/model/parameter.cc:452
 msgctxt "Reverb|Hi Color|"
 msgid "Real"
-msgstr "Réel"
+msgstr "Réelle"
 
 #: sources/model/parameter.cc:457
 msgctxt "Reverb|Lo Color|"
 msgid "Real"
-msgstr "Réel"
+msgstr "Réelle"
 
 #: sources/ui/main_component_impl.cc:607 sources/ui/main_component_impl.cc:652
 msgid ""
@@ -1744,12 +1744,12 @@ msgstr "Le temps entre les répétitions."
 #: sources/model/parameter.cc:457
 msgctxt "Reverb|Lo Color|"
 msgid "Thick"
-msgstr "Épais"
+msgstr "Épaisse"
 
 #: sources/model/parameter.cc:457
 msgctxt "Reverb|Lo Color|"
 msgid "Thin"
-msgstr "Fin"
+msgstr "Fine"
 
 #: sources/model/parameter.cc:461
 msgid ""
@@ -1794,7 +1794,7 @@ msgstr "Seuil"
 #: sources/model/parameter.cc:457
 msgctxt "Reverb|Lo Color|"
 msgid "Tight"
-msgstr "Serré"
+msgstr "Serrée"
 
 #: sources/model/parameter.cc:449
 msgctxt "Reverb|Size|"

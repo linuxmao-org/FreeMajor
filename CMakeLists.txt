@@ -57,9 +57,10 @@ find_package(Threads REQUIRED)
 target_link_libraries(gmajctl PRIVATE "${CMAKE_THREAD_LIBS_INIT}")
 
 if(ENABLE_GETTEXT)
-  target_compile_definitions(gmajctl PRIVATE "ENABLE_GETTEXT=")
+  target_compile_definitions(gmajctl PRIVATE "ENABLE_NLS=1")
   target_include_directories(gmajctl PRIVATE ${Intl_INCLUDE_DIRS})
   target_link_libraries(gmajctl PRIVATE ${Intl_LIBRARIES})
+  target_include_directories(gmajctl PRIVATE "thirdparty/gettext/include")
 endif()
 
 # target_sources(gmajctl PRIVATE "thirdparty/Fl_Knob/Fl_Knob/Fl_Knob.cxx")

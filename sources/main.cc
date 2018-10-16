@@ -9,7 +9,7 @@
 
 int main()
 {
-#if defined(ENABLE_GETTEXT)
+#if ENABLE_NLS
     setlocale(LC_ALL, "");
     bindtextdomain("gmajctl", LOCALE_DIRECTORY "/");
     textdomain("gmajctl");

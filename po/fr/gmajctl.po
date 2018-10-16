@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gmajctl 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-16 04:07+0200\n"
+"POT-Creation-Date: 2018-10-16 05:33+0200\n"
 "PO-Revision-Date: 2018-10-08 14:52+0200\n"
 "Last-Translator: Julien Taverna <jujudusud@gmail.com>\n"
 "Language-Team: French\n"
@@ -19,10 +19,186 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
+#: sources/model/parameter.cc:490 sources/model/parameter.cc:521
+#: sources/model/parameter.cc:563 sources/model/parameter.cc:566
+#: sources/model/parameter.cc:678 sources/model/parameter.cc:708
+#: sources/model/parameter.cc:738 sources/model/parameter.cc:765
+#: sources/model/parameter.cc:806 sources/model/parameter.cc:832
+#: sources/model/parameter.cc:866 sources/model/parameter.cc:899
+#: sources/model/parameter.cc:940
+msgctxt "*|Tempo|"
+msgid "1"
+msgstr ""
+
 #: sources/model/parameter.cc:399 sources/model/parameter.cc:414
 msgctxt "Pitch|Range|"
 msgid "1 oct"
 msgstr "1 oct"
+
+#: sources/model/parameter.cc:490 sources/model/parameter.cc:521
+#: sources/model/parameter.cc:563 sources/model/parameter.cc:566
+#: sources/model/parameter.cc:678 sources/model/parameter.cc:708
+#: sources/model/parameter.cc:738 sources/model/parameter.cc:765
+#: sources/model/parameter.cc:806 sources/model/parameter.cc:832
+#: sources/model/parameter.cc:866 sources/model/parameter.cc:899
+#: sources/model/parameter.cc:940
+msgctxt "*|Tempo|"
+msgid "1/16"
+msgstr ""
+
+#: sources/model/parameter.cc:490 sources/model/parameter.cc:521
+#: sources/model/parameter.cc:563 sources/model/parameter.cc:566
+#: sources/model/parameter.cc:678 sources/model/parameter.cc:708
+#: sources/model/parameter.cc:738 sources/model/parameter.cc:765
+#: sources/model/parameter.cc:806 sources/model/parameter.cc:832
+#: sources/model/parameter.cc:866 sources/model/parameter.cc:899
+#: sources/model/parameter.cc:940
+msgctxt "*|Tempo|"
+msgid "1/16D"
+msgstr ""
+
+#: sources/model/parameter.cc:490 sources/model/parameter.cc:521
+#: sources/model/parameter.cc:563 sources/model/parameter.cc:566
+#: sources/model/parameter.cc:678 sources/model/parameter.cc:708
+#: sources/model/parameter.cc:738 sources/model/parameter.cc:765
+#: sources/model/parameter.cc:806 sources/model/parameter.cc:832
+#: sources/model/parameter.cc:866 sources/model/parameter.cc:899
+#: sources/model/parameter.cc:940
+msgctxt "*|Tempo|"
+msgid "1/16T"
+msgstr ""
+
+#: sources/model/parameter.cc:490 sources/model/parameter.cc:521
+#: sources/model/parameter.cc:563 sources/model/parameter.cc:566
+#: sources/model/parameter.cc:678 sources/model/parameter.cc:708
+#: sources/model/parameter.cc:738 sources/model/parameter.cc:765
+#: sources/model/parameter.cc:806 sources/model/parameter.cc:832
+#: sources/model/parameter.cc:866 sources/model/parameter.cc:899
+#: sources/model/parameter.cc:940
+msgctxt "*|Tempo|"
+msgid "1/2"
+msgstr ""
+
+#: sources/model/parameter.cc:490 sources/model/parameter.cc:521
+#: sources/model/parameter.cc:563 sources/model/parameter.cc:566
+#: sources/model/parameter.cc:678 sources/model/parameter.cc:708
+#: sources/model/parameter.cc:738 sources/model/parameter.cc:765
+#: sources/model/parameter.cc:806 sources/model/parameter.cc:832
+#: sources/model/parameter.cc:866 sources/model/parameter.cc:899
+#: sources/model/parameter.cc:940
+msgctxt "*|Tempo|"
+msgid "1/2D"
+msgstr ""
+
+#: sources/model/parameter.cc:490 sources/model/parameter.cc:521
+#: sources/model/parameter.cc:563 sources/model/parameter.cc:566
+#: sources/model/parameter.cc:678 sources/model/parameter.cc:708
+#: sources/model/parameter.cc:738 sources/model/parameter.cc:765
+#: sources/model/parameter.cc:806 sources/model/parameter.cc:832
+#: sources/model/parameter.cc:866 sources/model/parameter.cc:899
+#: sources/model/parameter.cc:940
+msgctxt "*|Tempo|"
+msgid "1/2T"
+msgstr ""
+
+#: sources/model/parameter.cc:490 sources/model/parameter.cc:521
+#: sources/model/parameter.cc:563 sources/model/parameter.cc:566
+#: sources/model/parameter.cc:678 sources/model/parameter.cc:708
+#: sources/model/parameter.cc:738 sources/model/parameter.cc:765
+#: sources/model/parameter.cc:806 sources/model/parameter.cc:832
+#: sources/model/parameter.cc:866 sources/model/parameter.cc:899
+#: sources/model/parameter.cc:940
+msgctxt "*|Tempo|"
+msgid "1/32"
+msgstr ""
+
+#: sources/model/parameter.cc:490 sources/model/parameter.cc:521
+#: sources/model/parameter.cc:563 sources/model/parameter.cc:566
+#: sources/model/parameter.cc:678 sources/model/parameter.cc:708
+#: sources/model/parameter.cc:738 sources/model/parameter.cc:765
+#: sources/model/parameter.cc:806 sources/model/parameter.cc:832
+#: sources/model/parameter.cc:866 sources/model/parameter.cc:899
+#: sources/model/parameter.cc:940
+msgctxt "*|Tempo|"
+msgid "1/32D"
+msgstr ""
+
+#: sources/model/parameter.cc:490 sources/model/parameter.cc:521
+#: sources/model/parameter.cc:563 sources/model/parameter.cc:566
+#: sources/model/parameter.cc:678 sources/model/parameter.cc:708
+#: sources/model/parameter.cc:738 sources/model/parameter.cc:765
+#: sources/model/parameter.cc:806 sources/model/parameter.cc:832
+#: sources/model/parameter.cc:866 sources/model/parameter.cc:899
+#: sources/model/parameter.cc:940
+msgctxt "*|Tempo|"
+msgid "1/32T"
+msgstr ""
+
+#: sources/model/parameter.cc:490 sources/model/parameter.cc:521
+#: sources/model/parameter.cc:563 sources/model/parameter.cc:566
+#: sources/model/parameter.cc:678 sources/model/parameter.cc:708
+#: sources/model/parameter.cc:738 sources/model/parameter.cc:765
+#: sources/model/parameter.cc:806 sources/model/parameter.cc:832
+#: sources/model/parameter.cc:866 sources/model/parameter.cc:899
+#: sources/model/parameter.cc:940
+msgctxt "*|Tempo|"
+msgid "1/4"
+msgstr ""
+
+#: sources/model/parameter.cc:490 sources/model/parameter.cc:521
+#: sources/model/parameter.cc:563 sources/model/parameter.cc:566
+#: sources/model/parameter.cc:678 sources/model/parameter.cc:708
+#: sources/model/parameter.cc:738 sources/model/parameter.cc:765
+#: sources/model/parameter.cc:806 sources/model/parameter.cc:832
+#: sources/model/parameter.cc:866 sources/model/parameter.cc:899
+#: sources/model/parameter.cc:940
+msgctxt "*|Tempo|"
+msgid "1/4D"
+msgstr ""
+
+#: sources/model/parameter.cc:490 sources/model/parameter.cc:521
+#: sources/model/parameter.cc:563 sources/model/parameter.cc:566
+#: sources/model/parameter.cc:678 sources/model/parameter.cc:708
+#: sources/model/parameter.cc:738 sources/model/parameter.cc:765
+#: sources/model/parameter.cc:806 sources/model/parameter.cc:832
+#: sources/model/parameter.cc:866 sources/model/parameter.cc:899
+#: sources/model/parameter.cc:940
+msgctxt "*|Tempo|"
+msgid "1/4T"
+msgstr ""
+
+#: sources/model/parameter.cc:490 sources/model/parameter.cc:521
+#: sources/model/parameter.cc:563 sources/model/parameter.cc:566
+#: sources/model/parameter.cc:678 sources/model/parameter.cc:708
+#: sources/model/parameter.cc:738 sources/model/parameter.cc:765
+#: sources/model/parameter.cc:806 sources/model/parameter.cc:832
+#: sources/model/parameter.cc:866 sources/model/parameter.cc:899
+#: sources/model/parameter.cc:940
+msgctxt "*|Tempo|"
+msgid "1/8"
+msgstr ""
+
+#: sources/model/parameter.cc:490 sources/model/parameter.cc:521
+#: sources/model/parameter.cc:563 sources/model/parameter.cc:566
+#: sources/model/parameter.cc:678 sources/model/parameter.cc:708
+#: sources/model/parameter.cc:738 sources/model/parameter.cc:765
+#: sources/model/parameter.cc:806 sources/model/parameter.cc:832
+#: sources/model/parameter.cc:866 sources/model/parameter.cc:899
+#: sources/model/parameter.cc:940
+msgctxt "*|Tempo|"
+msgid "1/8D"
+msgstr ""
+
+#: sources/model/parameter.cc:490 sources/model/parameter.cc:521
+#: sources/model/parameter.cc:563 sources/model/parameter.cc:566
+#: sources/model/parameter.cc:678 sources/model/parameter.cc:708
+#: sources/model/parameter.cc:738 sources/model/parameter.cc:765
+#: sources/model/parameter.cc:806 sources/model/parameter.cc:832
+#: sources/model/parameter.cc:866 sources/model/parameter.cc:899
+#: sources/model/parameter.cc:940
+msgctxt "*|Tempo|"
+msgid "1/8T"
+msgstr ""
 
 #. Fl_Slider_Ex* sl_assignment
 #. Fl_Slider_Ex* sl_min

@@ -487,7 +487,7 @@ P_Delay::Ping_Pong::Ping_Pong()
                        ->with_min_max(0, 1800)
                        ->with_modifier_at(108));
     slots.emplace_back((new PA_Choice(432, 4,
-                                      {_P("*|Tempo|", "Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
+                                      {_P("*|Tempo|", "Ignored"), _P("*|Tempo|", "1"), _P("*|Tempo|", "1/2D"), _P("*|Tempo|", "1/2"), _P("*|Tempo|", "1/2T"), _P("*|Tempo|", "1/4D"), _P("*|Tempo|", "1/4"), _P("*|Tempo|", "1/4T"), _P("*|Tempo|", "1/8D"), _P("*|Tempo|", "1/8"), _P("*|Tempo|", "1/8T"), _P("*|Tempo|", "1/16D"), _P("*|Tempo|", "1/16"), _P("*|Tempo|", "1/16T"), _P("*|Tempo|", "1/32D"), _P("*|Tempo|", "1/32"), _P("*|Tempo|", "1/32T")},
                                       _("Tempo"), _("The Tempo parameter sets the relationship to the global Tempo."))));
     slots.emplace_back((new PA_Integer(436, 4, _("Width"), _("The Width parameter determines whether the Left or Right repetitions are panned 100% or not.")))
                        ->with_min_max(0, 100));
@@ -518,7 +518,7 @@ P_Delay::Dynamic::Dynamic()
                        ->with_min_max(0, 1800)
                        ->with_modifier_at(108));
     slots.emplace_back((new PA_Choice(432, 4,
-                                      {_P("*|Tempo|", "Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
+                                      {_P("*|Tempo|", "Ignored"), _P("*|Tempo|", "1"), _P("*|Tempo|", "1/2D"), _P("*|Tempo|", "1/2"), _P("*|Tempo|", "1/2T"), _P("*|Tempo|", "1/4D"), _P("*|Tempo|", "1/4"), _P("*|Tempo|", "1/4T"), _P("*|Tempo|", "1/8D"), _P("*|Tempo|", "1/8"), _P("*|Tempo|", "1/8T"), _P("*|Tempo|", "1/16D"), _P("*|Tempo|", "1/16"), _P("*|Tempo|", "1/16T"), _P("*|Tempo|", "1/32D"), _P("*|Tempo|", "1/32"), _P("*|Tempo|", "1/32T")},
                                       _("Tempo"), _("The Tempo parameter sets the relationship to the global Tempo."))));
     slots.emplace_back((new PA_Integer(440, 4, _("Feedback"), _("Determines how many repetitions there will be.")))
                        ->with_min_max(0, 100)
@@ -560,10 +560,10 @@ P_Delay::Dual::Dual()
                        ->with_min_max(0, 1800)
                        ->with_modifier_at(112));
     slots.emplace_back((new PA_Choice(432, 4,
-                                      {_P("*|Tempo|", "Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
+                                      {_P("*|Tempo|", "Ignored"), _P("*|Tempo|", "1"), _P("*|Tempo|", "1/2D"), _P("*|Tempo|", "1/2"), _P("*|Tempo|", "1/2T"), _P("*|Tempo|", "1/4D"), _P("*|Tempo|", "1/4"), _P("*|Tempo|", "1/4T"), _P("*|Tempo|", "1/8D"), _P("*|Tempo|", "1/8"), _P("*|Tempo|", "1/8T"), _P("*|Tempo|", "1/16D"), _P("*|Tempo|", "1/16"), _P("*|Tempo|", "1/16T"), _P("*|Tempo|", "1/32D"), _P("*|Tempo|", "1/32"), _P("*|Tempo|", "1/32T")},
                                       _("Tempo 1"), _("The Tempo parameter sets the relationship to the global Tempo."))));
     slots.emplace_back((new PA_Choice(436, 4,
-                                      {_P("*|Tempo|", "Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
+                                      {_P("*|Tempo|", "Ignored"), _P("*|Tempo|", "1"), _P("*|Tempo|", "1/2D"), _P("*|Tempo|", "1/2"), _P("*|Tempo|", "1/2T"), _P("*|Tempo|", "1/4D"), _P("*|Tempo|", "1/4"), _P("*|Tempo|", "1/4T"), _P("*|Tempo|", "1/8D"), _P("*|Tempo|", "1/8"), _P("*|Tempo|", "1/8T"), _P("*|Tempo|", "1/16D"), _P("*|Tempo|", "1/16"), _P("*|Tempo|", "1/16T"), _P("*|Tempo|", "1/32D"), _P("*|Tempo|", "1/32"), _P("*|Tempo|", "1/32T")},
                                       _("Tempo 2"), _("The Tempo parameter sets the relationship to the global Tempo."))));
     slots.emplace_back((new PA_Integer(440, 4, _("Feedback 1"), _("Determines the number of repetitions of the Delay of the first Delay Line.")))
                        ->with_min_max(0, 100)
@@ -675,7 +675,7 @@ P_Filter::Vintage_Phaser::Vintage_Phaser()
                        ->with_min_max(0, 100)
                        ->with_modifier_at(32));
     slots.emplace_back((new PA_Choice(252, 4,
-                                      {_P("*|Tempo|", "Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
+                                      {_P("*|Tempo|", "Ignored"), _P("*|Tempo|", "1"), _P("*|Tempo|", "1/2D"), _P("*|Tempo|", "1/2"), _P("*|Tempo|", "1/2T"), _P("*|Tempo|", "1/4D"), _P("*|Tempo|", "1/4"), _P("*|Tempo|", "1/4T"), _P("*|Tempo|", "1/8D"), _P("*|Tempo|", "1/8"), _P("*|Tempo|", "1/8T"), _P("*|Tempo|", "1/16D"), _P("*|Tempo|", "1/16"), _P("*|Tempo|", "1/16T"), _P("*|Tempo|", "1/32D"), _P("*|Tempo|", "1/32"), _P("*|Tempo|", "1/32T")},
                                       _("Tempo"), _("The Tempo parameter sets the relationship to the global Tempo."))));
     slots.emplace_back((new PA_Integer(260, 4, _("Feedback"), _("Controls the amount of feedback in the Phaser. Setting this parameter to \"-100\" reverses the phase of the signal that is fed back to the algorithm Input.")))
                        ->with_min_max(-100, 100)
@@ -705,7 +705,7 @@ P_Filter::Smooth_Phaser::Smooth_Phaser()
                        ->with_min_max(0, 100)
                        ->with_modifier_at(32));
     slots.emplace_back((new PA_Choice(252, 4,
-                                      {_P("*|Tempo|", "Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
+                                      {_P("*|Tempo|", "Ignored"), _P("*|Tempo|", "1"), _P("*|Tempo|", "1/2D"), _P("*|Tempo|", "1/2"), _P("*|Tempo|", "1/2T"), _P("*|Tempo|", "1/4D"), _P("*|Tempo|", "1/4"), _P("*|Tempo|", "1/4T"), _P("*|Tempo|", "1/8D"), _P("*|Tempo|", "1/8"), _P("*|Tempo|", "1/8T"), _P("*|Tempo|", "1/16D"), _P("*|Tempo|", "1/16"), _P("*|Tempo|", "1/16T"), _P("*|Tempo|", "1/32D"), _P("*|Tempo|", "1/32"), _P("*|Tempo|", "1/32T")},
                                       _("Tempo"), _("The Tempo parameter sets the relationship to the global Tempo."))));
     slots.emplace_back((new PA_Integer(260, 4, _("Feedback"), _("Controls the amount of feedback in the Phaser. Setting this parameter to \"-100\" reverses the phase of the signal that is fed back to the algorithm Input.")))
                        ->with_min_max(-100, 100)
@@ -735,7 +735,7 @@ P_Filter::Tremolo::Tremolo()
                        ->with_min_max(0, 100)
                        ->with_modifier_at(32));
     slots.emplace_back((new PA_Choice(252, 4,
-                                      {_P("*|Tempo|", "Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
+                                      {_P("*|Tempo|", "Ignored"), _P("*|Tempo|", "1"), _P("*|Tempo|", "1/2D"), _P("*|Tempo|", "1/2"), _P("*|Tempo|", "1/2T"), _P("*|Tempo|", "1/4D"), _P("*|Tempo|", "1/4"), _P("*|Tempo|", "1/4T"), _P("*|Tempo|", "1/8D"), _P("*|Tempo|", "1/8"), _P("*|Tempo|", "1/8T"), _P("*|Tempo|", "1/16D"), _P("*|Tempo|", "1/16"), _P("*|Tempo|", "1/16T"), _P("*|Tempo|", "1/32D"), _P("*|Tempo|", "1/32"), _P("*|Tempo|", "1/32T")},
                                       _("Tempo"), _("The Tempo parameter sets the relationship to the global Tempo."))));
     slots.emplace_back((new PA_Integer(260, 4, _("LFO P Width"/*LFO Pulse Width*/), _("Controls the division of the upper and the lower part of the current waveform, e.g. if Pulse Width is set to 75%, the upper half of the waveform will be on for 75% of the time.")))
                        ->with_min_max(0, 100));
@@ -762,7 +762,7 @@ P_Filter::Panner::Panner()
                        ->with_min_max(0, 100)
                        ->with_modifier_at(32));
     slots.emplace_back((new PA_Choice(252, 4,
-                                      {_P("*|Tempo|", "Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
+                                      {_P("*|Tempo|", "Ignored"), _P("*|Tempo|", "1"), _P("*|Tempo|", "1/2D"), _P("*|Tempo|", "1/2"), _P("*|Tempo|", "1/2T"), _P("*|Tempo|", "1/4D"), _P("*|Tempo|", "1/4"), _P("*|Tempo|", "1/4T"), _P("*|Tempo|", "1/8D"), _P("*|Tempo|", "1/8"), _P("*|Tempo|", "1/8T"), _P("*|Tempo|", "1/16D"), _P("*|Tempo|", "1/16"), _P("*|Tempo|", "1/16T"), _P("*|Tempo|", "1/32D"), _P("*|Tempo|", "1/32"), _P("*|Tempo|", "1/32T")},
                                       _("Tempo"), _("The Tempo parameter sets the relationship to the global Tempo."))));
     slots.emplace_back((new PA_Integer(284, 4, _("Out level"), _("Sets the overall Output level of this block.")))
                        ->with_min_max(-100, 0)
@@ -803,7 +803,7 @@ P_Modulation::Classic_Chorus::Classic_Chorus()
                        ->with_min_max(0, 100)
                        ->with_modifier_at(84));
     slots.emplace_back((new PA_Choice(368, 4,
-                                      {_P("*|Tempo|", "Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
+                                      {_P("*|Tempo|", "Ignored"), _P("*|Tempo|", "1"), _P("*|Tempo|", "1/2D"), _P("*|Tempo|", "1/2"), _P("*|Tempo|", "1/2T"), _P("*|Tempo|", "1/4D"), _P("*|Tempo|", "1/4"), _P("*|Tempo|", "1/4T"), _P("*|Tempo|", "1/8D"), _P("*|Tempo|", "1/8"), _P("*|Tempo|", "1/8T"), _P("*|Tempo|", "1/16D"), _P("*|Tempo|", "1/16"), _P("*|Tempo|", "1/16T"), _P("*|Tempo|", "1/32D"), _P("*|Tempo|", "1/32"), _P("*|Tempo|", "1/32T")},
                                       _("Tempo"), _("The Tempo parameter sets the relationship to the global Tempo."))));
     slots.emplace_back((new PA_Choice(372, 4,
                                       {"19.95", "22.39", "25.12", "28.18", "31.62", "35.48", "39.81", "44.67", "50.12", "56.23", "63.10", "70.79", "79.43", "89.13", "100.0", "112.2", "125.9", "141.3", "158.5", "177.8", "199.5", "223.9", "251.2", "281.8", "316.2", "354.8", "398.1", "446.7", "501.2", "562.3", "631.0", "707.9", "794.3", "891.3", "1.00k", "1.12k", "1.26k", "1.41k", "1.58k", "1.78k", "2.00k", "2.24k", "2.51k", "2.82k", "3.16k", "3.55k", "3.98k", "4.47k", "5.01k", "5.62k", "6.31k", "7.08k", "7.94k", "8.91k", "10.0k", "11.2k", "12.6k", "14.1k", "15.8k", "17.8k", _("Off")},
@@ -829,7 +829,7 @@ P_Modulation::Advanced_Chorus::Advanced_Chorus()
                        ->with_min_max(0, 100)
                        ->with_modifier_at(84));
     slots.emplace_back((new PA_Choice(368, 4,
-                                      {_P("*|Tempo|", "Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
+                                      {_P("*|Tempo|", "Ignored"), _P("*|Tempo|", "1"), _P("*|Tempo|", "1/2D"), _P("*|Tempo|", "1/2"), _P("*|Tempo|", "1/2T"), _P("*|Tempo|", "1/4D"), _P("*|Tempo|", "1/4"), _P("*|Tempo|", "1/4T"), _P("*|Tempo|", "1/8D"), _P("*|Tempo|", "1/8"), _P("*|Tempo|", "1/8T"), _P("*|Tempo|", "1/16D"), _P("*|Tempo|", "1/16"), _P("*|Tempo|", "1/16T"), _P("*|Tempo|", "1/32D"), _P("*|Tempo|", "1/32"), _P("*|Tempo|", "1/32T")},
                                       _("Tempo"), _("The Tempo parameter sets the relationship to the global Tempo."))));
     slots.emplace_back((new PA_Choice(372, 4,
                                       {"19.95", "22.39", "25.12", "28.18", "31.62", "35.48", "39.81", "44.67", "50.12", "56.23", "63.10", "70.79", "79.43", "89.13", "100.0", "112.2", "125.9", "141.3", "158.5", "177.8", "199.5", "223.9", "251.2", "281.8", "316.2", "354.8", "398.1", "446.7", "501.2", "562.3", "631.0", "707.9", "794.3", "891.3", "1.00k", "1.12k", "1.26k", "1.41k", "1.58k", "1.78k", "2.00k", "2.24k", "2.51k", "2.82k", "3.16k", "3.55k", "3.98k", "4.47k", "5.01k", "5.62k", "6.31k", "7.08k", "7.94k", "8.91k", "10.0k", "11.2k", "12.6k", "14.1k", "15.8k", "17.8k", _("Off")},
@@ -863,7 +863,7 @@ P_Modulation::Classic_Flanger::Classic_Flanger()
                        ->with_min_max(0, 100)
                        ->with_modifier_at(84));
     slots.emplace_back((new PA_Choice(368, 4,
-                                      {_P("*|Tempo|", "Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
+                                      {_P("*|Tempo|", "Ignored"), _P("*|Tempo|", "1"), _P("*|Tempo|", "1/2D"), _P("*|Tempo|", "1/2"), _P("*|Tempo|", "1/2T"), _P("*|Tempo|", "1/4D"), _P("*|Tempo|", "1/4"), _P("*|Tempo|", "1/4T"), _P("*|Tempo|", "1/8D"), _P("*|Tempo|", "1/8"), _P("*|Tempo|", "1/8T"), _P("*|Tempo|", "1/16D"), _P("*|Tempo|", "1/16"), _P("*|Tempo|", "1/16T"), _P("*|Tempo|", "1/32D"), _P("*|Tempo|", "1/32"), _P("*|Tempo|", "1/32T")},
                                       _("Tempo"), _("The Tempo parameter sets the relationship to the global Tempo."))));
     slots.emplace_back((new PA_Choice(372, 4,
                                       {"19.95", "22.39", "25.12", "28.18", "31.62", "35.48", "39.81", "44.67", "50.12", "56.23", "63.10", "70.79", "79.43", "89.13", "100.0", "112.2", "125.9", "141.3", "158.5", "177.8", "199.5", "223.9", "251.2", "281.8", "316.2", "354.8", "398.1", "446.7", "501.2", "562.3", "631.0", "707.9", "794.3", "891.3", "1.00k", "1.12k", "1.26k", "1.41k", "1.58k", "1.78k", "2.00k", "2.24k", "2.51k", "2.82k", "3.16k", "3.55k", "3.98k", "4.47k", "5.01k", "5.62k", "6.31k", "7.08k", "7.94k", "8.91k", "10.0k", "11.2k", "12.6k", "14.1k", "15.8k", "17.8k", _("Off")},
@@ -896,7 +896,7 @@ P_Modulation::Advanced_Flanger::Advanced_Flanger()
                        ->with_min_max(0, 100)
                        ->with_modifier_at(84));
     slots.emplace_back((new PA_Choice(368, 4,
-                                      {_P("*|Tempo|", "Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
+                                      {_P("*|Tempo|", "Ignored"), _P("*|Tempo|", "1"), _P("*|Tempo|", "1/2D"), _P("*|Tempo|", "1/2"), _P("*|Tempo|", "1/2T"), _P("*|Tempo|", "1/4D"), _P("*|Tempo|", "1/4"), _P("*|Tempo|", "1/4T"), _P("*|Tempo|", "1/8D"), _P("*|Tempo|", "1/8"), _P("*|Tempo|", "1/8T"), _P("*|Tempo|", "1/16D"), _P("*|Tempo|", "1/16"), _P("*|Tempo|", "1/16T"), _P("*|Tempo|", "1/32D"), _P("*|Tempo|", "1/32"), _P("*|Tempo|", "1/32T")},
                                       _("Tempo"), _("The Tempo parameter sets the relationship to the global Tempo."))));
     slots.emplace_back((new PA_Choice(372, 4,
                                       {"19.95", "22.39", "25.12", "28.18", "31.62", "35.48", "39.81", "44.67", "50.12", "56.23", "63.10", "70.79", "79.43", "89.13", "100.0", "112.2", "125.9", "141.3", "158.5", "177.8", "199.5", "223.9", "251.2", "281.8", "316.2", "354.8", "398.1", "446.7", "501.2", "562.3", "631.0", "707.9", "794.3", "891.3", "1.00k", "1.12k", "1.26k", "1.41k", "1.58k", "1.78k", "2.00k", "2.24k", "2.51k", "2.82k", "3.16k", "3.55k", "3.98k", "4.47k", "5.01k", "5.62k", "6.31k", "7.08k", "7.94k", "8.91k", "10.0k", "11.2k", "12.6k", "14.1k", "15.8k", "17.8k", _("Off")},
@@ -937,7 +937,7 @@ P_Modulation::Vibrato::Vibrato()
                        ->with_min_max(0, 100)
                        ->with_modifier_at(84));
     slots.emplace_back((new PA_Choice(368, 4,
-                                      {_P("*|Tempo|", "Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
+                                      {_P("*|Tempo|", "Ignored"), _P("*|Tempo|", "1"), _P("*|Tempo|", "1/2D"), _P("*|Tempo|", "1/2"), _P("*|Tempo|", "1/2T"), _P("*|Tempo|", "1/4D"), _P("*|Tempo|", "1/4"), _P("*|Tempo|", "1/4T"), _P("*|Tempo|", "1/8D"), _P("*|Tempo|", "1/8"), _P("*|Tempo|", "1/8T"), _P("*|Tempo|", "1/16D"), _P("*|Tempo|", "1/16"), _P("*|Tempo|", "1/16T"), _P("*|Tempo|", "1/32D"), _P("*|Tempo|", "1/32"), _P("*|Tempo|", "1/32T")},
                                       _("Tempo"), _("The Tempo parameter sets the relationship to the global Tempo."))));
     slots.emplace_back((new PA_Choice(372, 4,
                                       {"19.95", "22.39", "25.12", "28.18", "31.62", "35.48", "39.81", "44.67", "50.12", "56.23", "63.10", "70.79", "79.43", "89.13", "100.0", "112.2", "125.9", "141.3", "158.5", "177.8", "199.5", "223.9", "251.2", "281.8", "316.2", "354.8", "398.1", "446.7", "501.2", "562.3", "631.0", "707.9", "794.3", "891.3", "1.00k", "1.12k", "1.26k", "1.41k", "1.58k", "1.78k", "2.00k", "2.24k", "2.51k", "2.82k", "3.16k", "3.55k", "3.98k", "4.47k", "5.01k", "5.62k", "6.31k", "7.08k", "7.94k", "8.91k", "10.0k", "11.2k", "12.6k", "14.1k", "15.8k", "17.8k", _("Off")},

@@ -112,8 +112,8 @@ double Eq_Display::eval(unsigned band, double freq)
     double gain = bands_[band].gain;
     double width = bands_[band].width;
 
-    double fc1 = fcutoff * exp2(-width);
     double fc2 = fcutoff * exp2(+width);
+    double fc1 = fcutoff - (fc2 - fcutoff);
 
     double x = 2.0 * (freq - fc1) / (fc2 - fc1) - 1.0;
     double g = norm_gauss(x, sigma);

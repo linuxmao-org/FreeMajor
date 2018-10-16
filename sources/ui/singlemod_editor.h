@@ -7,6 +7,7 @@
 template <class T> class Fl_Valuator_Ex; 
 typedef Fl_Valuator_Ex<Fl_Slider> Fl_Slider_Ex;
 #include <FL/Fl_Group.H>
+#include <FL/Fl_Box.H>
 
 class Single_Mod_Editor : public Fl_Group {
 public:
@@ -15,5 +16,9 @@ public:
   Fl_Slider_Ex *sl_min;
   Fl_Slider_Ex *sl_mid;
   Fl_Slider_Ex *sl_max;
+  Fl_Box *lbl_assignment;
+  Fl_Box *lbl_min;
+  Fl_Box *lbl_mid;
+  Fl_Box *lbl_max;
 };
 #endif

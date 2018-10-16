@@ -8,7 +8,7 @@ code_name {.cxx}
 decl {\#include "widget_ex.h"} {private local
 }
 
-decl {\#include <FL/Fl_Slider.H>} {selected public global
+decl {\#include <FL/Fl_Slider.H>} {public global
 }
 
 decl {template <class T> class Fl_Valuator_Ex;} {public global
@@ -18,26 +18,38 @@ decl {typedef Fl_Valuator_Ex<Fl_Slider> Fl_Slider_Ex;} {public global
 }
 
 widget_class Single_Mod_Editor {open
-  xywh {490 128 80 80} type Double visible
+  xywh {1061 710 80 80} type Double visible
 } {
   Fl_Slider sl_assignment {
-    label Off
     xywh {2 15 15 60} type {Vert Fill} box THIN_DOWN_BOX labelsize 10 align 1
     class Fl_Slider_Ex
   }
   Fl_Slider sl_min {
-    label 100
     xywh {22 15 15 60} type {Vert Fill} box THIN_DOWN_BOX labelsize 10 align 1
     class Fl_Slider_Ex
   }
   Fl_Slider sl_mid {
-    label 100
     xywh {42 15 15 60} type {Vert Fill} box THIN_DOWN_BOX labelsize 10 align 1
     class Fl_Slider_Ex
   }
   Fl_Slider sl_max {
-    label 100
     xywh {62 15 15 60} type {Vert Fill} box THIN_DOWN_BOX labelsize 10 align 1
     class Fl_Slider_Ex
+  }
+  Fl_Box lbl_assignment {
+    label Off
+    xywh {0 0 20 15} labelsize 10
+  }
+  Fl_Box lbl_min {
+    label 100
+    xywh {20 0 20 15} labelsize 10
+  }
+  Fl_Box lbl_mid {
+    label 100
+    xywh {40 0 20 15} labelsize 10
+  }
+  Fl_Box lbl_max {
+    label 100
+    xywh {60 0 20 15} labelsize 10
   }
 }

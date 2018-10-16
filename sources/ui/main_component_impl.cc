@@ -410,6 +410,9 @@ void Main_Component::setup_modifier_row(const char *title, bool enable, int row,
             Fl_Slider *valuators[4] = {
                 me->sl_assignment, me->sl_min, me->sl_mid, me->sl_max
             };
+            Fl_Box *value_labels[4] = {
+                me->lbl_assignment, me->lbl_min, me->lbl_mid, me->lbl_max
+            };
             Parameter_Access *parameters[4] = {
                 pm->assignment.get(), pm->min.get(), pm->mid.get(), pm->max.get()
             };
@@ -424,7 +427,7 @@ void Main_Component::setup_modifier_row(const char *title, bool enable, int row,
                 a->group_box = box;
                 a->value_widget = sl;
                 a->kind = Assoc_Slider;
-                a->value_labels.push_back(sl);
+                a->value_labels.push_back(value_labels[i]);
                 assoc_.push_back(std::move(a));
             }
 

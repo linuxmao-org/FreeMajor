@@ -6,6 +6,8 @@
 #include "parameter.h"
 #include "patch.h"
 #include "app_i18n.h"
+#include <math.h>
+#include <string.h>
 #include <assert.h>
 
 static int32_t load_int24(const uint8_t *src)
@@ -76,6 +78,108 @@ static void write_bits7(uint8_t *dst, unsigned size, const std::vector<bool> &bi
         dst[i_byte] = (uint8_t)b;
     }
 }
+
+///
+namespace Formatting {
+
+static std::string percent(int value)
+{
+    return std::to_string(value) + _P("Unit|", "%");
+}
+
+static std::string db(int value)
+{
+    return std::to_string(value) + _P("Unit|", "dB");
+}
+
+static std::string db_per_sec(int value)
+{
+    return std::to_string(value) + _P("Unit|", "dB/s");
+}
+
+static std::string cents(int value)
+{
+    return std::to_string(value) + _P("Unit|", "cents");
+}
+
+static std::string oct(int value)
+{
+    return std::to_string(value) + _P("Unit|", "oct");
+}
+
+static std::string msec(int value)
+{
+    return std::to_string(value) + _P("Unit|", "ms");
+}
+
+static std::string tenths_sec(int value)
+{
+    double v = value * 0.1;
+    char buf[32];
+    sprintf(buf, "%.1f", v);
+    return std::string(buf) + _P("Unit|", "s");
+}
+
+static std::string tenths_msec(int value)
+{
+    double v = value * 0.1;
+    char buf[32];
+    sprintf(buf, "%.1f", v);
+    return std::string(buf) + _P("Unit|", "ms");
+}
+
+static std::string msec_choice(const char *choice)
+{
+    size_t length = strlen(choice);
+
+    locale_u loc(createlocale(LC_ALL, "C"));
+    if (!loc)
+        throw std::runtime_error("cannot create the C locale");
+
+    double v;
+    unsigned count;
+    if (sscanf_l(choice, "%lf%n", loc.get(), &v, &count) == 1 && count == length) {
+        char buf[32];
+        const char *unit;
+        if (fabs(v) < 100) {
+            sprintf(buf, "%.0f", v);
+            unit = _P("Unit|", "ms");
+        }
+        else {
+            sprintf(buf, "%.2f", v * 1e-3);
+            unit = _P("Unit|", "s");
+        }
+        return std::string(buf) + unit;
+    }
+
+    return choice;
+}
+
+static std::string hz_choice(const char *choice)
+{
+    size_t length = strlen(choice);
+
+    locale_u loc(createlocale(LC_ALL, "C"));
+    if (!loc)
+        throw std::runtime_error("cannot create the C locale");
+
+    double v;
+    unsigned count;
+    if (sscanf_l(choice, "%lf%n", loc.get(), &v, &count) == 1 && count == length) {
+        char buf[32];
+        sprintf(buf, "%.2f", v);
+        return std::string(buf) + _P("Unit|", "Hz");
+    }
+    else if (sscanf_l(choice, "%lfk%n", loc.get(), &v, &count) == 1 && count == length) {
+        char buf[32];
+        sprintf(buf, "%.2f", v);
+        return std::string(buf) + _P("Unit|", "kHz");
+    }
+
+    return choice;
+}
+
+}  // namespace Formatting
 
 ///
 
@@ -174,12 +278,18 @@ std::string PA_Boolean::to_string(int value) const
 {
     if (to_string_fn)
         return to_string_fn(value);
-    return value ? "on" : "off";
+    return value ? _("On") : _("Off");
 }
 
 PA_Choice *PA_Choice::with_offset(int offset)
 {
     this->offset = offset;
+    return this;
+}
+
+PA_Choice *PA_Choice::with_choice_string_fn(std::function<std::string(const char *)> fn)
+{
+    to_string_fn = [this, fn](int v) -> std::string { return fn(values[clamp(v)]); };
     return this;
 }
 
@@ -253,20 +363,24 @@ int PA_Bits::clamp(int value) const
 P_Compressor::P_Compressor()
 {
     slots.emplace_back((new PA_Integer(164, 4, _("Threshold"), _("When the signal is above the set Threshold point the Compressor is activated and the gain of any signal above the Threshold point is processed according to the Ratio, Attack and Release.")))
-                       ->with_min_max(-40, 40));
+                       ->with_min_max(-40, 40)
+                       ->with_string_fn(&Formatting::db));
     slots.emplace_back((new PA_Choice(168, 4,
                                       {_("Off"), "1.12:1", "1.25:1", "1.40:1", "1.60:1", "1.80:1", "2.0:1", "2.5:1", "3.2:1", "4.0:1", "5.6:1", "8.0:1", "16:1", "32:1", "64:1", _("Inf:1")},
                                       _("Ratio"), _("The Ratio setting determines how hard the signal is compressed."))));
     slots.emplace_back((new PA_Choice(172, 4,
                                       {"1.0", "1.4", "2.0", "3.0", "5.0", "7.0", "10", "14", "20", "30", "50", "70"},
                                       _("Attack"), _("The Attack time is the response time of the Compressor. The shorter the attack time the sooner the Compressor will reach the specified Ratio after the signal rises above the Threshold.")))
-                       ->with_offset(3));
+                       ->with_offset(3)
+                       ->with_choice_string_fn(&Formatting::msec_choice));
     slots.emplace_back((new PA_Choice(176, 4,
                                       {"50", "70", "100", "140", "200", "300", "500", "700", "1000", "1400", "2000"},
                                       _("Release"), _("The Release time is the time it takes for the Compressor to release the gain reduction of the signal after the Input signal drops below the Threshold point again.")))
-                       ->with_offset(3));
+                       ->with_offset(3)
+                       ->with_choice_string_fn(&Formatting::msec_choice));
     slots.emplace_back((new PA_Integer(180, 4, _("Gain"), _("Use this Gain parameter to compensate for the level changes caused by the applied compression.")))
-                       ->with_min_max(-6, 6));
+                       ->with_min_max(-6, 6)
+                       ->with_string_fn(&Formatting::db));
 }
 
 P_Equalizer::P_Equalizer()
@@ -274,25 +388,34 @@ P_Equalizer::P_Equalizer()
     slots.emplace_back((new PA_Choice(568, 4,
                                       {"40.97", "42.17", "43.40", "44.67", "45.97", "47.32", "48.70", "50.12", "51.58", "53.09", "54.64", "56.23", "57.88", "59.57", "61.31", "63.10", "64.94", "66.83", "68.79", "70.79", "72.86", "74.99", "77.18", "79.43", "81.75", "84.14", "86.60", "89.13", "91.73", "94.41", "97.16", "100.0", "102.9", "105.9", "109.0", "112.2", "115.5", "118.9", "122.3", "125.9", "129.6", "133.4", "137.2", "141.3", "145.4", "149.6", "154.0", "158.5", "163.1", "167.9", "172.8", "177.8", "183.0", "188.4", "193.9", "199.5", "205.4", "211.3", "217.5", "223.9", "230.4", "237.1", "244.1", "251.2", "258.5", "266.1", "273.8", "281.8", "290.1", "298.5", "307.3", "316.2", "325.5", "335.0", "344.7", "354.8", "365.2", "375.8", "386.8", "398.1", "409.7", "421.7", "434.0", "446.7", "459.7", "473.2", "487.0", "501.2", "515.8", "530.9", "546.4", "562.3", "578.8", "595.7", "613.1", "631.0", "649.4", "668.3", "687.9", "707.9", "728.6", "749.9", "771.8", "794.3", "817.5", "841.4", "866.0", "891.3", "917.3", "944.1", "971.6", "1.00k", "1.03k", "1.06k", "1.09k", "1.12k", "1.15k", "1.19k", "1.22k", "1.26k", "1.30k", "1.33k", "1.37k", "1.41k", "1.45k", "1.50k", "1.54k", "1.58k", "1.63k", "1.68k", "1.73k", "1.78k", "1.83k", "1.88k", "1.94k", "2.00k", "2.05k", "2.11k", "2.18k", "2.24k", "2.30k", "2.37k", "2.44k", "2.51k", "2.59k", "2.66k", "2.74k", "2.82k", "2.90k", "2.99k", "3.07k", "3.16k", "3.25k", "3.35k", "3.45k", "3.55k", "3.65k", "3.76k", "3.87k", "3.98k", "4.10k", "4.22k", "4.34k", "4.47k", "4.60k", "4.73k", "4.87k", "5.01k", "5.16k", "5.31k", "5.46k", "5.62k", "5.79k", "5.96k", "6.13k", "6.31k", "6.49k", "6.68k", "6.88k", "7.08k", "7.29k", "7.50k", "7.72k", "7.94k", "8.18k", "8.41k", "8.66k", "8.91k", "9.17k", "9.44k", "9.72k", "10.0k", "10.3k", "10.6k", "10.9k", "11.2k", "11.5k", "11.9k", "12.2k", "12.6k", "13.0k", "13.3k", "13.7k", "14.1k", "14.5k", "15.0k", "15.4k", "15.8k", "16.3k", "16.8k", "17.3k", "17.8k", "18.3k", "18.8k", "19.4k", "20.0k", "Off"},
                                       _("Frequency"), _("Sets the operating frequency for the selected band.")))
-                       ->with_offset(25));
+                       ->with_offset(25)
+                       ->with_choice_string_fn(&Formatting::hz_choice));
     slots.emplace_back((new PA_Choice(580, 4, frequency1().values, frequency1().name, frequency1().description))
-                       ->with_offset(frequency1().offset));
+                       ->with_offset(frequency1().offset)
+                       ->with_string_fn(frequency1().to_string_fn));
     slots.emplace_back((new PA_Choice(592, 4, frequency1().values, frequency1().name, frequency1().description))
-                       ->with_offset(frequency1().offset));
+                       ->with_offset(frequency1().offset)
+                       ->with_string_fn(frequency1().to_string_fn));
     slots.emplace_back((new PA_Integer(572, 4, _("Gain"), _("Gains or attenuates the selected frequency area.")))
-                       ->with_min_max(-12, 12));
+                       ->with_min_max(-12, 12)
+                       ->with_string_fn(&Formatting::db));
     slots.emplace_back((new PA_Integer(584, 4, gain1().name, gain1().description))
-                       ->with_min_max(gain1().vmin, gain1().vmax));
+                       ->with_min_max(gain1().vmin, gain1().vmax)
+                       ->with_string_fn(gain1().to_string_fn));
     slots.emplace_back((new PA_Integer(596, 4, gain1().name, gain1().description))
-                       ->with_min_max(gain1().vmin, gain1().vmax));
+                       ->with_min_max(gain1().vmin, gain1().vmax)
+                       ->with_string_fn(gain1().to_string_fn));
     slots.emplace_back((new PA_Choice(576, 4,
                                       {"0.2", "0.25", "0.32", "0.4", "0.5", "0.63", "0.8", "1.0", "1.25", "1.6", "2.0", "2.5", "3.2", "4.0"},
                                       _("Width"), _("Width defines the area around the set frequency that the EQ will amplify or attenuate.")))
-                       ->with_offset(3));
+                       ->with_offset(3)
+                       ->with_string_fn(&Formatting::oct));
     slots.emplace_back((new PA_Choice(588, 4, width1().values, width1().name, width1().description))
-                       ->with_offset(width1().offset));
+                       ->with_offset(width1().offset)
+                       ->with_string_fn(width1().to_string_fn));
     slots.emplace_back((new PA_Choice(600, 4, width1().values, width1().name, width1().description))
-                       ->with_offset(width1().offset));
+                       ->with_offset(width1().offset)
+                       ->with_string_fn(width1().to_string_fn));
 }
 
 P_Noise_Gate::P_Noise_Gate()
@@ -301,19 +424,24 @@ P_Noise_Gate::P_Noise_Gate()
                                       {_P("Noise Gate|Mode|", "Soft"), _P("Noise Gate|Mode|", "Hard")},
                                       _("Mode"), _("General overall mode that determines how fast the Noise Gate should attenuate/dampen the signal when below Threshold."))));
     slots.emplace_back((new PA_Integer(552, 4, _("Threshold"), _("The Threshold point determines at what point the Noise Gate should start to dampen the signal.")))
-                       ->with_min_max(-60, 0));
+                       ->with_min_max(-60, 0)
+                       ->with_string_fn(&Formatting::db));
     slots.emplace_back((new PA_Integer(556, 4, _("Max Damp"/*Max Damping*/), _("The parameter determines how hard the signal should be attenuated when below the set Threshold.")))
-                       ->with_min_max(0, 90));
+                       ->with_min_max(0, 90)
+                       ->with_string_fn(&Formatting::db));
     slots.emplace_back((new PA_Integer(560, 4, _("Release"), _("The Release parameter determines how fast the signal is released when the Input signal rises above the Threshold point.")))
-                       ->with_min_max(3, 200));
+                       ->with_min_max(3, 200)
+                       ->with_string_fn(&Formatting::db_per_sec));
 }
 
 P_Reverb::P_Reverb()
 {
     slots.emplace_back((new PA_Integer(488, 4, _("Decay"), _("The Decay parameter determines the length of the Reverb Diffuse field.")))
-                       ->with_min_max(1, 200));
+                       ->with_min_max(1, 200)
+                       ->with_string_fn(&Formatting::tenths_sec));
     slots.emplace_back((new PA_Integer(492, 4, _("Pre Delay"), _("A short Delay placed between the direct signal and the Reverb Diffuse field.")))
-                       ->with_min_max(0, 100));
+                       ->with_min_max(0, 100)
+                       ->with_string_fn(&Formatting::msec));
     slots.emplace_back((new PA_Choice(496, 4,
                                       {_P("Reverb|Shape|", "Round"), _P("Reverb|Shape|", "Curved"), _P("Reverb|Shape|", "Square")},
                                       _("Shape"), _("Shape"))));
@@ -338,10 +466,12 @@ P_Reverb::P_Reverb()
                        ->with_min_max(-25, 25));
     slots.emplace_back((new PA_Integer(532, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
                        ->with_min_max(0, 100)
+                       ->with_string_fn(&Formatting::percent)
                        ->with_position(PP_Back)
                        ->with_modifier_at(148));
     slots.emplace_back((new PA_Integer(536, 4, _("Out level"), _("Sets the overall Output level of this block.")))
                        ->with_min_max(-100, 0)
+                       ->with_string_fn(&Formatting::db)
                        ->with_position(PP_Back)
                        ->with_modifier_at(152));
 }
@@ -370,19 +500,25 @@ Parameter_Collection &P_Pitch::dispatch(const Patch &pat)
 P_Pitch::Detune::Detune()
 {
     slots.emplace_back((new PA_Integer(296, 4, _("Voice 1"), _("Offsets the first Voice in the Detune block.")))
-                       ->with_min_max(-100, 100));
+                       ->with_min_max(-100, 100)
+                       ->with_string_fn(&Formatting::cents));
     slots.emplace_back((new PA_Integer(300, 4, _("Voice 2"), _("Offsets the second Voice in the Detune block.")))
-                       ->with_min_max(-100, 100));
+                       ->with_min_max(-100, 100)
+                       ->with_string_fn(&Formatting::cents));
     slots.emplace_back((new PA_Integer(312, 4, _("Delay 1"), _("Specifies the Delay on the first voice.")))
-                       ->with_min_max(0, 50));
+                       ->with_min_max(0, 50)
+                       ->with_string_fn(&Formatting::msec));
     slots.emplace_back((new PA_Integer(316, 4, _("Delay 2"), _("Specifies the Delay on the second voice.")))
-                       ->with_min_max(0, 50));
+                       ->with_min_max(0, 50)
+                       ->with_string_fn(&Formatting::msec));
     slots.emplace_back((new PA_Integer(340, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
                        ->with_min_max(0, 100)
+                       ->with_string_fn(&Formatting::percent)
                        ->with_position(PP_Back)
                        ->with_modifier_at(48));
     slots.emplace_back((new PA_Integer(344, 4, _("Out level"), _("Sets the overall Output level of this block.")))
                        ->with_min_max(-100, 0)
+                       ->with_string_fn(&Formatting::db)
                        ->with_position(PP_Back)
                        ->with_modifier_at(52));
 }
@@ -391,6 +527,7 @@ P_Pitch::Whammy::Whammy()
 {
     slots.emplace_back((new PA_Integer(328, 4, _("Pitch"), _("This parameter sets the mix between the dry and processed signal. If e.g. set to 100%, no direct guitar tone will be heard - only the processed \"pitched\" tone.")))
                        ->with_min_max(0, 100)
+                       ->with_string_fn(&Formatting::percent)
                        ->with_modifier_at(48));
     slots.emplace_back((new PA_Choice(332, 4,
                                       {_P("Pitch|Direction|", "Down"), _P("Pitch|Direction|", "Up")},
@@ -401,6 +538,7 @@ P_Pitch::Whammy::Whammy()
                        ->with_offset(1));
     slots.emplace_back((new PA_Integer(344, 4, _("Out level"), _("Sets the overall Output level of this block.")))
                        ->with_min_max(-100, 0)
+                       ->with_string_fn(&Formatting::db)
                        ->with_position(PP_Back)
                        ->with_modifier_at(52));
 }
@@ -416,10 +554,12 @@ P_Pitch::Octaver::Octaver()
                        ->with_offset(1));
     slots.emplace_back((new PA_Integer(340, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
                        ->with_min_max(0, 100)
+                       ->with_string_fn(&Formatting::percent)
                        ->with_position(PP_Back)
                        ->with_modifier_at(48));
     slots.emplace_back((new PA_Integer(344, 4, _("Out level"), _("Sets the overall Output level of this block.")))
                        ->with_min_max(-100, 0)
+                       ->with_string_fn(&Formatting::db)
                        ->with_position(PP_Back)
                        ->with_modifier_at(52));
 }
@@ -428,9 +568,11 @@ P_Pitch::Shifter::Shifter()
 {
     slots.emplace_back((new PA_Integer(296, 4, _("Voice 1"), _("Specifies the Pitch of the first Voice. As 100 cent equals 1 semitone you can select a pitch freely between one octave below the Input Pitch to one octave above.")))
                        ->with_min_max(-2400, 2400)
+                       ->with_string_fn(&Formatting::cents)
                        ->with_modifier_at(48));
     slots.emplace_back((new PA_Integer(300, 4, _("Voice 2"), _("Specifies the Pitch of the second Voice. As 100 cent equals 1 semitone you can select a pitch freely between one octave below the Input Pitch to one octave above.")))
                        ->with_min_max(-2400, 2400)
+                       ->with_string_fn(&Formatting::cents)
                        ->with_modifier_at(52));
     slots.emplace_back((new PA_Integer(304, 4, _("Pan 1"), _("Pan parameter for the first voice.")))
                        ->with_min_max(-50, 50)
@@ -439,25 +581,33 @@ P_Pitch::Shifter::Shifter()
                        ->with_min_max(-50, 50)
                        ->with_modifier_at(60));
     slots.emplace_back((new PA_Integer(312, 4, _("Delay 1"), _("Sets the delay time for the first voice.")))
-                       ->with_min_max(0, 350));
+                       ->with_min_max(0, 350)
+                       ->with_string_fn(&Formatting::msec));
     slots.emplace_back((new PA_Integer(316, 4, _("Delay 2"), _("Sets the delay time for the second voice.")))
-                       ->with_min_max(0, 350));
+                       ->with_min_max(0, 350)
+                       ->with_string_fn(&Formatting::msec));
     slots.emplace_back((new PA_Integer(320, 4, _("Feedback 1"), _("Determines how many repetitions there will be on the Delay of the first voice.")))
                        ->with_min_max(0, 100)
+                       ->with_string_fn(&Formatting::percent)
                        ->with_modifier_at(64));
     slots.emplace_back((new PA_Integer(324, 4, _("Feedback 2"), _("Determines how many repetitions there will be on the Delay of the second voice.")))
                        ->with_min_max(0, 100)
+                       ->with_string_fn(&Formatting::percent)
                        ->with_modifier_at(68));
     slots.emplace_back((new PA_Integer(328, 4, _("Level 1"), _("Sets the level for Voice 1.")))
-                       ->with_min_max(-100, 0));
+                       ->with_min_max(-100, 0)
+                       ->with_string_fn(&Formatting::db));
     slots.emplace_back((new PA_Integer(332, 4, _("Level 2"), _("Sets the level for Voice 2.")))
-                       ->with_min_max(-100, 0));
+                       ->with_min_max(-100, 0)
+                       ->with_string_fn(&Formatting::db));
     slots.emplace_back((new PA_Integer(340, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
                        ->with_min_max(0, 100)
+                       ->with_string_fn(&Formatting::percent)
                        ->with_position(PP_Back)
                        ->with_modifier_at(72));
     slots.emplace_back((new PA_Integer(344, 4, _("Out level"), _("Sets the overall Output level of this block.")))
                        ->with_min_max(-100, 0)
+                       ->with_string_fn(&Formatting::db)
                        ->with_position(PP_Back)
                        ->with_modifier_at(76));
 }
@@ -485,29 +635,36 @@ P_Delay::Ping_Pong::Ping_Pong()
 {
     slots.emplace_back((new PA_Integer(424, 4, _("Delay"/*Delay Time*/), _("The time between the repetitions.")))
                        ->with_min_max(0, 1800)
+                       ->with_string_fn(&Formatting::msec)
                        ->with_modifier_at(108));
     slots.emplace_back((new PA_Choice(432, 4,
                                       {_P("*|Tempo|", "Ignored"), _P("*|Tempo|", "1"), _P("*|Tempo|", "1/2D"), _P("*|Tempo|", "1/2"), _P("*|Tempo|", "1/2T"), _P("*|Tempo|", "1/4D"), _P("*|Tempo|", "1/4"), _P("*|Tempo|", "1/4T"), _P("*|Tempo|", "1/8D"), _P("*|Tempo|", "1/8"), _P("*|Tempo|", "1/8T"), _P("*|Tempo|", "1/16D"), _P("*|Tempo|", "1/16"), _P("*|Tempo|", "1/16T"), _P("*|Tempo|", "1/32D"), _P("*|Tempo|", "1/32"), _P("*|Tempo|", "1/32T")},
                                       _("Tempo"), _("The Tempo parameter sets the relationship to the global Tempo."))));
     slots.emplace_back((new PA_Integer(436, 4, _("Width"), _("The Width parameter determines whether the Left or Right repetitions are panned 100% or not.")))
-                       ->with_min_max(0, 100));
+                       ->with_min_max(0, 100)
+                       ->with_string_fn(&Formatting::percent));
     slots.emplace_back((new PA_Integer(440, 4, _("Feedback"), _("Determines how many repetitions there will be.")))
                        ->with_min_max(0, 100)
+                       ->with_string_fn(&Formatting::percent)
                        ->with_modifier_at(112));
     slots.emplace_back((new PA_Choice(448, 4,
                                       {"2.00k", "2.24k", "2.51k", "2.82k", "3.16k", "3.55k", "3.98k", "4.47k", "5.01k", "5.62k", "6.31k", "7.08k", "7.94k", "8.91k", "10.0k", "11.2k", "12.6k", "14.1k", "15.8k", "17.8k", _("Off")},
                                       _("FB Hi cut"), _("Attenuates the frequencies above the set frequency thereby giving you a more analog Delay sound that in many cases will blend better in the overall sound.")))
+                       ->with_choice_string_fn(&Formatting::hz_choice)
                        ->with_modifier_at(116));
     slots.emplace_back((new PA_Choice(452, 4,
                                       {_("Off"), "22.39", "25.12", "28.18", "31.62", "35.48", "39.81", "44.67", "50.12", "56.23", "63.10", "70.79", "79.43", "89.13", "100.0", "112.2", "125.9", "141.3", "158.5", "177.8", "199.5", "223.9", "251.2", "281.8", "316.2", "354.8", "398.1", "446.7", "501.2", "562.3", "631.0", "707.9", "794.3", "891.3", "1.00k", "1.12k", "1.26k", "1.41k", "1.58k", "1.78k", "2.00k"},
                                       _("FB Lo cut"), _("Attenuates the frequencies below the set frequency.")))
+                       ->with_choice_string_fn(&Formatting::hz_choice)
                        ->with_modifier_at(120));
     slots.emplace_back((new PA_Integer(472, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
                        ->with_min_max(0, 100)
+                       ->with_string_fn(&Formatting::percent)
                        ->with_position(PP_Back)
                        ->with_modifier_at(124));
     slots.emplace_back((new PA_Integer(476, 4, _("Out level"), _("Sets the overall Output level of this block.")))
                        ->with_min_max(-100, 0)
+                       ->with_string_fn(&Formatting::db)
                        ->with_position(PP_Back)
                        ->with_modifier_at(128));
 }
@@ -516,37 +673,47 @@ P_Delay::Dynamic::Dynamic()
 {
     slots.emplace_back((new PA_Integer(424, 4, _("Delay"/*Delay Time*/), _("The time between the repetitions.")))
                        ->with_min_max(0, 1800)
+                       ->with_string_fn(&Formatting::msec)
                        ->with_modifier_at(108));
     slots.emplace_back((new PA_Choice(432, 4,
                                       {_P("*|Tempo|", "Ignored"), _P("*|Tempo|", "1"), _P("*|Tempo|", "1/2D"), _P("*|Tempo|", "1/2"), _P("*|Tempo|", "1/2T"), _P("*|Tempo|", "1/4D"), _P("*|Tempo|", "1/4"), _P("*|Tempo|", "1/4T"), _P("*|Tempo|", "1/8D"), _P("*|Tempo|", "1/8"), _P("*|Tempo|", "1/8T"), _P("*|Tempo|", "1/16D"), _P("*|Tempo|", "1/16"), _P("*|Tempo|", "1/16T"), _P("*|Tempo|", "1/32D"), _P("*|Tempo|", "1/32"), _P("*|Tempo|", "1/32T")},
                                       _("Tempo"), _("The Tempo parameter sets the relationship to the global Tempo."))));
     slots.emplace_back((new PA_Integer(440, 4, _("Feedback"), _("Determines how many repetitions there will be.")))
                        ->with_min_max(0, 100)
+                       ->with_string_fn(&Formatting::percent)
                        ->with_modifier_at(112));
     slots.emplace_back((new PA_Choice(448, 4,
                                       {"2.00k", "2.24k", "2.51k", "2.82k", "3.16k", "3.55k", "3.98k", "4.47k", "5.01k", "5.62k", "6.31k", "7.08k", "7.94k", "8.91k", "10.0k", "11.2k", "12.6k", "14.1k", "15.8k", "17.8k", _("Off")},
                                       _("FB Hi cut"), _("Attenuates the frequencies above the set frequency thereby giving you a more analog Delay sound that in many cases will blend better in the overall sound.")))
+                       ->with_choice_string_fn(&Formatting::hz_choice)
                        ->with_modifier_at(116));
     slots.emplace_back((new PA_Choice(452, 4,
                                       {_("Off"), "22.39", "25.12", "28.18", "31.62", "35.48", "39.81", "44.67", "50.12", "56.23", "63.10", "70.79", "79.43", "89.13", "100.0", "112.2", "125.9", "141.3", "158.5", "177.8", "199.5", "223.9", "251.2", "281.8", "316.2", "354.8", "398.1", "446.7", "501.2", "562.3", "631.0", "707.9", "794.3", "891.3", "1.00k", "1.12k", "1.26k", "1.41k", "1.58k", "1.78k", "2.00k"},
                                       _("FB Lo cut"), _("Attenuates the frequencies below the set frequency.")))
+                       ->with_choice_string_fn(&Formatting::hz_choice)
                        ->with_modifier_at(120));
     slots.emplace_back((new PA_Integer(456, 4, _("Offset R"), _("Offsets the Delay repeats in the Right channel only. For a true wide stereo Delay the Delay in the two channels should not appear at the exact same time.")))
-                       ->with_min_max(-200, 200));
+                       ->with_min_max(-200, 200)
+                       ->with_string_fn(&Formatting::msec));
     slots.emplace_back((new PA_Integer(460, 4, _("Sensitivity"), _("With this parameter you control how sensitive the \"ducking\" or dampening function of the Delay repeats should be according to the signal present on the Input.")))
-                       ->with_min_max(-50, 0));
+                       ->with_min_max(-50, 0)
+                       ->with_string_fn(&Formatting::db));
     slots.emplace_back((new PA_Integer(464, 4, _("Damping"), _("This parameter controls the actual attenuation of the Delay while Input is present.")))
-                       ->with_min_max(0, 100));
+                       ->with_min_max(0, 100)
+                       ->with_string_fn(&Formatting::db));
     slots.emplace_back((new PA_Choice(468, 4,
                                       {"20", "30", "50", "70", "100", "140", "200", "300", "500", "700", "1000"},
                                       _("Release"), _("A parameter relative to a Compressor release.")))
-                       ->with_offset(3));
+                       ->with_offset(3)
+                       ->with_choice_string_fn(&Formatting::msec_choice));
     slots.emplace_back((new PA_Integer(472, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
                        ->with_min_max(0, 100)
+                       ->with_string_fn(&Formatting::percent)
                        ->with_position(PP_Back)
                        ->with_modifier_at(124));
     slots.emplace_back((new PA_Integer(476, 4, _("Out level"), _("Sets the overall Output level of this block.")))
                        ->with_min_max(-100, 0)
+                       ->with_string_fn(&Formatting::db)
                        ->with_position(PP_Back)
                        ->with_modifier_at(128));
 }
@@ -555,9 +722,11 @@ P_Delay::Dual::Dual()
 {
     slots.emplace_back((new PA_Integer(424, 4, _("Delay 1"/*Delay Time 1*/), _("Sets the Delay Time of the first Delay Line.")))
                        ->with_min_max(0, 1800)
+                       ->with_string_fn(&Formatting::msec)
                        ->with_modifier_at(108));
     slots.emplace_back((new PA_Integer(428, 4, _("Delay 2"/*Delay Time 2*/), _("Sets the Delay Time of the second Delay Line.")))
                        ->with_min_max(0, 1800)
+                       ->with_string_fn(&Formatting::msec)
                        ->with_modifier_at(112));
     slots.emplace_back((new PA_Choice(432, 4,
                                       {_P("*|Tempo|", "Ignored"), _P("*|Tempo|", "1"), _P("*|Tempo|", "1/2D"), _P("*|Tempo|", "1/2"), _P("*|Tempo|", "1/2T"), _P("*|Tempo|", "1/4D"), _P("*|Tempo|", "1/4"), _P("*|Tempo|", "1/4T"), _P("*|Tempo|", "1/8D"), _P("*|Tempo|", "1/8"), _P("*|Tempo|", "1/8T"), _P("*|Tempo|", "1/16D"), _P("*|Tempo|", "1/16"), _P("*|Tempo|", "1/16T"), _P("*|Tempo|", "1/32D"), _P("*|Tempo|", "1/32"), _P("*|Tempo|", "1/32T")},
@@ -567,17 +736,21 @@ P_Delay::Dual::Dual()
                                       _("Tempo 2"), _("The Tempo parameter sets the relationship to the global Tempo."))));
     slots.emplace_back((new PA_Integer(440, 4, _("Feedback 1"), _("Determines the number of repetitions of the Delay of the first Delay Line.")))
                        ->with_min_max(0, 100)
+                       ->with_string_fn(&Formatting::percent)
                        ->with_modifier_at(116));
     slots.emplace_back((new PA_Integer(444, 4, _("Feedback 2"), _("Determines the number of repetitions of the Delay of the second Delay Line.")))
                        ->with_min_max(0, 100)
+                       ->with_string_fn(&Formatting::percent)
                        ->with_modifier_at(120));
     slots.emplace_back((new PA_Choice(448, 4,
                                       {"2.00k", "2.24k", "2.51k", "2.82k", "3.16k", "3.55k", "3.98k", "4.47k", "5.01k", "5.62k", "6.31k", "7.08k", "7.94k", "8.91k", "10.0k", "11.2k", "12.6k", "14.1k", "15.8k", "17.8k", _("Off")},
                                       _("FB Hi cut"), _("Attenuates the frequencies above the set frequency thereby giving you a more analog Delay sound that in many cases will blend better in the overall sound.")))
+                       ->with_choice_string_fn(&Formatting::hz_choice)
                        ->with_modifier_at(124));
     slots.emplace_back((new PA_Choice(452, 4,
                                       {_("Off"), "22.39", "25.12", "28.18", "31.62", "35.48", "39.81", "44.67", "50.12", "56.23", "63.10", "70.79", "79.43", "89.13", "100.0", "112.2", "125.9", "141.3", "158.5", "177.8", "199.5", "223.9", "251.2", "281.8", "316.2", "354.8", "398.1", "446.7", "501.2", "562.3", "631.0", "707.9", "794.3", "891.3", "1.00k", "1.12k", "1.26k", "1.41k", "1.58k", "1.78k", "2.00k"},
                                       _("FB Lo cut"), _("Attenuates the frequencies below the set frequency.")))
+                       ->with_choice_string_fn(&Formatting::hz_choice)
                        ->with_modifier_at(128));
     slots.emplace_back((new PA_Integer(456, 4, _("Pan 1"), _("Pans the Delay repetitions of the first Delay Line.")))
                        ->with_min_max(-50, 50)
@@ -587,10 +760,12 @@ P_Delay::Dual::Dual()
                        ->with_modifier_at(136));
     slots.emplace_back((new PA_Integer(472, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
                        ->with_min_max(0, 100)
+                       ->with_string_fn(&Formatting::percent)
                        ->with_position(PP_Back)
                        ->with_modifier_at(140));
     slots.emplace_back((new PA_Integer(476, 4, _("Out level"), _("Sets the overall Output level of this block.")))
                        ->with_min_max(-100, 0)
+                       ->with_string_fn(&Formatting::db)
                        ->with_position(PP_Back)
                        ->with_modifier_at(144));
 }
@@ -632,13 +807,16 @@ P_Filter::Auto_Resonance::Auto_Resonance()
                                       _("Response"), _("Determines whether the sweep through a frequency range will be performed fast or slow."))));
     slots.emplace_back((new PA_Choice(252, 4,
                                       {"1.00k", "1.12k", "1.26k", "1.41k", "1.58k", "1.78k", "2.00k", "2.24k", "2.51k", "2.82k", "3.16k", "3.55k", "3.98k", "4.47k", "5.01k", "5.62k", "6.31k", "7.08k", "7.94k", "8.91k", "10.0k"},
-                                      _("Freq Max"/*Frequency Max*/), _("Limits the frequency range in which the sweep will be performed."))));
+                                      _("Freq Max"/*Frequency Max*/), _("Limits the frequency range in which the sweep will be performed.")))
+                       ->with_choice_string_fn(&Formatting::hz_choice));
     slots.emplace_back((new PA_Integer(280, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
                        ->with_min_max(0, 100)
+                       ->with_string_fn(&Formatting::percent)
                        ->with_position(PP_Back)
                        ->with_modifier_at(28));
     slots.emplace_back((new PA_Integer(284, 4, _("Out level"), _("Sets the overall Output level of this block.")))
                        ->with_min_max(-100, 0)
+                       ->with_string_fn(&Formatting::db)
                        ->with_position(PP_Back)
                        ->with_modifier_at(32));
 }
@@ -651,16 +829,20 @@ P_Filter::Resonance::Resonance()
     slots.emplace_back((new PA_Choice(272, 4,
                                       {"158.5", "177.8", "199.5", "223.9", "251.2", "281.8", "316.2", "354.8", "398.1", "446.7", "501.2", "562.3", "631.0", "707.9", "794.3", "891.3", "1.00k", "1.12k", "1.26k", "1.41k", "1.58k", "1.78k", "2.00k", "2.24k", "2.51k", "2.82k", "3.16k", "3.55k", "3.98k", "4.47k", "5.01k", "5.62k", "6.31k", "7.08k", "7.94k", "8.91k", "10.0k", "11.2k", "12.6k", "14.1k"},
                                       _("Hi Cut"), _("Determines the frequency above which the Hi Cut filter will attenuate the high-end frequencies of the generated effect.")))
+                       ->with_choice_string_fn(&Formatting::hz_choice)
                        ->with_modifier_at(28));
     slots.emplace_back((new PA_Integer(276, 4, _("Hi Reso"/*Hi Resonance*/), _("Sets the amount of Resonance in the Hi Cut filter.")))
                        ->with_min_max(0, 100)
+                       ->with_string_fn(&Formatting::percent)
                        ->with_modifier_at(32));
     slots.emplace_back((new PA_Integer(280, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
                        ->with_min_max(0, 100)
+                       ->with_string_fn(&Formatting::percent)
                        ->with_position(PP_Back)
                        ->with_modifier_at(36));
     slots.emplace_back((new PA_Integer(284, 4, _("Out level"), _("Sets the overall Output level of this block.")))
                        ->with_min_max(-100, 0)
+                       ->with_string_fn(&Formatting::db)
                        ->with_position(PP_Back)
                        ->with_modifier_at(40));
 }
@@ -670,9 +852,11 @@ P_Filter::Vintage_Phaser::Vintage_Phaser()
     slots.emplace_back((new PA_Choice(244, 4,
                                       {".050", ".052", ".053", ".055", ".056", ".058", ".060", ".061", ".063", ".065", ".067", ".069", ".071", ".073", ".075", ".077", ".079", ".082", ".084", ".087", ".089", ".092", ".094", ".097", ".100", ".103", ".106", ".109", ".112", ".115", ".119", ".122", ".126", ".130", ".133", ".137", ".141", ".145", ".150", ".154", ".158", ".163", ".168", ".173", ".178", ".183", ".188", ".194", ".200", ".205", ".211", ".218", ".224", ".230", ".237", ".244", ".251", ".259", ".266", ".274", ".282", ".290", ".299", ".307", ".316", ".325", ".335", ".345", ".355", ".365", ".376", ".387", ".398", ".410", ".422", ".434", ".447", ".460", ".473", ".487", ".501", ".516", ".531", ".546", ".562", ".579", ".596", ".613", ".631", ".649", ".668", ".688", ".708", ".729", ".750", ".772", ".794", ".818", ".841", ".866", ".891", ".917", ".944", ".972", "1.00", "1.03", "1.06", "1.09", "1.12", "1.15", "1.19", "1.22", "1.26", "1.30", "1.33", "1.37", "1.41", "1.45", "1.50", "1.54", "1.58", "1.63", "1.68", "1.73", "1.78", "1.83", "1.88", "1.94", "2.00", "2.05", "2.11", "2.18", "2.24", "2.30", "2.37", "2.44", "2.51", "2.59", "2.66", "2.74", "2.82", "2.90", "2.99", "3.07", "3.16", "3.25", "3.35", "3.45", "3.55", "3.65", "3.76", "3.87", "3.98", "4.10", "4.22", "4.34", "4.47", "4.60", "4.73", "4.87", "5.01", "5.16", "5.31", "5.46", "5.62", "5.79", "5.96", "6.13", "6.31", "6.49", "6.68", "6.88", "7.08", "7.29", "7.50", "7.72", "7.94", "8.18", "8.41", "8.66", "8.91", "9.17", "9.44", "9.72", "10.00", "10.29", "10.59", "10.90", "11.22", "11.55", "11.89", "12.23", "12.59", "12.96", "13.34", "13.72", "14.13", "14.54", "14.96", "15.40", "15.85", "16.31", "16.79", "17.28", "17.78", "18.30", "18.84", "19.39", "19.95"},
                                       _("Speed"), _("Controls the Speed of the Phaser.")))
+                       ->with_choice_string_fn(&Formatting::hz_choice)
                        ->with_modifier_at(28));
     slots.emplace_back((new PA_Integer(248, 4, _("Depth"), _("Controls the Depth of the Phaser.")))
                        ->with_min_max(0, 100)
+                       ->with_string_fn(&Formatting::percent)
                        ->with_modifier_at(32));
     slots.emplace_back((new PA_Choice(252, 4,
                                       {_P("*|Tempo|", "Ignored"), _P("*|Tempo|", "1"), _P("*|Tempo|", "1/2D"), _P("*|Tempo|", "1/2"), _P("*|Tempo|", "1/2T"), _P("*|Tempo|", "1/4D"), _P("*|Tempo|", "1/4"), _P("*|Tempo|", "1/4T"), _P("*|Tempo|", "1/8D"), _P("*|Tempo|", "1/8"), _P("*|Tempo|", "1/8T"), _P("*|Tempo|", "1/16D"), _P("*|Tempo|", "1/16"), _P("*|Tempo|", "1/16T"), _P("*|Tempo|", "1/32D"), _P("*|Tempo|", "1/32"), _P("*|Tempo|", "1/32T")},
@@ -687,10 +871,12 @@ P_Filter::Vintage_Phaser::Vintage_Phaser()
                        ->with_inversion());
     slots.emplace_back((new PA_Integer(280, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
                        ->with_min_max(0, 100)
+                       ->with_string_fn(&Formatting::percent)
                        ->with_position(PP_Back)
                        ->with_modifier_at(40));
     slots.emplace_back((new PA_Integer(284, 4, _("Out level"), _("Sets the overall Output level of this block.")))
                        ->with_min_max(-100, 0)
+                       ->with_string_fn(&Formatting::db)
                        ->with_position(PP_Back)
                        ->with_modifier_at(44));
 }
@@ -700,9 +886,11 @@ P_Filter::Smooth_Phaser::Smooth_Phaser()
     slots.emplace_back((new PA_Choice(244, 4,
                                       {".050", ".052", ".053", ".055", ".056", ".058", ".060", ".061", ".063", ".065", ".067", ".069", ".071", ".073", ".075", ".077", ".079", ".082", ".084", ".087", ".089", ".092", ".094", ".097", ".100", ".103", ".106", ".109", ".112", ".115", ".119", ".122", ".126", ".130", ".133", ".137", ".141", ".145", ".150", ".154", ".158", ".163", ".168", ".173", ".178", ".183", ".188", ".194", ".200", ".205", ".211", ".218", ".224", ".230", ".237", ".244", ".251", ".259", ".266", ".274", ".282", ".290", ".299", ".307", ".316", ".325", ".335", ".345", ".355", ".365", ".376", ".387", ".398", ".410", ".422", ".434", ".447", ".460", ".473", ".487", ".501", ".516", ".531", ".546", ".562", ".579", ".596", ".613", ".631", ".649", ".668", ".688", ".708", ".729", ".750", ".772", ".794", ".818", ".841", ".866", ".891", ".917", ".944", ".972", "1.00", "1.03", "1.06", "1.09", "1.12", "1.15", "1.19", "1.22", "1.26", "1.30", "1.33", "1.37", "1.41", "1.45", "1.50", "1.54", "1.58", "1.63", "1.68", "1.73", "1.78", "1.83", "1.88", "1.94", "2.00", "2.05", "2.11", "2.18", "2.24", "2.30", "2.37", "2.44", "2.51", "2.59", "2.66", "2.74", "2.82", "2.90", "2.99", "3.07", "3.16", "3.25", "3.35", "3.45", "3.55", "3.65", "3.76", "3.87", "3.98", "4.10", "4.22", "4.34", "4.47", "4.60", "4.73", "4.87", "5.01", "5.16", "5.31", "5.46", "5.62", "5.79", "5.96", "6.13", "6.31", "6.49", "6.68", "6.88", "7.08", "7.29", "7.50", "7.72", "7.94", "8.18", "8.41", "8.66", "8.91", "9.17", "9.44", "9.72", "10.00", "10.29", "10.59", "10.90", "11.22", "11.55", "11.89", "12.23", "12.59", "12.96", "13.34", "13.72", "14.13", "14.54", "14.96", "15.40", "15.85", "16.31", "16.79", "17.28", "17.78", "18.30", "18.84", "19.39", "19.95"},
                                       _("Speed"), _("Controls the Speed of the Phaser.")))
+                       ->with_choice_string_fn(&Formatting::hz_choice)
                        ->with_modifier_at(28));
     slots.emplace_back((new PA_Integer(248, 4, _("Depth"), _("Controls the Depth of the Phaser.")))
                        ->with_min_max(0, 100)
+                       ->with_string_fn(&Formatting::percent)
                        ->with_modifier_at(32));
     slots.emplace_back((new PA_Choice(252, 4,
                                       {_P("*|Tempo|", "Ignored"), _P("*|Tempo|", "1"), _P("*|Tempo|", "1/2D"), _P("*|Tempo|", "1/2"), _P("*|Tempo|", "1/2T"), _P("*|Tempo|", "1/4D"), _P("*|Tempo|", "1/4"), _P("*|Tempo|", "1/4T"), _P("*|Tempo|", "1/8D"), _P("*|Tempo|", "1/8"), _P("*|Tempo|", "1/8T"), _P("*|Tempo|", "1/16D"), _P("*|Tempo|", "1/16"), _P("*|Tempo|", "1/16T"), _P("*|Tempo|", "1/32D"), _P("*|Tempo|", "1/32"), _P("*|Tempo|", "1/32T")},
@@ -717,10 +905,12 @@ P_Filter::Smooth_Phaser::Smooth_Phaser()
                        ->with_inversion());
     slots.emplace_back((new PA_Integer(280, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
                        ->with_min_max(0, 100)
+                       ->with_string_fn(&Formatting::percent)
                        ->with_position(PP_Back)
                        ->with_modifier_at(40));
     slots.emplace_back((new PA_Integer(284, 4, _("Out level"), _("Sets the overall Output level of this block.")))
                        ->with_min_max(-100, 0)
+                       ->with_string_fn(&Formatting::db)
                        ->with_position(PP_Back)
                        ->with_modifier_at(44));
 }
@@ -730,24 +920,29 @@ P_Filter::Tremolo::Tremolo()
     slots.emplace_back((new PA_Choice(244, 4,
                                       {".050", ".052", ".053", ".055", ".056", ".058", ".060", ".061", ".063", ".065", ".067", ".069", ".071", ".073", ".075", ".077", ".079", ".082", ".084", ".087", ".089", ".092", ".094", ".097", ".100", ".103", ".106", ".109", ".112", ".115", ".119", ".122", ".126", ".130", ".133", ".137", ".141", ".145", ".150", ".154", ".158", ".163", ".168", ".173", ".178", ".183", ".188", ".194", ".200", ".205", ".211", ".218", ".224", ".230", ".237", ".244", ".251", ".259", ".266", ".274", ".282", ".290", ".299", ".307", ".316", ".325", ".335", ".345", ".355", ".365", ".376", ".387", ".398", ".410", ".422", ".434", ".447", ".460", ".473", ".487", ".501", ".516", ".531", ".546", ".562", ".579", ".596", ".613", ".631", ".649", ".668", ".688", ".708", ".729", ".750", ".772", ".794", ".818", ".841", ".866", ".891", ".917", ".944", ".972", "1.00", "1.03", "1.06", "1.09", "1.12", "1.15", "1.19", "1.22", "1.26", "1.30", "1.33", "1.37", "1.41", "1.45", "1.50", "1.54", "1.58", "1.63", "1.68", "1.73", "1.78", "1.83", "1.88", "1.94", "2.00", "2.05", "2.11", "2.18", "2.24", "2.30", "2.37", "2.44", "2.51", "2.59", "2.66", "2.74", "2.82", "2.90", "2.99", "3.07", "3.16", "3.25", "3.35", "3.45", "3.55", "3.65", "3.76", "3.87", "3.98", "4.10", "4.22", "4.34", "4.47", "4.60", "4.73", "4.87", "5.01", "5.16", "5.31", "5.46", "5.62", "5.79", "5.96", "6.13", "6.31", "6.49", "6.68", "6.88", "7.08", "7.29", "7.50", "7.72", "7.94", "8.18", "8.41", "8.66", "8.91", "9.17", "9.44", "9.72", "10.00", "10.29", "10.59", "10.90", "11.22", "11.55", "11.89", "12.23", "12.59", "12.96", "13.34", "13.72", "14.13", "14.54", "14.96", "15.40", "15.85", "16.31", "16.79", "17.28", "17.78", "18.30", "18.84", "19.39", "19.95"},
                                       _("Speed"), _("Sets the Speed of the Tremolo.")))
+                       ->with_choice_string_fn(&Formatting::hz_choice)
                        ->with_modifier_at(28));
     slots.emplace_back((new PA_Integer(248, 4, _("Depth"), _("Controls the Depth of the Phaser.")))
                        ->with_min_max(0, 100)
+                       ->with_string_fn(&Formatting::percent)
                        ->with_modifier_at(32));
     slots.emplace_back((new PA_Choice(252, 4,
                                       {_P("*|Tempo|", "Ignored"), _P("*|Tempo|", "1"), _P("*|Tempo|", "1/2D"), _P("*|Tempo|", "1/2"), _P("*|Tempo|", "1/2T"), _P("*|Tempo|", "1/4D"), _P("*|Tempo|", "1/4"), _P("*|Tempo|", "1/4T"), _P("*|Tempo|", "1/8D"), _P("*|Tempo|", "1/8"), _P("*|Tempo|", "1/8T"), _P("*|Tempo|", "1/16D"), _P("*|Tempo|", "1/16"), _P("*|Tempo|", "1/16T"), _P("*|Tempo|", "1/32D"), _P("*|Tempo|", "1/32"), _P("*|Tempo|", "1/32T")},
                                       _("Tempo"), _("The Tempo parameter sets the relationship to the global Tempo."))));
     slots.emplace_back((new PA_Integer(260, 4, _("LFO P Width"/*LFO Pulse Width*/), _("Controls the division of the upper and the lower part of the current waveform, e.g. if Pulse Width is set to 75%, the upper half of the waveform will be on for 75% of the time.")))
-                       ->with_min_max(0, 100));
+                       ->with_min_max(0, 100)
+                       ->with_string_fn(&Formatting::percent));
     slots.emplace_back((new PA_Choice(272, 4,
                                       {"19.95", "22.39", "25.12", "28.18", "31.62", "35.48", "39.81", "44.67", "50.12", "56.23", "63.10", "70.79", "79.43", "89.13", "100.0", "112.2", "125.9", "141.3", "158.5", "177.8", "199.5", "223.9", "251.2", "281.8", "316.2", "354.8", "398.1", "446.7", "501.2", "562.3", "631.0", "707.9", "794.3", "891.3", "1.00k", "1.12k", "1.26k", "1.41k", "1.58k", "1.78k", "2.00k", "2.24k", "2.51k", "2.82k", "3.16k", "3.55k", "3.98k", "4.47k", "5.01k", "5.62k", "6.31k", "7.08k", "7.94k", "8.91k", "10.0k", "11.2k", "12.6k", "14.1k", "15.8k", "17.8k", _("Off")},
                                       _("Hi Cut"), _("Attenuates the high frequencies of the Tremolo effect. Use the Hi Cut filter to create a less dominant Tremolo effect while keeping the Depth.")))
+                       ->with_choice_string_fn(&Formatting::hz_choice)
                        ->with_modifier_at(36));
     slots.emplace_back((new PA_Choice(256, 4,
                                       {_P("Filter|Tremolo|Type|", "Soft"), _P("Filter|Tremolo|Type|", "Hard")},
                                       _("Type"), _("Two variations of the steepness of the Tremolo Curve are available. Listen and select."))));
     slots.emplace_back((new PA_Integer(284, 4, _("Out level"), _("Sets the overall Output level of this block.")))
                        ->with_min_max(-100, 0)
+                       ->with_string_fn(&Formatting::db)
                        ->with_position(PP_Back)
                        ->with_modifier_at(40));
 }
@@ -757,15 +952,18 @@ P_Filter::Panner::Panner()
     slots.emplace_back((new PA_Choice(244, 4,
                                       {".050", ".052", ".053", ".055", ".056", ".058", ".060", ".061", ".063", ".065", ".067", ".069", ".071", ".073", ".075", ".077", ".079", ".082", ".084", ".087", ".089", ".092", ".094", ".097", ".100", ".103", ".106", ".109", ".112", ".115", ".119", ".122", ".126", ".130", ".133", ".137", ".141", ".145", ".150", ".154", ".158", ".163", ".168", ".173", ".178", ".183", ".188", ".194", ".200", ".205", ".211", ".218", ".224", ".230", ".237", ".244", ".251", ".259", ".266", ".274", ".282", ".290", ".299", ".307", ".316", ".325", ".335", ".345", ".355", ".365", ".376", ".387", ".398", ".410", ".422", ".434", ".447", ".460", ".473", ".487", ".501", ".516", ".531", ".546", ".562", ".579", ".596", ".613", ".631", ".649", ".668", ".688", ".708", ".729", ".750", ".772", ".794", ".818", ".841", ".866", ".891", ".917", ".944", ".972", "1.00", "1.03", "1.06", "1.09", "1.12", "1.15", "1.19", "1.22", "1.26", "1.30", "1.33", "1.37", "1.41", "1.45", "1.50", "1.54", "1.58", "1.63", "1.68", "1.73", "1.78", "1.83", "1.88", "1.94", "2.00", "2.05", "2.11", "2.18", "2.24", "2.30", "2.37", "2.44", "2.51", "2.59", "2.66", "2.74", "2.82", "2.90", "2.99", "3.07", "3.16", "3.25", "3.35", "3.45", "3.55", "3.65", "3.76", "3.87", "3.98", "4.10", "4.22", "4.34", "4.47", "4.60", "4.73", "4.87", "5.01", "5.16", "5.31", "5.46", "5.62", "5.79", "5.96", "6.13", "6.31", "6.49", "6.68", "6.88", "7.08", "7.29", "7.50", "7.72", "7.94", "8.18", "8.41", "8.66", "8.91", "9.17", "9.44", "9.72", "10.00", "10.29", "10.59", "10.90", "11.22", "11.55", "11.89", "12.23", "12.59", "12.96", "13.34", "13.72", "14.13", "14.54", "14.96", "15.40", "15.85", "16.31", "16.79", "17.28", "17.78", "18.30", "18.84", "19.39", "19.95"},
                                       _("Speed"), _("Sets the Speed of the Panning.")))
+                       ->with_choice_string_fn(&Formatting::hz_choice)
                        ->with_modifier_at(28));
     slots.emplace_back((new PA_Integer(248, 4, _("Width"), _("A 100% setting will sweep the signal completely from the Left to the Right. Very often a more subtle setting will be more applicable and blend better with the overall sound.")))
                        ->with_min_max(0, 100)
+                       ->with_string_fn(&Formatting::percent)
                        ->with_modifier_at(32));
     slots.emplace_back((new PA_Choice(252, 4,
                                       {_P("*|Tempo|", "Ignored"), _P("*|Tempo|", "1"), _P("*|Tempo|", "1/2D"), _P("*|Tempo|", "1/2"), _P("*|Tempo|", "1/2T"), _P("*|Tempo|", "1/4D"), _P("*|Tempo|", "1/4"), _P("*|Tempo|", "1/4T"), _P("*|Tempo|", "1/8D"), _P("*|Tempo|", "1/8"), _P("*|Tempo|", "1/8T"), _P("*|Tempo|", "1/16D"), _P("*|Tempo|", "1/16"), _P("*|Tempo|", "1/16T"), _P("*|Tempo|", "1/32D"), _P("*|Tempo|", "1/32"), _P("*|Tempo|", "1/32T")},
                                       _("Tempo"), _("The Tempo parameter sets the relationship to the global Tempo."))));
     slots.emplace_back((new PA_Integer(284, 4, _("Out level"), _("Sets the overall Output level of this block.")))
                        ->with_min_max(-100, 0)
+                       ->with_string_fn(&Formatting::db)
                        ->with_position(PP_Back)
                        ->with_modifier_at(36));
 }
@@ -798,9 +996,11 @@ P_Modulation::Classic_Chorus::Classic_Chorus()
     slots.emplace_back((new PA_Choice(360, 4,
                                       {".050", ".052", ".053", ".055", ".056", ".058", ".060", ".061", ".063", ".065", ".067", ".069", ".071", ".073", ".075", ".077", ".079", ".082", ".084", ".087", ".089", ".092", ".094", ".097", ".100", ".103", ".106", ".109", ".112", ".115", ".119", ".122", ".126", ".130", ".133", ".137", ".141", ".145", ".150", ".154", ".158", ".163", ".168", ".173", ".178", ".183", ".188", ".194", ".200", ".205", ".211", ".218", ".224", ".230", ".237", ".244", ".251", ".259", ".266", ".274", ".282", ".290", ".299", ".307", ".316", ".325", ".335", ".345", ".355", ".365", ".376", ".387", ".398", ".410", ".422", ".434", ".447", ".460", ".473", ".487", ".501", ".516", ".531", ".546", ".562", ".579", ".596", ".613", ".631", ".649", ".668", ".688", ".708", ".729", ".750", ".772", ".794", ".818", ".841", ".866", ".891", ".917", ".944", ".972", "1.00", "1.03", "1.06", "1.09", "1.12", "1.15", "1.19", "1.22", "1.26", "1.30", "1.33", "1.37", "1.41", "1.45", "1.50", "1.54", "1.58", "1.63", "1.68", "1.73", "1.78", "1.83", "1.88", "1.94", "2.00", "2.05", "2.11", "2.18", "2.24", "2.30", "2.37", "2.44", "2.51", "2.59", "2.66", "2.74", "2.82", "2.90", "2.99", "3.07", "3.16", "3.25", "3.35", "3.45", "3.55", "3.65", "3.76", "3.87", "3.98", "4.10", "4.22", "4.34", "4.47", "4.60", "4.73", "4.87", "5.01", "5.16", "5.31", "5.46", "5.62", "5.79", "5.96", "6.13", "6.31", "6.49", "6.68", "6.88", "7.08", "7.29", "7.50", "7.72", "7.94", "8.18", "8.41", "8.66", "8.91", "9.17", "9.44", "9.72", "10.00", "10.29", "10.59", "10.90", "11.22", "11.55", "11.89", "12.23", "12.59", "12.96", "13.34", "13.72", "14.13", "14.54", "14.96", "15.40", "15.85", "16.31", "16.79", "17.28", "17.78", "18.30", "18.84", "19.39", "19.95"},
                                       _("Speed"), _("The Speed of the Chorus, also known as Rate.")))
+                       ->with_choice_string_fn(&Formatting::hz_choice)
                        ->with_modifier_at(80));
     slots.emplace_back((new PA_Integer(364, 4, _("Depth"), _("The Depth parameter specifies the intensity of the Chorus effect - the value represents the amount of modulation.")))
                        ->with_min_max(0, 100)
+                       ->with_string_fn(&Formatting::percent)
                        ->with_modifier_at(84));
     slots.emplace_back((new PA_Choice(368, 4,
                                       {_P("*|Tempo|", "Ignored"), _P("*|Tempo|", "1"), _P("*|Tempo|", "1/2D"), _P("*|Tempo|", "1/2"), _P("*|Tempo|", "1/2T"), _P("*|Tempo|", "1/4D"), _P("*|Tempo|", "1/4"), _P("*|Tempo|", "1/4T"), _P("*|Tempo|", "1/8D"), _P("*|Tempo|", "1/8"), _P("*|Tempo|", "1/8T"), _P("*|Tempo|", "1/16D"), _P("*|Tempo|", "1/16"), _P("*|Tempo|", "1/16T"), _P("*|Tempo|", "1/32D"), _P("*|Tempo|", "1/32"), _P("*|Tempo|", "1/32T")},
@@ -808,13 +1008,16 @@ P_Modulation::Classic_Chorus::Classic_Chorus()
     slots.emplace_back((new PA_Choice(372, 4,
                                       {"19.95", "22.39", "25.12", "28.18", "31.62", "35.48", "39.81", "44.67", "50.12", "56.23", "63.10", "70.79", "79.43", "89.13", "100.0", "112.2", "125.9", "141.3", "158.5", "177.8", "199.5", "223.9", "251.2", "281.8", "316.2", "354.8", "398.1", "446.7", "501.2", "562.3", "631.0", "707.9", "794.3", "891.3", "1.00k", "1.12k", "1.26k", "1.41k", "1.58k", "1.78k", "2.00k", "2.24k", "2.51k", "2.82k", "3.16k", "3.55k", "3.98k", "4.47k", "5.01k", "5.62k", "6.31k", "7.08k", "7.94k", "8.91k", "10.0k", "11.2k", "12.6k", "14.1k", "15.8k", "17.8k", _("Off")},
                                       _("Hi Cut"), _("Reduces the high-end frequencies in the Chorus effect. Try using the Hi Cut parameter as an option if you feel the Chorus effect is too dominant in your sound and turning down the Mix or Out level doesn't give you the dampening of the Chorus effect you are looking for.")))
+                       ->with_choice_string_fn(&Formatting::hz_choice)
                        ->with_modifier_at(88));
     slots.emplace_back((new PA_Integer(396, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
                        ->with_min_max(0, 100)
+                       ->with_string_fn(&Formatting::percent)
                        ->with_position(PP_Back)
                        ->with_modifier_at(92));
     slots.emplace_back((new PA_Integer(400, 4, _("Out level"), _("Sets the overall Output level of this block.")))
                        ->with_min_max(-100, 0)
+                       ->with_string_fn(&Formatting::db)
                        ->with_position(PP_Back)
                        ->with_modifier_at(96));
 }
@@ -824,9 +1027,11 @@ P_Modulation::Advanced_Chorus::Advanced_Chorus()
     slots.emplace_back((new PA_Choice(360, 4,
                                       {".050", ".052", ".053", ".055", ".056", ".058", ".060", ".061", ".063", ".065", ".067", ".069", ".071", ".073", ".075", ".077", ".079", ".082", ".084", ".087", ".089", ".092", ".094", ".097", ".100", ".103", ".106", ".109", ".112", ".115", ".119", ".122", ".126", ".130", ".133", ".137", ".141", ".145", ".150", ".154", ".158", ".163", ".168", ".173", ".178", ".183", ".188", ".194", ".200", ".205", ".211", ".218", ".224", ".230", ".237", ".244", ".251", ".259", ".266", ".274", ".282", ".290", ".299", ".307", ".316", ".325", ".335", ".345", ".355", ".365", ".376", ".387", ".398", ".410", ".422", ".434", ".447", ".460", ".473", ".487", ".501", ".516", ".531", ".546", ".562", ".579", ".596", ".613", ".631", ".649", ".668", ".688", ".708", ".729", ".750", ".772", ".794", ".818", ".841", ".866", ".891", ".917", ".944", ".972", "1.00", "1.03", "1.06", "1.09", "1.12", "1.15", "1.19", "1.22", "1.26", "1.30", "1.33", "1.37", "1.41", "1.45", "1.50", "1.54", "1.58", "1.63", "1.68", "1.73", "1.78", "1.83", "1.88", "1.94", "2.00", "2.05", "2.11", "2.18", "2.24", "2.30", "2.37", "2.44", "2.51", "2.59", "2.66", "2.74", "2.82", "2.90", "2.99", "3.07", "3.16", "3.25", "3.35", "3.45", "3.55", "3.65", "3.76", "3.87", "3.98", "4.10", "4.22", "4.34", "4.47", "4.60", "4.73", "4.87", "5.01", "5.16", "5.31", "5.46", "5.62", "5.79", "5.96", "6.13", "6.31", "6.49", "6.68", "6.88", "7.08", "7.29", "7.50", "7.72", "7.94", "8.18", "8.41", "8.66", "8.91", "9.17", "9.44", "9.72", "10.00", "10.29", "10.59", "10.90", "11.22", "11.55", "11.89", "12.23", "12.59", "12.96", "13.34", "13.72", "14.13", "14.54", "14.96", "15.40", "15.85", "16.31", "16.79", "17.28", "17.78", "18.30", "18.84", "19.39", "19.95"},
                                       _("Speed"), _("The Speed of the Chorus, also known as Rate.")))
+                       ->with_choice_string_fn(&Formatting::hz_choice)
                        ->with_modifier_at(80));
     slots.emplace_back((new PA_Integer(364, 4, _("Depth"), _("The Depth parameter specifies the intensity of the Chorus effect - the value represents the amount of modulation.")))
                        ->with_min_max(0, 100)
+                       ->with_string_fn(&Formatting::percent)
                        ->with_modifier_at(84));
     slots.emplace_back((new PA_Choice(368, 4,
                                       {_P("*|Tempo|", "Ignored"), _P("*|Tempo|", "1"), _P("*|Tempo|", "1/2D"), _P("*|Tempo|", "1/2"), _P("*|Tempo|", "1/2T"), _P("*|Tempo|", "1/4D"), _P("*|Tempo|", "1/4"), _P("*|Tempo|", "1/4T"), _P("*|Tempo|", "1/8D"), _P("*|Tempo|", "1/8"), _P("*|Tempo|", "1/8T"), _P("*|Tempo|", "1/16D"), _P("*|Tempo|", "1/16"), _P("*|Tempo|", "1/16T"), _P("*|Tempo|", "1/32D"), _P("*|Tempo|", "1/32"), _P("*|Tempo|", "1/32T")},
@@ -836,7 +1041,8 @@ P_Modulation::Advanced_Chorus::Advanced_Chorus()
                                       _("Hi Cut"), _("Reduces the high-end frequencies in the Chorus effect. Try using the Hi Cut parameter as an option if you feel the Chorus effect is too dominant in your sound and turning down the Mix or Out level doesn't give you the dampening of the Chorus effect you are looking for.")))
                        ->with_modifier_at(88));
     slots.emplace_back((new PA_Integer(384, 4, _("Delay"), _("Chorus is basically a Delay being modulated by an LFO. This parameter makes it possible to change the length of that Delay. A typical chorus uses Delays at approximately 10 ms.")))
-                       ->with_min_max(1, 500));
+                       ->with_min_max(1, 500)
+                       ->with_string_fn(&Formatting::tenths_msec));
     slots.emplace_back((new PA_Choice(388, 4,
                                       {_("Off"), _("On")},
                                       _("Gold Ratio"), _("When Speed is increased the Depth must be decreased to achieve the same amount of perceived Chorusing effect. When Golden Ratio is \"On\" this value is automatically calculated."))));
@@ -845,10 +1051,12 @@ P_Modulation::Advanced_Chorus::Advanced_Chorus()
                                       _("Phase Rev"/*Phase Reverse*/), _("Reverses the processed Chorus signal in the right channel. This gives a very wide Chorus effect and a less defined sound."))));
     slots.emplace_back((new PA_Integer(396, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
                        ->with_min_max(0, 100)
+                       ->with_string_fn(&Formatting::percent)
                        ->with_position(PP_Back)
                        ->with_modifier_at(92));
     slots.emplace_back((new PA_Integer(400, 4, _("Out level"), _("Sets the overall Output level of this block.")))
                        ->with_min_max(-100, 0)
+                       ->with_string_fn(&Formatting::db)
                        ->with_position(PP_Back)
                        ->with_modifier_at(96));
 }
@@ -858,9 +1066,11 @@ P_Modulation::Classic_Flanger::Classic_Flanger()
     slots.emplace_back((new PA_Choice(360, 4,
                                       {".050", ".052", ".053", ".055", ".056", ".058", ".060", ".061", ".063", ".065", ".067", ".069", ".071", ".073", ".075", ".077", ".079", ".082", ".084", ".087", ".089", ".092", ".094", ".097", ".100", ".103", ".106", ".109", ".112", ".115", ".119", ".122", ".126", ".130", ".133", ".137", ".141", ".145", ".150", ".154", ".158", ".163", ".168", ".173", ".178", ".183", ".188", ".194", ".200", ".205", ".211", ".218", ".224", ".230", ".237", ".244", ".251", ".259", ".266", ".274", ".282", ".290", ".299", ".307", ".316", ".325", ".335", ".345", ".355", ".365", ".376", ".387", ".398", ".410", ".422", ".434", ".447", ".460", ".473", ".487", ".501", ".516", ".531", ".546", ".562", ".579", ".596", ".613", ".631", ".649", ".668", ".688", ".708", ".729", ".750", ".772", ".794", ".818", ".841", ".866", ".891", ".917", ".944", ".972", "1.00", "1.03", "1.06", "1.09", "1.12", "1.15", "1.19", "1.22", "1.26", "1.30", "1.33", "1.37", "1.41", "1.45", "1.50", "1.54", "1.58", "1.63", "1.68", "1.73", "1.78", "1.83", "1.88", "1.94", "2.00", "2.05", "2.11", "2.18", "2.24", "2.30", "2.37", "2.44", "2.51", "2.59", "2.66", "2.74", "2.82", "2.90", "2.99", "3.07", "3.16", "3.25", "3.35", "3.45", "3.55", "3.65", "3.76", "3.87", "3.98", "4.10", "4.22", "4.34", "4.47", "4.60", "4.73", "4.87", "5.01", "5.16", "5.31", "5.46", "5.62", "5.79", "5.96", "6.13", "6.31", "6.49", "6.68", "6.88", "7.08", "7.29", "7.50", "7.72", "7.94", "8.18", "8.41", "8.66", "8.91", "9.17", "9.44", "9.72", "10.00", "10.29", "10.59", "10.90", "11.22", "11.55", "11.89", "12.23", "12.59", "12.96", "13.34", "13.72", "14.13", "14.54", "14.96", "15.40", "15.85", "16.31", "16.79", "17.28", "17.78", "18.30", "18.84", "19.39", "19.95"},
                                       _("Speed"), _("The Speed of the Flanger, also known as Rate.")))
+                       ->with_choice_string_fn(&Formatting::hz_choice)
                        ->with_modifier_at(80));
     slots.emplace_back((new PA_Integer(364, 4, _("Depth"), _("Adjusts the Depth of the Flanger, also known as Intensity. The value represents the amount of modulation applied.")))
                        ->with_min_max(0, 100)
+                       ->with_string_fn(&Formatting::percent)
                        ->with_modifier_at(84));
     slots.emplace_back((new PA_Choice(368, 4,
                                       {_P("*|Tempo|", "Ignored"), _P("*|Tempo|", "1"), _P("*|Tempo|", "1/2D"), _P("*|Tempo|", "1/2"), _P("*|Tempo|", "1/2T"), _P("*|Tempo|", "1/4D"), _P("*|Tempo|", "1/4"), _P("*|Tempo|", "1/4T"), _P("*|Tempo|", "1/8D"), _P("*|Tempo|", "1/8"), _P("*|Tempo|", "1/8T"), _P("*|Tempo|", "1/16D"), _P("*|Tempo|", "1/16"), _P("*|Tempo|", "1/16T"), _P("*|Tempo|", "1/32D"), _P("*|Tempo|", "1/32"), _P("*|Tempo|", "1/32T")},
@@ -868,6 +1078,7 @@ P_Modulation::Classic_Flanger::Classic_Flanger()
     slots.emplace_back((new PA_Choice(372, 4,
                                       {"19.95", "22.39", "25.12", "28.18", "31.62", "35.48", "39.81", "44.67", "50.12", "56.23", "63.10", "70.79", "79.43", "89.13", "100.0", "112.2", "125.9", "141.3", "158.5", "177.8", "199.5", "223.9", "251.2", "281.8", "316.2", "354.8", "398.1", "446.7", "501.2", "562.3", "631.0", "707.9", "794.3", "891.3", "1.00k", "1.12k", "1.26k", "1.41k", "1.58k", "1.78k", "2.00k", "2.24k", "2.51k", "2.82k", "3.16k", "3.55k", "3.98k", "4.47k", "5.01k", "5.62k", "6.31k", "7.08k", "7.94k", "8.91k", "10.0k", "11.2k", "12.6k", "14.1k", "15.8k", "17.8k", _("Off")},
                                       _("Hi Cut"), _("Reduces the high-end frequencies in the Flanger effect. Try using the Hi Cut parameter as an option if you feel the Flanger effect is too dominant in your sound and turning down the Mix or Out level doesn't give you the dampening of the Flanger effect you are looking for.")))
+                       ->with_choice_string_fn(&Formatting::hz_choice)
                        ->with_modifier_at(88));
     slots.emplace_back((new PA_Integer(376, 4, _("Feedback"), _("Controls the amount of Feedback/Resonance of the short modulated Delay that causes the Flange effect.")))
                        ->with_min_max(-100, 100)
@@ -875,13 +1086,16 @@ P_Modulation::Classic_Flanger::Classic_Flanger()
     slots.emplace_back((new PA_Choice(380, 4,
                                       {"19.95", "22.39", "25.12", "28.18", "31.62", "35.48", "39.81", "44.67", "50.12", "56.23", "63.10", "70.79", "79.43", "89.13", "100.0", "112.2", "125.9", "141.3", "158.5", "177.8", "199.5", "223.9", "251.2", "281.8", "316.2", "354.8", "398.1", "446.7", "501.2", "562.3", "631.0", "707.9", "794.3", "891.3", "1.00k", "1.12k", "1.26k", "1.41k", "1.58k", "1.78k", "2.00k", "2.24k", "2.51k", "2.82k", "3.16k", "3.55k", "3.98k", "4.47k", "5.01k", "5.62k", "6.31k", "7.08k", "7.94k", "8.91k", "10.0k", "11.2k", "12.6k", "14.1k", "15.8k", "17.8k", _("Off")},
                                       _("FB Hi Cut"), _("A parameter than can attenuate the high-end frequencies of the resonance created via the Feedback parameter.")))
+                       ->with_choice_string_fn(&Formatting::hz_choice)
                        ->with_modifier_at(96));
     slots.emplace_back((new PA_Integer(396, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
                        ->with_min_max(0, 100)
+                       ->with_string_fn(&Formatting::percent)
                        ->with_position(PP_Back)
                        ->with_modifier_at(100));
     slots.emplace_back((new PA_Integer(400, 4, _("Out level"), _("Sets the overall Output level of this block.")))
                        ->with_min_max(-100, 0)
+                       ->with_string_fn(&Formatting::db)
                        ->with_position(PP_Back)
                        ->with_modifier_at(104));
 }
@@ -891,9 +1105,11 @@ P_Modulation::Advanced_Flanger::Advanced_Flanger()
     slots.emplace_back((new PA_Choice(360, 4,
                                       {".050", ".052", ".053", ".055", ".056", ".058", ".060", ".061", ".063", ".065", ".067", ".069", ".071", ".073", ".075", ".077", ".079", ".082", ".084", ".087", ".089", ".092", ".094", ".097", ".100", ".103", ".106", ".109", ".112", ".115", ".119", ".122", ".126", ".130", ".133", ".137", ".141", ".145", ".150", ".154", ".158", ".163", ".168", ".173", ".178", ".183", ".188", ".194", ".200", ".205", ".211", ".218", ".224", ".230", ".237", ".244", ".251", ".259", ".266", ".274", ".282", ".290", ".299", ".307", ".316", ".325", ".335", ".345", ".355", ".365", ".376", ".387", ".398", ".410", ".422", ".434", ".447", ".460", ".473", ".487", ".501", ".516", ".531", ".546", ".562", ".579", ".596", ".613", ".631", ".649", ".668", ".688", ".708", ".729", ".750", ".772", ".794", ".818", ".841", ".866", ".891", ".917", ".944", ".972", "1.00", "1.03", "1.06", "1.09", "1.12", "1.15", "1.19", "1.22", "1.26", "1.30", "1.33", "1.37", "1.41", "1.45", "1.50", "1.54", "1.58", "1.63", "1.68", "1.73", "1.78", "1.83", "1.88", "1.94", "2.00", "2.05", "2.11", "2.18", "2.24", "2.30", "2.37", "2.44", "2.51", "2.59", "2.66", "2.74", "2.82", "2.90", "2.99", "3.07", "3.16", "3.25", "3.35", "3.45", "3.55", "3.65", "3.76", "3.87", "3.98", "4.10", "4.22", "4.34", "4.47", "4.60", "4.73", "4.87", "5.01", "5.16", "5.31", "5.46", "5.62", "5.79", "5.96", "6.13", "6.31", "6.49", "6.68", "6.88", "7.08", "7.29", "7.50", "7.72", "7.94", "8.18", "8.41", "8.66", "8.91", "9.17", "9.44", "9.72", "10.00", "10.29", "10.59", "10.90", "11.22", "11.55", "11.89", "12.23", "12.59", "12.96", "13.34", "13.72", "14.13", "14.54", "14.96", "15.40", "15.85", "16.31", "16.79", "17.28", "17.78", "18.30", "18.84", "19.39", "19.95"},
                                       _("Speed"), _("The Speed of the Flanger, also known as Rate.")))
+                       ->with_choice_string_fn(&Formatting::hz_choice)
                        ->with_modifier_at(80));
     slots.emplace_back((new PA_Integer(364, 4, _("Depth"), _("Adjusts the Depth of the Flanger, also known as Intensity. The value represents the amount of modulation applied.")))
                        ->with_min_max(0, 100)
+                       ->with_string_fn(&Formatting::percent)
                        ->with_modifier_at(84));
     slots.emplace_back((new PA_Choice(368, 4,
                                       {_P("*|Tempo|", "Ignored"), _P("*|Tempo|", "1"), _P("*|Tempo|", "1/2D"), _P("*|Tempo|", "1/2"), _P("*|Tempo|", "1/2T"), _P("*|Tempo|", "1/4D"), _P("*|Tempo|", "1/4"), _P("*|Tempo|", "1/4T"), _P("*|Tempo|", "1/8D"), _P("*|Tempo|", "1/8"), _P("*|Tempo|", "1/8T"), _P("*|Tempo|", "1/16D"), _P("*|Tempo|", "1/16"), _P("*|Tempo|", "1/16T"), _P("*|Tempo|", "1/32D"), _P("*|Tempo|", "1/32"), _P("*|Tempo|", "1/32T")},
@@ -901,6 +1117,7 @@ P_Modulation::Advanced_Flanger::Advanced_Flanger()
     slots.emplace_back((new PA_Choice(372, 4,
                                       {"19.95", "22.39", "25.12", "28.18", "31.62", "35.48", "39.81", "44.67", "50.12", "56.23", "63.10", "70.79", "79.43", "89.13", "100.0", "112.2", "125.9", "141.3", "158.5", "177.8", "199.5", "223.9", "251.2", "281.8", "316.2", "354.8", "398.1", "446.7", "501.2", "562.3", "631.0", "707.9", "794.3", "891.3", "1.00k", "1.12k", "1.26k", "1.41k", "1.58k", "1.78k", "2.00k", "2.24k", "2.51k", "2.82k", "3.16k", "3.55k", "3.98k", "4.47k", "5.01k", "5.62k", "6.31k", "7.08k", "7.94k", "8.91k", "10.0k", "11.2k", "12.6k", "14.1k", "15.8k", "17.8k", _("Off")},
                                       _("Hi Cut"), _("Reduces the high-end frequencies in the Flanger effect. Try using the Hi Cut parameter as an option if you feel the Flanger effect is too dominant in your sound and turning down the Mix or Out level doesn't give you the dampening of the Flanger effect you are looking for.")))
+                       ->with_choice_string_fn(&Formatting::hz_choice)
                        ->with_modifier_at(88));
     slots.emplace_back((new PA_Integer(376, 4, _("Feedback"), _("Controls the amount of Feedback/Resonance of the short modulated Delay that causes the Flange effect.")))
                        ->with_min_max(-100, 100)
@@ -908,9 +1125,11 @@ P_Modulation::Advanced_Flanger::Advanced_Flanger()
     slots.emplace_back((new PA_Choice(380, 4,
                                       {"19.95", "22.39", "25.12", "28.18", "31.62", "35.48", "39.81", "44.67", "50.12", "56.23", "63.10", "70.79", "79.43", "89.13", "100.0", "112.2", "125.9", "141.3", "158.5", "177.8", "199.5", "223.9", "251.2", "281.8", "316.2", "354.8", "398.1", "446.7", "501.2", "562.3", "631.0", "707.9", "794.3", "891.3", "1.00k", "1.12k", "1.26k", "1.41k", "1.58k", "1.78k", "2.00k", "2.24k", "2.51k", "2.82k", "3.16k", "3.55k", "3.98k", "4.47k", "5.01k", "5.62k", "6.31k", "7.08k", "7.94k", "8.91k", "10.0k", "11.2k", "12.6k", "14.1k", "15.8k", "17.8k", _("Off")},
                                       _("FB Hi Cut"), _("A parameter than can attenuate the high-end frequencies of the resonance created via the Feedback parameter.")))
+                       ->with_choice_string_fn(&Formatting::hz_choice)
                        ->with_modifier_at(96));
     slots.emplace_back((new PA_Integer(384, 4, _("Delay"), _("Flanger is basically a Delay being modulated by an LFO. This parameter makes it possible to change the length of that Delay. A typical flanger uses Delays at approximately 5 ms.")))
-                       ->with_min_max(1, 500));
+                       ->with_min_max(1, 500)
+                       ->with_string_fn(&Formatting::tenths_msec));
     slots.emplace_back((new PA_Choice(388, 4,
                                       {_("Off"), _("On")},
                                       _("Gold Ratio"), _("When Speed is increased the Depth must be decreased to achieve the same amount of perceived Flanging effect. When Golden Ratio is \"On\" this value is automatically calculated."))));
@@ -919,10 +1138,12 @@ P_Modulation::Advanced_Flanger::Advanced_Flanger()
                                       _("Phase Rev"/*Phase Reverse*/), _("Reverses the processed Flanger signal in the right channel. This gives a very wide Flanger effect and a less defined sound."))));
     slots.emplace_back((new PA_Integer(396, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
                        ->with_min_max(0, 100)
+                       ->with_string_fn(&Formatting::percent)
                        ->with_position(PP_Back)
                        ->with_modifier_at(100));
     slots.emplace_back((new PA_Integer(400, 4, _("Out level"), _("Sets the overall Output level of this block.")))
                        ->with_min_max(-100, 0)
+                       ->with_string_fn(&Formatting::db)
                        ->with_position(PP_Back)
                        ->with_modifier_at(104));
 }
@@ -932,9 +1153,11 @@ P_Modulation::Vibrato::Vibrato()
     slots.emplace_back((new PA_Choice(360, 4,
                                       {".050", ".052", ".053", ".055", ".056", ".058", ".060", ".061", ".063", ".065", ".067", ".069", ".071", ".073", ".075", ".077", ".079", ".082", ".084", ".087", ".089", ".092", ".094", ".097", ".100", ".103", ".106", ".109", ".112", ".115", ".119", ".122", ".126", ".130", ".133", ".137", ".141", ".145", ".150", ".154", ".158", ".163", ".168", ".173", ".178", ".183", ".188", ".194", ".200", ".205", ".211", ".218", ".224", ".230", ".237", ".244", ".251", ".259", ".266", ".274", ".282", ".290", ".299", ".307", ".316", ".325", ".335", ".345", ".355", ".365", ".376", ".387", ".398", ".410", ".422", ".434", ".447", ".460", ".473", ".487", ".501", ".516", ".531", ".546", ".562", ".579", ".596", ".613", ".631", ".649", ".668", ".688", ".708", ".729", ".750", ".772", ".794", ".818", ".841", ".866", ".891", ".917", ".944", ".972", "1.00", "1.03", "1.06", "1.09", "1.12", "1.15", "1.19", "1.22", "1.26", "1.30", "1.33", "1.37", "1.41", "1.45", "1.50", "1.54", "1.58", "1.63", "1.68", "1.73", "1.78", "1.83", "1.88", "1.94", "2.00", "2.05", "2.11", "2.18", "2.24", "2.30", "2.37", "2.44", "2.51", "2.59", "2.66", "2.74", "2.82", "2.90", "2.99", "3.07", "3.16", "3.25", "3.35", "3.45", "3.55", "3.65", "3.76", "3.87", "3.98", "4.10", "4.22", "4.34", "4.47", "4.60", "4.73", "4.87", "5.01", "5.16", "5.31", "5.46", "5.62", "5.79", "5.96", "6.13", "6.31", "6.49", "6.68", "6.88", "7.08", "7.29", "7.50", "7.72", "7.94", "8.18", "8.41", "8.66", "8.91", "9.17", "9.44", "9.72", "10.00", "10.29", "10.59", "10.90", "11.22", "11.55", "11.89", "12.23", "12.59", "12.96", "13.34", "13.72", "14.13", "14.54", "14.96", "15.40", "15.85", "16.31", "16.79", "17.28", "17.78", "18.30", "18.84", "19.39", "19.95"},
                                       _("Speed"), _("The Speed of the Vibrato, also known as Rate.")))
+                       ->with_choice_string_fn(&Formatting::hz_choice)
                        ->with_modifier_at(80));
     slots.emplace_back((new PA_Integer(364, 4, _("Depth"), _("The amount of Pitch modulation applied.")))
                        ->with_min_max(0, 100)
+                       ->with_string_fn(&Formatting::percent)
                        ->with_modifier_at(84));
     slots.emplace_back((new PA_Choice(368, 4,
                                       {_P("*|Tempo|", "Ignored"), _P("*|Tempo|", "1"), _P("*|Tempo|", "1/2D"), _P("*|Tempo|", "1/2"), _P("*|Tempo|", "1/2T"), _P("*|Tempo|", "1/4D"), _P("*|Tempo|", "1/4"), _P("*|Tempo|", "1/4T"), _P("*|Tempo|", "1/8D"), _P("*|Tempo|", "1/8"), _P("*|Tempo|", "1/8T"), _P("*|Tempo|", "1/16D"), _P("*|Tempo|", "1/16"), _P("*|Tempo|", "1/16T"), _P("*|Tempo|", "1/32D"), _P("*|Tempo|", "1/32"), _P("*|Tempo|", "1/32T")},
@@ -942,9 +1165,11 @@ P_Modulation::Vibrato::Vibrato()
     slots.emplace_back((new PA_Choice(372, 4,
                                       {"19.95", "22.39", "25.12", "28.18", "31.62", "35.48", "39.81", "44.67", "50.12", "56.23", "63.10", "70.79", "79.43", "89.13", "100.0", "112.2", "125.9", "141.3", "158.5", "177.8", "199.5", "223.9", "251.2", "281.8", "316.2", "354.8", "398.1", "446.7", "501.2", "562.3", "631.0", "707.9", "794.3", "891.3", "1.00k", "1.12k", "1.26k", "1.41k", "1.58k", "1.78k", "2.00k", "2.24k", "2.51k", "2.82k", "3.16k", "3.55k", "3.98k", "4.47k", "5.01k", "5.62k", "6.31k", "7.08k", "7.94k", "8.91k", "10.0k", "11.2k", "12.6k", "14.1k", "15.8k", "17.8k", _("Off")},
                                       _("Hi Cut"), _("Determines the frequency above which the Hi Cut filter will attenuate the high-end frequencies of the generated effect. Hi Cut filters can be used to give a less dominant effect even at high mix levels.")))
+                       ->with_choice_string_fn(&Formatting::hz_choice)
                        ->with_modifier_at(88));
     slots.emplace_back((new PA_Integer(400, 4, _("Out level"), _("Sets the overall Output level of this block.")))
                        ->with_min_max(-100, 0)
+                       ->with_string_fn(&Formatting::db)
                        ->with_position(PP_Back)
                        ->with_modifier_at(92));
 }
@@ -1011,7 +1236,8 @@ P_General::P_General()
                                     2, 7,
                                     _("Out level"), _("Sets preset output level.")))
                        ->with_min_max(-100, 0)
-                       ->with_offset(100));
+                       ->with_offset(100)
+                       ->with_string_fn(&Formatting::db));
 
     pitch.reset(new P_Pitch(type_pitch()));
     delay.reset(new P_Delay(type_delay()));

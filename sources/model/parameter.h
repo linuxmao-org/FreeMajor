@@ -105,6 +105,7 @@ public:
         : Parameter_Access(name, description),
           index(index), size(size), values(std::move(values)) {}
     PA_Choice *with_offset(int offset);
+    PA_Choice *with_choice_string_fn(std::function<std::string(const char *)> fn);
 
     Parameter_Type type() const override { return PT_Choice; }
     int get(const Patch &pat) const override;

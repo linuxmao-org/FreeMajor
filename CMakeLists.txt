@@ -28,6 +28,7 @@ find_package(FLTK REQUIRED)
 
 add_executable(gmajctl WIN32
   "sources/main.cc"
+  "sources/app_i18n.cc"
   "sources/utility/misc.cc"
   "sources/device/midi.cc"
   "sources/device/midi_apis.cc"

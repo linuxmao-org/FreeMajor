@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gmajctl 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-16 03:39+0200\n"
+"POT-Creation-Date: 2018-10-16 04:07+0200\n"
 "PO-Revision-Date: 2018-10-08 14:52+0200\n"
 "Last-Translator: Julien Taverna <jujudusud@gmail.com>\n"
 "Language-Team: French\n"
@@ -20,6 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: sources/model/parameter.cc:399 sources/model/parameter.cc:414
+msgctxt "Pitch|Range|"
 msgid "1 oct"
 msgstr "1 oct"
 
@@ -32,14 +33,17 @@ msgid "100"
 msgstr ""
 
 #: sources/model/parameter.cc:399 sources/model/parameter.cc:414
+msgctxt "Pitch|Range|"
 msgid "2 oct"
 msgstr "2 oct"
 
 #: sources/model/parameter.cc:626 sources/model/parameter.cc:649
+msgctxt "Filter|Resonance|Order|"
 msgid "2nd"
 msgstr "D'ordre 2"
 
 #: sources/model/parameter.cc:626 sources/model/parameter.cc:649
+msgctxt "Filter|Resonance|Order|"
 msgid "4th"
 msgstr "D'ordre 4"
 
@@ -125,6 +129,11 @@ msgstr ""
 msgid "Assignment"
 msgstr "Affectation"
 
+#: sources/model/parameter.cc:99
+msgctxt "Modifier|"
+msgid "Assignment"
+msgstr "Affectation"
+
 #: sources/model/parameter.cc:262
 msgid "Attack"
 msgstr "Attaque"
@@ -158,10 +167,12 @@ msgid "Auto filter"
 msgstr "Filtre automatique"
 
 #: sources/model/parameter.cc:321
+msgctxt "Reverb|Size|"
 msgid "Box"
 msgstr "Boîte"
 
 #: sources/model/parameter.cc:324
+msgctxt "Reverb|Hi Color|"
 msgid "Bright"
 msgstr "Brillance"
 
@@ -197,6 +208,7 @@ msgid "Classic flanger"
 msgstr "Flanger classique"
 
 #: sources/model/parameter.cc:324
+msgctxt "Reverb|Hi Color|"
 msgid "Clear"
 msgstr "Effacer"
 
@@ -287,10 +299,12 @@ msgid "Create into..."
 msgstr "Créer dans..."
 
 #: sources/model/parameter.cc:324
+msgctxt "Reverb|Hi Color|"
 msgid "Crisp"
 msgstr "Croustillant"
 
 #: sources/model/parameter.cc:318
+msgctxt "Reverb|Shape|"
 msgid "Curved"
 msgstr "Courbé"
 
@@ -422,6 +436,7 @@ msgid "Direction."
 msgstr "Direction."
 
 #: sources/model/parameter.cc:396 sources/model/parameter.cc:411
+msgctxt "Pitch|Direction|"
 msgid "Down"
 msgstr "Bas"
 
@@ -483,6 +498,7 @@ msgid "Error"
 msgstr "Erreur"
 
 #: sources/model/parameter.cc:321
+msgctxt "Reverb|Size|"
 msgid "Ex Large"
 msgstr "Extra large"
 
@@ -510,6 +526,7 @@ msgid "FB Lo cut"
 msgstr "CB B ret."
 
 #: sources/model/parameter.cc:631
+msgctxt "Filter|Resonance|Response|"
 msgid "Fast"
 msgstr "Rapide"
 
@@ -577,7 +594,13 @@ msgstr ""
 msgid "Gold Ratio"
 msgstr "Taux nbr or"
 
-#: sources/model/parameter.cc:321 sources/model/parameter.cc:324
+#: sources/model/parameter.cc:324
+msgctxt "Reverb|Hi Color|"
+msgid "Grand"
+msgstr "Grand"
+
+#: sources/model/parameter.cc:321
+msgctxt "Reverb|Size|"
 msgid "Grand"
 msgstr "Grand"
 
@@ -585,7 +608,13 @@ msgstr "Grand"
 msgid "Hall"
 msgstr "Hall"
 
-#: sources/model/parameter.cc:301 sources/model/parameter.cc:747
+#: sources/model/parameter.cc:747
+msgctxt "Filter|Tremolo|Type|"
+msgid "Hard"
+msgstr "Dur"
+
+#: sources/model/parameter.cc:301
+msgctxt "Noise Gate|Mode|"
 msgid "Hard"
 msgstr "Dur"
 
@@ -608,7 +637,13 @@ msgstr "Haute col"
 msgid "Hi factor"
 msgstr "Facteur H"
 
+#: sources/model/parameter.cc:684 sources/model/parameter.cc:714
+msgctxt "Filter|Phaser|Range|"
+msgid "High"
+msgstr ""
+
 #: sources/model/parameter.cc:321
+msgctxt "Reverb|Size|"
 msgid "Huge"
 msgstr "Énorme"
 
@@ -619,6 +654,7 @@ msgstr "Énorme"
 #: sources/model/parameter.cc:806 sources/model/parameter.cc:832
 #: sources/model/parameter.cc:866 sources/model/parameter.cc:899
 #: sources/model/parameter.cc:940
+msgctxt "*|Tempo|"
 msgid "Ignored"
 msgstr "Ignoré"
 
@@ -721,6 +757,7 @@ msgid "Label"
 msgstr "Étiquette"
 
 #: sources/model/parameter.cc:321
+msgctxt "Reverb|Size|"
 msgid "Large"
 msgstr "Large"
 
@@ -733,6 +770,7 @@ msgid "Level 2"
 msgstr "Niveau 2"
 
 #: sources/model/parameter.cc:329
+msgctxt "Reverb|Lo Color|"
 msgid "Light"
 msgstr "Léger"
 
@@ -757,6 +795,11 @@ msgstr "Charger"
 msgid "Load..."
 msgstr "Charger..."
 
+#: sources/model/parameter.cc:684 sources/model/parameter.cc:714
+msgctxt "Filter|Phaser|Range|"
+msgid "Low"
+msgstr ""
+
 #: sources/device/midi.cc:88
 msgid "MIDI out"
 msgstr "Sortie MIDI"
@@ -769,10 +812,29 @@ msgstr "Atténu. max."
 msgid "Maximum"
 msgstr "Maximum"
 
-#: sources/model/parameter.cc:113 sources/model/parameter.cc:321
+#: sources/model/parameter.cc:117
+msgctxt "Modifier|"
+msgid "Maximum"
+msgstr "Maximum"
+
 #: sources/model/parameter.cc:631
+msgctxt "Filter|Resonance|Response|"
 msgid "Medium"
 msgstr "Médium"
+
+#: sources/model/parameter.cc:321
+msgctxt "Reverb|Size|"
+msgid "Medium"
+msgstr "Médium"
+
+#: sources/model/parameter.cc:113
+msgid "Middle"
+msgstr "Milieu"
+
+#: sources/model/parameter.cc:113
+msgctxt "Modifier|"
+msgid "Middle"
+msgstr "Milieu"
 
 #. Fl_Box* txt_description
 #: sources/ui/main_component.cxx:1440
@@ -780,6 +842,11 @@ msgid "Midi Out Devices:"
 msgstr "Périphériques de sortie MIDI :"
 
 #: sources/model/parameter.cc:109
+msgid "Minimum"
+msgstr "Minimum"
+
+#: sources/model/parameter.cc:109
+msgctxt "Modifier|"
 msgid "Minimum"
 msgstr "Minimum"
 
@@ -818,6 +885,7 @@ msgid "No"
 msgstr "Non"
 
 #: sources/model/parameter.cc:329
+msgctxt "Reverb|Lo Color|"
 msgid "No Base"
 msgstr "Aucune base"
 
@@ -985,7 +1053,13 @@ msgstr "Plage."
 msgid "Ratio"
 msgstr "Taux"
 
-#: sources/model/parameter.cc:324 sources/model/parameter.cc:329
+#: sources/model/parameter.cc:324
+msgctxt "Reverb|Hi Color|"
+msgid "Real"
+msgstr "Réel"
+
+#: sources/model/parameter.cc:329
+msgctxt "Reverb|Lo Color|"
 msgid "Real"
 msgstr "Réel"
 
@@ -1093,7 +1167,13 @@ msgstr "Pièce"
 msgid "Room level"
 msgstr "Niv. pièce"
 
-#: sources/model/parameter.cc:318 sources/model/parameter.cc:329
+#: sources/model/parameter.cc:329
+msgctxt "Reverb|Lo Color|"
+msgid "Round"
+msgstr "Rond"
+
+#: sources/model/parameter.cc:318
+msgctxt "Reverb|Shape|"
 msgid "Round"
 msgstr "Rond"
 
@@ -1238,10 +1318,12 @@ msgid "Size"
 msgstr "Taille"
 
 #: sources/model/parameter.cc:631
+msgctxt "Filter|Resonance|Response|"
 msgid "Slow"
 msgstr "Lent"
 
 #: sources/model/parameter.cc:321
+msgctxt "Reverb|Size|"
 msgid "Small"
 msgstr "Petit"
 
@@ -1249,7 +1331,13 @@ msgstr "Petit"
 msgid "Smooth phaser"
 msgstr "Phaser lisse"
 
-#: sources/model/parameter.cc:301 sources/model/parameter.cc:747
+#: sources/model/parameter.cc:747
+msgctxt "Filter|Tremolo|Type|"
+msgid "Soft"
+msgstr "Doux"
+
+#: sources/model/parameter.cc:301
+msgctxt "Noise Gate|Mode|"
 msgid "Soft"
 msgstr "Doux"
 
@@ -1294,6 +1382,7 @@ msgid "Spring"
 msgstr "Ressort"
 
 #: sources/model/parameter.cc:318
+msgctxt "Reverb|Shape|"
 msgid "Square"
 msgstr "Carré"
 
@@ -1461,10 +1550,12 @@ msgid "The time between the repetitions."
 msgstr "Le temps entre les répétitions."
 
 #: sources/model/parameter.cc:329
+msgctxt "Reverb|Lo Color|"
 msgid "Thick"
 msgstr "Épais"
 
 #: sources/model/parameter.cc:329
+msgctxt "Reverb|Lo Color|"
 msgid "Thin"
 msgstr "Fin"
 
@@ -1509,10 +1600,12 @@ msgid "Threshold"
 msgstr "Seuil"
 
 #: sources/model/parameter.cc:329
+msgctxt "Reverb|Lo Color|"
 msgid "Tight"
 msgstr "Serré"
 
 #: sources/model/parameter.cc:321
+msgctxt "Reverb|Size|"
 msgid "Tiny"
 msgstr "Minuscule"
 
@@ -1553,6 +1646,7 @@ msgid "Type of reverb effect"
 msgstr "Type d'effet de réverbération"
 
 #: sources/model/parameter.cc:396 sources/model/parameter.cc:411
+msgctxt "Pitch|Direction|"
 msgid "Up"
 msgstr "Haut"
 
@@ -1585,6 +1679,7 @@ msgid "Voice 2"
 msgstr "Voix 2"
 
 #: sources/model/parameter.cc:324
+msgctxt "Reverb|Hi Color|"
 msgid "Warm"
 msgstr "Chaleur"
 
@@ -1646,6 +1741,7 @@ msgstr ""
 "du signal présent sur l'entrée."
 
 #: sources/model/parameter.cc:324
+msgctxt "Reverb|Hi Color|"
 msgid "Wool"
 msgstr "Laine"
 

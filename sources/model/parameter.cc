@@ -96,7 +96,7 @@ Parameter_Access *Parameter_Access::with_modifier_at(unsigned index)
     std::unique_ptr<Parameter_Modifiers> modifiers(new Parameter_Modifiers);
     modifiers->assignment.reset((new PA_Bits(index, 4,
                                              0, 3,
-                                             _("Assignment"), _("Assignment")))
+                                             _P("Modifier|", "Assignment"), _("Assignment")))
                                 ->with_min_max(0, 4)
                                 ->with_string_fn([](int v) -> std::string {
                                                      if (v == 0)
@@ -106,15 +106,15 @@ Parameter_Access *Parameter_Access::with_modifier_at(unsigned index)
                                                  }));
     modifiers->min.reset((new PA_Bits(index, 4,
                                       3, 7,
-                                      _("Minimum"), _("Minimum")))
+                                      _P("Modifier|", "Minimum"), _("Minimum")))
                          ->with_min_max(0, 100));
     modifiers->mid.reset((new PA_Bits(index, 4,
                                       10, 7,
-                                      _("Medium"), _("Medium")))
+                                      _P("Modifier|", "Middle"), _("Middle")))
                          ->with_min_max(0, 100));
     modifiers->max.reset((new PA_Bits(index, 4,
                                       17, 7,
-                                      _("Maximum"), _("Maximum")))
+                                      _P("Modifier|", "Maximum"), _("Maximum")))
                          ->with_min_max(0, 100));
     this->modifiers = std::move(modifiers);
     return this;
@@ -298,7 +298,7 @@ P_Equalizer::P_Equalizer()
 P_Noise_Gate::P_Noise_Gate()
 {
     slots.emplace_back((new PA_Choice(548, 4,
-                                      {_("Soft"), _("Hard")},
+                                      {_P("Noise Gate|Mode|", "Soft"), _P("Noise Gate|Mode|", "Hard")},
                                       _("Mode"), _("General overall mode that determines how fast the Noise Gate should attenuate/dampen the signal when below Threshold."))));
     slots.emplace_back((new PA_Integer(552, 4, _("Threshold"), _("The Threshold point determines at what point the Noise Gate should start to dampen the signal.")))
                        ->with_min_max(-60, 0));
@@ -315,18 +315,18 @@ P_Reverb::P_Reverb()
     slots.emplace_back((new PA_Integer(492, 4, _("Pre Delay"), _("A short Delay placed between the direct signal and the Reverb Diffuse field.")))
                        ->with_min_max(0, 100));
     slots.emplace_back((new PA_Choice(496, 4,
-                                      {_("Round"), _("Curved"), _("Square")},
+                                      {_P("Reverb|Shape|", "Round"), _P("Reverb|Shape|", "Curved"), _P("Reverb|Shape|", "Square")},
                                       _("Shape"), _("Shape"))));
     slots.emplace_back((new PA_Choice(500, 4,
-                                      {_("Box"), _("Tiny"), _("Small"), _("Medium"), _("Large"), _("Ex Large"), _("Grand"), _("Huge")},
+                                      {_P("Reverb|Size|", "Box"), _P("Reverb|Size|", "Tiny"), _P("Reverb|Size|", "Small"), _P("Reverb|Size|", "Medium"), _P("Reverb|Size|", "Large"), _P("Reverb|Size|", "Ex Large"), _P("Reverb|Size|", "Grand"), _P("Reverb|Size|", "Huge")},
                                       _("Size"), _("The Size parameter defines the size of the Early Reflection pattern used."))));
     slots.emplace_back((new PA_Choice(504, 4,
-                                      {_("Wool"), _("Warm"), _("Real"), _("Clear"), _("Bright"), _("Crisp"), _("Grand")},
+                                      {_P("Reverb|Hi Color|", "Wool"), _P("Reverb|Hi Color|", "Warm"), _P("Reverb|Hi Color|", "Real"), _P("Reverb|Hi Color|", "Clear"), _P("Reverb|Hi Color|", "Bright"), _P("Reverb|Hi Color|", "Crisp"), _P("Reverb|Hi Color|", "Grand")},
                                       _("Hi color"), _("7 different Hi Colors can be selected."))));
     slots.emplace_back((new PA_Integer(508, 4, _("Hi factor"), _("Adds or substracts the selected Hi Color type.")))
                        ->with_min_max(-25, 25));
     slots.emplace_back((new PA_Choice(512, 4,
-                                      {_("Thick"), _("Round"), _("Real"), _("Light"), _("Tight"), _("Thin"), _("No Base")},
+                                      {_P("Reverb|Lo Color|", "Thick"), _P("Reverb|Lo Color|", "Round"), _P("Reverb|Lo Color|", "Real"), _P("Reverb|Lo Color|", "Light"), _P("Reverb|Lo Color|", "Tight"), _P("Reverb|Lo Color|", "Thin"), _P("Reverb|Lo Color|", "No Base")},
                                       _("Lo color"), _("7 different Lo Colors can be selected."))));
     slots.emplace_back((new PA_Integer(516, 4, _("Lo factor"), _("Adds or substracts the selected Lo Color type.")))
                        ->with_min_max(-25, 25));
@@ -393,10 +393,10 @@ P_Pitch::Whammy::Whammy()
                        ->with_min_max(0, 100)
                        ->with_modifier_at(48));
     slots.emplace_back((new PA_Choice(332, 4,
-                                      {_("Down"), _("Up")},
+                                      {_P("Pitch|Direction|", "Down"), _P("Pitch|Direction|", "Up")},
                                       _("Direction"), _("This parameter determines whether the attached Expression pedal should increase or decrease Pitch when moved either direction."))));
     slots.emplace_back((new PA_Choice(336, 4,
-                                      {_("1 oct"), _("2 oct")},
+                                      {_P("Pitch|Range|", "1 oct"), _P("Pitch|Range|", "2 oct")},
                                       _("Range"), _("Selects how the Whammy block will pitch your tone.")))
                        ->with_offset(1));
     slots.emplace_back((new PA_Integer(344, 4, _("Out level"), _("Sets the overall Output level of this block.")))
@@ -408,10 +408,10 @@ P_Pitch::Whammy::Whammy()
 P_Pitch::Octaver::Octaver()
 {
     slots.emplace_back((new PA_Choice(332, 4,
-                                      {_("Down"), _("Up")},
+                                      {_P("Pitch|Direction|", "Down"), _P("Pitch|Direction|", "Up")},
                                       _("Direction"), _("Direction."))));
     slots.emplace_back((new PA_Choice(336, 4,
-                                      {_("1 oct"), _("2 oct")},
+                                      {_P("Pitch|Range|", "1 oct"), _P("Pitch|Range|", "2 oct")},
                                       _("Range"), _("Range.")))
                        ->with_offset(1));
     slots.emplace_back((new PA_Integer(340, 4, _("Mix"), _("Sets the relation between the dry signal and the applied effect in this block.")))
@@ -487,7 +487,7 @@ P_Delay::Ping_Pong::Ping_Pong()
                        ->with_min_max(0, 1800)
                        ->with_modifier_at(108));
     slots.emplace_back((new PA_Choice(432, 4,
-                                      {_("Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
+                                      {_P("*|Tempo|", "Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
                                       _("Tempo"), _("The Tempo parameter sets the relationship to the global Tempo."))));
     slots.emplace_back((new PA_Integer(436, 4, _("Width"), _("The Width parameter determines whether the Left or Right repetitions are panned 100% or not.")))
                        ->with_min_max(0, 100));
@@ -518,7 +518,7 @@ P_Delay::Dynamic::Dynamic()
                        ->with_min_max(0, 1800)
                        ->with_modifier_at(108));
     slots.emplace_back((new PA_Choice(432, 4,
-                                      {_("Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
+                                      {_P("*|Tempo|", "Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
                                       _("Tempo"), _("The Tempo parameter sets the relationship to the global Tempo."))));
     slots.emplace_back((new PA_Integer(440, 4, _("Feedback"), _("Determines how many repetitions there will be.")))
                        ->with_min_max(0, 100)
@@ -560,10 +560,10 @@ P_Delay::Dual::Dual()
                        ->with_min_max(0, 1800)
                        ->with_modifier_at(112));
     slots.emplace_back((new PA_Choice(432, 4,
-                                      {_("Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
+                                      {_P("*|Tempo|", "Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
                                       _("Tempo 1"), _("The Tempo parameter sets the relationship to the global Tempo."))));
     slots.emplace_back((new PA_Choice(436, 4,
-                                      {_("Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
+                                      {_P("*|Tempo|", "Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
                                       _("Tempo 2"), _("The Tempo parameter sets the relationship to the global Tempo."))));
     slots.emplace_back((new PA_Integer(440, 4, _("Feedback 1"), _("Determines the number of repetitions of the Delay of the first Delay Line.")))
                        ->with_min_max(0, 100)
@@ -623,12 +623,12 @@ Parameter_Collection &P_Filter::dispatch(const Patch &pat)
 P_Filter::Auto_Resonance::Auto_Resonance()
 {
     slots.emplace_back((new PA_Choice(232, 4,
-                                      {_("2nd"), _("4th")},
+                                      {_P("Filter|Resonance|Order|", "2nd"), _P("Filter|Resonance|Order|", "4th")},
                                       _("Order"), _("The Order parameter of the resonance filters changes the steepness of the filters. 2nd order filters are 12dB/Octave while 4th order filters are 24dB/Octave."))));
     slots.emplace_back((new PA_Integer(236, 4, _("Sensitivity"), _("Sets the sensitivity according to the Input you are feeding the unit.")))
                        ->with_min_max(0, 10));
     slots.emplace_back((new PA_Choice(240, 4,
-                                      {_("Slow"), _("Medium"), _("Fast")},
+                                      {_P("Filter|Resonance|Response|", "Slow"), _P("Filter|Resonance|Response|", "Medium"), _P("Filter|Resonance|Response|", "Fast")},
                                       _("Response"), _("Determines whether the sweep through a frequency range will be performed fast or slow."))));
     slots.emplace_back((new PA_Choice(252, 4,
                                       {"1.00k", "1.12k", "1.26k", "1.41k", "1.58k", "1.78k", "2.00k", "2.24k", "2.51k", "2.82k", "3.16k", "3.55k", "3.98k", "4.47k", "5.01k", "5.62k", "6.31k", "7.08k", "7.94k", "8.91k", "10.0k"},
@@ -646,7 +646,7 @@ P_Filter::Auto_Resonance::Auto_Resonance()
 P_Filter::Resonance::Resonance()
 {
     slots.emplace_back((new PA_Choice(232, 4,
-                                      {_("2nd"), _("4th")},
+                                      {_P("Filter|Resonance|Order|", "2nd"), _P("Filter|Resonance|Order|", "4th")},
                                       _("Order"), _("The Order parameter of the resonance filters changes the steepness of the filters. 2nd order filters are 12dB/Octave while 4th order filters are 24dB/Octave."))));
     slots.emplace_back((new PA_Choice(272, 4,
                                       {"158.5", "177.8", "199.5", "223.9", "251.2", "281.8", "316.2", "354.8", "398.1", "446.7", "501.2", "562.3", "631.0", "707.9", "794.3", "891.3", "1.00k", "1.12k", "1.26k", "1.41k", "1.58k", "1.78k", "2.00k", "2.24k", "2.51k", "2.82k", "3.16k", "3.55k", "3.98k", "4.47k", "5.01k", "5.62k", "6.31k", "7.08k", "7.94k", "8.91k", "10.0k", "11.2k", "12.6k", "14.1k"},
@@ -675,13 +675,13 @@ P_Filter::Vintage_Phaser::Vintage_Phaser()
                        ->with_min_max(0, 100)
                        ->with_modifier_at(32));
     slots.emplace_back((new PA_Choice(252, 4,
-                                      {_("Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
+                                      {_P("*|Tempo|", "Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
                                       _("Tempo"), _("The Tempo parameter sets the relationship to the global Tempo."))));
     slots.emplace_back((new PA_Integer(260, 4, _("Feedback"), _("Controls the amount of feedback in the Phaser. Setting this parameter to \"-100\" reverses the phase of the signal that is fed back to the algorithm Input.")))
                        ->with_min_max(-100, 100)
                        ->with_modifier_at(36));
     slots.emplace_back((new PA_Choice(264, 4,
-                                      {"Low", "High"},
+                                      {_P("Filter|Phaser|Range|", "Low"), _P("Filter|Phaser|Range|", "High")},
                                       _("Range"), _("Determines whether the phasing effect should be mainly on the high- of low-end frequencies."))));
     slots.emplace_back((new PA_Boolean(268, 4, _("Phase Rev"/*Phase Reverse*/), _("An LFO phase change that causes a small Delay in one of the waveform starting points. When applied, the Left and Right outputs will start the current waveform at two different points giving you a more extreme wide spread phasing effect.")))
                        ->with_inversion());
@@ -705,13 +705,13 @@ P_Filter::Smooth_Phaser::Smooth_Phaser()
                        ->with_min_max(0, 100)
                        ->with_modifier_at(32));
     slots.emplace_back((new PA_Choice(252, 4,
-                                      {_("Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
+                                      {_P("*|Tempo|", "Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
                                       _("Tempo"), _("The Tempo parameter sets the relationship to the global Tempo."))));
     slots.emplace_back((new PA_Integer(260, 4, _("Feedback"), _("Controls the amount of feedback in the Phaser. Setting this parameter to \"-100\" reverses the phase of the signal that is fed back to the algorithm Input.")))
                        ->with_min_max(-100, 100)
                        ->with_modifier_at(36));
     slots.emplace_back((new PA_Choice(264, 4,
-                                      {"Low", "High"},
+                                      {_P("Filter|Phaser|Range|", "Low"), _P("Filter|Phaser|Range|", "High")},
                                       _("Range"), _("Determines whether the phasing effect should be mainly on the high- of low-end frequencies."))));
     slots.emplace_back((new PA_Boolean(268, 4, _("Phase Rev"/*Phase Reverse*/), _("An LFO phase change that causes a small Delay in one of the waveform starting points. When applied, the Left and Right outputs will start the current waveform at two different points giving you a more extreme wide spread phasing effect.")))
                        ->with_inversion());
@@ -735,7 +735,7 @@ P_Filter::Tremolo::Tremolo()
                        ->with_min_max(0, 100)
                        ->with_modifier_at(32));
     slots.emplace_back((new PA_Choice(252, 4,
-                                      {_("Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
+                                      {_P("*|Tempo|", "Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
                                       _("Tempo"), _("The Tempo parameter sets the relationship to the global Tempo."))));
     slots.emplace_back((new PA_Integer(260, 4, _("LFO P Width"/*LFO Pulse Width*/), _("Controls the division of the upper and the lower part of the current waveform, e.g. if Pulse Width is set to 75%, the upper half of the waveform will be on for 75% of the time.")))
                        ->with_min_max(0, 100));
@@ -744,7 +744,7 @@ P_Filter::Tremolo::Tremolo()
                                       _("Hi Cut"), _("Attenuates the high frequencies of the Tremolo effect. Use the Hi Cut filter to create a less dominant Tremolo effect while keeping the Depth.")))
                        ->with_modifier_at(36));
     slots.emplace_back((new PA_Choice(256, 4,
-                                      {_("Soft"), _("Hard")},
+                                      {_P("Filter|Tremolo|Type|", "Soft"), _P("Filter|Tremolo|Type|", "Hard")},
                                       _("Type"), _("Two variations of the steepness of the Tremolo Curve are available. Listen and select."))));
     slots.emplace_back((new PA_Integer(284, 4, _("Out level"), _("Sets the overall Output level of this block.")))
                        ->with_min_max(-100, 0)
@@ -762,7 +762,7 @@ P_Filter::Panner::Panner()
                        ->with_min_max(0, 100)
                        ->with_modifier_at(32));
     slots.emplace_back((new PA_Choice(252, 4,
-                                      {_("Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
+                                      {_P("*|Tempo|", "Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
                                       _("Tempo"), _("The Tempo parameter sets the relationship to the global Tempo."))));
     slots.emplace_back((new PA_Integer(284, 4, _("Out level"), _("Sets the overall Output level of this block.")))
                        ->with_min_max(-100, 0)
@@ -803,7 +803,7 @@ P_Modulation::Classic_Chorus::Classic_Chorus()
                        ->with_min_max(0, 100)
                        ->with_modifier_at(84));
     slots.emplace_back((new PA_Choice(368, 4,
-                                      {_("Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
+                                      {_P("*|Tempo|", "Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
                                       _("Tempo"), _("The Tempo parameter sets the relationship to the global Tempo."))));
     slots.emplace_back((new PA_Choice(372, 4,
                                       {"19.95", "22.39", "25.12", "28.18", "31.62", "35.48", "39.81", "44.67", "50.12", "56.23", "63.10", "70.79", "79.43", "89.13", "100.0", "112.2", "125.9", "141.3", "158.5", "177.8", "199.5", "223.9", "251.2", "281.8", "316.2", "354.8", "398.1", "446.7", "501.2", "562.3", "631.0", "707.9", "794.3", "891.3", "1.00k", "1.12k", "1.26k", "1.41k", "1.58k", "1.78k", "2.00k", "2.24k", "2.51k", "2.82k", "3.16k", "3.55k", "3.98k", "4.47k", "5.01k", "5.62k", "6.31k", "7.08k", "7.94k", "8.91k", "10.0k", "11.2k", "12.6k", "14.1k", "15.8k", "17.8k", _("Off")},
@@ -829,7 +829,7 @@ P_Modulation::Advanced_Chorus::Advanced_Chorus()
                        ->with_min_max(0, 100)
                        ->with_modifier_at(84));
     slots.emplace_back((new PA_Choice(368, 4,
-                                      {_("Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
+                                      {_P("*|Tempo|", "Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
                                       _("Tempo"), _("The Tempo parameter sets the relationship to the global Tempo."))));
     slots.emplace_back((new PA_Choice(372, 4,
                                       {"19.95", "22.39", "25.12", "28.18", "31.62", "35.48", "39.81", "44.67", "50.12", "56.23", "63.10", "70.79", "79.43", "89.13", "100.0", "112.2", "125.9", "141.3", "158.5", "177.8", "199.5", "223.9", "251.2", "281.8", "316.2", "354.8", "398.1", "446.7", "501.2", "562.3", "631.0", "707.9", "794.3", "891.3", "1.00k", "1.12k", "1.26k", "1.41k", "1.58k", "1.78k", "2.00k", "2.24k", "2.51k", "2.82k", "3.16k", "3.55k", "3.98k", "4.47k", "5.01k", "5.62k", "6.31k", "7.08k", "7.94k", "8.91k", "10.0k", "11.2k", "12.6k", "14.1k", "15.8k", "17.8k", _("Off")},
@@ -863,7 +863,7 @@ P_Modulation::Classic_Flanger::Classic_Flanger()
                        ->with_min_max(0, 100)
                        ->with_modifier_at(84));
     slots.emplace_back((new PA_Choice(368, 4,
-                                      {_("Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
+                                      {_P("*|Tempo|", "Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
                                       _("Tempo"), _("The Tempo parameter sets the relationship to the global Tempo."))));
     slots.emplace_back((new PA_Choice(372, 4,
                                       {"19.95", "22.39", "25.12", "28.18", "31.62", "35.48", "39.81", "44.67", "50.12", "56.23", "63.10", "70.79", "79.43", "89.13", "100.0", "112.2", "125.9", "141.3", "158.5", "177.8", "199.5", "223.9", "251.2", "281.8", "316.2", "354.8", "398.1", "446.7", "501.2", "562.3", "631.0", "707.9", "794.3", "891.3", "1.00k", "1.12k", "1.26k", "1.41k", "1.58k", "1.78k", "2.00k", "2.24k", "2.51k", "2.82k", "3.16k", "3.55k", "3.98k", "4.47k", "5.01k", "5.62k", "6.31k", "7.08k", "7.94k", "8.91k", "10.0k", "11.2k", "12.6k", "14.1k", "15.8k", "17.8k", _("Off")},
@@ -896,7 +896,7 @@ P_Modulation::Advanced_Flanger::Advanced_Flanger()
                        ->with_min_max(0, 100)
                        ->with_modifier_at(84));
     slots.emplace_back((new PA_Choice(368, 4,
-                                      {_("Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
+                                      {_P("*|Tempo|", "Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
                                       _("Tempo"), _("The Tempo parameter sets the relationship to the global Tempo."))));
     slots.emplace_back((new PA_Choice(372, 4,
                                       {"19.95", "22.39", "25.12", "28.18", "31.62", "35.48", "39.81", "44.67", "50.12", "56.23", "63.10", "70.79", "79.43", "89.13", "100.0", "112.2", "125.9", "141.3", "158.5", "177.8", "199.5", "223.9", "251.2", "281.8", "316.2", "354.8", "398.1", "446.7", "501.2", "562.3", "631.0", "707.9", "794.3", "891.3", "1.00k", "1.12k", "1.26k", "1.41k", "1.58k", "1.78k", "2.00k", "2.24k", "2.51k", "2.82k", "3.16k", "3.55k", "3.98k", "4.47k", "5.01k", "5.62k", "6.31k", "7.08k", "7.94k", "8.91k", "10.0k", "11.2k", "12.6k", "14.1k", "15.8k", "17.8k", _("Off")},
@@ -937,7 +937,7 @@ P_Modulation::Vibrato::Vibrato()
                        ->with_min_max(0, 100)
                        ->with_modifier_at(84));
     slots.emplace_back((new PA_Choice(368, 4,
-                                      {_("Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
+                                      {_P("*|Tempo|", "Ignored"), "1", "1/2D", "1/2", "1/2T", "1/4D", "1/4", "1/4T", "1/8D", "1/8", "1/8T", "1/16D", "1/16", "1/16T", "1/32D", "1/32", "1/32T"},
                                       _("Tempo"), _("The Tempo parameter sets the relationship to the global Tempo."))));
     slots.emplace_back((new PA_Choice(372, 4,
                                       {"19.95", "22.39", "25.12", "28.18", "31.62", "35.48", "39.81", "44.67", "50.12", "56.23", "63.10", "70.79", "79.43", "89.13", "100.0", "112.2", "125.9", "141.3", "158.5", "177.8", "199.5", "223.9", "251.2", "281.8", "316.2", "354.8", "398.1", "446.7", "501.2", "562.3", "631.0", "707.9", "794.3", "891.3", "1.00k", "1.12k", "1.26k", "1.41k", "1.58k", "1.78k", "2.00k", "2.24k", "2.51k", "2.82k", "3.16k", "3.55k", "3.98k", "4.47k", "5.01k", "5.62k", "6.31k", "7.08k", "7.94k", "8.91k", "10.0k", "11.2k", "12.6k", "14.1k", "15.8k", "17.8k", _("Off")},

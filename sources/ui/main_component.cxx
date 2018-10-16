@@ -151,8 +151,8 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     chk_noise_gate->down_box(FL_DOWN_BOX);
     chk_noise_gate->color(FL_BACKGROUND_COLOR);
     chk_noise_gate->selection_color(FL_FOREGROUND_COLOR);
-    chk_noise_gate->labeltype(FL_NORMAL_LABEL);
-    chk_noise_gate->labelfont(0);
+    chk_noise_gate->labeltype(FL_ENGRAVED_LABEL);
+    chk_noise_gate->labelfont(10);
     chk_noise_gate->labelsize(12);
     chk_noise_gate->labelcolor(FL_FOREGROUND_COLOR);
     chk_noise_gate->align(Fl_Align(FL_ALIGN_LEFT|FL_ALIGN_INSIDE));
@@ -237,8 +237,8 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
       chk_compressor->down_box(FL_DOWN_BOX);
       chk_compressor->color(FL_BACKGROUND_COLOR);
       chk_compressor->selection_color(FL_FOREGROUND_COLOR);
-      chk_compressor->labeltype(FL_NORMAL_LABEL);
-      chk_compressor->labelfont(0);
+      chk_compressor->labeltype(FL_ENGRAVED_LABEL);
+      chk_compressor->labelfont(10);
       chk_compressor->labelsize(12);
       chk_compressor->labelcolor(FL_FOREGROUND_COLOR);
       chk_compressor->align(Fl_Align(FL_ALIGN_LEFT|FL_ALIGN_INSIDE));
@@ -327,8 +327,8 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     chk_equalizer->down_box(FL_DOWN_BOX);
     chk_equalizer->color(FL_BACKGROUND_COLOR);
     chk_equalizer->selection_color(FL_FOREGROUND_COLOR);
-    chk_equalizer->labeltype(FL_NORMAL_LABEL);
-    chk_equalizer->labelfont(0);
+    chk_equalizer->labeltype(FL_ENGRAVED_LABEL);
+    chk_equalizer->labelfont(10);
     chk_equalizer->labelsize(12);
     chk_equalizer->labelcolor(FL_FOREGROUND_COLOR);
     chk_equalizer->align(Fl_Align(FL_ALIGN_LEFT|FL_ALIGN_INSIDE));
@@ -462,8 +462,8 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     chk_filter->down_box(FL_DOWN_BOX);
     chk_filter->color(FL_BACKGROUND_COLOR);
     chk_filter->selection_color(FL_FOREGROUND_COLOR);
-    chk_filter->labeltype(FL_NORMAL_LABEL);
-    chk_filter->labelfont(0);
+    chk_filter->labeltype(FL_ENGRAVED_LABEL);
+    chk_filter->labelfont(10);
     chk_filter->labelsize(12);
     chk_filter->labelcolor(FL_FOREGROUND_COLOR);
     chk_filter->align(Fl_Align(FL_ALIGN_LEFT|FL_ALIGN_INSIDE));
@@ -659,8 +659,8 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     chk_pitch->down_box(FL_DOWN_BOX);
     chk_pitch->color(FL_BACKGROUND_COLOR);
     chk_pitch->selection_color(FL_FOREGROUND_COLOR);
-    chk_pitch->labeltype(FL_NORMAL_LABEL);
-    chk_pitch->labelfont(0);
+    chk_pitch->labeltype(FL_ENGRAVED_LABEL);
+    chk_pitch->labelfont(10);
     chk_pitch->labelsize(12);
     chk_pitch->labelcolor(FL_FOREGROUND_COLOR);
     chk_pitch->align(Fl_Align(FL_ALIGN_LEFT|FL_ALIGN_INSIDE));
@@ -856,8 +856,8 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
     chk_chorus->down_box(FL_DOWN_BOX);
     chk_chorus->color(FL_BACKGROUND_COLOR);
     chk_chorus->selection_color(FL_FOREGROUND_COLOR);
-    chk_chorus->labeltype(FL_NORMAL_LABEL);
-    chk_chorus->labelfont(0);
+    chk_chorus->labeltype(FL_ENGRAVED_LABEL);
+    chk_chorus->labelfont(10);
     chk_chorus->labelsize(12);
     chk_chorus->labelcolor(FL_FOREGROUND_COLOR);
     chk_chorus->align(Fl_Align(FL_ALIGN_LEFT|FL_ALIGN_INSIDE));
@@ -1051,8 +1051,8 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
       chk_delay->down_box(FL_DOWN_BOX);
       chk_delay->color(FL_BACKGROUND_COLOR);
       chk_delay->selection_color(FL_FOREGROUND_COLOR);
-      chk_delay->labeltype(FL_NORMAL_LABEL);
-      chk_delay->labelfont(0);
+      chk_delay->labeltype(FL_ENGRAVED_LABEL);
+      chk_delay->labelfont(10);
       chk_delay->labelsize(12);
       chk_delay->labelcolor(FL_FOREGROUND_COLOR);
       chk_delay->align(Fl_Align(FL_ALIGN_LEFT|FL_ALIGN_INSIDE));
@@ -1246,8 +1246,8 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
         chk_reverb->down_box(FL_DOWN_BOX);
         chk_reverb->color(FL_BACKGROUND_COLOR);
         chk_reverb->selection_color(FL_FOREGROUND_COLOR);
-        chk_reverb->labeltype(FL_NORMAL_LABEL);
-        chk_reverb->labelfont(0);
+        chk_reverb->labeltype(FL_ENGRAVED_LABEL);
+        chk_reverb->labelfont(10);
         chk_reverb->labelsize(12);
         chk_reverb->labelcolor(FL_FOREGROUND_COLOR);
         chk_reverb->align(Fl_Align(FL_ALIGN_LEFT|FL_ALIGN_INSIDE));

@@ -193,7 +193,7 @@ widget_class Main_Component {open
   }
   decl {static void on_leave_parameter_control(Fl_Widget *w, void *user_data);} {private local
   }
-  decl {void update_eq_display();} {selected private local
+  decl {void update_eq_display();} {private local
   }
   Fl_Browser br_bank {
     callback {on_selected_patch();}
@@ -223,12 +223,12 @@ widget_class Main_Component {open
     callback {on_clicked_change();}
     xywh {515 45 70 20} labelsize 12
   }
-  Fl_Group {} {
+  Fl_Group {} {open
     xywh {0 225 261 225} box THIN_UP_BOX
   } {
     Fl_Check_Button chk_noise_gate {
       label {Noise gate}
-      xywh {1 226 128 23} down_box DOWN_BOX labelsize 12
+      xywh {1 226 128 23} down_box DOWN_BOX labeltype ENGRAVED_LABEL labelfont 10 labelsize 12
       class Fl_Check_Button_Ex
     }
     Fl_Group box_ng1 {open
@@ -260,7 +260,7 @@ widget_class Main_Component {open
     } {
       Fl_Check_Button chk_compressor {
         label Compressor
-        xywh {131 226 128 23} down_box DOWN_BOX labelsize 12
+        xywh {131 226 128 23} down_box DOWN_BOX labeltype ENGRAVED_LABEL labelfont 10 labelsize 12
         class Fl_Check_Button_Ex
       }
       Fl_Group box_cpr1 {open
@@ -294,7 +294,7 @@ widget_class Main_Component {open
   } {
     Fl_Check_Button chk_equalizer {
       label Equalizer
-      xywh {1 451 258 23} down_box DOWN_BOX labelsize 12
+      xywh {1 451 258 23} down_box DOWN_BOX labeltype ENGRAVED_LABEL labelfont 10 labelsize 12
       class Fl_Check_Button_Ex
     }
     Fl_Group box_eq1 {open
@@ -343,14 +343,14 @@ widget_class Main_Component {open
   } {
     Fl_Check_Button chk_filter {
       label Filter
-      xywh {261 226 128 23} down_box DOWN_BOX labelsize 12
+      xywh {261 226 128 23} down_box DOWN_BOX labeltype ENGRAVED_LABEL labelfont 10 labelsize 12
       class Fl_Check_Button_Ex
     }
     Fl_Group box_flt1 {open
       xywh {265 275 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
-    Fl_Group box_flt2 {open selected
+    Fl_Group box_flt2 {open
       xywh {325 275 60 60} box THIN_UP_BOX
       class Fl_Group_Ex
     } {}
@@ -412,7 +412,7 @@ widget_class Main_Component {open
   } {
     Fl_Check_Button chk_pitch {
       label Pitch
-      xywh {391 226 128 23} down_box DOWN_BOX labelsize 12
+      xywh {391 226 128 23} down_box DOWN_BOX labeltype ENGRAVED_LABEL labelfont 10 labelsize 12
       class Fl_Check_Button_Ex
     }
     Fl_Group box_pit1 {open
@@ -481,7 +481,7 @@ widget_class Main_Component {open
   } {
     Fl_Check_Button chk_chorus {
       label {Chorus/Flanger}
-      xywh {521 226 128 23} down_box DOWN_BOX labelsize 12
+      xywh {521 226 128 23} down_box DOWN_BOX labeltype ENGRAVED_LABEL labelfont 10 labelsize 12
       class Fl_Check_Button_Ex
     }
     Fl_Group box_cho1 {open
@@ -549,7 +549,7 @@ widget_class Main_Component {open
     } {
       Fl_Check_Button chk_delay {
         label Delay
-        xywh {651 226 128 23} down_box DOWN_BOX labelsize 12
+        xywh {651 226 128 23} down_box DOWN_BOX labeltype ENGRAVED_LABEL labelfont 10 labelsize 12
         class Fl_Check_Button_Ex
       }
       Fl_Group box_del1 {open
@@ -617,7 +617,7 @@ widget_class Main_Component {open
       } {
         Fl_Check_Button chk_reverb {
           label Reverb
-          xywh {781 226 128 23} down_box DOWN_BOX labelsize 12
+          xywh {781 226 128 23} down_box DOWN_BOX labeltype ENGRAVED_LABEL labelfont 10 labelsize 12
           class Fl_Check_Button_Ex
         }
         Fl_Group box_rev1 {open

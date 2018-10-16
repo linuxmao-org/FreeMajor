@@ -18,7 +18,7 @@ Note that you might need to install `git` as well to fetch the sources.
 ### First compilation
 
 ```
-git clone --recursive https://github.com/jpcima/gmajctl.git
+git clone --recursive https://github.com/linuxmao-org/gmajctl.git
 mkdir gmajctl/build
 cd gmajctl/build
 cmake ..

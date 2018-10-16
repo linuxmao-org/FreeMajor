@@ -1,0 +1,131 @@
+// -*- mode: adoc; -*-
+
+:lang: en
+:toc-title: Table of content
+:last-update-label: Last update
+:warning-caption: Attention
+
+= User manual
+Julien Taverna, Jean Pierre Cimalando et Olivier Humbert
+v0.1
+:toc:
+
+[.Lead]
+This manual documents the use of gmajctl program, a MIDI controler for TC Electronic G-Major multi-effect. +
+gmajctl is a free and open source software. +
+If the software présents a problem, please post an issue on project page&nbsp;: +
+https://github.com/linuxmao-org/gmajctl
+
+== Description
+
+gmajctl is a MIDI controler compatible with TC Electronic G-Major multi-effect.
+
+This software makes the advanced use of multi-effect easy to use thanks to a graphical interface that groups all the parameters of the presets.
+
+It offers the possibility of retrieving user presets from the G-Major, creating new ones, modifying existing ones, importing them, exporting them ...
+
+You will discover all the possibilities offered by gmajctl by reading this manual.
+
+== Installation
+
+The project provides downloads for the Windows system. +
+https://github.com/linuxmao-org/gmajctl/releases
+
+If you do not have a downloadable version for your operating system, you will need to recover the source code and build it yourself.
+Visit the project home page and follow the construction steps in the file README.md.
+
+== How to use
+
+When the controller is opened, the window displays the graphical interface where you can find all the settings that are physically available on the G-Major and the functions needed to transfer the data to the G-Major.
+
+.Edition window
+image::../resources/fr/screen.png[500,500]
+
+The layout of the controller is divided into two parts&nbsp;:
+
+The first part at the top of the user interface groups&nbsp;:
+
+* Presets
+
+image::../resources/fr/presets.png[presets,357,105]
+
+* MIDI
+
+image::../resources/fr/midi.png[midi,316,73]
+
+* Paramètres préréglages
+
+image::../resources/fr/parameters.png[parameters,586,100]
+
+* Infos paramètres
+
+image::../resources/fr/infos.png[infos,321,110]
+
+The second part at the bottom of the user interface groups the effects&nbsp;:
+
+- Noise Gate
+
+- Compressor
+
+- Equalizer
+
+- Filter
+
+- Pitch
+
+- Chorus / Flanger
+
+- Delay
+
+- Reverb
+
+L'utilisation des différents algorithmes est documentée dans le manuel du G-Major. C'est pour cette raison que nous n'y reviendrons pas ici.
+
+=== Préréglages
+
+Selection Window - Select a preset on which you want to work in the list of presets. If the real-time option is activated, the preset will be sent to the G-Major who will load this patch into the user bank and change the preset to use it.
+
+Load - Permet de charger un fichier de banque de préréglages .realmajor enregistré précédemment. Cela réinitialise gmajctl et affiche uniquement les préréglages contenus dans la banque chargée.
+
+Save - Enregistre l'ensemble des préréglages en cours d'édition dans gmajctl dans un fichier de banque de préréglages .realmajor.
+
+New - Crée un nouveau préréglage vide dans la position sélectionnée. Si un préréglage est présent sur cet emplacement il est détruit.
+
+Change - Si l’option temps réel est désactivée, ce bouton fait changer le G-Major de préréglage.
+
+Copy - Copie un préréglage existant sur la position sélectionnée. Si un préréglage est présent sur cet emplacement il est détruit.
+
+Delete - Détruit le préréglage sélectionné.
+
+Import - Importe un préréglage précédemment exporté ou téléchargé sur guitar patches
+
+Export - Exporte les préréglages en fichier .realpatch, qui peuvent etre déposés ensuite sur guitar patches ou échangés avec d'autres utilisateurs.
+
+Voilà un lien vers guitar patches pour les gourmands&nbsp;:
+https://guitarpatches.com/patches.php?unit=GMajor
+
+=== MIDI
+
+Le menu MIDI permet de sélectionner l’interface midi-out à utiliser.
+La coche real time permet de basculer dans le mode temps réel. Ce mode permet d’appliquer les modification de manière instantanée.
+Envoie – Ce bouton envoi le préréglage courant au G-Major quand le mode temps réel n’est pas activé.
+
+=== Paramètres préréglages
+
+Ici on règle le routage, les relais, le tap tempo, le volume du préréglage. Pour changer le nom du préréglage en cours, il suffit d’écrire le nouveau nom dans le champ patchname et appuyer sur entrée. En mode temps réel, le nouveau nom est envoyé au G-Major qui le met à jour.
+
+Le bouton 'modifiers' ouvre une fenêtre qui permet d'affecter un paramètre à un 'modifier' et de permettre le réglage de la courbe de réponse.
+Elle se présente sous la forme suivante&nbsp;:
+
+.La fenêtre d'assignation et de réglage modifiers.
+image::../resources/modifiers.png[500,500]
+
+=== Infos paramètres
+
+Cette fenêtre affiche la description de chaque interrupteur ou potentiomètre permettant le réglage des effets lors d’un survol avec le pointeur de la souris.
+
+== À propos
+
+gmajctl est un logiciel développé par Jean Pierre Cimalando en 2018. +
+
+Ce logiciel est réalisé avec un objectif&nbsp;: faciliter l'utilisation du multi-effets G-Major qui n'est pilotable que par les boutons présents en façade ou par injection d'un message Sysex.

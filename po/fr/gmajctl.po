@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gmajctl 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-14 03:03+0200\n"
+"POT-Creation-Date: 2018-10-16 03:39+0200\n"
 "PO-Revision-Date: 2018-10-08 14:52+0200\n"
 "Last-Translator: Julien Taverna <jujudusud@gmail.com>\n"
 "Language-Team: French\n"
@@ -117,10 +117,9 @@ msgid ""
 "spread phasing effect."
 msgstr ""
 "Un changement de phase du LFO qui provoque un petit délai dans l'un des "
-"points de départ de la forme d'onde. Lorsqu'appliqué, les "
-"sorties gauche et droite démarrent la forme d'onde actuelle en deux points "
-"différents, ce qui procure un effet de phasage plus large et plus "
-"extrême."
+"points de départ de la forme d'onde. Lorsqu'appliqué, les sorties gauche et "
+"droite démarrent la forme d'onde actuelle en deux points différents, ce qui "
+"procure un effet de phasage plus large et plus extrême."
 
 #: sources/model/parameter.cc:99
 msgid "Assignment"
@@ -172,7 +171,6 @@ msgstr "Annuler"
 
 #. Fl_Choice* ch_midi_out
 #: sources/ui/main_component.cxx:142
-
 msgid "Change"
 msgstr "Changer"
 
@@ -859,8 +857,8 @@ msgid ""
 "Delay the Delay in the two channels should not appear at the exact same time."
 msgstr ""
 "Décale les répétitions du délai dans le canal droit uniquement. Pour une "
-"véritable stéréo large, le délai dans les deux canaux ne devrait "
-"pas apparaître exactement au même moment."
+"véritable stéréo large, le délai dans les deux canaux ne devrait pas "
+"apparaître exactement au même moment."
 
 #: sources/model/parameter.cc:372
 msgid "Offsets the first Voice in the Detune block."
@@ -1020,9 +1018,9 @@ msgid ""
 "of the Chorus effect you are looking for."
 msgstr ""
 "Réduit les hautes fréquences dans l’effet Chorus. Essayez d’utiliser le "
-"paramètre coupe-haut si vous sentez que le Chorus est trop "
-"dominant dans votre son et que le fait de baisser le niveau de Mix ou Sortie "
-"ne vous donne pas l'atténuation de l'effet Chorus que vous recherchez."
+"paramètre coupe-haut si vous sentez que le Chorus est trop dominant dans "
+"votre son et que le fait de baisser le niveau de Mix ou Sortie ne vous donne "
+"pas l'atténuation de l'effet Chorus que vous recherchez."
 
 #: sources/model/parameter.cc:870 sources/model/parameter.cc:903
 msgid ""
@@ -1032,9 +1030,9 @@ msgid ""
 "dampening of the Flanger effect you are looking for."
 msgstr ""
 "Réduit les hautes fréquences dans l’effet Flanger. Essayez d’utiliser le "
-"paramètre coupe-haut si vous sentez que le Flanger est trop "
-"dominant dans votre son et que le fait de baisser le niveau Mix ou Sortie ne "
-"vous donne pas l'atténuation de l'effet Flanger que vous recherchez."
+"paramètre coupe-haut si vous sentez que le Flanger est trop dominant dans "
+"votre son et que le fait de baisser le niveau Mix ou Sortie ne vous donne "
+"pas l'atténuation de l'effet Flanger que vous recherchez."
 
 #. Fl_Slider_Ex* sl_tap_tempo
 #: sources/model/parameter.cc:992 sources/ui/main_component.cxx:1481
@@ -1110,9 +1108,9 @@ msgid ""
 "routing delay and reverb in parallel. Parallel is routing pitch, Chorus "
 "flanger, delay and reverb."
 msgstr ""
-"Routage : Série route les blocs d'effets en série. Semi parallèle route délai et "
-"réverbération en parallèle. Parallèle route hauteur, chorus flanger, délai "
-"et réverbération en parallèle."
+"Routage : Série route les blocs d'effets en série. Semi parallèle route "
+"délai et réverbération en parallèle. Parallèle route hauteur, chorus "
+"flanger, délai et réverbération en parallèle."
 
 #. Fl_Button* btn_load
 #: sources/ui/main_component.cxx:1544
@@ -1367,8 +1365,8 @@ msgid ""
 "filters. 2nd order filters are 12dB/Octave while 4th order filters are 24dB/"
 "Octave."
 msgstr ""
-"Le paramètre Ordre des filtres de résonance modifie la pente des filtres. Les "
-"filtres du 2ème ordre sont de 12dB/Octave alors que les filtres du 4ème "
+"Le paramètre Ordre des filtres de résonance modifie la pente des filtres. "
+"Les filtres du 2ème ordre sont de 12dB/Octave alors que les filtres du 4ème "
 "ordre sont de 24dB/Octave."
 
 #: sources/model/parameter.cc:259
@@ -1476,9 +1474,9 @@ msgid ""
 "Level will give you a more ambient sound, since the Early Reflection "
 "patterns will become more obvious."
 msgstr ""
-"Ce paramètre ajuste le niveau de réverbération de champ diffus. "
-"Réduire le niveau de réverbération vous donnera un son plus ambiant, "
-"puisque les motifs de réflexion précoce deviendront plus évidents."
+"Ce paramètre ajuste le niveau de réverbération de champ diffus. Réduire le "
+"niveau de réverbération vous donnera un son plus ambiant, puisque les motifs "
+"de réflexion précoce deviendront plus évidents."
 
 #: sources/model/parameter.cc:538
 msgid ""

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.6.2">
-<meta name="author" content="Julien Taverna, Jean Pierre Cimalando et Olivier Humbert">
-<title>Manuel de l&#8217;utilisateur</title>
+<meta name="author" content="Julien Taverna, Jean Pierre Cimalando and Olivier Humbert">
+<title>User manual</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -428,22 +428,22 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article">
 <div id="header">
-<h1>Manuel de l&#8217;utilisateur</h1>
+<h1>User manual</h1>
 <div class="details">
-<span id="author" class="author">Julien Taverna, Jean Pierre Cimalando et Olivier Humbert</span><br>
+<span id="author" class="author">Julien Taverna, Jean Pierre Cimalando and Olivier Humbert</span><br>
 <span id="revnumber">version 0.1</span>
 </div>
 <div id="toc" class="toc">
-<div id="toctitle">Table des matières</div>
+<div id="toctitle">Table of content</div>
 <ul class="sectlevel1">
 <li><a href="#_description">Description</a></li>
 <li><a href="#_installation">Installation</a></li>
-<li><a href="#_utilisation">Utilisation</a>
+<li><a href="#_how_to_use">How to use</a>
 <ul class="sectlevel2">
-<li><a href="#_préréglages">Préréglages</a></li>
+<li><a href="#_patches">Patches</a></li>
 <li><a href="#_midi">MIDI</a></li>
-<li><a href="#_paramètres_préréglages">Paramètres préréglages</a></li>
-<li><a href="#_infos_paramètres">Infos paramètres</a></li>
+<li><a href="#_patch_parameters">Patch parameters</a></li>
+<li><a href="#_parameter_infos">Parameter infos</a></li>
 </ul>
 </li>
 <li><a href="#_À_propos">À propos</a></li>
@@ -454,9 +454,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph Lead">
-<p>Ce manuel documente l&#8217;utilisation du programme gmajctl, un contrôleur MIDI pour le multi-effets de TC Electronic G-Major.<br>
-gmajctl est un logiciel libre et gratuit.<br>
-Si le logiciel présente un problème, veuillez déposer un rapport sur la page de projet&nbsp;:<br>
+<p>This manual documents the use of gmajctl program, a MIDI controler for TC Electronic G-Major multi-effect.<br>
+gmajctl is a free and open source software.<br>
+If the software présents a problem, please post an issue on project page&nbsp;:<br>
 <a href="https://github.com/linuxmao-org/gmajctl" class="bare">https://github.com/linuxmao-org/gmajctl</a></p>
 </div>
 </div>
@@ -465,16 +465,16 @@ Si le logiciel présente un problème, veuillez déposer un rapport sur la page 
 <h2 id="_description">Description</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>gmajctl est un contrôleur MIDI compatible avec le multi-effets G-Major de TC Electronic.</p>
+<p>gmajctl is a MIDI controler compatible with TC Electronic G-Major multi-effect.</p>
 </div>
 <div class="paragraph">
-<p>Ce programme permet de rendre conviviale l&#8217;utilisation avancée du multi-effets grâce à une interface graphique qui regroupe tous les paramètres des préréglages.</p>
+<p>This software makes the advanced use of multi-effect easy to use thanks to a graphical interface that groups all the parameters of the presets.</p>
 </div>
 <div class="paragraph">
-<p>Il offre la possibilité de récuperer dans le G-Major des préréglages utilisateur, d&#8217;en créer de nouveaux, de modifier ceux qui existent déjà, de les importer, de les exporter&#8230;&#8203;</p>
+<p>It offers the possibility of retrieving user presets from the G-Major, creating new ones, modifying existing ones, importing them, exporting them &#8230;&#8203;</p>
 </div>
 <div class="paragraph">
-<p>Vous allez découvrir toutes les possibilités offertes par gmajctl en lisant ce manuel.</p>
+<p>You will discover all the possibilities offered by gmajctl by reading this manual.</p>
 </div>
 </div>
 </div>
@@ -482,43 +482,43 @@ Si le logiciel présente un problème, veuillez déposer un rapport sur la page 
 <h2 id="_installation">Installation</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Le projet met à disposition des téléchargements pour le système Windows.<br>
+<p>The project provides downloads for the Windows system.<br>
 <a href="https://github.com/linuxmao-org/gmajctl/releases" class="bare">https://github.com/linuxmao-org/gmajctl/releases</a></p>
 </div>
 <div class="paragraph">
-<p>À défaut de disposer d&#8217;une version téléchargeable pour son système d&#8217;exploitation, il faudra récupérer le code source et le construire soi-même.
-Visitez alors la page d&#8217;accueil du projet, et suivez les étapes de construction indiquées dans le fichier README.md.</p>
+<p>If you do not have a downloadable version for your operating system, you will need to recover the source code and build it yourself.
+Visit the project home page and follow the construction steps in the file README.md.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_utilisation">Utilisation</h2>
+<h2 id="_how_to_use">How to use</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>À l&#8217;ouverture du contrôleur, la fenêtre affiche l&#8217;interface graphique où l&#8217;on retrouve tous les réglages qui sont physiquement disponibles sur le G-Major et les fonctions nécessaires au transfert des données vers le G-Major.</p>
+<p>When the controller is opened, the window displays the graphical interface where you can find all the settings that are physically available on the G-Major and the functions needed to transfer the data to the G-Major.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../resources/screen.png" alt="500" width="500">
+<img src="../resources/en/screen.png" alt="500" width="500">
 </div>
-<div class="title">Figure 1. La fenêtre d&#8217;édition</div>
-</div>
-<div class="paragraph">
-<p>La disposition du contrôleur se décompose en deux parties&nbsp;:</p>
+<div class="title">Figure 1. Edition window</div>
 </div>
 <div class="paragraph">
-<p>La première partie, en haut de l&#8217;interface utilisateur regroupe&nbsp;:</p>
+<p>The layout of the controller is divided into two parts&nbsp;:</p>
+</div>
+<div class="paragraph">
+<p>The first part at the top of the user interface groups&nbsp;:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Préréglages</p>
+<p>Patches</p>
 </li>
 </ul>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../resources/presets.png" alt="presets" width="357" height="105">
+<img src="../resources/en/presets.png" alt="presets" width="357" height="105">
 </div>
 </div>
 <div class="ulist">
@@ -530,35 +530,35 @@ Visitez alors la page d&#8217;accueil du projet, et suivez les étapes de constr
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../resources/midi.png" alt="midi" width="316" height="73">
+<img src="../resources/en/midi.png" alt="midi" width="316" height="73">
 </div>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Paramètres préréglages</p>
+<p>Patch parameters</p>
 </li>
 </ul>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../resources/parameters.png" alt="parameters" width="586" height="100">
+<img src="../resources/en/parameters.png" alt="parameters" width="586" height="100">
 </div>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Infos paramètres</p>
+<p>Parameter infos</p>
 </li>
 </ul>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../resources/infos.png" alt="infos" width="321" height="110">
+<img src="../resources/en/infos.png" alt="infos" width="321" height="110">
 </div>
 </div>
 <div class="paragraph">
-<p>La deuxième partie, en bas de l&#8217;interface utilisateur regroupe les effets&nbsp;:</p>
+<p>The second part at the bottom of the user interface groups the effects&nbsp;:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -566,93 +566,93 @@ Visitez alors la page d&#8217;accueil du projet, et suivez les étapes de constr
 <p>Noise Gate</p>
 </li>
 <li>
-<p>Compresseur</p>
+<p>Compressor</p>
 </li>
 <li>
-<p>Egaliseur</p>
+<p>Equalizer</p>
 </li>
 <li>
-<p>Filtre</p>
+<p>Filter</p>
 </li>
 <li>
-<p>Hauteur tonale</p>
+<p>Pitch</p>
 </li>
 <li>
 <p>Chorus / Flanger</p>
 </li>
 <li>
-<p>Délai</p>
+<p>Delay</p>
 </li>
 <li>
-<p>Réverbération</p>
+<p>Reverb</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>L&#8217;utilisation des différents algorithmes est documentée dans le manuel du G-Major. C&#8217;est pour cette raison que nous n&#8217;y reviendrons pas ici.</p>
+<p>The use of different algorithms is documented in the G-Major manual. It is for this reason that we will not return here.</p>
 </div>
 <div class="sect2">
-<h3 id="_préréglages">Préréglages</h3>
+<h3 id="_patches">Patches</h3>
 <div class="paragraph">
-<p>Fenêtre de selection - Sélectionnez un préréglage sur lequel vous voulez travailler dans la liste des préréglages. Si l’option temps réel est activée le préréglage sera envoyé au G-Major qui chargera ce patch dans la banque utilisateur et changera de preset pour l’utiliser.</p>
+<p>Selection Window - Select a preset on which you want to work in the list of presets. If the real-time option is activated, the preset will be sent to the G-Major who will load this patch into the user bank and change the preset to use it.</p>
 </div>
 <div class="paragraph">
-<p>Load - Permet de charger un fichier de banque de préréglages .realmajor enregistré précédemment. Cela réinitialise gmajctl et affiche uniquement les préréglages contenus dans la banque chargée.</p>
+<p>Load - Loads a previously saved .realmajor preset bank file. This resets gmajctl and displays only the presets contained in the loaded bank.</p>
 </div>
 <div class="paragraph">
-<p>Save - Enregistre l&#8217;ensemble des préréglages en cours d&#8217;édition dans gmajctl dans un fichier de banque de préréglages .realmajor.</p>
+<p>Save - Saves all the presets being edited in gmajctl to a preset bank file .realmajor.</p>
 </div>
 <div class="paragraph">
-<p>New - Crée un nouveau préréglage vide dans la position sélectionnée. Si un préréglage est présent sur cet emplacement il est détruit.</p>
+<p>New - Creates a new empty preset in the selected position. If a preset is present on this location it is destroyed.</p>
 </div>
 <div class="paragraph">
-<p>Change - Si l’option temps réel est désactivée, ce bouton fait changer le G-Major de préréglage.</p>
+<p>Change - If the real-time option is off, this button changes the G-Major preset.</p>
 </div>
 <div class="paragraph">
-<p>Copy - Copie un préréglage existant sur la position sélectionnée. Si un préréglage est présent sur cet emplacement il est détruit.</p>
+<p>Copy - Copy an existing preset to the selected position. If a preset is present on this location it is destroyed.</p>
 </div>
 <div class="paragraph">
-<p>Delete - Détruit le préréglage sélectionné.</p>
+<p>Delete - Destroys the selected preset.</p>
 </div>
 <div class="paragraph">
-<p>Import - Importe un préréglage précédemment exporté ou téléchargé sur guitar patches</p>
+<p>Import - Import presets previously exported or downloaded from guitar patches.</p>
 </div>
 <div class="paragraph">
-<p>Export - Exporte les préréglages en fichier .realpatch, qui peuvent etre déposés ensuite sur guitar patches ou échangés avec d&#8217;autres utilisateurs.</p>
+<p>Export - Exports presets as a .realpatch file, which can be dropped onto guitar patches or exchanged with other users.</p>
 </div>
 <div class="paragraph">
-<p>Voilà un lien vers guitar patches pour les gourmands&nbsp;:
+<p>Here is a link to guitar patches for gourmands&nbsp;:
 <a href="https://guitarpatches.com/patches.php?unit=GMajor" class="bare">https://guitarpatches.com/patches.php?unit=GMajor</a></p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_midi">MIDI</h3>
 <div class="paragraph">
-<p>Le menu MIDI permet de sélectionner l’interface midi-out à utiliser.
-La coche real time permet de basculer dans le mode temps réel. Ce mode permet d’appliquer les modification de manière instantanée.
-Envoie – Ce bouton envoi le préréglage courant au G-Major quand le mode temps réel n’est pas activé.</p>
+<p>The MIDI menu allows you to select the midi-out interface to use.
+The real time checkmark switches to the real-time mode. This mode allows you to apply changes instantly.
+Send - This button sends the current preset to the G-Major when the real-time mode is not activated.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_paramètres_préréglages">Paramètres préréglages</h3>
+<h3 id="_patch_parameters">Patch parameters</h3>
 <div class="paragraph">
-<p>Ici on règle le routage, les relais, le tap tempo, le volume du préréglage. Pour changer le nom du préréglage en cours, il suffit d’écrire le nouveau nom dans le champ patchname et appuyer sur entrée. En mode temps réel, le nouveau nom est envoyé au G-Major qui le met à jour.</p>
+<p>Here you set the routing, the relays, the tap tempo, the preset volume. To change the name of the current preset, simply write the new name in the patchname field and press enter. In real-time mode, the new name is sent to the G-Major which updates it.</p>
 </div>
 <div class="paragraph">
-<p>Le bouton 'modifiers' ouvre une fenêtre qui permet d&#8217;affecter un paramètre à un 'modifier' et de permettre le réglage de la courbe de réponse.
-Elle se présente sous la forme suivante&nbsp;:</p>
+<p>The 'modifiers' button opens a window which allows to assign a parameter to a 'modifier' and to allow the adjustment of the response curve.
+It is in the following form&nbsp;:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../resources/modifiers.png" alt="500" width="500">
+<img src="../resources/en/modifiers.png" alt="500" width="500">
 </div>
-<div class="title">Figure 2. La fenêtre d&#8217;assignation et de réglage modifiers.</div>
+<div class="title">Figure 2. Modifiers assignment and adjustment window.</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_infos_paramètres">Infos paramètres</h3>
+<h3 id="_parameter_infos">Parameter infos</h3>
 <div class="paragraph">
-<p>Cette fenêtre affiche la description de chaque interrupteur ou potentiomètre permettant le réglage des effets lors d’un survol avec le pointeur de la souris.</p>
+<p>This window displays the description of each switch or potentiometer that allows the effects to be adjusted when hovering with the mouse pointer.</p>
 </div>
 </div>
 </div>
@@ -661,10 +661,10 @@ Elle se présente sous la forme suivante&nbsp;:</p>
 <h2 id="_À_propos">À propos</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>gmajctl est un logiciel développé par Jean Pierre Cimalando en 2018.<br></p>
+<p>gmajctl is a software developed by Jean Pierre Cimalando in 2018.<br></p>
 </div>
 <div class="paragraph">
-<p>Ce logiciel est réalisé avec un objectif&nbsp;: faciliter l&#8217;utilisation du multi-effets G-Major qui n&#8217;est pilotable que par les boutons présents en façade ou par injection d&#8217;un message Sysex.</p>
+<p>This software is made with a goal&nbsp;: facilitate the use of the G-Major multi-effects which can only be controlled by the buttons present on the front panel or by injecting a Sysex message.</p>
 </div>
 </div>
 </div>
@@ -672,7 +672,7 @@ Elle se présente sous la forme suivante&nbsp;:</p>
 <div id="footer">
 <div id="footer-text">
 Version 0.1<br>
-Dernière mise à jour 11/10/2018 00:13 CEST
+Last update 17/10/2018 21:55 CEST
 </div>
 </div>
 </body>

@@ -13,7 +13,7 @@ v0.1
 [.Lead]
 Ce manuel documente l'utilisation du programme gmajctl, un contrôleur MIDI pour le multi-effets de TC Electronic G-Major. +
 gmajctl est un logiciel libre et gratuit. +
-Si le logiciel présente un problème, veuillez déposer un rapport sur la page de projet&nbsp;: +
+Si le logiciel présente un problème, veuillez déposer un rapport sur la page du projet&nbsp;: +
 https://github.com/linuxmao-org/gmajctl
 
 == Description
@@ -39,7 +39,7 @@ Visitez alors la page d'accueil du projet, et suivez les étapes de construction
 À l'ouverture du contrôleur, la fenêtre affiche l'interface graphique où l'on retrouve tous les réglages qui sont physiquement disponibles sur le G-Major et les fonctions nécessaires au transfert des données vers le G-Major.
 
 .La fenêtre d'édition
-image::../resources/screen.png[500,500]
+image::../resources/fr/screen.png[500,500]
 
 La disposition du contrôleur se décompose en deux parties&nbsp;:
 
@@ -47,23 +47,23 @@ La première partie, en haut de l'interface utilisateur regroupe&nbsp;:
 
 * Préréglages
 
-image::../resources/presets.png[presets,357,105]
+image::../resources/fr/presets.png[presets,357,105]
 
 * MIDI
 
-image::../resources/midi.png[midi,316,73]
+image::../resources/fr/midi.png[midi,316,73]
 
 * Paramètres préréglages
 
-image::../resources/parameters.png[parameters,586,100]
+image::../resources/fr/parameters.png[parameters,586,100]
 
 * Infos paramètres
 
-image::../resources/infos.png[infos,321,110]
+image::../resources/fr/infos.png[infos,321,110]
 
 La deuxième partie, en bas de l'interface utilisateur regroupe les effets&nbsp;:
 
-- Noise Gate
+- Trappe à bruit
 
 - Compresseur
 
@@ -71,9 +71,9 @@ La deuxième partie, en bas de l'interface utilisateur regroupe les effets&nbsp;
 
 - Filtre
 
-- Hauteur tonale
+- Hauteur
 
-- Chorus / Flanger
+- Chorus/flanger
 
 - Délai
 
@@ -85,40 +85,40 @@ L'utilisation des différents algorithmes est documentée dans le manuel du G-Ma
 
 Fenêtre de selection - Sélectionnez un préréglage sur lequel vous voulez travailler dans la liste des préréglages. Si l’option temps réel est activée le préréglage sera envoyé au G-Major qui chargera ce patch dans la banque utilisateur et changera de preset pour l’utiliser.
 
-Load - Permet de charger un fichier de banque de préréglages .realmajor enregistré précédemment. Cela réinitialise gmajctl et affiche uniquement les préréglages contenus dans la banque chargée.
+Charger - Permet de charger un fichier de banque de préréglages .realmajor enregistré précédemment. Cela réinitialise gmajctl et affiche uniquement les préréglages contenus dans la banque chargée.
 
-Save - Enregistre l'ensemble des préréglages en cours d'édition dans gmajctl dans un fichier de banque de préréglages .realmajor.
+Sauver - Enregistre l'ensemble des préréglages en cours d'édition dans gmajctl dans un fichier de banque de préréglages .realmajor.
 
-New - Crée un nouveau préréglage vide dans la position sélectionnée. Si un préréglage est présent sur cet emplacement il est détruit.
+Nouveau - Crée un nouveau préréglage vide dans la position sélectionnée. Si un préréglage est présent sur cet emplacement il est détruit.
 
-Change - Si l’option temps réel est désactivée, ce bouton fait changer le G-Major de préréglage.
+Changer - Si l’option temps réel est désactivée, ce bouton fait changer le G-Major de préréglage.
 
-Copy - Copie un préréglage existant sur la position sélectionnée. Si un préréglage est présent sur cet emplacement il est détruit.
+Copier - Copie un préréglage existant sur la position sélectionnée. Si un préréglage est présent sur cet emplacement il est détruit.
 
-Delete - Détruit le préréglage sélectionné.
+Effacer - Détruit le préréglage sélectionné.
 
-Import - Importe un préréglage précédemment exporté ou téléchargé sur guitar patches
+Importer - Importe un préréglage précédemment exporté ou téléchargé sur guitar patches
 
-Export - Exporte les préréglages en fichier .realpatch, qui peuvent etre déposés ensuite sur guitar patches ou échangés avec d'autres utilisateurs.
+Exporter - Exporte les préréglages en fichier .realpatch, qui peuvent etre déposés ensuite sur guitar patches ou échangés avec d'autres utilisateurs.
 
 Voilà un lien vers guitar patches pour les gourmands&nbsp;:
 https://guitarpatches.com/patches.php?unit=GMajor
 
 === MIDI
 
-Le menu MIDI permet de sélectionner l’interface midi-out à utiliser.
-La coche real time permet de basculer dans le mode temps réel. Ce mode permet d’appliquer les modification de manière instantanée.
+Le menu MIDI permet de sélectionner périhérique de sortie MIDI à utiliser.
+La coche Temps réel permet de basculer dans le mode temps réel. Ce mode permet d’appliquer les modification de manière instantanée.
 Envoie – Ce bouton envoi le préréglage courant au G-Major quand le mode temps réel n’est pas activé.
 
 === Paramètres préréglages
 
-Ici on règle le routage, les relais, le tap tempo, le volume du préréglage. Pour changer le nom du préréglage en cours, il suffit d’écrire le nouveau nom dans le champ patchname et appuyer sur entrée. En mode temps réel, le nouveau nom est envoyé au G-Major qui le met à jour.
+Ici on règle le routage, les relais, le tap tempo, le volume du préréglage. Pour changer le nom du préréglage en cours, il suffit d’écrire le nouveau nom dans le champ 'Nom de préréglage' et appuyer sur entrée. En mode temps réel, le nouveau nom est envoyé au G-Major qui le met à jour.
 
-Le bouton 'modifiers' ouvre une fenêtre qui permet d'affecter un paramètre à un 'modifier' et de permettre le réglage de la courbe de réponse.
+Le bouton 'modificateurs' ouvre une fenêtre qui permet d'affecter un paramètre à un 'modificateur' et de permettre le réglage de la courbe de réponse.
 Elle se présente sous la forme suivante&nbsp;:
 
 .La fenêtre d'assignation et de réglage modifiers.
-image::../resources/modifiers.png[500,500]
+image::../resources/fr/modifiers.png[500,500]
 
 === Infos paramètres
 

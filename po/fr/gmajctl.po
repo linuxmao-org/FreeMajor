@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: gmajctl 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-16 08:52+0200\n"
-"PO-Revision-Date: 2018-10-17 09:35+0200\n"
+"PO-Revision-Date: 2018-10-17 10:49+0200\n"
 "Last-Translator: Olivier Humbert <trebmuh@tuxfamily.org>\n"
 "Language-Team: French\n"
 "Language: fr\n"
@@ -821,7 +821,7 @@ msgstr "Facteur H"
 #: sources/model/parameter.cc:868 sources/model/parameter.cc:902
 msgctxt "Filter|Phaser|Range|"
 msgid "High"
-msgstr "Haut"
+msgstr "Haute"
 
 #: sources/model/parameter.cc:449
 msgctxt "Reverb|Size|"
@@ -984,7 +984,7 @@ msgstr "Charger..."
 #: sources/model/parameter.cc:868 sources/model/parameter.cc:902
 msgctxt "Filter|Phaser|Range|"
 msgid "Low"
-msgstr "Bas"
+msgstr "Basse"
 
 #: sources/device/midi.cc:88
 msgid "MIDI out"
@@ -1945,7 +1945,7 @@ msgstr "Oui"
 #: sources/model/parameter.cc:102
 msgctxt "Unit|"
 msgid "cents"
-msgstr "centièmes"
+msgstr "cents"
 
 #. Fl_Box* lbl_tap_tempo
 #: sources/ui/main_component.cxx:1534

@@ -10,6 +10,6 @@ clean:
 	$(foreach lang,$(LANGS),$(MAKE) -C $(lang) clean)
 
 install:
-	install -d $(DESTDIR)$(DOCDIR)/gmajctl/manual/
-	cp -rf resources $(DESTDIR)$(DOCDIR)/gmajctl/manual/
-	$(foreach lang,$(LANGS),install -D $(lang)/manual.html $(DESTDIR)$(DOCDIR)/gmajctl/manual/$(lang)/manual.html)
+	install -d $(DESTDIR)$(DOCDIR)/FreeMajor/manual/
+	cp -rf resources $(DESTDIR)$(DOCDIR)/FreeMajor/manual/
+	$(foreach lang,$(LANGS),install -D $(lang)/manual.html $(DESTDIR)$(DOCDIR)/FreeMajor/manual/$(lang)/manual.html)

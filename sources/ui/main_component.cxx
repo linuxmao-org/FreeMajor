@@ -108,7 +108,7 @@ void Main_Component::cb_btn_modifiers(Fl_Button* o, void* v) {
 }
 Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
   : Fl_Group(X, Y, W, H, L) {
-{ Fl_Box* o = new Fl_Box(595, 1, 315, 39, _("G-Major Editor"));
+{ Fl_Box* o = new Fl_Box(595, 1, 315, 39, _("FreeMajor"));
   o->box(FL_UP_BOX);
   o->labeltype(FL_SHADOW_LABEL);
   o->labelsize(28);

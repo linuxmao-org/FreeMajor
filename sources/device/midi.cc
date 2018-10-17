@@ -22,7 +22,7 @@ Midi_Out &Midi_Out::instance()
 Midi_Out::Midi_Out()
 {
     RtMidiOut *client = new RtMidiOut(
-        RtMidi::UNSPECIFIED, _("TC G-Major Editor"));
+        RtMidi::UNSPECIFIED, _("FreeMajor"));
     client_.reset(client);
     client->setErrorCallback(&on_midi_error, this);
 }
@@ -41,7 +41,7 @@ void Midi_Out::switch_api(RtMidi::Api api)
     if (api == client_->getCurrentApi())
         return;
 
-    RtMidiOut *client = new RtMidiOut(api, _("TC G-Major Editor"));
+    RtMidiOut *client = new RtMidiOut(api, _("FreeMajor"));
     client_.reset(client);
     client->setErrorCallback(&on_midi_error, this);
     has_open_port_ = false;

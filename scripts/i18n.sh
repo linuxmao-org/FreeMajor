@@ -12,12 +12,12 @@ po_update() {
 
 for locale in "fr"; do
     mkdir -p po/"$locale"
-    xgettext -k_ -k_P:1c,2 -L C++ --from-code=UTF-8 -c -s -o po/"$locale"/gmajctl.pot \
+    xgettext -k_ -k_P:1c,2 -L C++ --from-code=UTF-8 -c -s -o po/"$locale"/FreeMajor.pot \
              sources/*.{h,cc} \
              sources/device/*.{h,cc} \
              sources/model/*.{h,cc} \
              sources/ui/*.{h,cc,cxx} \
              sources/utility/*.{h,cc}
-    po_update po/"$locale"/gmajctl.po
+    po_update po/"$locale"/FreeMajor.po
     rm -f po/"$locale"/*.pot
 done

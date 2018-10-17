@@ -1202,19 +1202,19 @@ P_General::P_General()
                        ->with_inversion());
 
     slots.emplace_back((new PA_Choice(228, 4,
-                                      {_("Auto filter"), _("Resonance filter"), _("Vintage phaser"), _("Smooth phaser"), _("Tremolo"), _("Panner")},
+                                      {_P("Filter|Kind|", "Auto filter"), _P("Filter|Kind|", "Resonance filter"), _P("Filter|Kind|", "Vintage phaser"), _P("Filter|Kind|", "Smooth phaser"), _P("Filter|Kind|", "Tremolo"), _P("Filter|Kind|", "Panner")},
                                       _("Filter type"), _("Type of filter effect"))));
     slots.emplace_back((new PA_Choice(292, 4,
-                                      {_("Detune"), _("Whammy"), _("Octaver"), _("Pitch shifter")},
+                                      {_P("Pitch|Kind|", "Detune"), _P("Pitch|Kind|", "Whammy"), _P("Pitch|Kind|", "Octaver"), _P("Pitch|Kind|", "Pitch shifter")},
                                       _("Pitch type"), _("Type of pitch effect"))));
     slots.emplace_back((new PA_Choice(356, 4,
-                                      {_("Classic chorus"), _("Advanced chorus"), _("Classic flanger"), _("Advanced flanger"), _("Vibrato")},
+                                      {_P("Modulation|Kind|", "Classic chorus"), _P("Modulation|Kind|", "Advanced chorus"), _P("Modulation|Kind|", "Classic flanger"), _P("Modulation|Kind|", "Advanced flanger"), _P("Modulation|Kind|", "Vibrato")},
                                       _("Modulation type"), _("Type of modulation effect"))));
     slots.emplace_back((new PA_Choice(420, 4,
-                                      {_("Ping Pong"), _("Dynamic"), _("Dual")},
+                                      {_P("Delay|Kind|", "Ping Pong"), _P("Delay|Kind|", "Dynamic"), _P("Delay|Kind|", "Dual")},
                                       _("Delay type"), _("Type of delay effect"))));
     slots.emplace_back((new PA_Choice(484, 4,
-                                      {_("Spring"), _("Hall"), _("Room"), _("Plate")},
+                                      {_P("Reverb|Kind|", "Spring"), _P("Reverb|Kind|", "Hall"), _P("Reverb|Kind|", "Room"), _P("Reverb|Kind|", "Plate")},
                                       _("Reverb type"), _("Type of reverb effect"))));
 
     slots.emplace_back((new PA_Integer(160, 4,

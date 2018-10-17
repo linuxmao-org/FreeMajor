@@ -11,25 +11,25 @@ v0.1
 :toc:
 
 [.Lead]
-This manual documents the use of gmajctl program, a MIDI controler for TC Electronic G-Major multi-effect. +
-gmajctl is a free and open source software. +
+This manual documents the use of FreeMajor program, a MIDI controler for TC Electronic G-Major multi-effect. +
+FreeMajor is a free and open source software. +
 If the software présents a problem, please post an issue on project page&nbsp;: +
-https://github.com/linuxmao-org/gmajctl
+https://github.com/linuxmao-org/FreeMajor
 
 == Description
 
-gmajctl is a MIDI controler compatible with TC Electronic G-Major multi-effect.
+FreeMajor is a MIDI controler compatible with TC Electronic G-Major multi-effect.
 
 This software makes the advanced use of multi-effect easy to use thanks to a graphical interface that groups all the parameters of the presets.
 
 It offers the possibility of retrieving user presets from the G-Major, creating new ones, modifying existing ones, importing them, exporting them ...
 
-You will discover all the possibilities offered by gmajctl by reading this manual.
+You will discover all the possibilities offered by FreeMajor by reading this manual.
 
 == Installation
 
 The project provides downloads for the Windows system. +
-https://github.com/linuxmao-org/gmajctl/releases
+https://github.com/linuxmao-org/FreeMajor/releases
 
 If you do not have a downloadable version for your operating system, you will need to recover the source code and build it yourself.
 Visit the project home page and follow the construction steps in the file README.md.
@@ -85,9 +85,9 @@ The use of different algorithms is documented in the G-Major manual. It is for t
 
 Selection Window - Select a preset on which you want to work in the list of presets. If the real-time option is activated, the preset will be sent to the G-Major who will load this patch into the user bank and change the preset to use it.
 
-Load - Loads a previously saved .realmajor preset bank file. This resets gmajctl and displays only the presets contained in the loaded bank.
+Load - Loads a previously saved .realmajor preset bank file. This resets FreeMajor and displays only the presets contained in the loaded bank.
 
-Save - Saves all the presets being edited in gmajctl to a preset bank file .realmajor.
+Save - Saves all the presets being edited in FreeMajor to a preset bank file .realmajor.
 
 New - Creates a new empty preset in the selected position. If a preset is present on this location it is destroyed.
 
@@ -126,6 +126,6 @@ This window displays the description of each switch or potentiometer that allows
 
 == À propos
 
-gmajctl is a software developed by Jean Pierre Cimalando in 2018. +
+FreeMajor is a software developed by Jean Pierre Cimalando in 2018. +
 
 This software is made with a goal&nbsp;: facilitate the use of the G-Major multi-effects which can only be controlled by the buttons present on the front panel or by injecting a Sysex message.

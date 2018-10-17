@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: gmajctl 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-16 08:52+0200\n"
-"PO-Revision-Date: 2018-10-08 14:52+0200\n"
-"Last-Translator: Julien Taverna <jujudusud@gmail.com>\n"
+"PO-Revision-Date: 2018-10-17 09:35+0200\n"
+"Last-Translator: Olivier Humbert <trebmuh@tuxfamily.org>\n"
 "Language-Team: French\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgstr ""
 #: sources/model/parameter.cc:87
 msgctxt "Unit|"
 msgid "%"
-msgstr ""
+msgstr "%"
 
 #: sources/model/parameter.cc:641 sources/model/parameter.cc:679
 #: sources/model/parameter.cc:732 sources/model/parameter.cc:735
@@ -211,7 +211,7 @@ msgstr ""
 #: sources/ui/singlemod_editor.cxx:20 sources/ui/singlemod_editor.cxx:32
 #: sources/ui/singlemod_editor.cxx:44
 msgid "100"
-msgstr ""
+msgstr "100"
 
 #: sources/model/parameter.cc:536 sources/model/parameter.cc:552
 msgctxt "Pitch|Range|"
@@ -821,7 +821,7 @@ msgstr "Facteur H"
 #: sources/model/parameter.cc:868 sources/model/parameter.cc:902
 msgctxt "Filter|Phaser|Range|"
 msgid "High"
-msgstr ""
+msgstr "Haut"
 
 #: sources/model/parameter.cc:449
 msgctxt "Reverb|Size|"
@@ -831,7 +831,7 @@ msgstr "Énorme"
 #: sources/model/parameter.cc:171
 msgctxt "Unit|"
 msgid "Hz"
-msgstr ""
+msgstr "Hz"
 
 #: sources/model/parameter.cc:641 sources/model/parameter.cc:679
 #: sources/model/parameter.cc:732 sources/model/parameter.cc:735
@@ -984,7 +984,7 @@ msgstr "Charger..."
 #: sources/model/parameter.cc:868 sources/model/parameter.cc:902
 msgctxt "Filter|Phaser|Range|"
 msgid "Low"
-msgstr ""
+msgstr "Bas"
 
 #: sources/device/midi.cc:88
 msgid "MIDI out"
@@ -1067,7 +1067,7 @@ msgstr "Nouveau"
 
 #: sources/model/patch.cc:16
 msgid "New patch"
-msgstr ""
+msgstr "Nouveau patche"
 
 #: sources/ui/main_component_impl.cc:575 sources/ui/main_component_impl.cc:675
 #: sources/ui/main_component_impl.cc:730
@@ -1945,7 +1945,7 @@ msgstr "Oui"
 #: sources/model/parameter.cc:102
 msgctxt "Unit|"
 msgid "cents"
-msgstr ""
+msgstr "centièmes"
 
 #. Fl_Box* lbl_tap_tempo
 #: sources/ui/main_component.cxx:1534
@@ -1955,17 +1955,17 @@ msgstr "dB"
 #: sources/model/parameter.cc:92
 msgctxt "Unit|"
 msgid "dB"
-msgstr ""
+msgstr "dB"
 
 #: sources/model/parameter.cc:97
 msgctxt "Unit|"
 msgid "dB/s"
-msgstr ""
+msgstr "dB/s"
 
 #: sources/model/parameter.cc:176
 msgctxt "Unit|"
 msgid "kHz"
-msgstr ""
+msgstr "kHz"
 
 #. Fl_Hold_Browser* br_bank
 #: sources/ui/patch_chooser.cxx:48
@@ -1981,14 +1981,14 @@ msgstr "ms"
 #: sources/model/parameter.cc:146
 msgctxt "Unit|"
 msgid "ms"
-msgstr ""
+msgstr "ms"
 
 #: sources/model/parameter.cc:107
 msgctxt "Unit|"
 msgid "oct"
-msgstr ""
+msgstr "oct"
 
 #: sources/model/parameter.cc:120 sources/model/parameter.cc:150
 msgctxt "Unit|"
 msgid "s"
-msgstr ""
+msgstr "s"

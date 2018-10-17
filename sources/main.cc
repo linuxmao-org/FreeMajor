@@ -11,8 +11,8 @@ int main()
 {
 #if ENABLE_NLS
     setlocale(LC_ALL, "");
-    bindtextdomain("gmajctl", LOCALE_DIRECTORY "/");
-    textdomain("gmajctl");
+    bindtextdomain("FreeMajor", LOCALE_DIRECTORY "/");
+    textdomain("FreeMajor");
 #endif
 
     Main_Window win;

@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.3)
 
-project(gmajctl VERSION "0.1" LANGUAGES CXX)
+project(FreeMajor VERSION "0.1" LANGUAGES CXX)
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
 
 # set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address")
@@ -26,7 +26,7 @@ set(FLTK_SKIP_IMAGES ON)
 set(FLTK_SKIP_FLUID ON)
 find_package(FLTK REQUIRED)
 
-add_executable(gmajctl WIN32
+add_executable(FreeMajor WIN32
   "sources/main.cc"
   "sources/app_i18n.cc"
   "sources/utility/misc.cc"
@@ -46,37 +46,37 @@ add_executable(gmajctl WIN32
   "sources/ui/eq_display.cc"
   "sources/ui/association.cc"
   "sources/ui/midi_out_queue.cc")
-target_compile_definitions(gmajctl
+target_compile_definitions(FreeMajor
   PRIVATE "LOCALE_DIRECTORY=\"${CMAKE_INSTALL_FULL_LOCALEDIR}\"")
-target_include_directories(gmajctl
+target_include_directories(FreeMajor
   PRIVATE "sources" "${FLTK_INCLUDE_DIR}")
-target_link_libraries(gmajctl PRIVATE "${FLTK_LIBRARIES}")
+target_link_libraries(FreeMajor PRIVATE "${FLTK_LIBRARIES}")
 
 include(RtMidi)
-target_link_libraries(gmajctl PRIVATE RtMidi)
+target_link_libraries(FreeMajor PRIVATE RtMidi)
 
 find_package(Threads REQUIRED)
-target_link_libraries(gmajctl PRIVATE "${CMAKE_THREAD_LIBS_INIT}")
+target_link_libraries(FreeMajor PRIVATE "${CMAKE_THREAD_LIBS_INIT}")
 
 if(ENABLE_GETTEXT)
-  target_compile_definitions(gmajctl PRIVATE "ENABLE_NLS=1")
-  target_include_directories(gmajctl PRIVATE ${Intl_INCLUDE_DIRS})
-  target_link_libraries(gmajctl PRIVATE ${Intl_LIBRARIES})
-  target_include_directories(gmajctl PRIVATE "thirdparty/gettext/include")
+  target_compile_definitions(FreeMajor PRIVATE "ENABLE_NLS=1")
+  target_include_directories(FreeMajor PRIVATE ${Intl_INCLUDE_DIRS})
+  target_link_libraries(FreeMajor PRIVATE ${Intl_LIBRARIES})
+  target_include_directories(FreeMajor PRIVATE "thirdparty/gettext/include")
 endif()
 
-# target_sources(gmajctl PRIVATE "thirdparty/Fl_Knob/Fl_Knob/Fl_Knob.cxx")
-# target_include_directories(gmajctl PRIVATE "thirdparty/Fl_Knob/Fl_Knob")
+# target_sources(FreeMajor PRIVATE "thirdparty/Fl_Knob/Fl_Knob/Fl_Knob.cxx")
+# target_include_directories(FreeMajor PRIVATE "thirdparty/Fl_Knob/Fl_Knob")
 
 ## Installation
-install(TARGETS gmajctl DESTINATION "${CMAKE_INSTALL_BINDIR}")
+install(TARGETS FreeMajor DESTINATION "${CMAKE_INSTALL_BINDIR}")
 
 ## Translations
 if(ENABLE_GETTEXT)
   set(TRANSLATIONS "fr")
   foreach(translation ${TRANSLATIONS})
     gettext_process_po_files("${translation}" ALL INSTALL_DESTINATION "${CMAKE_INSTALL_LOCALEDIR}" PO_FILES
-      "po/${translation}/gmajctl.po")
+      "po/${translation}/FreeMajor.po")
   endforeach()
 endif()
 

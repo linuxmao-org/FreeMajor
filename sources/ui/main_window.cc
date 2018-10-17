@@ -12,7 +12,7 @@ Main_Window::Main_Window()
 {
     Main_Component *component = new Main_Component(0, 0, w(), h());
     component_.reset(component);
-    this->copy_label(_("G-Major Editor"));
+    this->label(_("FreeMajor"));
 }
 
 Main_Window::~Main_Window()

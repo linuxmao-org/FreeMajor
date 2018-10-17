@@ -1,13 +1,13 @@
-# French translations for gmajctl package.
+# French translations for FreeMajor package.
 # Copyright (C) 2018 THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the gmajctl package.
+# This file is distributed under the same license as the FreeMajor package.
 # Jean Pierre Cimalando <jp-dev@inbox.ru>, 2018.
 # Julien Taverna <jujudusud@gmail.com>, 2018.
 # Olivier Humbert <trebmuh@tuxfamily.org>, 2018.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gmajctl 0.1\n"
+"Project-Id-Version: FreeMajor 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-17 11:21+0200\n"
 "PO-Revision-Date: 2018-10-17 10:49+0200\n"
@@ -758,10 +758,6 @@ msgstr "Fréq. max"
 #: sources/model/parameter.cc:399
 msgid "Frequency"
 msgstr "Fréquence"
-
-#: sources/ui/main_window.cc:15 sources/ui/main_component.cxx:111
-msgid "G-Major Editor"
-msgstr "Éditeur G-Major"
 
 #: sources/model/parameter.cc:390 sources/model/parameter.cc:408
 msgid "Gain"
@@ -1606,10 +1602,6 @@ msgstr ""
 "Contrôleur TC Electronic G-Major, © 2018\n"
 "Contrôleur logiciel libre et open source par\n"
 "Jean Pierre Cimalando & Julien Taverna"
-
-#: sources/device/midi.cc:25 sources/device/midi.cc:44
-msgid "TC G-Major Editor"
-msgstr "Editeur TC G-Major"
 
 #. Fl_Input* txt_patch_name
 #: sources/ui/main_component.cxx:1481

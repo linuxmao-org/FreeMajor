@@ -152,7 +152,7 @@ widget_class Main_Component {open
   decl {void on_changed_midi_interface();} {private local
   }
   Fl_Box {} {
-    label {G-Major Editor}
+    label FreeMajor selected
     xywh {595 1 315 39} box UP_BOX labeltype SHADOW_LABEL labelsize 28
   }
   Fl_Button btn_import {

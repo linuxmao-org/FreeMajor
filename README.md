@@ -1,9 +1,9 @@
 [![Build Status](https://semaphoreci.com/api/v1/jpcima/freemajor/branches/master/badge.svg)](https://semaphoreci.com/jpcima/freemajor)
 
-[Automatic development build for Windows](http://jpcima.sdf1.org/software/development/GMajCtl/gmajctl-dev-win32.zip)
+[Automatic development build for Windows](http://jpcima.sdf1.org/software/development/FreeMajor/FreeMajor-dev-win32.zip)
 
 ### Dependencies
-gmajctl is mostly tested on [LibraZiK-2](http://librazik.tuxfamily.org/), a Debian Stretch based OS.
+FreeMajor is mostly tested on [LibraZiK-2](http://librazik.tuxfamily.org/), a Debian Stretch based OS.
 The build dependencies on this OS are:
 ```
 cmake
@@ -19,18 +19,18 @@ Note that you might need to install `git` as well to fetch the sources.
 
 ```
 git clone --recursive https://github.com/linuxmao-org/FreeMajor.git
-mkdir gmajctl/build
-cd gmajctl/build
+mkdir FreeMajor/build
+cd FreeMajor/build
 cmake ..
 cmake --build .
 cd ..
-./build/gmajctl
+./build/FreeMajor
 ```
 ### Build after some modifications
 
 ```
-cd gmajctl
+cd FreeMajor
 git pull
 cmake --build build
-./build/gmajctl
+./build/FreeMajor
 ```

@@ -879,6 +879,7 @@ void Main_Component::update_eq_display()
     P_Equalizer &peq = pgen.equalizer;
 
     Eq_Display::Band bands[3];
+    bool peq_enable = pgen.enable_equalizer().get(pat) != 0;
     PA_Choice *peq_frequency[3] = {&peq.frequency1(), &peq.frequency2(), &peq.frequency3()};
     PA_Integer *peq_gain[3] = {&peq.gain1(), &peq.gain2(), &peq.gain3()};
     PA_Choice *peq_width[3] = {&peq.width1(), &peq.width2(), &peq.width3()};
@@ -926,5 +927,5 @@ void Main_Component::update_eq_display()
         bands[i].width = width(pw->values[idw]);
     }
 
-    d_eq->set_bands(bands, 3);
+    d_eq->set_bands(peq_enable, bands, 3);
 }

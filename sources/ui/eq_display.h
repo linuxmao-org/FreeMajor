@@ -13,7 +13,7 @@ public:
     void draw() override;
 
     struct Band;
-    void set_bands(const Band bands[], unsigned count);
+    void set_bands(bool enable, const Band bands[], unsigned count);
 
     struct Band {
         double freq = 0;
@@ -22,8 +22,11 @@ public:
     };
 
 private:
+    bool enable_ = false;
     std::vector<Band> bands_;
     std::vector<double> plotdata_;
     void create_plotdata(unsigned size);
     double eval(unsigned band, double freq);
+    double coord2freq(unsigned i, unsigned n);
+    unsigned freq2coord(double f, unsigned n);
 };

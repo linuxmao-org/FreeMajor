@@ -1895,7 +1895,7 @@ msgstr "Voix 2"
 #: sources/model/parameter.cc:461
 msgctxt "Reverb|Hi Color|"
 msgid "Warm"
-msgstr "Chaleur"
+msgstr "Chaude"
 
 #: sources/model/parameter.cc:1208
 msgctxt "Pitch|Kind|"

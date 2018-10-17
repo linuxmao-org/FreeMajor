@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreeMajor 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-17 11:21+0200\n"
+"POT-Creation-Date: 2018-10-18 00:22+0200\n"
 "PO-Revision-Date: 2018-10-17 10:49+0200\n"
 "Last-Translator: Olivier Humbert <trebmuh@tuxfamily.org>\n"
 "Language-Team: French\n"
@@ -751,6 +751,11 @@ msgstr ""
 "permet de changer la durée de ce délai. Un flanger typique utilise des "
 "délais d'environ 5 ms."
 
+#: sources/device/midi.cc:25 sources/device/midi.cc:44
+#: sources/ui/main_window.cc:15 sources/ui/main_component.cxx:111
+msgid "FreeMajor"
+msgstr ""
+
 #: sources/model/parameter.cc:819
 msgid "Freq Max"
 msgstr "Fréq. max"
@@ -1220,8 +1225,12 @@ msgctxt "Delay|Kind|"
 msgid "Ping Pong"
 msgstr "Ping pong"
 
-#: sources/model/parameter.cc:537 sources/ui/main_component_impl.cc:228
-#: sources/ui/main_component.cxx:657
+#: sources/ui/main_component_impl.cc:228 sources/ui/main_component.cxx:657
+msgid "Pitch"
+msgstr "Hauteur tonale"
+
+#: sources/model/parameter.cc:537
+msgctxt "Pitch|Whammy|"
 msgid "Pitch"
 msgstr "Hauteur"
 

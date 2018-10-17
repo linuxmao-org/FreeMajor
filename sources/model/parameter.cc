@@ -534,7 +534,7 @@ P_Pitch::Detune::Detune()
 
 P_Pitch::Whammy::Whammy()
 {
-    slots.emplace_back((new PA_Integer(328, 4, _("Pitch"), _("This parameter sets the mix between the dry and processed signal. If e.g. set to 100%, no direct guitar tone will be heard - only the processed \"pitched\" tone.")))
+    slots.emplace_back((new PA_Integer(328, 4, _P("Pitch|Whammy|", "Pitch"), _("This parameter sets the mix between the dry and processed signal. If e.g. set to 100%, no direct guitar tone will be heard - only the processed \"pitched\" tone.")))
                        ->with_min_max(0, 100)
                        ->with_string_fn(&Formatting::percent)
                        ->with_modifier_at(48));

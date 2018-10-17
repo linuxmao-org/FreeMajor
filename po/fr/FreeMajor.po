@@ -1874,7 +1874,7 @@ msgstr "Phaser vintage"
 
 #: sources/ui/main_component_impl.cc:455
 msgid "Virtual port"
-msgstr "Port viruel"
+msgstr "Port virtuel"
 
 #: sources/model/parameter.cc:511 sources/model/parameter.cc:578
 msgid "Voice 1"

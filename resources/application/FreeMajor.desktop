@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Name=FreeMajor
+Comment=Editor for the TC Electronic G-Major effect module
+Comment[fr]=Éditeur pour le module d'effets TC Electronic G-Major
+Icon=FreeMajor
+Exec=FreeMajor
+Categories=AudioVideo;Audio
+Type=Application

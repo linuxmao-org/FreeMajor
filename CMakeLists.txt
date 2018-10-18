@@ -33,6 +33,7 @@ find_package(FLTK REQUIRED)
 add_executable(FreeMajor WIN32 MACOSX_BUNDLE
   "sources/main.cc"
   "sources/app_i18n.cc"
+  "sources/app_win32.rc"
   "sources/utility/misc.cc"
   "sources/device/midi.cc"
   "sources/device/midi_apis.cc"
@@ -84,6 +85,11 @@ if(NOT CMAKE_SYSTEM_NAME STREQUAL "Darwin")
   install(TARGETS FreeMajor DESTINATION "${CMAKE_INSTALL_BINDIR}")
 else()
   install(TARGETS FreeMajor DESTINATION ".")
+endif()
+
+if(NOT (CMAKE_SYSTEM_NAME STREQUAL "Darwin" OR CMAKE_SYSTEM_NAME STREQUAL "Windows"))
+  install(FILES "resources/application/FreeMajor.png" "resources/application/FreeMajor.svg" DESTINATION "${CMAKE_INSTALL_DATADIR}/pixmaps")
+  install(FILES "resources/application/FreeMajor.desktop" DESTINATION "${CMAKE_INSTALL_DATADIR}/applications")
 endif()
 
 ## Translations

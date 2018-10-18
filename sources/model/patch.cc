@@ -5,6 +5,7 @@
 
 #include "patch.h"
 #include "app_i18n.h"
+#include <algorithm>
 #include <string.h>
 
 Patch Patch::create_empty()
@@ -47,8 +48,13 @@ std::string Patch::name() const
 
 void Patch::name(const char *name)
 {
+#if !defined(__APPLE__)
+    size_t namelen = strnlen(name, 20);
+#else
+    size_t namelen = std::min<size_t>(20, strlen(name));
+#endif
     memset(&raw_data[8], ' ', 20);
-    memcpy(&raw_data[8], name, strnlen(name, 20));
+    memcpy(&raw_data[8], name, namelen);
 }
 
 unsigned Patch::patch_number() const

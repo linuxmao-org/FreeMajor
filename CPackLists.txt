@@ -33,13 +33,25 @@ endif()
 if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
   set(darwin_bundle_DYLIBS
     "libfltk.1.3.dylib")
+  if(ENABLE_GETTEXT)
+    list(APPEND darwin_bundle_DYLIBS
+      "libintl.8.dylib" "libiconv.2.dylib")
+  endif()
   unset(_dylibfile CACHE)
+  add_custom_target(gendylibs ALL)
   foreach(dylib ${darwin_bundle_DYLIBS})
     find_library(_dylibfile "${dylib}" PATHS ${FLTK_LIBRARY_DIRS})
     if(_dylibfile)
       message("!! DYLIB \"${dylib}\" from \"${_dylibfile}\"")
-      install(FILES "${_dylibfile}" DESTINATION "${PROJECT_NAME}.app/Contents/Frameworks")
-      install(CODE "execute_process(COMMAND \"${CMAKE_INSTALL_NAME_TOOL}\" -change \"/opt/local/lib/${dylib}\" \"@rpath/${dylib}\" \"${PROJECT_NAME}.app/Contents/MacOS/${PROJECT_NAME}\")")
+      add_custom_command(TARGET gendylibs POST_BUILD
+        COMMAND "${CMAKE_COMMAND}" -E copy "${_dylibfile}" "dylibs/${dylib}"
+        COMMAND "${CMAKE_INSTALL_NAME_TOOL}" -id "@executable_path/../Frameworks/${dylib}" "dylibs/${dylib}")
+      foreach(dylib2 ${darwin_bundle_DYLIBS})
+        add_custom_command(TARGET gendylibs POST_BUILD
+          COMMAND "${CMAKE_INSTALL_NAME_TOOL}" -change "/opt/local/lib/${dylib2}" "@rpath/${dylib2}" "dylibs/${dylib}")
+      endforeach()
+      add_custom_command(TARGET FreeMajor POST_BUILD
+        COMMAND "${CMAKE_INSTALL_NAME_TOOL}" -change "/opt/local/lib/${dylib}" "@executable_path/../Frameworks/${dylib}" $<TARGET_FILE:FreeMajor>)
     else()
       message("!! DYLIB \"${dylib}\" not found")
     endif()

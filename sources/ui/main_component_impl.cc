@@ -518,7 +518,7 @@ void Main_Component::on_clicked_import()
     FILE_u fh(fl_fopen(filename, "rb"));
     if (!fh || !read_entire_file(fh.get(), 1 << 20, filedata)) {
         fl_message_title(_("Error"));
-        fl_alert(_("Could not read the patch file."));
+        fl_alert("%s", _("Could not read the patch file."));
         return;
     }
     fh.reset();
@@ -536,7 +536,7 @@ void Main_Component::on_clicked_import()
 
     if (!loaded) {
         fl_message_title(_("Error"));
-        fl_alert(_("Could not load the patch file."));
+        fl_alert("%s", _("Could not load the patch file."));
         return;
     }
 
@@ -580,7 +580,7 @@ void Main_Component::on_clicked_export()
 
     if (fl_access(filename.c_str(), 0) == 0) {
         fl_message_title(_("Confirm overwrite"));
-        if (fl_choice(_("The file already exists. Replace it?"), _("Yes"), _("No"), nullptr))
+        if (fl_choice("%s", _("Yes"), _("No"), nullptr, _("The file already exists. Replace it?")))
             return;
     }
 
@@ -588,7 +588,7 @@ void Main_Component::on_clicked_export()
     if (fwrite(data.data(), 1, data.size(), fh.get()) != data.size()) {
         fl_unlink(filename.c_str());
         fl_message_title(_("Error"));
-        fl_alert(_("Could not save the patch file."));
+        fl_alert("%s", _("Could not save the patch file."));
         return;
     }
 }
@@ -623,7 +623,7 @@ void Main_Component::on_clicked_load()
     FILE_u fh(fl_fopen(filename, "rb"));
     if (!fh || !read_entire_file(fh.get(), 1 << 20, filedata)) {
         fl_message_title(_("Error"));
-        fl_alert(_("Could not read the bank file."));
+        fl_alert("%s", _("Could not read the bank file."));
         return;
     }
     fh.reset();
@@ -640,7 +640,7 @@ void Main_Component::on_clicked_load()
 
     if (!loaded) {
         fl_message_title(_("Error"));
-        fl_alert(_("Could not load the bank file."));
+        fl_alert("%s", _("Could not load the bank file."));
         return;
     }
 
@@ -680,7 +680,7 @@ void Main_Component::on_clicked_save()
 
     if (fl_access(filename.c_str(), 0) == 0) {
         fl_message_title(_("Confirm overwrite"));
-        if (fl_choice(_("The file already exists. Replace it?"), _("Yes"), _("No"), nullptr))
+        if (fl_choice("%s", _("Yes"), _("No"), nullptr, _("The file already exists. Replace it?")))
             return;
     }
 
@@ -688,7 +688,7 @@ void Main_Component::on_clicked_save()
     if (fwrite(data.data(), 1, data.size(), fh.get()) != data.size()) {
         fl_unlink(filename.c_str());
         fl_message_title(_("Error"));
-        fl_alert(_("Could not save the bank file."));
+        fl_alert("%s", _("Could not save the bank file."));
         return;
     }
 }
@@ -735,7 +735,7 @@ void Main_Component::on_clicked_delete()
         return;
 
     fl_message_title(_("Confirm delete"));
-    if (fl_choice(_("Delete the current patch?"), _("Yes"), _("No"), nullptr))
+    if (fl_choice("%s", _("Yes"), _("No"), nullptr, _("Delete the current patch?")))
         return;
 
     Patch_Bank &pbank = *pbank_;

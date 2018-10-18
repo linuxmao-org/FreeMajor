@@ -27,3 +27,33 @@ int sscanf_l(const char *str, const char *format, locale_t locale, ...)
     return ret;
 }
 #endif
+
+#if defined(_WIN32)  // for msvcrt compatibility
+int vsscanf_lc(const char *str, const char *format, const char *locale, va_list ap)
+{
+    const char *oldlocale = setlocale(LC_ALL, nullptr);
+    if (!setlocale(LC_ALL, locale))
+        throw std::runtime_error("cannot set the current locale");
+    int ret = vsscanf(str, format, ap);
+    if (!setlocale(LC_ALL, oldlocale))
+        throw std::runtime_error("cannot set the current locale");
+    return ret;
+}
+#else
+int vsscanf_lc(const char *str, const char *format, const char *locale, va_list ap)
+{
+    locale_u loc(createlocale(LC_ALL, "C"));
+    if (!loc)
+        throw std::runtime_error("cannot create the C locale");
+    return vsscanf_l(str, format, loc.get(), ap);
+}
+#endif
+
+int sscanf_lc(const char *str, const char *format, const char *locale, ...)
+{
+    va_list ap;
+    va_start(ap, locale);
+    int ret = vsscanf_lc(str, format, locale, ap);
+    va_end(ap);
+    return ret;
+}

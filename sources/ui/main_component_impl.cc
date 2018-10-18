@@ -889,15 +889,10 @@ void Main_Component::update_eq_display()
     PA_Integer *peq_gain[3] = {&peq.gain1(), &peq.gain2(), &peq.gain3()};
     PA_Choice *peq_width[3] = {&peq.width1(), &peq.width2(), &peq.width3()};
 
-    locale_u loc_u(createlocale(LC_ALL, "C"));
-    locale_t loc = loc_u.get();
-    if (!loc)
-        throw std::runtime_error("cannot create the C locale");
-
-    auto frequency = [loc](const std::string &x) -> double {
+    auto frequency = [](const std::string &x) -> double {
                          double v = 0.0;
                          unsigned count = 0;
-                         if (sscanf_l(x.c_str(), "%lf%n", loc, &v, &count) != 1) {
+                         if (sscanf_lc(x.c_str(), "%lf%n", "C", &v, &count) != 1) {
                              assert(false);
                              abort();
                          }
@@ -911,10 +906,10 @@ void Main_Component::update_eq_display()
                          }
                          return v;
                      };
-    auto width = [loc](const std::string &x) -> double {
+    auto width = [](const std::string &x) -> double {
                      double v = 0.0;
                      unsigned count = 0;
-                     if (sscanf_l(x.c_str(), "%lf%n", loc, &v, &count) != 1 || x.size() != count) {
+                     if (sscanf_lc(x.c_str(), "%lf%n", "C", &v, &count) != 1 || x.size() != count) {
                          assert(false);
                          abort();
                      }

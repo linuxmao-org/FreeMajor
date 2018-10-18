@@ -132,13 +132,9 @@ static std::string msec_choice(const char *choice)
 {
     size_t length = strlen(choice);
 
-    locale_u loc(createlocale(LC_ALL, "C"));
-    if (!loc)
-        throw std::runtime_error("cannot create the C locale");
-
     double v;
     unsigned count;
-    if (sscanf_l(choice, "%lf%n", loc.get(), &v, &count) == 1 && count == length) {
+    if (sscanf_lc(choice, "%lf%n", "C", &v, &count) == 1 && count == length) {
         char buf[32];
         const char *unit;
         if (fabs(v) < 100) {
@@ -159,18 +155,14 @@ static std::string hz_choice(const char *choice)
 {
     size_t length = strlen(choice);
 
-    locale_u loc(createlocale(LC_ALL, "C"));
-    if (!loc)
-        throw std::runtime_error("cannot create the C locale");
-
     double v;
     unsigned count;
-    if (sscanf_l(choice, "%lf%n", loc.get(), &v, &count) == 1 && count == length) {
+    if (sscanf_lc(choice, "%lf%n", "C", &v, &count) == 1 && count == length) {
         char buf[32];
         sprintf(buf, "%.2f", v);
         return std::string(buf) + _P("Unit|", "Hz");
     }
-    else if (sscanf_l(choice, "%lfk%n", loc.get(), &v, &count) == 1 && count == length) {
+    else if (sscanf_lc(choice, "%lfk%n", "C", &v, &count) == 1 && count == length) {
         char buf[32];
         sprintf(buf, "%.2f", v);
         return std::string(buf) + _P("Unit|", "kHz");

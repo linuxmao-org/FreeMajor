@@ -41,6 +41,7 @@ typedef std::unique_ptr<std::remove_pointer<locale_t>::type, Locale_Deleter> loc
 #include <stdio.h>
 #include <stdarg.h>
 
+
 #if !defined(_WIN32)
 int vsscanf_l(const char *str, const char *format, locale_t locale, va_list ap);
 int sscanf_l(const char *str, const char *format, locale_t locale, ...);
@@ -48,3 +49,6 @@ int sscanf_l(const char *str, const char *format, locale_t locale, ...);
 #define vsscanf_l _vsscanf_l
 #define sscanf_l _sscanf_l
 #endif
+
+int vsscanf_lc(const char *str, const char *format, const char *locale, va_list ap);
+int sscanf_lc(const char *str, const char *format, const char *locale, ...);

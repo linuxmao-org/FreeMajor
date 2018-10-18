@@ -7,6 +7,9 @@
 #include "ui/main_window.h"
 #include <FL/Fl.H>
 #include <string>
+#if defined(__APPLE__)
+#include <mach-o/dyld.h>
+#endif
 
 #if defined(_WIN32)
 static const char *get_locale_path(std::string &buf)
@@ -25,13 +28,27 @@ static const char *get_locale_path(std::string &buf)
     buf.append("..\\share\\locale\\");
     return buf.c_str();
 }
+#elif defined(__APPLE__)
+static const char *get_locale_path(std::string &buf)
+{
+    uint32_t size = 0;
+    _NSGetExecutablePath(nullptr, &size);
+    buf.resize(size);
+    _NSGetExecutablePath(&buf[0], &size);
+    for (unsigned i = 0; i < 2; ++i) {
+        while (!buf.empty() && buf.back() != '/') buf.pop_back();
+        while (!buf.empty() && buf.back() == '/') buf.pop_back();
+    }
+    buf.append("/Resources/locale");
+    return buf.c_str();
+}
 #endif
 
 int main()
 {
 #if ENABLE_NLS
     setlocale(LC_ALL, "");
-#if !defined(_WIN32)
+#if !defined(_WIN32) && !defined(__APPLE__)
     const char *locale_path = LOCALE_DIRECTORY "/";
 #else
     std::string buf;

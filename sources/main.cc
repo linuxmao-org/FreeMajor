@@ -55,6 +55,9 @@ int main()
     const char *locale_path = get_locale_path(buf);
 #endif
     bindtextdomain("FreeMajor", locale_path);
+#if defined(__APPLE__)
+    bind_textdomain_codeset("FreeMajor", "UTF-8");
+#endif
     textdomain("FreeMajor");
 #endif
 

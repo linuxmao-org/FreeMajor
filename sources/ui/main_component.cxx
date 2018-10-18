@@ -5,6 +5,7 @@
 #include "association.h"
 #include "midi_out_queue.h"
 #include "eq_display.h"
+#include "matrix_display.h"
 #include "widget_ex.h"
 #include "model/patch.h"
 #include "model/parameter.h"
@@ -1567,6 +1568,17 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
   btn_modifiers->labelsize(12);
   btn_modifiers->callback((Fl_Callback*)cb_btn_modifiers);
 } // Fl_Button* btn_modifiers
+{ d_matrix = new Matrix_Display(5, 10, 230, 65);
+  d_matrix->box(FL_THIN_DOWN_BOX);
+  d_matrix->color(FL_BACKGROUND_COLOR);
+  d_matrix->selection_color(FL_BACKGROUND_COLOR);
+  d_matrix->labeltype(FL_NORMAL_LABEL);
+  d_matrix->labelfont(0);
+  d_matrix->labelsize(14);
+  d_matrix->labelcolor(FL_FOREGROUND_COLOR);
+  d_matrix->align(Fl_Align(FL_ALIGN_CENTER));
+  d_matrix->when(FL_WHEN_RELEASE);
+} // Matrix_Display* d_matrix
 init();
 end();
 }

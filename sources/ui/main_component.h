@@ -22,6 +22,7 @@ class Association;
 class Midi_Out_Queue;
 class Modifiers_Editor;
 class Eq_Display;
+class Matrix_Display;
 class Fl_Choice;
 class Fl_Check_Button;
 class Fl_Slider;
@@ -90,6 +91,7 @@ private:
   static void on_enter_parameter_control(Fl_Widget *w, void *user_data); 
   static void on_leave_parameter_control(Fl_Widget *w, void *user_data); 
   void update_eq_display(); 
+  void update_matrix_display(); 
 public:
   Fl_Hold_Browser *br_bank;
 private:
@@ -271,5 +273,7 @@ public:
 private:
   inline void cb_btn_modifiers_i(Fl_Button*, void*);
   static void cb_btn_modifiers(Fl_Button*, void*);
+public:
+  Matrix_Display *d_matrix;
 };
 #endif

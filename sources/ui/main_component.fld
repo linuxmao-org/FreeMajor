@@ -14,6 +14,9 @@ decl {\#include "midi_out_queue.h"} {private global
 decl {\#include "eq_display.h"} {private global
 }
 
+decl {\#include "matrix_display.h"} {private global
+}
+
 decl {\#include "widget_ex.h"} {private global
 }
 
@@ -80,6 +83,9 @@ decl {class Modifiers_Editor;} {public global
 decl {class Eq_Display;} {public global
 }
 
+decl {class Matrix_Display;} {public global
+}
+
 decl {class Fl_Choice;} {public global
 }
 
@@ -114,7 +120,7 @@ decl {typedef Fl_Valuator_Ex<Fl_Dial> Fl_Dial_Ex;} {public global
 }
 
 widget_class Main_Component {open
-  xywh {179 107 910 735} type Double
+  xywh {56 94 910 735} type Double
   code0 {init();} visible
 } {
   decl {void init();} {private local
@@ -152,7 +158,7 @@ widget_class Main_Component {open
   decl {void on_changed_midi_interface();} {private local
   }
   Fl_Box {} {
-    label FreeMajor selected
+    label FreeMajor
     xywh {595 1 315 39} box UP_BOX labeltype SHADOW_LABEL labelsize 28
   }
   Fl_Button btn_import {
@@ -194,6 +200,8 @@ widget_class Main_Component {open
   decl {static void on_leave_parameter_control(Fl_Widget *w, void *user_data);} {private local
   }
   decl {void update_eq_display();} {private local
+  }
+  decl {void update_matrix_display();} {private local
   }
   Fl_Browser br_bank {
     callback {on_selected_patch();}
@@ -289,7 +297,7 @@ widget_class Main_Component {open
       } {}
     }
   }
-  Fl_Group {} {
+  Fl_Group {} {open
     xywh {0 450 261 285} box THIN_UP_BOX
   } {
     Fl_Check_Button chk_equalizer {
@@ -774,5 +782,9 @@ widget_class Main_Component {open
     label Modifiers
     callback {on_clicked_modifiers();}
     xywh {5 165 120 20} labelsize 12
+  }
+  Fl_Box d_matrix {selected
+    xywh {5 10 230 65} box THIN_DOWN_BOX
+    class Matrix_Display
   }
 }

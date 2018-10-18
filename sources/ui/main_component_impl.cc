@@ -6,6 +6,7 @@
 #include "main_component.h"
 #include "patch_chooser.h"
 #include "eq_display.h"
+#include "matrix_display.h"
 #include "modifiers_editor.h"
 #include "singlemod_editor.h"
 #include "widget_ex.h"
@@ -237,6 +238,7 @@ void Main_Component::refresh_patch_display()
     }
 
     update_eq_display();
+    update_matrix_display();
 }
 
 Association *Main_Component::setup_slider(Fl_Slider_Ex *sl, Parameter_Access &p, int flags)
@@ -815,6 +817,8 @@ void Main_Component::on_edited_parameter(Fl_Widget *w, void *user_data)
         self->refresh_patch_display();
     else if (pgen.equalizer.contains(*a->access))
         self->update_eq_display();
+    else if (a->access == &pgen.routing())
+        self->update_matrix_display();
 
     if (self->chk_realtime->value())
         self->on_clicked_send();
@@ -928,4 +932,38 @@ void Main_Component::update_eq_display()
     }
 
     d_eq->set_bands(peq_enable, bands, 3);
+}
+
+void Main_Component::update_matrix_display()
+{
+    unsigned patchno = get_patch_number();
+    if (patchno == ~0u)
+        return;
+
+    Patch &pat = pbank_->slot[patchno];
+    P_General &pgen = *pgen_;
+
+    int routing = pgen.routing().get(pat);
+    Matrix_Display *d_matrix = this->d_matrix;
+    d_matrix->clear_matrix();
+
+    switch (routing) {
+    default:
+        assert(false);
+    case 0:
+        for (unsigned column = 0; column < 6; ++column)
+            d_matrix->set_matrix(0, column, true);
+        break;
+    case 1:
+        for (unsigned column = 0; column < 5; ++column)
+            d_matrix->set_matrix(0, column, true);
+        d_matrix->set_matrix(1, 4, true);
+        break;
+    case 2:
+        for (unsigned column = 0; column < 3; ++column)
+            d_matrix->set_matrix(0, column, true);
+        for (unsigned row = 1; row < 4; ++row)
+            d_matrix->set_matrix(row, 2, true);
+        break;
+    }
 }

@@ -30,6 +30,8 @@ set(FLTK_SKIP_IMAGES ON)
 set(FLTK_SKIP_FLUID ON)
 find_package(FLTK REQUIRED)
 
+set(MACOSX_BUNDLE_ICON_FILE "FreeMajor.icns")
+
 add_executable(FreeMajor WIN32 MACOSX_BUNDLE
   "sources/main.cc"
   "sources/app_i18n.cc"
@@ -87,7 +89,9 @@ else()
   install(TARGETS FreeMajor DESTINATION ".")
 endif()
 
-if(NOT (CMAKE_SYSTEM_NAME STREQUAL "Darwin" OR CMAKE_SYSTEM_NAME STREQUAL "Windows"))
+if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+  install(FILES "resources/application/FreeMajor.icns" DESTINATION "${PROJECT_NAME}.app/Contents/Resources")
+elseif(NOT CMAKE_SYSTEM_NAME STREQUAL "Windows")
   install(FILES "resources/application/FreeMajor.png" "resources/application/FreeMajor.svg" DESTINATION "${CMAKE_INSTALL_DATADIR}/pixmaps")
   install(FILES "resources/application/FreeMajor.desktop" DESTINATION "${CMAKE_INSTALL_DATADIR}/applications")
 endif()

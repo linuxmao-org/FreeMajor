@@ -32,10 +32,12 @@ int sscanf_l(const char *str, const char *format, locale_t locale, ...)
 int vsscanf_lc(const char *str, const char *format, const char *locale, va_list ap)
 {
     const char *oldlocale = setlocale(LC_ALL, nullptr);
-    if (!setlocale(LC_ALL, locale))
+    errno = 0;
+    if (!setlocale(LC_ALL, locale) && errno != 0)
         throw std::runtime_error("cannot set the current locale");
     int ret = vsscanf(str, format, ap);
-    if (!setlocale(LC_ALL, oldlocale))
+    errno = 0;
+    if (!setlocale(LC_ALL, oldlocale) && errno != 0)
         throw std::runtime_error("cannot set the current locale");
     return ret;
 }

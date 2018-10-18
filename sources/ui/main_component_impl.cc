@@ -24,6 +24,7 @@
 #include <FL/Fl_Native_File_Chooser.H>
 #include <FL/Fl_Double_Window.H>
 #include <FL/fl_ask.H>
+#include <array>
 #include <algorithm>
 #include <math.h>
 #include <assert.h>

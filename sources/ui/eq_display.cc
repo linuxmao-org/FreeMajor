@@ -139,8 +139,7 @@ double Eq_Display::eval(unsigned band, double freq)
     double g = norm_gauss(x, sigma);
 
     double gaindb = 20.0 * log10(gain);
-    double resultdb = std::abs(gaindb) * g;
-    resultdb = (gaindb < 0) ? -resultdb : +resultdb;
+    double resultdb = gaindb * g;
 
     return pow(10.0, 0.05 * resultdb);
 }

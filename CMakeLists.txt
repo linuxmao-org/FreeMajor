@@ -30,7 +30,7 @@ set(FLTK_SKIP_IMAGES ON)
 set(FLTK_SKIP_FLUID ON)
 find_package(FLTK REQUIRED)
 
-add_executable(FreeMajor WIN32
+add_executable(FreeMajor WIN32 MACOSX_BUNDLE
   "sources/main.cc"
   "sources/app_i18n.cc"
   "sources/utility/misc.cc"
@@ -57,6 +57,12 @@ target_include_directories(FreeMajor
   PRIVATE "sources" "${FLTK_INCLUDE_DIR}")
 target_link_libraries(FreeMajor PRIVATE "${FLTK_LIBRARIES}")
 
+if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+  add_custom_command(TARGET FreeMajor POST_BUILD
+    COMMAND "${CMAKE_INSTALL_NAME_TOOL}" -add_rpath "@executable_path/../Frameworks"
+    $<TARGET_FILE:FreeMajor>)
+endif()
+
 include(RtMidi)
 target_link_libraries(FreeMajor PRIVATE RtMidi)
 
@@ -74,13 +80,22 @@ endif()
 # target_include_directories(FreeMajor PRIVATE "thirdparty/Fl_Knob/Fl_Knob")
 
 ## Installation
-install(TARGETS FreeMajor DESTINATION "${CMAKE_INSTALL_BINDIR}")
+if(NOT CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+  install(TARGETS FreeMajor DESTINATION "${CMAKE_INSTALL_BINDIR}")
+else()
+  install(TARGETS FreeMajor DESTINATION ".")
+endif()
 
 ## Translations
 if(ENABLE_GETTEXT)
   set(TRANSLATIONS "fr")
+  if(NOT CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+    set(MO_DESTINATION "${CMAKE_INSTALL_LOCALEDIR}")
+  else()
+    set(MO_DESTINATION "${PROJECT_NAME}.app/Contents/Resources/locale")
+  endif()
   foreach(translation ${TRANSLATIONS})
-    gettext_process_po_files("${translation}" ALL INSTALL_DESTINATION "${CMAKE_INSTALL_LOCALEDIR}" PO_FILES
+    gettext_process_po_files("${translation}" ALL INSTALL_DESTINATION "${MO_DESTINATION}" PO_FILES
       "po/${translation}/FreeMajor.po")
   endforeach()
 endif()

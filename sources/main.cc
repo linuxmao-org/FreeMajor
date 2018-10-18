@@ -6,12 +6,38 @@
 #include "app_i18n.h"
 #include "ui/main_window.h"
 #include <FL/Fl.H>
+#include <string>
+
+#if defined(_WIN32)
+static const char *get_locale_path(std::string &buf)
+{
+    buf.resize(PATH_MAX);
+    buf.resize(GetModuleFileNameA(nullptr, &buf[0], buf.size()));
+
+    if (buf.empty())
+        return nullptr;
+
+    size_t pos = buf.rfind('\\');
+    if (pos == buf.npos)
+        return nullptr;
+
+    buf.resize(pos + 1);
+    buf.append("..\\share\\locale\\");
+    return buf.c_str();
+}
+#endif
 
 int main()
 {
 #if ENABLE_NLS
     setlocale(LC_ALL, "");
-    bindtextdomain("FreeMajor", LOCALE_DIRECTORY "/");
+#if !defined(_WIN32)
+    const char *locale_path = LOCALE_DIRECTORY "/";
+#else
+    std::string buf;
+    const char *locale_path = get_locale_path(buf);
+#endif
+    bindtextdomain("FreeMajor", locale_path);
     textdomain("FreeMajor");
 #endif
 

@@ -1418,7 +1418,7 @@ msgstr "Sauver..."
 #: sources/ui/main_component_impl.cc:541 sources/ui/main_component_impl.cc:696
 #: sources/ui/main_component_impl.cc:716
 msgid "Select the patch number:"
-msgstr "Sélectionne le numéro du préréglage."
+msgstr "Sélectionnez le numéro du préréglage :"
 
 #: sources/model/parameter.cc:546
 msgid "Selects how the Whammy block will pitch your tone."

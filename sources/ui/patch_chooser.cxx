@@ -25,27 +25,31 @@ Patch_Chooser::Patch_Chooser(const Patch_Bank &pbank) {
 
 int Patch_Chooser::show(const char *title, const char *text) {
   Fl_Double_Window* w;
-  { Fl_Double_Window* o = new Fl_Double_Window(240, 415);
+  { Fl_Double_Window* o = new Fl_Double_Window(280, 415);
     w = o; if (w) {/* empty */}
     o->user_data((void*)(this));
-    { Fl_Button* o = new Fl_Button(145, 380, 65, 25, _("Cancel"));
+    { Fl_Button* o = new Fl_Button(205, 380, 65, 25, _("Cancel"));
+      o->labelsize(12);
       o->callback((Fl_Callback*)cb_Cancel);
     } // Fl_Button* o
-    { Fl_Button* o = new Fl_Button(25, 380, 65, 25, _("OK"));
+    { Fl_Button* o = new Fl_Button(125, 380, 65, 25, _("OK"));
+      o->labelsize(12);
       o->callback((Fl_Callback*)cb_OK);
     } // Fl_Button* o
-    { br_bank = new Fl_Hold_Browser(10, 30, 220, 340);
+    { br_bank = new Fl_Hold_Browser(10, 30, 260, 340);
       br_bank->box(FL_NO_BOX);
       br_bank->color(FL_BACKGROUND2_COLOR);
       br_bank->selection_color(FL_SELECTION_COLOR);
       br_bank->labeltype(FL_NORMAL_LABEL);
       br_bank->labelfont(0);
-      br_bank->labelsize(14);
+      br_bank->labelsize(12);
       br_bank->labelcolor(FL_FOREGROUND_COLOR);
+      br_bank->textsize(12);
       br_bank->align(Fl_Align(FL_ALIGN_BOTTOM));
       br_bank->when(FL_WHEN_RELEASE_ALWAYS);
     } // Fl_Hold_Browser* br_bank
-    { lbl_text = new Fl_Box(10, 7, 220, 13, _("label"));
+    { lbl_text = new Fl_Box(10, 7, 260, 13, _("label"));
+      lbl_text->labelsize(12);
       lbl_text->align(Fl_Align(FL_ALIGN_LEFT|FL_ALIGN_INSIDE));
     } // Fl_Box* lbl_text
     o->end();

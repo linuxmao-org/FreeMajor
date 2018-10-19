@@ -26,26 +26,26 @@ class Patch_Chooser {open
   Function {show(const char *title, const char *text)} {open return_type int
   } {
     Fl_Window {} {open
-      xywh {465 192 240 415} type Double visible
+      xywh {390 194 280 415} type Double visible
     } {
       Fl_Button {} {
         label Cancel
         callback {window_->hide()}
-        xywh {145 380 65 25}
+        xywh {205 380 65 25} labelsize 12
       }
       Fl_Button {} {
         label OK
         callback {accept_ = true;
 window_->hide();}
-        xywh {25 380 65 25}
+        xywh {125 380 65 25} labelsize 12
       }
       Fl_Browser br_bank {
-        xywh {10 30 220 340}
+        xywh {10 30 260 340} labelsize 12 textsize 12
         class Fl_Hold_Browser
       }
       Fl_Box lbl_text {
-        label label selected
-        xywh {10 7 220 13} align 20
+        label label
+        xywh {10 7 260 13} labelsize 12 align 20
       }
     }
     code {accept_ = false;

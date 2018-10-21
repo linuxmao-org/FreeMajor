@@ -52,6 +52,13 @@ void Main_Component::cb_btn_change(Fl_Button* o, void* v) {
   ((Main_Component*)(o->parent()))->cb_btn_change_i(o,v);
 }
 
+void Main_Component::cb_btn_send_i(Fl_Button*, void*) {
+  on_clicked_send();
+}
+void Main_Component::cb_btn_send(Fl_Button* o, void* v) {
+  ((Main_Component*)(o->parent()))->cb_btn_send_i(o,v);
+}
+
 void Main_Component::cb_btn_receive_i(Fl_Button*, void*) {
   on_clicked_receive();
 }
@@ -113,13 +120,6 @@ void Main_Component::cb_btn_modifiers_i(Fl_Button*, void*) {
 }
 void Main_Component::cb_btn_modifiers(Fl_Button* o, void* v) {
   ((Main_Component*)(o->parent()))->cb_btn_modifiers_i(o,v);
-}
-
-void Main_Component::cb_btn_send_i(Fl_Button*, void*) {
-  on_clicked_send();
-}
-void Main_Component::cb_btn_send(Fl_Button* o, void* v) {
-  ((Main_Component*)(o->parent()))->cb_btn_send_i(o,v);
 }
 Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
   : Fl_Group(X, Y, W, H, L) {
@@ -1461,6 +1461,10 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
   } // Fl_Group* o
   o->end();
 } // Fl_Group* o
+{ btn_send = new Fl_Button(820, 62, 85, 20, _("Send"));
+  btn_send->labelsize(12);
+  btn_send->callback((Fl_Callback*)cb_btn_send);
+} // Fl_Button* btn_send
 { btn_receive = new Fl_Button(820, 85, 85, 20, _("Receive"));
   btn_receive->labelsize(12);
   btn_receive->callback((Fl_Callback*)cb_btn_receive);
@@ -1599,10 +1603,6 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
   d_matrix->align(Fl_Align(FL_ALIGN_CENTER));
   d_matrix->when(FL_WHEN_RELEASE);
 } // Matrix_Display* d_matrix
-{ btn_send = new Fl_Button(820, 62, 85, 20, _("Send"));
-  btn_send->labelsize(12);
-  btn_send->callback((Fl_Callback*)cb_btn_send);
-} // Fl_Button* btn_send
 { Fl_Box* o = new Fl_Box(595, 62, 20, 20, _("Tx"));
   o->labelsize(12);
   o->align(Fl_Align(FL_ALIGN_LEFT|FL_ALIGN_INSIDE));

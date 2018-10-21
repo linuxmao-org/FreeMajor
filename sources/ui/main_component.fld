@@ -701,6 +701,11 @@ widget_class Main_Component {open
       }
     }
   }
+  Fl_Button btn_send {
+    label Send
+    callback {on_clicked_send();} selected
+    xywh {820 62 85 20} labelsize 12
+  }
   Fl_Button btn_receive {
     label Receive
     callback {on_clicked_receive();}
@@ -797,17 +802,12 @@ widget_class Main_Component {open
     xywh {5 10 230 65} box THIN_DOWN_BOX
     class Matrix_Display
   }
-  Fl_Button btn_send {
-    label Send
-    callback {on_clicked_send();}
-    xywh {820 62 85 20} labelsize 12
-  }
   Fl_Box {} {
     label Tx
     xywh {595 62 20 20} labelsize 12 align 20
   }
   Fl_Box {} {
-    label Rx selected
+    label Rx
     xywh {595 85 20 20} labelsize 12 align 20
   }
 }

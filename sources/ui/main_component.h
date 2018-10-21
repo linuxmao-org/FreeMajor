@@ -228,6 +228,11 @@ public:
   Fl_Group_Ex *box_rev13;
   Fl_Group_Ex *box_rev14;
   Fl_Choice_Ex *cb_reverb;
+  Fl_Button *btn_send;
+private:
+  inline void cb_btn_send_i(Fl_Button*, void*);
+  static void cb_btn_send(Fl_Button*, void*);
+public:
   Fl_Button *btn_receive;
 private:
   inline void cb_btn_receive_i(Fl_Button*, void*);
@@ -283,9 +288,5 @@ private:
   static void cb_btn_modifiers(Fl_Button*, void*);
 public:
   Matrix_Display *d_matrix;
-  Fl_Button *btn_send;
-private:
-  inline void cb_btn_send_i(Fl_Button*, void*);
-  static void cb_btn_send(Fl_Button*, void*);
 };
 #endif

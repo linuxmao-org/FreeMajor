@@ -1005,14 +1005,12 @@ msgstr "Basse"
 
 #. Fl_Box* txt_description
 #: sources/ui/main_component.cxx:1473
-#, fuzzy
 msgid "MIDI devices:"
-msgstr "Périphériques de sortie MIDI :"
+msgstr "Périphériques MIDI :"
 
 #: sources/device/midi.cc:115
-#, fuzzy
 msgid "MIDI in"
-msgstr "Sortie MIDI"
+msgstr "Entrée MIDI"
 
 #: sources/device/midi.cc:131
 msgid "MIDI out"

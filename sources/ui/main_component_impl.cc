@@ -9,6 +9,7 @@
 #include "matrix_display.h"
 #include "modifiers_editor.h"
 #include "singlemod_editor.h"
+#include "receive_dialog.h"
 #include "widget_ex.h"
 #include "association.h"
 #include "midi_out_queue.h"
@@ -50,7 +51,7 @@ void Main_Component::init()
     P_General *pgen = new P_General;
     pgen_.reset(pgen);
 
-    Midi_Out &mido = Midi_Out::instance();
+    Midi_Interface &mi = Midi_Interface::instance();
     size_t num_midi_apis = midi_api_count();
     if (compiled_midi_api_count() == 1)
         ch_midi_interface->hide();
@@ -61,10 +62,11 @@ void Main_Component::init()
             const char *name = midi_api_name((RtMidi::Api)i);
             ch_midi_interface->add(name, 0, nullptr);
         }
-        ch_midi_interface->value(compiled_midi_api_index(mido.current_api()));
+        ch_midi_interface->value(compiled_midi_api_index(mi.current_api()));
     }
 
     midi_out_q_.reset(new Midi_Out_Queue);
+    update_midi_ins();
     update_midi_outs();
 
     txt_patch_name->when(FL_WHEN_CHANGED);
@@ -450,19 +452,47 @@ void Main_Component::setup_modifier_row(const char *title, bool enable, int row,
     edt->redraw();
 }
 
+void Main_Component::update_midi_ins()
+{
+    Midi_Interface &mi = Midi_Interface::instance();
+    ch_midi_in->clear();
+    if (mi.supports_virtual_port())
+        ch_midi_in->add(_("Virtual port"));
+
+    std::vector<std::string> in_ports = mi.get_real_input_ports();
+    for (size_t i = 0, n = in_ports.size(); i < n; ++i)
+        ch_midi_in->add(in_ports[i].c_str());
+
+    // needed to update text contents
+    ch_midi_in->redraw();
+}
+
 void Main_Component::update_midi_outs()
 {
-    Midi_Out &mido = Midi_Out::instance();
+    Midi_Interface &mi = Midi_Interface::instance();
     ch_midi_out->clear();
-    if (mido.supports_virtual_port())
+    if (mi.supports_virtual_port())
         ch_midi_out->add(_("Virtual port"));
 
-    std::vector<std::string> out_ports = mido.get_real_ports();
+    std::vector<std::string> out_ports = mi.get_real_output_ports();
     for (size_t i = 0, n = out_ports.size(); i < n; ++i)
         ch_midi_out->add(out_ports[i].c_str());
 
     // needed to update text contents
     ch_midi_out->redraw();
+}
+
+void Main_Component::on_changed_midi_in()
+{
+    unsigned value = ch_midi_in->value();
+    if ((int)value == -1)
+        return;
+
+    Midi_Interface &mi = Midi_Interface::instance();
+    if (mi.supports_virtual_port())
+        --value;  // virtual port is the first entry
+
+    mi.open_input_port(value);
 }
 
 void Main_Component::on_changed_midi_out()
@@ -471,11 +501,11 @@ void Main_Component::on_changed_midi_out()
     if ((int)value == -1)
         return;
 
-    Midi_Out &mido = Midi_Out::instance();
-    if (mido.supports_virtual_port())
+    Midi_Interface &mi = Midi_Interface::instance();
+    if (mi.supports_virtual_port())
         --value;  // virtual port is the first entry
 
-    mido.open_port(value);
+    mi.open_output_port(value);
 }
 
 void Main_Component::on_changed_midi_interface()
@@ -484,10 +514,11 @@ void Main_Component::on_changed_midi_interface()
     if ((int)value == -1)
         return;
 
-    Midi_Out &mido = Midi_Out::instance();
+    Midi_Interface &mi = Midi_Interface::instance();
     RtMidi::Api api = compiled_midi_api_by_index(value);
 
-    mido.switch_api(api);
+    mi.switch_api(api);
+    update_midi_ins();
     update_midi_outs();
 }
 
@@ -741,6 +772,19 @@ void Main_Component::on_clicked_delete()
     Patch_Bank &pbank = *pbank_;
     pbank.used[patchno] = false;
 
+    refresh_bank_browser();
+    refresh_patch_display();
+}
+
+void Main_Component::on_clicked_receive()
+{
+    Patch_Bank pbank;
+
+    Receive_Dialog dlg(pbank);
+    if (dlg.show(_("Receive")) == -1)
+        return;
+
+    *pbank_ = pbank;
     refresh_bank_browser();
     refresh_patch_display();
 }

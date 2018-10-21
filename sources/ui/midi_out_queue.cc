@@ -42,8 +42,8 @@ void Midi_Out_Queue::on_timeout(void *user_data)
         Event evt = std::move(self->eventq_.front());
         self->eventq_.pop_front();
 
-        Midi_Out &out = Midi_Out::instance();
-        out.send_message(evt.message.data(), evt.message.size());
+        Midi_Interface &mi = Midi_Interface::instance();
+        mi.send_message(evt.message.data(), evt.message.size());
 
         Fl::add_timeout(evt.interval_after, &on_timeout, self);
     }

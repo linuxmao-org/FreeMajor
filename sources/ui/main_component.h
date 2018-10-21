@@ -62,8 +62,10 @@ private:
   void setup_choice(Fl_Choice_Ex *cb, Parameter_Access &p, int flags = 0); 
   void setup_boxes(bool enable, const Parameter_Collection &pc, Fl_Group_Ex *boxes[], unsigned nboxes); 
   void setup_modifier_row(const char *title, bool enable, int row, Parameter_Collection &pc); 
+  void update_midi_ins(); 
   void update_midi_outs(); 
   void on_selected_patch(); 
+  void on_changed_midi_in(); 
   void on_changed_midi_out(); 
   void on_changed_midi_interface(); 
 public:
@@ -84,6 +86,7 @@ private:
   void on_clicked_new(); 
   void on_clicked_copy(); 
   void on_clicked_delete(); 
+  void on_clicked_receive(); 
   void on_clicked_send(); 
   void on_clicked_modifiers(); 
   void on_edited_patch_name(); 
@@ -104,6 +107,11 @@ private:
   std::unique_ptr<Midi_Out_Queue> midi_out_q_; 
   std::unique_ptr<Fl_Double_Window> win_modifiers_; 
   Modifiers_Editor *edt_modifiers_ = nullptr; 
+public:
+  Fl_Choice *ch_midi_in;
+private:
+  inline void cb_ch_midi_in_i(Fl_Choice*, void*);
+  static void cb_ch_midi_in(Fl_Choice*, void*);
 public:
   Fl_Choice *ch_midi_out;
 private:
@@ -220,10 +228,10 @@ public:
   Fl_Group_Ex *box_rev13;
   Fl_Group_Ex *box_rev14;
   Fl_Choice_Ex *cb_reverb;
-  Fl_Button *btn_send;
+  Fl_Button *btn_receive;
 private:
-  inline void cb_btn_send_i(Fl_Button*, void*);
-  static void cb_btn_send(Fl_Button*, void*);
+  inline void cb_btn_receive_i(Fl_Button*, void*);
+  static void cb_btn_receive(Fl_Button*, void*);
 public:
   Fl_Box *txt_description;
   Fl_Check_Button *chk_realtime;
@@ -275,5 +283,9 @@ private:
   static void cb_btn_modifiers(Fl_Button*, void*);
 public:
   Matrix_Display *d_matrix;
+  Fl_Button *btn_send;
+private:
+  inline void cb_btn_send_i(Fl_Button*, void*);
+  static void cb_btn_send(Fl_Button*, void*);
 };
 #endif

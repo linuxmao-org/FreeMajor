@@ -1,0 +1,88 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0304
+i18n_type 1
+i18n_include app_i18n.h
+i18n_function _
+header_name {.h}
+code_name {.cxx}
+decl {\#include "model/patch.h"} {private local
+}
+
+decl {\#include <stdint.h>} {public global
+}
+
+decl {class Patch_Bank;} {public global
+}
+
+class Receive_Dialog {open
+} {
+  decl {Receive_Dialog(Patch_Bank &pbank);} {public local
+  }
+  decl {void begin_receive();} {private local
+  }
+  decl {void end_receive();} {private local
+  }
+  decl {static void on_midi_input(const uint8_t *msg, size_t len, void *user_data);} {private local
+  }
+  decl {static void on_update_tick(void *user_data);} {selected private local
+  }
+  Function {show(const char *title)} {open return_type int
+  } {
+    Fl_Window {} {open
+      xywh {173 91 420 110} type Double visible
+    } {
+      Fl_Button {} {
+        label Cancel
+        callback {window_->hide()}
+        xywh {345 75 65 25} labelsize 12
+      }
+      Fl_Button {} {
+        label OK
+        callback {accept_ = true;
+window_->hide();}
+        xywh {265 75 65 25} labelsize 12
+      }
+      Fl_Value_Output val_rx_programs {
+        label {Programs received}
+        xywh {370 15 40 20} labelsize 12 textsize 12
+      }
+      Fl_Value_Output val_rx_messages {
+        label {Message count}
+        xywh {370 40 40 20} labelsize 12 textsize 12
+      }
+      Fl_Box {} {
+        label {Send a Bulk Dump from the machine and validate when finished. Warning: This process overwrites the current bank.}
+        xywh {10 10 215 90} box THIN_UP_BOX labelsize 12 align 149
+      }
+    }
+    code {accept_ = false;
+window_ = w;
+
+w->label(title);
+
+begin_receive();
+
+w->set_modal();
+w->show();
+while (w->shown()) Fl::wait();
+
+end_receive();
+
+delete w;
+window_ = nullptr;
+if (!accept_)
+    return -1;
+
+return 0;} {}
+  }
+  decl {Patch_Bank *pbank_ = nullptr;} {private local
+  }
+  decl {Fl_Double_Window *window_ = nullptr;} {private local
+  }
+  decl {bool accept_ = false;} {private local
+  }
+  decl {unsigned rx_programs_ = 0;} {private local
+  }
+  decl {unsigned rx_messages_ = 0;} {private local
+  }
+}

@@ -50,6 +50,8 @@ add_executable(FreeMajor WIN32 MACOSX_BUNDLE
   "sources/ui/modifiers_editor.cxx"
   "sources/ui/modifiers_editor_impl.cc"
   "sources/ui/singlemod_editor.cxx"
+  "sources/ui/receive_dialog.cxx"
+  "sources/ui/receive_dialog_impl.cc"
   "sources/ui/eq_display.cc"
   "sources/ui/matrix_display.cc"
   "sources/ui/association.cc"

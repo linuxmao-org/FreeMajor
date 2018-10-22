@@ -106,9 +106,10 @@ https://guitarpatches.com/patches.php?unit=GMajor
 
 === MIDI
 
-Le menu MIDI permet de sélectionner périhérique de sortie MIDI à utiliser.
+Le menu MIDI permet de sélectionner les périphériques d'entrée et de sortie MIDI à utiliser.
 La coche Temps réel permet de basculer dans le mode temps réel. Ce mode permet d’appliquer les modification de manière instantanée.
-Envoie – Ce bouton envoi le préréglage courant au G-Major quand le mode temps réel n’est pas activé.
+Envoyer – Ce bouton envoi le préréglage courant au G-Major quand le mode temps réel n’est pas activé.
+Recevoir – Ce bouton ouvre une fenêtre et met Freemajor en mode reception. Envoyez un message Bulk Dump depuis la machine et validez une fois terminé. Attention : Ce procédé écrase la banque actuelle.
 
 === Paramètres préréglages
 

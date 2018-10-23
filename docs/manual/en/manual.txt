@@ -109,7 +109,7 @@ https://guitarpatches.com/patches.php?unit=GMajor
 The MIDI menu allows you to select the midi-out interface to use. +
 The real time checkmark switches to the real-time mode. This mode allows you to apply changes instantly. +
 Send – This button sends the current preset to the G-Major. This is useful when the real-time mode is inactive. +
-Receive – This button opens a window and put Freemajor in reception mode. Send a Bulk Dump message from the machine and validate after reception ok. Be carrefull : This process overwrite the actual bank. +
+Receive – This button opens a window and lets Freemajor listen to incoming preset data. Send a Bulk Dump from the machine and validate when finished. Be careful : This process overwrites the current bank. +
 
 === Patch parameters
 

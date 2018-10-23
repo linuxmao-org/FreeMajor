@@ -1,9 +1,6 @@
 // -*- mode: adoc; -*-
 
 :lang: en
-:toc-title: Table of content
-:last-update-label: Last update
-:warning-caption: Attention
 
 = User manual
 Julien Taverna, Jean Pierre Cimalando and Olivier Humbert

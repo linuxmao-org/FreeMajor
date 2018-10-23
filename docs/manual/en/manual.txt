@@ -32,7 +32,7 @@ The project provides downloads for the Windows system. +
 https://github.com/linuxmao-org/FreeMajor/releases
 
 Unless there exists a downloadable version for your operating system, you will need to obtain the source code and build it yourself. +
-Visit the project home page and follow the construction steps in the file README.md.
+Visit the project home page and follow the build steps in the file README.md.
 
 == How to use
 

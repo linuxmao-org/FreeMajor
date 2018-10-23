@@ -79,7 +79,7 @@ The second part at the bottom of the user interface groups the effects&nbsp;:
 
 - Reverb
 
-The use of different algorithms is documented in the G-Major manual. It is for this reason that we will not return here.
+The detailed use of each algorithm is already documented in the G-Major manual. We do not cover this topic in this document.
 
 === Patches
 

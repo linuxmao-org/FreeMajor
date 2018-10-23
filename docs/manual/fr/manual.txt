@@ -83,7 +83,7 @@ L'utilisation des différents algorithmes est documentée dans le manuel du G-Ma
 
 === Préréglages
 
-Fenêtre de selection - Sélectionnez un préréglage sur lequel vous voulez travailler dans la liste des préréglages. Si l’option temps réel est activée le préréglage sera envoyé au G-Major qui chargera ce patch dans la banque utilisateur et changera de preset pour l’utiliser.
+Fenêtre de selection - Sélectionnez un préréglage sur lequel vous voulez travailler dans la liste des préréglages. Si l’option temps réel est activée le préréglage sera envoyé au G-Major qui chargera ce patch dans la banque utilisateur, et basculera sur le programme correspondant.
 
 Charger - Permet de charger un fichier de banque de préréglages .realmajor enregistré précédemment. Cela réinitialise FreeMajor et affiche uniquement les préréglages contenus dans la banque chargée.
 

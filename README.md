@@ -5,6 +5,7 @@
 
 ### Useful links
 
+- [G-Major manual :us: :jp: :it: :de: :es: :fr:](https://www.tcelectronic.com/Categories/Tcelectronic/Guitar/Effects-Processors/G-MAJOR/p/HE066/Downloads)
 - [Linux MAO :fr:](http://linuxmao.org/FreeMajor)
 - [LibraZiK-2 :fr:](http://librazik.tuxfamily.org/doc2/logiciels/freemajor)
 

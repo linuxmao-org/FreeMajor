@@ -97,7 +97,7 @@ Copier - Copie un préréglage existant sur la position sélectionnée. Si un pr
 
 Effacer - Détruit le préréglage sélectionné.
 
-Importer - Importe un préréglage précédemment exporté ou téléchargé sur guitar patches
+Importer - Importe un préréglage précédemment exporté ou téléchargé sur guitar patches.
 
 Exporter - Exporte les préréglages en fichier .realpatch, qui peuvent etre déposés ensuite sur guitar patches ou échangés avec d'autres utilisateurs.
 

@@ -83,7 +83,7 @@ The detailed use of each algorithm is already documented in the G-Major manual. 
 
 === Patches
 
-Selection Window - Select a preset on which you want to work in the list of presets. If the real-time option is activated, the preset will be sent to the G-Major who will load this patch into the user bank and change the preset to use it.
+Selection Window - Select a preset from the list on which you want to work. If the real-time option is active, the preset is loaded into the user bank of the G-Major, and it is made the active program.
 
 Load - Loads a previously saved .realmajor preset bank file. This resets FreeMajor and displays only the presets contained in the loaded bank.
 

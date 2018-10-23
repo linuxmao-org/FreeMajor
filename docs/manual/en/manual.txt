@@ -89,7 +89,7 @@ Load - Loads a previously saved .realmajor preset bank file. This resets FreeMaj
 
 Save - Saves all the presets being edited in FreeMajor to a preset bank file .realmajor.
 
-New - Creates a new empty preset in the selected position. If a preset is present on this location it is destroyed.
+New - Creates a new empty preset at the selected position. If a preset is already present at this location, it is destroyed.
 
 Change - If the real-time option is off, this button changes the G-Major preset.
 

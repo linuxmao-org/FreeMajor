@@ -20,7 +20,7 @@ https://github.com/linuxmao-org/FreeMajor
 
 FreeMajor is a MIDI controller compatible with the TC Electronic G-Major multi-effects unit.
 
-This software makes the advanced use of multi-effect easy to use thanks to a graphical interface that groups all the parameters of the presets.
+This software makes advanced use of the multi-effects processor easy, thanks to a graphical interface that groups all the parameters of the presets.
 
 It offers the possibility of retrieving user presets from the G-Major, creating new ones, modifying existing ones, importing them, exporting them ...
 

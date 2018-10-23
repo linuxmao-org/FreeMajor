@@ -1,0 +1,129 @@
+// -*- mode: adoc; -*-
+
+:lang: en
+
+= User manual
+Julien Taverna, Jean Pierre Cimalando and Olivier Humbert
+v0.1
+:toc:
+
+[.Lead]
+This manual documents the use of FreeMajor program, a MIDI controller for the TC Electronic G-Major multi-effects unit. +
+FreeMajor is free and open source software. +
+If the software displays a problem, please post an issue on the project page&nbsp;: +
+https://github.com/linuxmao-org/FreeMajor
+
+== Description
+
+FreeMajor is a MIDI controller compatible with the TC Electronic G-Major multi-effects unit.
+
+This software makes advanced use of the multi-effects processor easy, thanks to a graphical interface that groups all the parameters of the presets.
+
+It offers the possibility of retrieving user presets from the G-Major, creating new ones, modifying existing ones, importing them, exporting them ...
+
+You will discover all the possibilities offered by FreeMajor by reading this manual.
+
+== Installation
+
+The project provides downloads for Windows and macOS systems. +
+https://github.com/linuxmao-org/FreeMajor/releases
+
+Unless there exists a downloadable version for your operating system, you will need to obtain the source code and build it yourself. +
+Visit the project home page and follow the build steps in the file README.md.
+
+== How to use
+
+When the controller is opened, the window displays the graphical interface where you can find all the settings that are physically available on the G-Major and the functions needed to transfer the data to the G-Major.
+
+.Edition window
+image::../resources/en/screen.png[500,500]
+
+The layout of the controller is divided into two parts&nbsp;:
+
+The first part at the top of the user interface groups&nbsp;:
+
+* Patches
+
+image::../resources/en/presets.png[presets,357,105]
+
+* MIDI
+
+image::../resources/en/midi.png[midi,316,73]
+
+* Patch parameters
+
+image::../resources/en/parameters.png[parameters,586,100]
+
+* Parameter info
+
+image::../resources/en/infos.png[infos,321,110]
+
+The second part at the bottom of the user interface groups the effects&nbsp;:
+
+- Noise Gate
+
+- Compressor
+
+- Equalizer
+
+- Filter
+
+- Pitch
+
+- Chorus / Flanger
+
+- Delay
+
+- Reverb
+
+The detailed use of each algorithm is already documented in the G-Major manual. We do not cover this topic in this document.
+
+=== Patches
+
+Selection Window - Select a preset from the list on which you want to work. If the real-time option is active, the preset is loaded into the user bank of the G-Major, and it is made the active program.
+
+Load - Loads a previously saved .realmajor preset bank file. This resets FreeMajor and displays only the presets contained in the loaded bank.
+
+Save - Saves all the presets being edited in FreeMajor to a preset bank file .realmajor.
+
+New - Creates a new empty preset at the selected position. If a preset is already present at this location, it is destroyed.
+
+Change - This button changes the active program number on the G-Major. This is useful when the real-time option is set to off.
+
+Copy - Copy an existing preset to the selected position. If a preset is present at this location, it is destroyed.
+
+Delete - Destroys the selected preset.
+
+Import - Import presets previously exported or downloaded from guitar patches.
+
+Export - Exports presets as a .realpatch file, which can be dropped on guitar patches or exchanged with other users.
+
+Here is a link to guitar patches for gourmands&nbsp;:
+https://guitarpatches.com/patches.php?unit=GMajor
+
+=== MIDI
+
+The MIDI menu allows you to select the midi-out interface to use. +
+The real time checkmark switches to the real-time mode. This mode allows you to apply changes instantly. +
+Send – This button sends the current preset to the G-Major. This is useful when the real-time mode is inactive. +
+Receive – This button opens a window and lets FreeMajor listen to incoming preset data. Send a Bulk Dump from the machine and validate when finished. Be careful: This process overwrites the current bank. +
+
+=== Patch parameters
+
+Here you set the routing, the relays, the tap tempo, the preset volume. To change the name of the current preset, simply write the new name in the patch name field and press enter. In real-time mode, the new name is sent to the G-Major which updates it.
+
+The 'modifiers' button opens a window which allows to assign a parameter to a 'modifier' and adjust the response curve.
+It is structured in the following manner&nbsp;:
+
+.Modifiers assignment and adjustment window.
+image::../resources/en/modifiers.png[500,500]
+
+=== Parameter infos
+
+This window displays the description of each switch or potentiometer that allows the effects to be adjusted when hovered with the mouse pointer.
+
+== À propos
+
+FreeMajor is software developed by Jean Pierre Cimalando in 2018. +
+
+This software is designed with one objective&nbsp;: facilitate the use of the G-Major multi-effects unit which can otherwise only be controlled by the front panel or by injecting a system-exclusive message.

@@ -22,13 +22,13 @@ FreeMajor est un contrôleur MIDI compatible avec le multi-effets G-Major de TC 
 
 Ce programme permet de rendre conviviale l'utilisation avancée du multi-effets grâce à une interface graphique qui regroupe tous les paramètres des préréglages.
 
-Il offre la possibilité de récuperer dans le G-Major des préréglages utilisateur, d'en créer de nouveaux, de modifier ceux qui existent déjà, de les importer, de les exporter...
+Il offre la possibilité de récupérer dans le G-Major des préréglages utilisateur, d'en créer de nouveaux, de modifier ceux qui existent déjà, de les importer, de les exporter...
 
 Vous allez découvrir toutes les possibilités offertes par FreeMajor en lisant ce manuel.
 
 == Installation
 
-Le projet met à disposition des téléchargements pour le système Windows. +
+Le projet met à disposition des téléchargements pour le système Windows et macOS. +
 https://github.com/linuxmao-org/FreeMajor/releases
 
 À défaut de disposer d'une version téléchargeable pour son système d'exploitation, il faudra récupérer le code source et le construire soi-même.

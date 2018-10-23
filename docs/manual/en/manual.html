@@ -455,8 +455,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sectionbody">
 <div class="paragraph Lead">
 <p>This manual documents the use of FreeMajor program, a MIDI controler for TC Electronic G-Major multi-effect.<br>
-FreeMajor is a free and open source software.<br>
-If the software présents a problem, please post an issue on project page&nbsp;:<br>
+FreeMajor is free and open source software.<br>
+If the software displays a problem, please post an issue on project page&nbsp;:<br>
 <a href="https://github.com/linuxmao-org/FreeMajor" class="bare">https://github.com/linuxmao-org/FreeMajor</a></p>
 </div>
 </div>
@@ -486,7 +486,7 @@ If the software présents a problem, please post an issue on project page&nbsp;:
 <a href="https://github.com/linuxmao-org/FreeMajor/releases" class="bare">https://github.com/linuxmao-org/FreeMajor/releases</a></p>
 </div>
 <div class="paragraph">
-<p>If you do not have a downloadable version for your operating system, you will need to recover the source code and build it yourself.
+<p>Unless there exists a downloadable version for your operating system, you will need to obtain the source code and build it yourself.<br>
 Visit the project home page and follow the construction steps in the file README.md.</p>
 </div>
 </div>
@@ -548,7 +548,7 @@ Visit the project home page and follow the construction steps in the file README
 <div class="ulist">
 <ul>
 <li>
-<p>Parameter infos</p>
+<p>Parameter info</p>
 </li>
 </ul>
 </div>
@@ -589,12 +589,12 @@ Visit the project home page and follow the construction steps in the file README
 </ul>
 </div>
 <div class="paragraph">
-<p>The use of different algorithms is documented in the G-Major manual. It is for this reason that we will not return here.</p>
+<p>The detailed use of each algorithm is already documented in the G-Major manual. We do not cover this topic in this document.</p>
 </div>
 <div class="sect2">
 <h3 id="_patches">Patches</h3>
 <div class="paragraph">
-<p>Selection Window - Select a preset on which you want to work in the list of presets. If the real-time option is activated, the preset will be sent to the G-Major who will load this patch into the user bank and change the preset to use it.</p>
+<p>Selection Window - Select a preset from the list on which you want to work. If the real-time option is active, the preset is loaded into the user bank of the G-Major, and it is made the active program.</p>
 </div>
 <div class="paragraph">
 <p>Load - Loads a previously saved .realmajor preset bank file. This resets FreeMajor and displays only the presets contained in the loaded bank.</p>
@@ -603,13 +603,13 @@ Visit the project home page and follow the construction steps in the file README
 <p>Save - Saves all the presets being edited in FreeMajor to a preset bank file .realmajor.</p>
 </div>
 <div class="paragraph">
-<p>New - Creates a new empty preset in the selected position. If a preset is present on this location it is destroyed.</p>
+<p>New - Creates a new empty preset at the selected position. If a preset is already present at this location, it is destroyed.</p>
 </div>
 <div class="paragraph">
-<p>Change - If the real-time option is off, this button changes the G-Major preset.</p>
+<p>Change - This button changes the active program number on the G-Major. This is useful when the real-time option is set to off.</p>
 </div>
 <div class="paragraph">
-<p>Copy - Copy an existing preset to the selected position. If a preset is present on this location it is destroyed.</p>
+<p>Copy - Copy an existing preset to the selected position. If a preset is present at this location, it is destroyed.</p>
 </div>
 <div class="paragraph">
 <p>Delete - Destroys the selected preset.</p>
@@ -618,7 +618,7 @@ Visit the project home page and follow the construction steps in the file README
 <p>Import - Import presets previously exported or downloaded from guitar patches.</p>
 </div>
 <div class="paragraph">
-<p>Export - Exports presets as a .realpatch file, which can be dropped onto guitar patches or exchanged with other users.</p>
+<p>Export - Exports presets as a .realpatch file, which can be dropped on guitar patches or exchanged with other users.</p>
 </div>
 <div class="paragraph">
 <p>Here is a link to guitar patches for gourmands&nbsp;:
@@ -630,18 +630,18 @@ Visit the project home page and follow the construction steps in the file README
 <div class="paragraph">
 <p>The MIDI menu allows you to select the midi-out interface to use.<br>
 The real time checkmark switches to the real-time mode. This mode allows you to apply changes instantly.<br>
-Send – This button sends the current preset to the G-Major when the real-time mode is not activated.<br>
-Receive – This button opens a window and put Freemajor in reception mode. Send a Bulk Dump message from the machine and validate after reception ok. Be carrefull : This process overwrite the actual bank.<br></p>
+Send – This button sends the current preset to the G-Major. This is useful when the real-time mode is inactive.<br>
+Receive – This button opens a window and lets Freemajor listen to incoming preset data. Send a Bulk Dump from the machine and validate when finished. Be careful : This process overwrites the current bank.<br></p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_patch_parameters">Patch parameters</h3>
 <div class="paragraph">
-<p>Here you set the routing, the relays, the tap tempo, the preset volume. To change the name of the current preset, simply write the new name in the patchname field and press enter. In real-time mode, the new name is sent to the G-Major which updates it.</p>
+<p>Here you set the routing, the relays, the tap tempo, the preset volume. To change the name of the current preset, simply write the new name in the patch name field and press enter. In real-time mode, the new name is sent to the G-Major which updates it.</p>
 </div>
 <div class="paragraph">
-<p>The 'modifiers' button opens a window which allows to assign a parameter to a 'modifier' and to allow the adjustment of the response curve.
-It is in the following form&nbsp;:</p>
+<p>The 'modifiers' button opens a window which allows to assign a parameter to a 'modifier' and adjust the response curve.
+It is structured in the following manner&nbsp;:</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -653,7 +653,7 @@ It is in the following form&nbsp;:</p>
 <div class="sect2">
 <h3 id="_parameter_infos">Parameter infos</h3>
 <div class="paragraph">
-<p>This window displays the description of each switch or potentiometer that allows the effects to be adjusted when hovering with the mouse pointer.</p>
+<p>This window displays the description of each switch or potentiometer that allows the effects to be adjusted when hovered with the mouse pointer.</p>
 </div>
 </div>
 </div>
@@ -662,10 +662,10 @@ It is in the following form&nbsp;:</p>
 <h2 id="_À_propos">À propos</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>FreeMajor is a software developed by Jean Pierre Cimalando in 2018.<br></p>
+<p>FreeMajor is software developed by Jean Pierre Cimalando in 2018.<br></p>
 </div>
 <div class="paragraph">
-<p>This software is made with a goal&nbsp;: facilitate the use of the G-Major multi-effects which can only be controlled by the buttons present on the front panel or by injecting a Sysex message.</p>
+<p>This software is designed with one objective&nbsp;: facilitate the use of the G-Major multi-effects unit which can otherwise only be controlled by the front panel or by injecting a system-exclusive message.</p>
 </div>
 </div>
 </div>
@@ -673,7 +673,7 @@ It is in the following form&nbsp;:</p>
 <div id="footer">
 <div id="footer-text">
 Version 0.1<br>
-Last update 2018-10-23 01:49:15 CEST
+Last update 2018-10-23 20:15:17 CEST
 </div>
 </div>
 </body>

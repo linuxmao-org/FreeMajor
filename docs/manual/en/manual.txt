@@ -12,8 +12,8 @@ v0.1
 
 [.Lead]
 This manual documents the use of FreeMajor program, a MIDI controler for TC Electronic G-Major multi-effect. +
-FreeMajor is a free and open source software. +
-If the software présents a problem, please post an issue on project page&nbsp;: +
+FreeMajor is free and open source software. +
+If the software displays a problem, please post an issue on project page&nbsp;: +
 https://github.com/linuxmao-org/FreeMajor
 
 == Description
@@ -31,7 +31,7 @@ You will discover all the possibilities offered by FreeMajor by reading this man
 The project provides downloads for the Windows system. +
 https://github.com/linuxmao-org/FreeMajor/releases
 
-If you do not have a downloadable version for your operating system, you will need to recover the source code and build it yourself.
+Unless there exists a downloadable version for your operating system, you will need to obtain the source code and build it yourself. +
 Visit the project home page and follow the construction steps in the file README.md.
 
 == How to use
@@ -57,7 +57,7 @@ image::../resources/en/midi.png[midi,316,73]
 
 image::../resources/en/parameters.png[parameters,586,100]
 
-* Parameter infos
+* Parameter info
 
 image::../resources/en/infos.png[infos,321,110]
 
@@ -99,7 +99,7 @@ Delete - Destroys the selected preset.
 
 Import - Import presets previously exported or downloaded from guitar patches.
 
-Export - Exports presets as a .realpatch file, which can be dropped onto guitar patches or exchanged with other users.
+Export - Exports presets as a .realpatch file, which can be dropped on guitar patches or exchanged with other users.
 
 Here is a link to guitar patches for gourmands&nbsp;:
 https://guitarpatches.com/patches.php?unit=GMajor
@@ -113,7 +113,7 @@ Receive – This button opens a window and lets Freemajor listen to incoming pre
 
 === Patch parameters
 
-Here you set the routing, the relays, the tap tempo, the preset volume. To change the name of the current preset, simply write the new name in the patchname field and press enter. In real-time mode, the new name is sent to the G-Major which updates it.
+Here you set the routing, the relays, the tap tempo, the preset volume. To change the name of the current preset, simply write the new name in the patch name field and press enter. In real-time mode, the new name is sent to the G-Major which updates it.
 
 The 'modifiers' button opens a window which allows to assign a parameter to a 'modifier' and adjust the response curve.
 It is structured in the following manner&nbsp;:

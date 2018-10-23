@@ -116,7 +116,7 @@ Receive – This button opens a window and lets Freemajor listen to incoming pre
 Here you set the routing, the relays, the tap tempo, the preset volume. To change the name of the current preset, simply write the new name in the patchname field and press enter. In real-time mode, the new name is sent to the G-Major which updates it.
 
 The 'modifiers' button opens a window which allows to assign a parameter to a 'modifier' and adjust the response curve.
-It is in the following form&nbsp;:
+It is structured in the following manner&nbsp;:
 
 .Modifiers assignment and adjustment window.
 image::../resources/en/modifiers.png[500,500]

@@ -13,7 +13,7 @@ v0.1
 [.Lead]
 This manual documents the use of FreeMajor program, a MIDI controller for the TC Electronic G-Major multi-effects unit. +
 FreeMajor is free and open source software. +
-If the software displays a problem, please post an issue on project page&nbsp;: +
+If the software displays a problem, please post an issue on the project page&nbsp;: +
 https://github.com/linuxmao-org/FreeMajor
 
 == Description

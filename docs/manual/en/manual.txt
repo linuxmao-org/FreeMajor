@@ -129,4 +129,4 @@ This window displays the description of each switch or potentiometer that allows
 
 FreeMajor is software developed by Jean Pierre Cimalando in 2018. +
 
-This software is made with a goal&nbsp;: facilitate the use of the G-Major multi-effects which can only be controlled by the buttons present on the front panel or by injecting a Sysex message.
+This software is designed with one objective&nbsp;: facilitate the use of the G-Major multi-effects unit which can otherwise only be controlled by the front panel or by injecting a system-exclusive message.

@@ -91,7 +91,7 @@ Save - Saves all the presets being edited in FreeMajor to a preset bank file .re
 
 New - Creates a new empty preset at the selected position. If a preset is already present at this location, it is destroyed.
 
-Change - If the real-time option is off, this button changes the G-Major preset.
+Change - This button changes the active program number on the G-Major. This is useful when the real-time option is set to off.
 
 Copy - Copy an existing preset to the selected position. If a preset is present on this location it is destroyed.
 

@@ -123,7 +123,7 @@ image::../resources/en/modifiers.png[500,500]
 
 === Parameter infos
 
-This window displays the description of each switch or potentiometer that allows the effects to be adjusted when hovering with the mouse pointer.
+This window displays the description of each switch or potentiometer that allows the effects to be adjusted when hovered with the mouse pointer.
 
 == À propos
 

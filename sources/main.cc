@@ -6,10 +6,15 @@
 #include "app_i18n.h"
 #include "ui/main_window.h"
 #include <FL/Fl.H>
+#include <FL/Fl_Pixmap.H>
 #include <string>
 #if defined(__APPLE__)
 #include <mach-o/dyld.h>
 #endif
+
+namespace Icon {
+#include "../resources/application/FreeMajor.xpm"
+};
 
 #if defined(_WIN32)
 static const char *get_locale_path(std::string &buf)
@@ -60,6 +65,10 @@ int main()
 #endif
     textdomain("FreeMajor");
 #endif
+
+    Fl_Pixmap icon(Icon::FreeMajor);
+    Fl_RGB_Image image(&icon);
+    Fl_Window::default_icon(&image);
 
     Main_Window win;
     win.show();

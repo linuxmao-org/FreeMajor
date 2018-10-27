@@ -611,7 +611,7 @@ void Main_Component::on_clicked_export()
 
     if (fl_access(filename.c_str(), 0) == 0) {
         fl_message_title(_("Confirm overwrite"));
-        if (fl_choice("%s", _("Yes"), _("No"), nullptr, _("The file already exists. Replace it?")))
+        if (fl_choice("%s", _("No"), _("Yes"), nullptr, _("The file already exists. Replace it?")) != 1)
             return;
     }
 
@@ -711,7 +711,7 @@ void Main_Component::on_clicked_save()
 
     if (fl_access(filename.c_str(), 0) == 0) {
         fl_message_title(_("Confirm overwrite"));
-        if (fl_choice("%s", _("Yes"), _("No"), nullptr, _("The file already exists. Replace it?")))
+        if (fl_choice("%s", _("No"), _("Yes"), nullptr, _("The file already exists. Replace it?")) != 1)
             return;
     }
 
@@ -766,7 +766,7 @@ void Main_Component::on_clicked_delete()
         return;
 
     fl_message_title(_("Confirm delete"));
-    if (fl_choice("%s", _("Yes"), _("No"), nullptr, _("Delete the current patch?")))
+    if (fl_choice("%s", _("No"), _("Yes"), nullptr, _("Delete the current patch?")) != 1)
         return;
 
     Patch_Bank &pbank = *pbank_;

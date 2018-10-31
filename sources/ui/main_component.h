@@ -54,6 +54,7 @@ private:
   void set_patch_number(unsigned no); 
 public:
   void set_nth_patch(unsigned nth, const Patch &pat); 
+  void load_bank_file(const char *filename, int format = -1); 
   void refresh_bank_browser(); 
   void refresh_patch_display(); 
 private:

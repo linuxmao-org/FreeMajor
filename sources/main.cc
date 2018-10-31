@@ -5,8 +5,10 @@
 
 #include "app_i18n.h"
 #include "ui/main_window.h"
+#include "ui/main_component.h"
 #include <FL/Fl.H>
 #include <FL/Fl_Pixmap.H>
+#include <getopt.h>
 #include <string>
 #if defined(__APPLE__)
 #include <mach-o/dyld.h>
@@ -49,7 +51,7 @@ static const char *get_locale_path(std::string &buf)
 }
 #endif
 
-int main()
+int main(int argc, char *argv[])
 {
 #if ENABLE_NLS
     setlocale(LC_ALL, "");
@@ -71,7 +73,38 @@ int main()
     Fl_Window::default_icon(&image);
 
     Main_Window win;
+
+    bool valid_args = true;
+    for (int c; valid_args && (c = getopt(argc, argv, "")) != -1;) {
+        switch (c) {
+        default:
+            valid_args = false;
+            break;
+        }
+    }
+
+    const char *arg_filename = nullptr;
+    switch (argc - optind) {
+    case 0:
+        break;
+    case 1:
+        arg_filename = argv[optind];
+        break;
+    default:
+        valid_args = false;
+        break;
+    }
+
+    if (!valid_args) {
+        fprintf(stderr, "%s\n", _("Invalid arguments."));
+        return 1;
+    }
+
     win.show();
+
+    Main_Component &cpt = win.component();
+    if (arg_filename)
+        cpt.load_bank_file(arg_filename);
 
     Fl::run();
     return 0;

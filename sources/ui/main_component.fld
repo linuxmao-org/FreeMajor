@@ -135,6 +135,8 @@ widget_class Main_Component {open
   }
   decl {void set_nth_patch(unsigned nth, const Patch &pat);} {public local
   }
+  decl {void load_bank_file(const char *filename, int format = -1);} {selected public local
+  }
   decl {void refresh_bank_browser();} {public local
   }
   decl {void refresh_patch_display();} {public local

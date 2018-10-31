@@ -13,6 +13,9 @@ public:
     Main_Window();
     ~Main_Window();
 
+    Main_Component &component() const
+        { return *component_; }
+
 private:
     std::unique_ptr<Main_Component> component_;
 };

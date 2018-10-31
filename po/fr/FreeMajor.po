@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreeMajor 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-21 16:52+0200\n"
+"POT-Creation-Date: 2018-10-31 19:39+0100\n"
 "PO-Revision-Date: 2018-10-17 10:49+0200\n"
 "Last-Translator: Jean Pierre Cimalando <jp-dev@inbox.ru>\n"
 "Language-Team: French\n"
@@ -236,6 +236,12 @@ msgstr "7 hautes colorations différentes peuvent être sélectionnées."
 msgid "7 different Lo Colors can be selected."
 msgstr "7 basses colorations différentes peuvent être sélectionnées."
 
+#. Fl_Box* lbl_midi_in
+#. Fl_Button* btn_midi_out
+#: sources/ui/main_component.cxx:1470 sources/ui/main_component.cxx:1473
+msgid "@DnArrow"
+msgstr ""
+
 #: sources/model/parameter.cc:958
 #, c-format
 msgid ""
@@ -364,8 +370,8 @@ msgstr "Brillante"
 msgid "Cancel"
 msgstr "Annuler"
 
-#. Fl_Choice* ch_midi_out
-#: sources/ui/main_component.cxx:164
+#. Fl_Hold_Browser* br_bank
+#: sources/ui/main_component.cxx:152
 msgid "Change"
 msgstr "Changer"
 
@@ -379,7 +385,7 @@ msgstr ""
 "permet de changer la durée de ce délai. Un chorus typique utilise des délais "
 "d'environ 10 ms."
 
-#: sources/ui/main_component_impl.cc:233 sources/ui/main_component.cxx:875
+#: sources/ui/main_component_impl.cc:277 sources/ui/main_component.cxx:863
 msgid "Chorus/Flanger"
 msgstr "Chorus/flanger"
 
@@ -398,15 +404,15 @@ msgctxt "Reverb|Hi Color|"
 msgid "Clear"
 msgstr "Claire"
 
-#: sources/ui/main_component.cxx:256
+#: sources/ui/main_component.cxx:244
 msgid "Compressor"
 msgstr "Compresseur"
 
-#: sources/ui/main_component_impl.cc:768
+#: sources/ui/main_component_impl.cc:805
 msgid "Confirm delete"
 msgstr "Confirmer l'effacement"
 
-#: sources/ui/main_component_impl.cc:613 sources/ui/main_component_impl.cc:713
+#: sources/ui/main_component_impl.cc:672 sources/ui/main_component_impl.cc:750
 msgid "Confirm overwrite"
 msgstr "Confirmer l'écrasement"
 
@@ -448,39 +454,39 @@ msgstr ""
 "moitié supérieure de la forme d'onde sera active pendant 75% du temps."
 
 #. Fl_Button* btn_new
-#: sources/ui/main_component.cxx:1486
+#: sources/ui/main_component.cxx:1494
 msgid "Copy"
 msgstr "Copier"
 
-#: sources/ui/main_component_impl.cc:750
+#: sources/ui/main_component_impl.cc:787
 msgid "Copy into..."
 msgstr "Copier dans..."
 
-#: sources/ui/main_component_impl.cc:674
+#: sources/ui/main_component_impl.cc:167
 msgid "Could not load the bank file."
 msgstr "Impossible de charger le fichier de banque."
 
-#: sources/ui/main_component_impl.cc:570
+#: sources/ui/main_component_impl.cc:629
 msgid "Could not load the patch file."
 msgstr "Impossible de charger le fichier de préréglage."
 
-#: sources/ui/main_component_impl.cc:657
+#: sources/ui/main_component_impl.cc:141
 msgid "Could not read the bank file."
 msgstr "Impossible de lire le fichier de banque."
 
-#: sources/ui/main_component_impl.cc:552
+#: sources/ui/main_component_impl.cc:611
 msgid "Could not read the patch file."
 msgstr "Impossible de lire le fichier de préréglage."
 
-#: sources/ui/main_component_impl.cc:722
+#: sources/ui/main_component_impl.cc:759
 msgid "Could not save the bank file."
 msgstr "Impossible d'enregistrer le fichier de banque."
 
-#: sources/ui/main_component_impl.cc:622
+#: sources/ui/main_component_impl.cc:681
 msgid "Could not save the patch file."
 msgstr "Impossible d'enregistrer le fichier de préréglage."
 
-#: sources/ui/main_component_impl.cc:730
+#: sources/ui/main_component_impl.cc:767
 msgid "Create into..."
 msgstr "Créer dans..."
 
@@ -504,7 +510,7 @@ msgstr "Déclin"
 
 #: sources/model/parameter.cc:637 sources/model/parameter.cc:675
 #: sources/model/parameter.cc:1044 sources/model/parameter.cc:1131
-#: sources/ui/main_component_impl.cc:234 sources/ui/main_component.cxx:1070
+#: sources/ui/main_component_impl.cc:278 sources/ui/main_component.cxx:1058
 msgid "Delay"
 msgstr "Délai"
 
@@ -523,11 +529,11 @@ msgid "Delay type"
 msgstr "Type de délai"
 
 #. Fl_Button* btn_copy
-#: sources/ui/main_component.cxx:1490
+#: sources/ui/main_component.cxx:1498
 msgid "Delete"
 msgstr "Effacer"
 
-#: sources/ui/main_component_impl.cc:769
+#: sources/ui/main_component_impl.cc:806
 msgid "Delete the current patch?"
 msgstr "Effacer le préréglage courant ?"
 
@@ -676,13 +682,13 @@ msgstr "Activer la modulation de hauteur"
 msgid "Enable the reverb"
 msgstr "Activer la réverbération"
 
-#: sources/ui/main_component.cxx:346
+#: sources/ui/main_component.cxx:334
 msgid "Equalizer"
 msgstr "Égaliseur"
 
-#: sources/ui/main_component_impl.cc:551 sources/ui/main_component_impl.cc:569
-#: sources/ui/main_component_impl.cc:621 sources/ui/main_component_impl.cc:656
-#: sources/ui/main_component_impl.cc:673 sources/ui/main_component_impl.cc:721
+#: sources/ui/main_component_impl.cc:140 sources/ui/main_component_impl.cc:166
+#: sources/ui/main_component_impl.cc:610 sources/ui/main_component_impl.cc:628
+#: sources/ui/main_component_impl.cc:680 sources/ui/main_component_impl.cc:758
 msgid "Error"
 msgstr "Erreur"
 
@@ -696,7 +702,7 @@ msgstr "Extra large"
 msgid "Export"
 msgstr "Exporter"
 
-#: sources/ui/main_component_impl.cc:590
+#: sources/ui/main_component_impl.cc:649
 msgid "Export..."
 msgstr "Exporter..."
 
@@ -733,7 +739,7 @@ msgstr "Retour 1"
 msgid "Feedback 2"
 msgstr "Retour 2"
 
-#: sources/ui/main_component_impl.cc:231 sources/ui/main_component.cxx:481
+#: sources/ui/main_component_impl.cc:275 sources/ui/main_component.cxx:469
 msgid "Filter"
 msgstr "Filtre"
 
@@ -866,17 +872,21 @@ msgstr "Ignoré"
 msgid "Import"
 msgstr "Importer"
 
-#: sources/ui/main_component_impl.cc:575
+#: sources/ui/main_component_impl.cc:634
 msgid "Import into..."
 msgstr "Importer dans..."
 
-#: sources/ui/main_component_impl.cc:540
+#: sources/ui/main_component_impl.cc:599
 msgid "Import..."
 msgstr "Importer..."
 
 #: sources/model/parameter.cc:370
 msgid "Inf:1"
 msgstr "Inf:1"
+
+#: sources/main.cc:99
+msgid "Invalid arguments."
+msgstr "Arguments invalides."
 
 #: sources/model/parameter.cc:933
 msgid "LFO P Width"
@@ -990,11 +1000,11 @@ msgid "Lo factor"
 msgstr "Facteur B"
 
 #. Fl_Group* o
-#: sources/ui/main_component.cxx:1573
+#: sources/ui/main_component.cxx:1581
 msgid "Load"
 msgstr "Charger"
 
-#: sources/ui/main_component_impl.cc:645
+#: sources/ui/main_component_impl.cc:704
 msgid "Load..."
 msgstr "Charger..."
 
@@ -1004,7 +1014,7 @@ msgid "Low"
 msgstr "Basse"
 
 #. Fl_Box* txt_description
-#: sources/ui/main_component.cxx:1473
+#: sources/ui/main_component.cxx:1481
 msgid "MIDI devices:"
 msgstr "Périphériques MIDI :"
 
@@ -1078,7 +1088,7 @@ msgid "Mode"
 msgstr "Mode"
 
 #. Fl_Choice* ch_midi_interface
-#: sources/ui/main_component_impl.cc:41 sources/ui/main_component.cxx:1587
+#: sources/ui/main_component_impl.cc:41 sources/ui/main_component.cxx:1595
 msgid "Modifiers"
 msgstr "Modificateurs"
 
@@ -1087,7 +1097,7 @@ msgid "Modulation type"
 msgstr "Type de modulation"
 
 #. Fl_Check_Button* chk_realtime
-#: sources/ui/main_component.cxx:1482
+#: sources/ui/main_component.cxx:1490
 msgid "New"
 msgstr "Nouveau"
 
@@ -1095,8 +1105,8 @@ msgstr "Nouveau"
 msgid "New patch"
 msgstr "Nouveau patche"
 
-#: sources/ui/main_component_impl.cc:614 sources/ui/main_component_impl.cc:714
-#: sources/ui/main_component_impl.cc:769
+#: sources/ui/main_component_impl.cc:673 sources/ui/main_component_impl.cc:751
+#: sources/ui/main_component_impl.cc:806
 msgid "No"
 msgstr "Non"
 
@@ -1105,7 +1115,7 @@ msgctxt "Reverb|Lo Color|"
 msgid "No Base"
 msgstr "Sans base"
 
-#: sources/ui/main_component.cxx:170
+#: sources/ui/main_component.cxx:158
 msgid "Noise gate"
 msgstr "Trappe à bruit"
 
@@ -1179,7 +1189,7 @@ msgid "Out level"
 msgstr "Niv. sortie"
 
 #. Fl_Choice_Ex* cb_routing
-#: sources/ui/main_component.cxx:1551
+#: sources/ui/main_component.cxx:1559
 msgid "Output Level"
 msgstr "Niv. sortie"
 
@@ -1227,7 +1237,7 @@ msgstr "Parallèle"
 msgid "Part"
 msgstr "Partie"
 
-#: sources/ui/main_component.cxx:1496
+#: sources/ui/main_component.cxx:1504
 msgid "Patch name:"
 msgstr "Nom de préréglage :"
 
@@ -1241,7 +1251,7 @@ msgctxt "Delay|Kind|"
 msgid "Ping Pong"
 msgstr "Ping pong"
 
-#: sources/ui/main_component_impl.cc:232 sources/ui/main_component.cxx:678
+#: sources/ui/main_component_impl.cc:276 sources/ui/main_component.cxx:666
 msgid "Pitch"
 msgstr "Hauteur tonale"
 
@@ -1296,7 +1306,7 @@ msgctxt "Reverb|Lo Color|"
 msgid "Real"
 msgstr "Réelle"
 
-#: sources/ui/main_component_impl.cc:646 sources/ui/main_component_impl.cc:691
+#: sources/ui/main_component_impl.cc:705 sources/ui/main_component_impl.cc:728
 msgid ""
 "Real Major bank\t*.realmajor\n"
 "Sysex bank\t*.syx"
@@ -1304,7 +1314,7 @@ msgstr ""
 "Banque Real Major\t*.realmajor\n"
 "Banque Sysex\t*.syx"
 
-#: sources/ui/main_component_impl.cc:541 sources/ui/main_component_impl.cc:591
+#: sources/ui/main_component_impl.cc:600 sources/ui/main_component_impl.cc:650
 msgid ""
 "Real Major patch\t*.realpatch\n"
 "Sysex patch\t*.syx"
@@ -1313,12 +1323,12 @@ msgstr ""
 "Préréglage Sysex\t*.syx"
 
 #. Fl_Box* o
-#: sources/ui/main_component.cxx:1477
+#: sources/ui/main_component.cxx:1485
 msgid "Real time"
 msgstr "Temps réel"
 
-#. Fl_Group* o
-#: sources/ui/main_component_impl.cc:784 sources/ui/main_component.cxx:1464
+#. Fl_Button* btn_send
+#: sources/ui/main_component_impl.cc:821 sources/ui/main_component.cxx:1456
 msgid "Receive"
 msgstr "Recevoir"
 
@@ -1347,12 +1357,12 @@ msgstr ""
 "pas l'atténuation de l'effet Flanger que vous recherchez."
 
 #. Fl_Slider_Ex* sl_tap_tempo
-#: sources/model/parameter.cc:1219 sources/ui/main_component.cxx:1514
+#: sources/model/parameter.cc:1219 sources/ui/main_component.cxx:1522
 msgid "Relay 1"
 msgstr "Relai 1"
 
 #. Fl_Check_Button_Ex* chk_relay1
-#: sources/model/parameter.cc:1223 sources/ui/main_component.cxx:1526
+#: sources/model/parameter.cc:1223 sources/ui/main_component.cxx:1534
 msgid "Relay 2"
 msgstr "Relai 2"
 
@@ -1374,7 +1384,7 @@ msgstr "Réponse"
 msgid "Rev level"
 msgstr "Niv. réverb."
 
-#: sources/ui/main_component_impl.cc:235 sources/ui/main_component.cxx:1265
+#: sources/ui/main_component_impl.cc:279 sources/ui/main_component.cxx:1253
 msgid "Reverb"
 msgstr "Réverbération"
 
@@ -1418,7 +1428,7 @@ msgid "Round"
 msgstr "Ronde"
 
 #. Fl_Check_Button_Ex* chk_relay2
-#: sources/model/parameter.cc:1227 sources/ui/main_component.cxx:1538
+#: sources/model/parameter.cc:1227 sources/ui/main_component.cxx:1546
 msgid "Routing"
 msgstr "Routage"
 
@@ -1433,21 +1443,21 @@ msgstr ""
 "flanger, délai et réverbération en parallèle."
 
 #. Fl_Box* o
-#: sources/ui/main_component.cxx:1610
+#: sources/ui/main_component.cxx:1614
 msgid "Rx"
 msgstr ""
 
 #. Fl_Button* btn_load
-#: sources/ui/main_component.cxx:1577
+#: sources/ui/main_component.cxx:1585
 msgid "Save"
 msgstr "Sauver"
 
-#: sources/ui/main_component_impl.cc:690
+#: sources/ui/main_component_impl.cc:727
 msgid "Save..."
 msgstr "Sauver..."
 
-#: sources/ui/main_component_impl.cc:575 sources/ui/main_component_impl.cc:730
-#: sources/ui/main_component_impl.cc:750
+#: sources/ui/main_component_impl.cc:634 sources/ui/main_component_impl.cc:767
+#: sources/ui/main_component_impl.cc:787
 msgid "Select the patch number:"
 msgstr "Sélectionnez le numéro du préréglage :"
 
@@ -1459,8 +1469,8 @@ msgstr "Sélectionne la manière dont le bloc Whammy modifiera la tonalité."
 msgid "Semi Parallel"
 msgstr "Semi parallèle"
 
-#. Matrix_Display* d_matrix
-#: sources/ui/main_component.cxx:1602
+#. Fl_Group* o
+#: sources/ui/main_component.cxx:1452
 msgid "Send"
 msgstr "Envoyer"
 
@@ -1470,8 +1480,8 @@ msgid ""
 "Send a Bulk Dump from the machine and validate when finished. Warning: This "
 "process overwrites the current bank."
 msgstr ""
-"Envoyez un message Bulk Dump depuis la machine et validez une fois terminé. Attention : Ce "
-"procédé écrase la banque actuelle."
+"Envoyez un message Bulk Dump depuis la machine et validez une fois terminé. "
+"Attention : Ce procédé écrase la banque actuelle."
 
 #: sources/model/parameter.cc:699 sources/model/parameter.cc:804
 msgid "Sensitivity"
@@ -1642,7 +1652,7 @@ msgctxt "Reverb|Shape|"
 msgid "Square"
 msgstr "Carrée"
 
-#: sources/ui/main_component_impl.cc:84
+#: sources/ui/main_component_impl.cc:83
 msgid ""
 "TC Electronic G-Major controller, © 2018\n"
 "Free and open source software controller by\n"
@@ -1653,7 +1663,7 @@ msgstr ""
 "Jean Pierre Cimalando & Julien Taverna"
 
 #. Fl_Input* txt_patch_name
-#: sources/ui/main_component.cxx:1502
+#: sources/ui/main_component.cxx:1510
 msgid "Tap Tempo"
 msgstr "Tap tempo"
 
@@ -1781,7 +1791,7 @@ msgstr ""
 msgid "The amount of Pitch modulation applied."
 msgstr "La quantité de modulation de hauteur appliquée."
 
-#: sources/ui/main_component_impl.cc:614 sources/ui/main_component_impl.cc:714
+#: sources/ui/main_component_impl.cc:673 sources/ui/main_component_impl.cc:751
 msgid "The file already exists. Replace it?"
 msgstr "Le fichier existe déjà. Le remplacer ?"
 
@@ -1874,8 +1884,8 @@ msgstr ""
 "Deux variantes de la pente de la courbe du trémolo sont disponibles. Écoutez "
 "et sélectionnez."
 
-#. Fl_Button* btn_send
-#: sources/ui/main_component.cxx:1606
+#. Matrix_Display* d_matrix
+#: sources/ui/main_component.cxx:1610
 msgid "Tx"
 msgstr ""
 
@@ -1926,7 +1936,8 @@ msgctxt "Filter|Kind|"
 msgid "Vintage phaser"
 msgstr "Phaser vintage"
 
-#: sources/ui/main_component_impl.cc:460 sources/ui/main_component_impl.cc:475
+#: sources/ui/main_component_impl.cc:519 sources/ui/main_component_impl.cc:520
+#: sources/ui/main_component_impl.cc:537 sources/ui/main_component_impl.cc:565
 msgid "Virtual port"
 msgstr "Port virtuel"
 
@@ -2006,8 +2017,8 @@ msgctxt "Reverb|Hi Color|"
 msgid "Wool"
 msgstr "Laine"
 
-#: sources/ui/main_component_impl.cc:614 sources/ui/main_component_impl.cc:714
-#: sources/ui/main_component_impl.cc:769
+#: sources/ui/main_component_impl.cc:673 sources/ui/main_component_impl.cc:751
+#: sources/ui/main_component_impl.cc:806
 msgid "Yes"
 msgstr "Oui"
 
@@ -2017,7 +2028,7 @@ msgid "cents"
 msgstr "cents"
 
 #. Fl_Box* lbl_tap_tempo
-#: sources/ui/main_component.cxx:1567
+#: sources/ui/main_component.cxx:1575
 msgid "dB"
 msgstr "dB"
 
@@ -2042,7 +2053,7 @@ msgid "label"
 msgstr "étiquette"
 
 #. Fl_Slider_Ex* sl_out_level
-#: sources/ui/main_component.cxx:1563
+#: sources/ui/main_component.cxx:1571
 msgid "ms"
 msgstr "ms"
 

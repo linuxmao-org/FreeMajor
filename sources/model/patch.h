@@ -29,3 +29,8 @@ public:
     Patch slot[max_count];
     std::bitset<max_count> used;
 };
+
+enum Bank_Format {
+    RealMajor,
+    SystemExclusive,
+};

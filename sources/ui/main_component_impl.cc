@@ -132,6 +132,51 @@ void Main_Component::set_nth_patch(unsigned nth, const Patch &pat)
     set_patch_number(patchno);
 }
 
+void Main_Component::load_bank_file(const char *filename, int format)
+{
+    std::vector<uint8_t> filedata;
+    FILE_u fh(fl_fopen(filename, "rb"));
+    if (!fh || !read_entire_file(fh.get(), 1 << 20, filedata)) {
+        fl_message_title(_("Error"));
+        fl_alert("%s", _("Could not read the bank file."));
+        return;
+    }
+    fh.reset();
+
+    if (format == -1) {
+        const char *ext = fl_filename_ext(filename);
+        ext = ext ? ext : "";
+        if (!strcmp(ext, ".realmajor"))
+            format = Bank_Format::RealMajor;
+        else if (!strcmp(ext, ".syx"))
+            format = Bank_Format::SystemExclusive;
+    }
+
+    bool loaded = false;
+    switch (format) {
+    case Bank_Format::RealMajor:
+        loaded = Patch_Loader::load_realmajor_bank(filedata.data(), filedata.size(), *pbank_);
+        break;
+    case Bank_Format::SystemExclusive:
+        loaded = Patch_Loader::load_sysex_bank(filedata.data(), filedata.size(), *pbank_);
+        break;
+    }
+
+    if (!loaded) {
+        fl_message_title(_("Error"));
+        fl_alert("%s", _("Could not load the bank file."));
+        return;
+    }
+
+    for (unsigned i = 0; i < Patch_Bank::max_count; ++i) {
+        if (pbank_->used[i])
+            pbank_->slot[i].patch_number(i);
+    }
+
+    refresh_bank_browser();
+    refresh_patch_display();
+}
+
 void Main_Component::refresh_bank_browser()
 {
     Fl_Browser &br = *br_bank;
@@ -663,39 +708,17 @@ void Main_Component::on_clicked_load()
     if (f_chooser.show() != 0)
         return;
 
-    const char *filename = f_chooser.filename();
-    std::vector<uint8_t> filedata;
-    FILE_u fh(fl_fopen(filename, "rb"));
-    if (!fh || !read_entire_file(fh.get(), 1 << 20, filedata)) {
-        fl_message_title(_("Error"));
-        fl_alert("%s", _("Could not read the bank file."));
-        return;
-    }
-    fh.reset();
-
-    bool loaded = false;
+    int format = -1;
     switch (f_chooser.filter_value()) {
     case 0:
-        loaded = Patch_Loader::load_realmajor_bank(filedata.data(), filedata.size(), *pbank_);
+        format = Bank_Format::RealMajor;
         break;
     case 1:
-        loaded = Patch_Loader::load_sysex_bank(filedata.data(), filedata.size(), *pbank_);
+        format = Bank_Format::SystemExclusive;
         break;
     }
 
-    if (!loaded) {
-        fl_message_title(_("Error"));
-        fl_alert("%s", _("Could not load the bank file."));
-        return;
-    }
-
-    for (unsigned i = 0; i < Patch_Bank::max_count; ++i) {
-        if (pbank_->used[i])
-            pbank_->slot[i].patch_number(i);
-    }
-
-    refresh_bank_browser();
-    refresh_patch_display();
+    return load_bank_file(f_chooser.filename(), format);
 }
 
 void Main_Component::on_clicked_save()

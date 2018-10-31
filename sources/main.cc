@@ -8,7 +8,9 @@
 #include "ui/main_component.h"
 #include <FL/Fl.H>
 #include <FL/Fl_Pixmap.H>
+#if !defined(__APPLE__)
 #include <getopt.h>
+#endif
 #include <string>
 #if defined(__APPLE__)
 #include <mach-o/dyld.h>
@@ -74,6 +76,9 @@ int main(int argc, char *argv[])
 
     Main_Window win;
 
+    const char *arg_filename = nullptr;
+
+#if !defined(__APPLE__)
     bool valid_args = true;
     for (int c; valid_args && (c = getopt(argc, argv, "")) != -1;) {
         switch (c) {
@@ -83,7 +88,6 @@ int main(int argc, char *argv[])
         }
     }
 
-    const char *arg_filename = nullptr;
     switch (argc - optind) {
     case 0:
         break;
@@ -99,6 +103,7 @@ int main(int argc, char *argv[])
         fprintf(stderr, "%s\n", _("Invalid arguments."));
         return 1;
     }
+#endif
 
     win.show();
 

@@ -149,17 +149,15 @@ widget_class Main_Component {open
   }
   decl {void setup_modifier_row(const char *title, bool enable, int row, Parameter_Collection &pc);} {private local
   }
-  decl {void update_midi_ins();} {private local
-  }
-  decl {void update_midi_outs();} {private local
-  }
   decl {void on_selected_patch();} {private local
   }
-  decl {void on_changed_midi_in();} {private local
-  }
-  decl {void on_changed_midi_out();} {private local
-  }
   decl {void on_changed_midi_interface();} {private local
+  }
+  decl {void after_changed_midi_interface();} {private local
+  }
+  decl {void on_change_midi_out();} {private local
+  }
+  decl {void on_change_midi_in();} {private local
   }
   Fl_Box {} {
     label FreeMajor
@@ -228,14 +226,6 @@ widget_class Main_Component {open
   }
   decl {Modifiers_Editor *edt_modifiers_ = nullptr;} {private local
   }
-  Fl_Choice ch_midi_in {
-    callback {on_changed_midi_in();} open
-    xywh {615 85 200 20} down_box BORDER_BOX labelsize 12 textsize 12
-  } {}
-  Fl_Choice ch_midi_out {
-    callback {on_changed_midi_out();}
-    xywh {615 62 200 20} down_box BORDER_BOX labelsize 12 textsize 12
-  } {}
   Fl_Button btn_change {
     label Change
     callback {on_clicked_change();}
@@ -703,13 +693,29 @@ widget_class Main_Component {open
   }
   Fl_Button btn_send {
     label Send
-    callback {on_clicked_send();} selected
+    callback {on_clicked_send();}
     xywh {820 62 85 20} labelsize 12
   }
   Fl_Button btn_receive {
     label Receive
     callback {on_clicked_receive();}
     xywh {820 85 85 20} labelsize 12
+  }
+  Fl_Box lbl_midi_out {
+    xywh {620 62 170 20} box THIN_DOWN_BOX labelsize 12 align 84
+  }
+  Fl_Box lbl_midi_in {
+    xywh {620 85 170 20} box THIN_DOWN_BOX labelsize 12 align 84
+  }
+  Fl_Button btn_midi_out {
+    label {@DnArrow}
+    callback {on_change_midi_out();}
+    xywh {795 62 20 20}
+  }
+  Fl_Button btn_midi_in {
+    label {@DnArrow}
+    callback {on_change_midi_in();}
+    xywh {795 85 20 20}
   }
   Fl_Box txt_description {
     xywh {595 115 315 100} box THIN_DOWN_BOX labelsize 12 align 149

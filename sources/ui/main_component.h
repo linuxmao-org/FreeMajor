@@ -37,9 +37,9 @@ typedef Fl_Valuator_Ex<Fl_Dial> Fl_Dial_Ex;
 #include <FL/Fl_Group.H>
 #include <FL/Fl_Box.H>
 #include <FL/Fl_Button.H>
-#include <FL/Fl_Choice.H>
 #include <FL/Fl_Check_Button.H>
 #include <FL/Fl_Input.H>
+#include <FL/Fl_Choice.H>
 
 class Main_Component : public Fl_Group {
 public:
@@ -62,12 +62,11 @@ private:
   void setup_choice(Fl_Choice_Ex *cb, Parameter_Access &p, int flags = 0); 
   void setup_boxes(bool enable, const Parameter_Collection &pc, Fl_Group_Ex *boxes[], unsigned nboxes); 
   void setup_modifier_row(const char *title, bool enable, int row, Parameter_Collection &pc); 
-  void update_midi_ins(); 
-  void update_midi_outs(); 
   void on_selected_patch(); 
-  void on_changed_midi_in(); 
-  void on_changed_midi_out(); 
   void on_changed_midi_interface(); 
+  void after_changed_midi_interface(); 
+  void on_change_midi_out(); 
+  void on_change_midi_in(); 
 public:
   Fl_Button *btn_import;
 private:
@@ -107,16 +106,6 @@ private:
   std::unique_ptr<Midi_Out_Queue> midi_out_q_; 
   std::unique_ptr<Fl_Double_Window> win_modifiers_; 
   Modifiers_Editor *edt_modifiers_ = nullptr; 
-public:
-  Fl_Choice *ch_midi_in;
-private:
-  inline void cb_ch_midi_in_i(Fl_Choice*, void*);
-  static void cb_ch_midi_in(Fl_Choice*, void*);
-public:
-  Fl_Choice *ch_midi_out;
-private:
-  inline void cb_ch_midi_out_i(Fl_Choice*, void*);
-  static void cb_ch_midi_out(Fl_Choice*, void*);
 public:
   Fl_Button *btn_change;
 private:
@@ -237,6 +226,18 @@ public:
 private:
   inline void cb_btn_receive_i(Fl_Button*, void*);
   static void cb_btn_receive(Fl_Button*, void*);
+public:
+  Fl_Box *lbl_midi_out;
+  Fl_Box *lbl_midi_in;
+  Fl_Button *btn_midi_out;
+private:
+  inline void cb_btn_midi_out_i(Fl_Button*, void*);
+  static void cb_btn_midi_out(Fl_Button*, void*);
+public:
+  Fl_Button *btn_midi_in;
+private:
+  inline void cb_btn_midi_in_i(Fl_Button*, void*);
+  static void cb_btn_midi_in(Fl_Button*, void*);
 public:
   Fl_Box *txt_description;
   Fl_Check_Button *chk_realtime;

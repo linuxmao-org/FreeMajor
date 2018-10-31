@@ -31,20 +31,6 @@ void Main_Component::cb_br_bank(Fl_Hold_Browser* o, void* v) {
   ((Main_Component*)(o->parent()))->cb_br_bank_i(o,v);
 }
 
-void Main_Component::cb_ch_midi_in_i(Fl_Choice*, void*) {
-  on_changed_midi_in();
-}
-void Main_Component::cb_ch_midi_in(Fl_Choice* o, void* v) {
-  ((Main_Component*)(o->parent()))->cb_ch_midi_in_i(o,v);
-}
-
-void Main_Component::cb_ch_midi_out_i(Fl_Choice*, void*) {
-  on_changed_midi_out();
-}
-void Main_Component::cb_ch_midi_out(Fl_Choice* o, void* v) {
-  ((Main_Component*)(o->parent()))->cb_ch_midi_out_i(o,v);
-}
-
 void Main_Component::cb_btn_change_i(Fl_Button*, void*) {
   on_clicked_change();
 }
@@ -64,6 +50,20 @@ void Main_Component::cb_btn_receive_i(Fl_Button*, void*) {
 }
 void Main_Component::cb_btn_receive(Fl_Button* o, void* v) {
   ((Main_Component*)(o->parent()))->cb_btn_receive_i(o,v);
+}
+
+void Main_Component::cb_btn_midi_out_i(Fl_Button*, void*) {
+  on_change_midi_out();
+}
+void Main_Component::cb_btn_midi_out(Fl_Button* o, void* v) {
+  ((Main_Component*)(o->parent()))->cb_btn_midi_out_i(o,v);
+}
+
+void Main_Component::cb_btn_midi_in_i(Fl_Button*, void*) {
+  on_change_midi_in();
+}
+void Main_Component::cb_btn_midi_in(Fl_Button* o, void* v) {
+  ((Main_Component*)(o->parent()))->cb_btn_midi_in_i(o,v);
 }
 
 void Main_Component::cb_btn_new_i(Fl_Button*, void*) {
@@ -149,18 +149,6 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
   br_bank->align(Fl_Align(FL_ALIGN_BOTTOM));
   br_bank->when(FL_WHEN_RELEASE_ALWAYS);
 } // Fl_Hold_Browser* br_bank
-{ ch_midi_in = new Fl_Choice(615, 85, 200, 20);
-  ch_midi_in->down_box(FL_BORDER_BOX);
-  ch_midi_in->labelsize(12);
-  ch_midi_in->textsize(12);
-  ch_midi_in->callback((Fl_Callback*)cb_ch_midi_in);
-} // Fl_Choice* ch_midi_in
-{ ch_midi_out = new Fl_Choice(615, 62, 200, 20);
-  ch_midi_out->down_box(FL_BORDER_BOX);
-  ch_midi_out->labelsize(12);
-  ch_midi_out->textsize(12);
-  ch_midi_out->callback((Fl_Callback*)cb_ch_midi_out);
-} // Fl_Choice* ch_midi_out
 { btn_change = new Fl_Button(515, 45, 70, 20, _("Change"));
   btn_change->labelsize(12);
   btn_change->callback((Fl_Callback*)cb_btn_change);
@@ -1469,6 +1457,22 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
   btn_receive->labelsize(12);
   btn_receive->callback((Fl_Callback*)cb_btn_receive);
 } // Fl_Button* btn_receive
+{ lbl_midi_out = new Fl_Box(620, 62, 170, 20);
+  lbl_midi_out->box(FL_THIN_DOWN_BOX);
+  lbl_midi_out->labelsize(12);
+  lbl_midi_out->align(Fl_Align(68|FL_ALIGN_INSIDE));
+} // Fl_Box* lbl_midi_out
+{ lbl_midi_in = new Fl_Box(620, 85, 170, 20);
+  lbl_midi_in->box(FL_THIN_DOWN_BOX);
+  lbl_midi_in->labelsize(12);
+  lbl_midi_in->align(Fl_Align(68|FL_ALIGN_INSIDE));
+} // Fl_Box* lbl_midi_in
+{ btn_midi_out = new Fl_Button(795, 62, 20, 20, _("@DnArrow"));
+  btn_midi_out->callback((Fl_Callback*)cb_btn_midi_out);
+} // Fl_Button* btn_midi_out
+{ btn_midi_in = new Fl_Button(795, 85, 20, 20, _("@DnArrow"));
+  btn_midi_in->callback((Fl_Callback*)cb_btn_midi_in);
+} // Fl_Button* btn_midi_in
 { txt_description = new Fl_Box(595, 115, 315, 100);
   txt_description->box(FL_THIN_DOWN_BOX);
   txt_description->labelsize(12);

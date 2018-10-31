@@ -63,11 +63,10 @@ void Main_Component::init()
             ch_midi_interface->add(name, 0, nullptr);
         }
         ch_midi_interface->value(compiled_midi_api_index(mi.current_api()));
+        after_changed_midi_interface();
     }
 
     midi_out_q_.reset(new Midi_Out_Queue);
-    update_midi_ins();
-    update_midi_outs();
 
     txt_patch_name->when(FL_WHEN_CHANGED);
 
@@ -452,62 +451,6 @@ void Main_Component::setup_modifier_row(const char *title, bool enable, int row,
     edt->redraw();
 }
 
-void Main_Component::update_midi_ins()
-{
-    Midi_Interface &mi = Midi_Interface::instance();
-    ch_midi_in->clear();
-    if (mi.supports_virtual_port())
-        ch_midi_in->add(_("Virtual port"));
-
-    std::vector<std::string> in_ports = mi.get_real_input_ports();
-    for (size_t i = 0, n = in_ports.size(); i < n; ++i)
-        ch_midi_in->add(in_ports[i].c_str());
-
-    // needed to update text contents
-    ch_midi_in->redraw();
-}
-
-void Main_Component::update_midi_outs()
-{
-    Midi_Interface &mi = Midi_Interface::instance();
-    ch_midi_out->clear();
-    if (mi.supports_virtual_port())
-        ch_midi_out->add(_("Virtual port"));
-
-    std::vector<std::string> out_ports = mi.get_real_output_ports();
-    for (size_t i = 0, n = out_ports.size(); i < n; ++i)
-        ch_midi_out->add(out_ports[i].c_str());
-
-    // needed to update text contents
-    ch_midi_out->redraw();
-}
-
-void Main_Component::on_changed_midi_in()
-{
-    unsigned value = ch_midi_in->value();
-    if ((int)value == -1)
-        return;
-
-    Midi_Interface &mi = Midi_Interface::instance();
-    if (mi.supports_virtual_port())
-        --value;  // virtual port is the first entry
-
-    mi.open_input_port(value);
-}
-
-void Main_Component::on_changed_midi_out()
-{
-    unsigned value = ch_midi_out->value();
-    if ((int)value == -1)
-        return;
-
-    Midi_Interface &mi = Midi_Interface::instance();
-    if (mi.supports_virtual_port())
-        --value;  // virtual port is the first entry
-
-    mi.open_output_port(value);
-}
-
 void Main_Component::on_changed_midi_interface()
 {
     unsigned value = ch_midi_interface->value();
@@ -518,8 +461,79 @@ void Main_Component::on_changed_midi_interface()
     RtMidi::Api api = compiled_midi_api_by_index(value);
 
     mi.switch_api(api);
-    update_midi_ins();
-    update_midi_outs();
+    after_changed_midi_interface();
+}
+
+void Main_Component::after_changed_midi_interface()
+{
+    Midi_Interface &mi = Midi_Interface::instance();
+
+    if (mi.supports_virtual_port()) {
+        mi.open_output_port(~0u);
+        mi.open_input_port(~0u);
+        lbl_midi_out->label(_("Virtual port"));
+        lbl_midi_in->label(_("Virtual port"));
+    }
+    else {
+        lbl_midi_out->label("");
+        lbl_midi_in->label("");
+    }
+}
+
+void Main_Component::on_change_midi_out()
+{
+    int x = btn_midi_out->x();
+    int y = btn_midi_out->y() + btn_midi_out->h();
+
+    Midi_Interface &mi = Midi_Interface::instance();
+    std::vector<Fl_Menu_Item> menu_list;
+
+    if (mi.supports_virtual_port())
+        menu_list.push_back(Fl_Menu_Item{_("Virtual port"), 0, nullptr, (void *)~(uintptr_t)0, FL_MENU_DIVIDER});
+
+    std::vector<std::string> out_ports = mi.get_real_output_ports();
+    for (size_t i = 0, n = out_ports.size(); i < n; ++i)
+        menu_list.push_back(Fl_Menu_Item{out_ports[i].c_str(), 0, nullptr, (void *)(uintptr_t)i});
+    menu_list.push_back(Fl_Menu_Item{nullptr});
+
+    for (Fl_Menu_Item &item : menu_list)
+        item.labelsize(12);
+
+    const Fl_Menu_Item *choice = menu_list[0].popup(x, y);
+    if (!choice)
+        return;
+
+    unsigned port = (unsigned)(uintptr_t)choice->user_data();
+    mi.open_output_port(port);
+    lbl_midi_out->copy_label(choice->label());
+}
+
+void Main_Component::on_change_midi_in()
+{
+    int x = btn_midi_in->x();
+    int y = btn_midi_in->y() + btn_midi_in->h();
+
+    Midi_Interface &mi = Midi_Interface::instance();
+    std::vector<Fl_Menu_Item> menu_list;
+
+    if (mi.supports_virtual_port())
+        menu_list.push_back(Fl_Menu_Item{_("Virtual port"), 0, nullptr, (void *)~(uintptr_t)0, FL_MENU_DIVIDER});
+
+    std::vector<std::string> in_ports = mi.get_real_input_ports();
+    for (size_t i = 0, n = in_ports.size(); i < n; ++i)
+        menu_list.push_back(Fl_Menu_Item{in_ports[i].c_str(), 0, nullptr, (void *)(uintptr_t)i});
+    menu_list.push_back(Fl_Menu_Item{nullptr});
+
+    for (Fl_Menu_Item &item : menu_list)
+        item.labelsize(12);
+
+    const Fl_Menu_Item *choice = menu_list[0].popup(x, y);
+    if (!choice)
+        return;
+
+    unsigned port = (unsigned)(uintptr_t)choice->user_data();
+    mi.open_input_port(port);
+    lbl_midi_in->copy_label(choice->label());
 }
 
 void Main_Component::on_selected_patch()

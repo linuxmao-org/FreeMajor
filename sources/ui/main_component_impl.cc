@@ -63,8 +63,8 @@ void Main_Component::init()
             ch_midi_interface->add(name, 0, nullptr);
         }
         ch_midi_interface->value(compiled_midi_api_index(mi.current_api()));
-        after_changed_midi_interface();
     }
+    after_changed_midi_interface();
 
     midi_out_q_.reset(new Midi_Out_Queue);
 

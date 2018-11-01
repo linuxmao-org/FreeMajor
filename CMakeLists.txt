@@ -96,6 +96,10 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
 elseif(NOT CMAKE_SYSTEM_NAME STREQUAL "Windows")
   install(FILES "resources/application/FreeMajor.png" "resources/application/FreeMajor.svg" DESTINATION "${CMAKE_INSTALL_DATADIR}/pixmaps")
   install(FILES "resources/application/FreeMajor.desktop" DESTINATION "${CMAKE_INSTALL_DATADIR}/applications")
+  install(FILES
+    "resources/mime/freemajor-realmajor.xml"
+    "resources/mime/freemajor-realpatch.xml"
+    DESTINATION "${CMAKE_INSTALL_DATADIR}/mime/packages")
 endif()
 
 ## Translations

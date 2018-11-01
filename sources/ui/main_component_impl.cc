@@ -146,7 +146,7 @@ void Main_Component::load_bank_file(const char *filename, int format)
     if (format == -1) {
         const char *ext = fl_filename_ext(filename);
         ext = ext ? ext : "";
-        if (!strcmp(ext, ".realmajor"))
+        if (!strcmp(ext, ".realmajor") || !strcmp(ext, ".realpatch"))
             format = Bank_Format::RealMajor;
         else if (!strcmp(ext, ".syx"))
             format = Bank_Format::SystemExclusive;

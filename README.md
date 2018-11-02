@@ -1,5 +1,7 @@
 # FreeMajor
 
+Editor for the TC Electronic G-Major guitar effect module
+
 [![Build Status](https://semaphoreci.com/api/v1/jpcima/freemajor/branches/master/badge.svg)](https://semaphoreci.com/jpcima/freemajor)
 
 [:floppy_disk: Automatic development build for Windows](https://github.com/linuxmao-org/FreeMajor/releases/tag/nightly)  

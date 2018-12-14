@@ -17,6 +17,9 @@ decl {\#include "eq_display.h"} {private global
 decl {\#include "matrix_display.h"} {private global
 }
 
+decl {\#include "hyperlink_button.h"} {private global
+}
+
 decl {\#include "widget_ex.h"} {private global
 }
 
@@ -24,6 +27,9 @@ decl {\#include "model/patch.h"} {private global
 }
 
 decl {\#include "model/parameter.h"} {private global
+}
+
+decl {\#include <FL/filename.H>} {private global
 }
 
 decl {\#include <FL/Fl_Check_Button.H>} {public global
@@ -86,6 +92,9 @@ decl {class Eq_Display;} {public global
 decl {class Matrix_Display;} {public global
 }
 
+decl {class Hyperlink_Button;} {public global
+}
+
 decl {class Fl_Choice;} {public global
 }
 
@@ -120,7 +129,7 @@ decl {typedef Fl_Valuator_Ex<Fl_Dial> Fl_Dial_Ex;} {public global
 }
 
 widget_class Main_Component {open
-  xywh {5 59 910 735} type Double
+  xywh {180 118 910 735} type Double
   code0 {init();} visible
 } {
   decl {void init();} {private local
@@ -135,7 +144,7 @@ widget_class Main_Component {open
   }
   decl {void set_nth_patch(unsigned nth, const Patch &pat);} {public local
   }
-  decl {void load_bank_file(const char *filename, int format = -1);} {selected public local
+  decl {void load_bank_file(const char *filename, int format = -1);} {public local
   }
   decl {void refresh_bank_browser();} {public local
   }
@@ -160,20 +169,6 @@ widget_class Main_Component {open
   decl {void on_change_midi_out();} {private local
   }
   decl {void on_change_midi_in();} {private local
-  }
-  Fl_Box {} {
-    label FreeMajor
-    xywh {595 1 315 35} box UP_BOX labeltype SHADOW_LABEL labelsize 28
-  }
-  Fl_Button btn_import {
-    label Import
-    callback {on_clicked_import();}
-    xywh {445 85 70 20} labelsize 12
-  }
-  Fl_Button btn_export {
-    label Export
-    callback {on_clicked_export();}
-    xywh {515 85 70 20} labelsize 12
   }
   decl {void on_clicked_import();} {private local
   }
@@ -227,11 +222,6 @@ widget_class Main_Component {open
   decl {std::unique_ptr<Fl_Double_Window> win_modifiers_;} {private local
   }
   decl {Modifiers_Editor *edt_modifiers_ = nullptr;} {private local
-  }
-  Fl_Button btn_change {
-    label Change
-    callback {on_clicked_change();}
-    xywh {515 45 70 20} labelsize 12
   }
   Fl_Group {} {open
     xywh {0 225 261 225} box THIN_UP_BOX
@@ -730,10 +720,25 @@ widget_class Main_Component {open
     label {Real time}
     xywh {820 39 85 20} down_box DOWN_BOX value 1 labelsize 12
   }
+  Fl_Button btn_load {
+    label Load
+    callback {on_clicked_load();}
+    xywh {445 25 70 20} labelsize 12
+  }
+  Fl_Button btn_save {
+    label Save
+    callback {on_clicked_save();}
+    xywh {515 25 70 20} labelsize 12
+  }
   Fl_Button btn_new {
     label New
     callback {on_clicked_new();}
     xywh {445 45 70 20} labelsize 12
+  }
+  Fl_Button btn_change {
+    label Change
+    callback {on_clicked_change();}
+    xywh {515 45 70 20} labelsize 12
   }
   Fl_Button btn_copy {
     label Copy
@@ -744,6 +749,22 @@ widget_class Main_Component {open
     label Delete
     callback {on_clicked_delete();}
     xywh {515 65 70 20} labelsize 12
+  }
+  Fl_Button btn_import {
+    label Import
+    callback {on_clicked_import();}
+    xywh {445 85 70 20} labelsize 12
+  }
+  Fl_Button btn_export {
+    label Export
+    callback {on_clicked_export();}
+    xywh {515 85 70 20} labelsize 12
+  }
+  Fl_Button btn_homepage {
+    label {https://github.com/linuxmao-org/FreeMajor}
+    callback {fl_open_uri(o->label());}
+    xywh {640 26 225 12} box NO_BOX labelsize 9 labelcolor 4
+    class Hyperlink_Button
   }
   Fl_Group {} {open
     xywh {0 115 585 100} box THIN_UP_BOX
@@ -787,16 +808,6 @@ widget_class Main_Component {open
       xywh {515 160 65 20} labelsize 12 align 24
     }
   }
-  Fl_Button btn_load {
-    label Load
-    callback {on_clicked_load();}
-    xywh {445 25 70 20} labelsize 12
-  }
-  Fl_Button btn_save {
-    label Save
-    callback {on_clicked_save();}
-    xywh {515 25 70 20} labelsize 12
-  }
   Fl_Choice ch_midi_interface {
     callback {on_changed_midi_interface();} open
     xywh {730 39 85 20} down_box BORDER_BOX labelsize 12 textsize 12
@@ -817,5 +828,9 @@ widget_class Main_Component {open
   Fl_Box {} {
     label Rx
     xywh {595 85 20 20} labelsize 12 align 20
+  }
+  Fl_Box {} {
+    label FreeMajor
+    xywh {595 1 315 24} box THIN_UP_BOX labeltype EMBOSSED_LABEL labelsize 18
   }
 }

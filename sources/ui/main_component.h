@@ -23,6 +23,7 @@ class Midi_Out_Queue;
 class Modifiers_Editor;
 class Eq_Display;
 class Matrix_Display;
+class Hyperlink_Button;
 class Fl_Choice;
 class Fl_Check_Button;
 class Fl_Slider;
@@ -35,8 +36,8 @@ typedef Fl_Widget_Ex<Fl_Group> Fl_Group_Ex;
 typedef Fl_Valuator_Ex<Fl_Slider> Fl_Slider_Ex;
 typedef Fl_Valuator_Ex<Fl_Dial> Fl_Dial_Ex;
 #include <FL/Fl_Group.H>
-#include <FL/Fl_Box.H>
 #include <FL/Fl_Button.H>
+#include <FL/Fl_Box.H>
 #include <FL/Fl_Check_Button.H>
 #include <FL/Fl_Input.H>
 #include <FL/Fl_Choice.H>
@@ -68,16 +69,6 @@ private:
   void after_changed_midi_interface(); 
   void on_change_midi_out(); 
   void on_change_midi_in(); 
-public:
-  Fl_Button *btn_import;
-private:
-  inline void cb_btn_import_i(Fl_Button*, void*);
-  static void cb_btn_import(Fl_Button*, void*);
-public:
-  Fl_Button *btn_export;
-private:
-  inline void cb_btn_export_i(Fl_Button*, void*);
-  static void cb_btn_export(Fl_Button*, void*);
   void on_clicked_import(); 
   void on_clicked_export(); 
   void on_clicked_change(); 
@@ -107,11 +98,6 @@ private:
   std::unique_ptr<Midi_Out_Queue> midi_out_q_; 
   std::unique_ptr<Fl_Double_Window> win_modifiers_; 
   Modifiers_Editor *edt_modifiers_ = nullptr; 
-public:
-  Fl_Button *btn_change;
-private:
-  inline void cb_btn_change_i(Fl_Button*, void*);
-  static void cb_btn_change(Fl_Button*, void*);
 public:
   Fl_Check_Button_Ex *chk_noise_gate;
   Fl_Group_Ex *box_ng1;
@@ -242,10 +228,25 @@ private:
 public:
   Fl_Box *txt_description;
   Fl_Check_Button *chk_realtime;
+  Fl_Button *btn_load;
+private:
+  inline void cb_btn_load_i(Fl_Button*, void*);
+  static void cb_btn_load(Fl_Button*, void*);
+public:
+  Fl_Button *btn_save;
+private:
+  inline void cb_btn_save_i(Fl_Button*, void*);
+  static void cb_btn_save(Fl_Button*, void*);
+public:
   Fl_Button *btn_new;
 private:
   inline void cb_btn_new_i(Fl_Button*, void*);
   static void cb_btn_new(Fl_Button*, void*);
+public:
+  Fl_Button *btn_change;
+private:
+  inline void cb_btn_change_i(Fl_Button*, void*);
+  static void cb_btn_change(Fl_Button*, void*);
 public:
   Fl_Button *btn_copy;
 private:
@@ -256,6 +257,21 @@ public:
 private:
   inline void cb_btn_delete_i(Fl_Button*, void*);
   static void cb_btn_delete(Fl_Button*, void*);
+public:
+  Fl_Button *btn_import;
+private:
+  inline void cb_btn_import_i(Fl_Button*, void*);
+  static void cb_btn_import(Fl_Button*, void*);
+public:
+  Fl_Button *btn_export;
+private:
+  inline void cb_btn_export_i(Fl_Button*, void*);
+  static void cb_btn_export(Fl_Button*, void*);
+public:
+  Hyperlink_Button *btn_homepage;
+private:
+  inline void cb_btn_homepage_i(Hyperlink_Button*, void*);
+  static void cb_btn_homepage(Hyperlink_Button*, void*);
 public:
   Fl_Input *txt_patch_name;
 private:
@@ -269,16 +285,6 @@ public:
   Fl_Slider_Ex *sl_out_level;
   Fl_Box *lbl_tap_tempo;
   Fl_Box *lbl_out_level;
-  Fl_Button *btn_load;
-private:
-  inline void cb_btn_load_i(Fl_Button*, void*);
-  static void cb_btn_load(Fl_Button*, void*);
-public:
-  Fl_Button *btn_save;
-private:
-  inline void cb_btn_save_i(Fl_Button*, void*);
-  static void cb_btn_save(Fl_Button*, void*);
-public:
   Fl_Choice *ch_midi_interface;
 private:
   inline void cb_ch_midi_interface_i(Fl_Choice*, void*);

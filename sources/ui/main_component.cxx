@@ -6,36 +6,17 @@
 #include "midi_out_queue.h"
 #include "eq_display.h"
 #include "matrix_display.h"
+#include "hyperlink_button.h"
 #include "widget_ex.h"
 #include "model/patch.h"
 #include "model/parameter.h"
-
-void Main_Component::cb_btn_import_i(Fl_Button*, void*) {
-  on_clicked_import();
-}
-void Main_Component::cb_btn_import(Fl_Button* o, void* v) {
-  ((Main_Component*)(o->parent()))->cb_btn_import_i(o,v);
-}
-
-void Main_Component::cb_btn_export_i(Fl_Button*, void*) {
-  on_clicked_export();
-}
-void Main_Component::cb_btn_export(Fl_Button* o, void* v) {
-  ((Main_Component*)(o->parent()))->cb_btn_export_i(o,v);
-}
+#include <FL/filename.H>
 
 void Main_Component::cb_br_bank_i(Fl_Hold_Browser*, void*) {
   on_selected_patch();
 }
 void Main_Component::cb_br_bank(Fl_Hold_Browser* o, void* v) {
   ((Main_Component*)(o->parent()))->cb_br_bank_i(o,v);
-}
-
-void Main_Component::cb_btn_change_i(Fl_Button*, void*) {
-  on_clicked_change();
-}
-void Main_Component::cb_btn_change(Fl_Button* o, void* v) {
-  ((Main_Component*)(o->parent()))->cb_btn_change_i(o,v);
 }
 
 void Main_Component::cb_btn_send_i(Fl_Button*, void*) {
@@ -66,11 +47,32 @@ void Main_Component::cb_btn_midi_in(Fl_Button* o, void* v) {
   ((Main_Component*)(o->parent()))->cb_btn_midi_in_i(o,v);
 }
 
+void Main_Component::cb_btn_load_i(Fl_Button*, void*) {
+  on_clicked_load();
+}
+void Main_Component::cb_btn_load(Fl_Button* o, void* v) {
+  ((Main_Component*)(o->parent()))->cb_btn_load_i(o,v);
+}
+
+void Main_Component::cb_btn_save_i(Fl_Button*, void*) {
+  on_clicked_save();
+}
+void Main_Component::cb_btn_save(Fl_Button* o, void* v) {
+  ((Main_Component*)(o->parent()))->cb_btn_save_i(o,v);
+}
+
 void Main_Component::cb_btn_new_i(Fl_Button*, void*) {
   on_clicked_new();
 }
 void Main_Component::cb_btn_new(Fl_Button* o, void* v) {
   ((Main_Component*)(o->parent()))->cb_btn_new_i(o,v);
+}
+
+void Main_Component::cb_btn_change_i(Fl_Button*, void*) {
+  on_clicked_change();
+}
+void Main_Component::cb_btn_change(Fl_Button* o, void* v) {
+  ((Main_Component*)(o->parent()))->cb_btn_change_i(o,v);
 }
 
 void Main_Component::cb_btn_copy_i(Fl_Button*, void*) {
@@ -87,25 +89,32 @@ void Main_Component::cb_btn_delete(Fl_Button* o, void* v) {
   ((Main_Component*)(o->parent()))->cb_btn_delete_i(o,v);
 }
 
+void Main_Component::cb_btn_import_i(Fl_Button*, void*) {
+  on_clicked_import();
+}
+void Main_Component::cb_btn_import(Fl_Button* o, void* v) {
+  ((Main_Component*)(o->parent()))->cb_btn_import_i(o,v);
+}
+
+void Main_Component::cb_btn_export_i(Fl_Button*, void*) {
+  on_clicked_export();
+}
+void Main_Component::cb_btn_export(Fl_Button* o, void* v) {
+  ((Main_Component*)(o->parent()))->cb_btn_export_i(o,v);
+}
+
+void Main_Component::cb_btn_homepage_i(Hyperlink_Button* o, void*) {
+  fl_open_uri(o->label());
+}
+void Main_Component::cb_btn_homepage(Hyperlink_Button* o, void* v) {
+  ((Main_Component*)(o->parent()))->cb_btn_homepage_i(o,v);
+}
+
 void Main_Component::cb_txt_patch_name_i(Fl_Input*, void*) {
   on_edited_patch_name();
 }
 void Main_Component::cb_txt_patch_name(Fl_Input* o, void* v) {
   ((Main_Component*)(o->parent()->parent()))->cb_txt_patch_name_i(o,v);
-}
-
-void Main_Component::cb_btn_load_i(Fl_Button*, void*) {
-  on_clicked_load();
-}
-void Main_Component::cb_btn_load(Fl_Button* o, void* v) {
-  ((Main_Component*)(o->parent()))->cb_btn_load_i(o,v);
-}
-
-void Main_Component::cb_btn_save_i(Fl_Button*, void*) {
-  on_clicked_save();
-}
-void Main_Component::cb_btn_save(Fl_Button* o, void* v) {
-  ((Main_Component*)(o->parent()))->cb_btn_save_i(o,v);
 }
 
 void Main_Component::cb_ch_midi_interface_i(Fl_Choice*, void*) {
@@ -123,19 +132,6 @@ void Main_Component::cb_btn_modifiers(Fl_Button* o, void* v) {
 }
 Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
   : Fl_Group(X, Y, W, H, L) {
-{ Fl_Box* o = new Fl_Box(595, 1, 315, 35, _("FreeMajor"));
-  o->box(FL_UP_BOX);
-  o->labeltype(FL_SHADOW_LABEL);
-  o->labelsize(28);
-} // Fl_Box* o
-{ btn_import = new Fl_Button(445, 85, 70, 20, _("Import"));
-  btn_import->labelsize(12);
-  btn_import->callback((Fl_Callback*)cb_btn_import);
-} // Fl_Button* btn_import
-{ btn_export = new Fl_Button(515, 85, 70, 20, _("Export"));
-  btn_export->labelsize(12);
-  btn_export->callback((Fl_Callback*)cb_btn_export);
-} // Fl_Button* btn_export
 { br_bank = new Fl_Hold_Browser(240, 10, 205, 95);
   br_bank->box(FL_NO_BOX);
   br_bank->color(FL_BACKGROUND2_COLOR);
@@ -149,10 +145,6 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
   br_bank->align(Fl_Align(FL_ALIGN_BOTTOM));
   br_bank->when(FL_WHEN_RELEASE_ALWAYS);
 } // Fl_Hold_Browser* br_bank
-{ btn_change = new Fl_Button(515, 45, 70, 20, _("Change"));
-  btn_change->labelsize(12);
-  btn_change->callback((Fl_Callback*)cb_btn_change);
-} // Fl_Button* btn_change
 { Fl_Group* o = new Fl_Group(0, 225, 261, 225);
   o->box(FL_THIN_UP_BOX);
   { chk_noise_gate = new Fl_Check_Button_Ex(1, 226, 128, 23, _("Noise gate"));
@@ -1487,10 +1479,22 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
   chk_realtime->value(1);
   chk_realtime->labelsize(12);
 } // Fl_Check_Button* chk_realtime
+{ btn_load = new Fl_Button(445, 25, 70, 20, _("Load"));
+  btn_load->labelsize(12);
+  btn_load->callback((Fl_Callback*)cb_btn_load);
+} // Fl_Button* btn_load
+{ btn_save = new Fl_Button(515, 25, 70, 20, _("Save"));
+  btn_save->labelsize(12);
+  btn_save->callback((Fl_Callback*)cb_btn_save);
+} // Fl_Button* btn_save
 { btn_new = new Fl_Button(445, 45, 70, 20, _("New"));
   btn_new->labelsize(12);
   btn_new->callback((Fl_Callback*)cb_btn_new);
 } // Fl_Button* btn_new
+{ btn_change = new Fl_Button(515, 45, 70, 20, _("Change"));
+  btn_change->labelsize(12);
+  btn_change->callback((Fl_Callback*)cb_btn_change);
+} // Fl_Button* btn_change
 { btn_copy = new Fl_Button(445, 65, 70, 20, _("Copy"));
   btn_copy->labelsize(12);
   btn_copy->callback((Fl_Callback*)cb_btn_copy);
@@ -1499,6 +1503,26 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
   btn_delete->labelsize(12);
   btn_delete->callback((Fl_Callback*)cb_btn_delete);
 } // Fl_Button* btn_delete
+{ btn_import = new Fl_Button(445, 85, 70, 20, _("Import"));
+  btn_import->labelsize(12);
+  btn_import->callback((Fl_Callback*)cb_btn_import);
+} // Fl_Button* btn_import
+{ btn_export = new Fl_Button(515, 85, 70, 20, _("Export"));
+  btn_export->labelsize(12);
+  btn_export->callback((Fl_Callback*)cb_btn_export);
+} // Fl_Button* btn_export
+{ btn_homepage = new Hyperlink_Button(640, 26, 225, 12, _("https://github.com/linuxmao-org/FreeMajor"));
+  btn_homepage->box(FL_NO_BOX);
+  btn_homepage->color(FL_BACKGROUND_COLOR);
+  btn_homepage->selection_color(FL_BACKGROUND_COLOR);
+  btn_homepage->labeltype(FL_NORMAL_LABEL);
+  btn_homepage->labelfont(0);
+  btn_homepage->labelsize(9);
+  btn_homepage->labelcolor((Fl_Color)4);
+  btn_homepage->callback((Fl_Callback*)cb_btn_homepage);
+  btn_homepage->align(Fl_Align(FL_ALIGN_CENTER));
+  btn_homepage->when(FL_WHEN_RELEASE);
+} // Hyperlink_Button* btn_homepage
 { Fl_Group* o = new Fl_Group(0, 115, 585, 100);
   o->box(FL_THIN_UP_BOX);
   { txt_patch_name = new Fl_Input(5, 135, 120, 20, _("Patch name:"));
@@ -1578,14 +1602,6 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
   } // Fl_Box* lbl_out_level
   o->end();
 } // Fl_Group* o
-{ btn_load = new Fl_Button(445, 25, 70, 20, _("Load"));
-  btn_load->labelsize(12);
-  btn_load->callback((Fl_Callback*)cb_btn_load);
-} // Fl_Button* btn_load
-{ btn_save = new Fl_Button(515, 25, 70, 20, _("Save"));
-  btn_save->labelsize(12);
-  btn_save->callback((Fl_Callback*)cb_btn_save);
-} // Fl_Button* btn_save
 { ch_midi_interface = new Fl_Choice(730, 39, 85, 20);
   ch_midi_interface->down_box(FL_BORDER_BOX);
   ch_midi_interface->labelsize(12);
@@ -1614,6 +1630,11 @@ Main_Component::Main_Component(int X, int Y, int W, int H, const char *L)
 { Fl_Box* o = new Fl_Box(595, 85, 20, 20, _("Rx"));
   o->labelsize(12);
   o->align(Fl_Align(FL_ALIGN_LEFT|FL_ALIGN_INSIDE));
+} // Fl_Box* o
+{ Fl_Box* o = new Fl_Box(595, 1, 315, 24, _("FreeMajor"));
+  o->box(FL_THIN_UP_BOX);
+  o->labeltype(FL_EMBOSSED_LABEL);
+  o->labelsize(18);
 } // Fl_Box* o
 init();
 end();

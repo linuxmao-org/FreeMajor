@@ -54,6 +54,7 @@ add_executable(FreeMajor WIN32 MACOSX_BUNDLE
   "sources/ui/receive_dialog_impl.cc"
   "sources/ui/eq_display.cc"
   "sources/ui/matrix_display.cc"
+  "sources/ui/hyperlink_button.cc"
   "sources/ui/association.cc"
   "sources/ui/midi_out_queue.cc")
 target_compile_definitions(FreeMajor

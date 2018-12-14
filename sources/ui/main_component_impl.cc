@@ -82,7 +82,8 @@ void Main_Component::reset_description_text()
 {
     txt_description->label(_(u8"TC Electronic G-Major controller, © 2018\n"
                              "Free and open source software controller by\n"
-                             "Jean Pierre Cimalando & Julien Taverna"));
+                             "Jean Pierre Cimalando & Julien Taverna"\n"
+                             "Code forge: https://github.com/linuxmao-org/FreeMajor"));
 }
 
 unsigned Main_Component::get_patch_number() const

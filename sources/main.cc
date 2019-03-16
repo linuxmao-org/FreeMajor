@@ -70,9 +70,11 @@ int main(int argc, char *argv[])
     textdomain("FreeMajor");
 #endif
 
+#if FL_API_VERSION >= 10303
     Fl_Pixmap icon(Icon::FreeMajor);
     Fl_RGB_Image image(&icon);
     Fl_Window::default_icon(&image);
+#endif
 
     Main_Window win;
 

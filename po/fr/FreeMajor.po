@@ -1654,11 +1654,15 @@ msgstr "Carrée"
 
 #: sources/ui/main_component_impl.cc:83
 msgid ""
-"TC Electronic G-Major controller, © 2018-2019\n"
+"TC Electronic G-Major controller\n"
+"Version %v, © 2018-2019\n"
+"\n"
 "Free and open source software controller by\n"
 "Jean Pierre Cimalando & Julien Taverna"
 msgstr ""
-"Contrôleur TC Electronic G-Major, © 2018-2019\n"
+"Contrôleur TC Electronic G-Major\n"
+"Version %v, © 2018-2019\n"
+"\n"
 "Contrôleur logiciel libre et open source par\n"
 "Jean Pierre Cimalando & Julien Taverna"
 

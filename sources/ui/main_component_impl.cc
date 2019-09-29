@@ -80,9 +80,17 @@ Main_Component::~Main_Component()
 
 void Main_Component::reset_description_text()
 {
-    txt_description->label(_(u8"TC Electronic G-Major controller, © 2018-2019\n"
-                             "Free and open source software controller by\n"
-                             "Jean Pierre Cimalando & Julien Taverna"));
+    std::string text = _(u8"TC Electronic G-Major controller\n"
+                           "Version %v, © 2018-2019\n"
+                           "\n"
+                           "Free and open source software controller by\n"
+                           "Jean Pierre Cimalando & Julien Taverna");
+
+    size_t vpos = text.find("%v");
+    if (vpos != text.npos)
+        text.replace(vpos, 2, PROJECT_VERSION);
+
+    txt_description->copy_label(text.c_str());
 }
 
 unsigned Main_Component::get_patch_number() const

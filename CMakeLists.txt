@@ -58,6 +58,7 @@ add_executable(FreeMajor WIN32 MACOSX_BUNDLE
   "sources/ui/association.cc"
   "sources/ui/midi_out_queue.cc")
 target_compile_definitions(FreeMajor
+  PRIVATE "PROJECT_VERSION=\"${PROJECT_VERSION}\""
   PRIVATE "LOCALE_DIRECTORY=\"${CMAKE_INSTALL_FULL_LOCALEDIR}\"")
 target_include_directories(FreeMajor
   PRIVATE "sources" "${FLTK_INCLUDE_DIR}")

@@ -2,10 +2,10 @@
 
 Editor for the TC Electronic G-Major guitar effect module
 
-[![Build Status](https://semaphoreci.com/api/v1/jpcima/freemajor/branches/master/badge.svg)](https://semaphoreci.com/jpcima/freemajor)
+[![Build Status](https://travis-ci.com/linuxmao-org/FreeMajor.svg?branch=master)](https://travis-ci.com/linuxmao-org/FreeMajor)
 
-[:floppy_disk: Automatic development build for Windows](https://github.com/linuxmao-org/FreeMajor/releases/tag/nightly)  
-[:floppy_disk: Automatic development build for Mac OS](https://github.com/linuxmao-org/FreeMajor/releases/tag/nightly) (requires [libcxx](https://trac.macports.org/wiki/LibcxxOnOlderSystems) from MacPorts on macOS 10.8 or earlier)
+[:floppy_disk: Automatic development build for Windows](https://github.com/linuxmao-org/FreeMajor/releases/tag/automatic)  
+[:floppy_disk: Automatic development build for Mac OS](https://github.com/linuxmao-org/FreeMajor/releases/tag/automatic) (requires [libcxx](https://trac.macports.org/wiki/LibcxxOnOlderSystems) from MacPorts on macOS 10.8 or earlier)
 
 ### Useful links
 

@@ -80,7 +80,7 @@ Main_Component::~Main_Component()
 
 void Main_Component::reset_description_text()
 {
-    txt_description->label(_(u8"TC Electronic G-Major controller, © 2018\n"
+    txt_description->label(_(u8"TC Electronic G-Major controller, © 2018-2019\n"
                              "Free and open source software controller by\n"
                              "Jean Pierre Cimalando & Julien Taverna"));
 }

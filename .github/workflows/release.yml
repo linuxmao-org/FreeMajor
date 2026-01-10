@@ -1,0 +1,66 @@
+name: Build and Release
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build ${{ matrix.target }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - target: win32
+            docker_image: jpcima/arch-mingw
+            cmake: i686-w64-mingw32-cmake
+            zip_name: FreeMajor-dev-win32.zip
+          - target: win64
+            docker_image: jpcima/arch-mingw
+            cmake: x86_64-w64-mingw32-cmake
+            zip_name: FreeMajor-dev-win64.zip
+          - target: macos
+            docker_image: jpcima/osxcross-10.6
+            cmake: x86_64-apple-darwin15-cmake
+            zip_name: FreeMajor-dev-mac.zip
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Start cross container
+        run: |
+          docker pull ${{ matrix.docker_image }}
+          container=$(docker run -d -i -t -v $GITHUB_WORKSPACE:$GITHUB_WORKSPACE ${{ matrix.docker_image }} /bin/bash)
+          echo "CONTAINER_ID=$container" >> $GITHUB_ENV
+
+      - name: Define cross function
+        run: |
+          {
+            echo 'cross() {'
+            if [ "${{ matrix.target }}" = "macos" ]; then
+              echo '  docker exec -w "$GITHUB_WORKSPACE" -e PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/osxcross/target/bin -e MACOSX_DEPLOYMENT_TARGET=10.7 -i -t "$CONTAINER_ID" "$@";'
+            else
+              echo '  docker exec -w "$GITHUB_WORKSPACE" -i -t "$CONTAINER_ID" "$@";'
+            fi
+            echo '}'
+          } >> $GITHUB_ENV
+
+      - name: Build and package
+        run: |
+          mkdir -p release build
+          cd build
+          source <(echo "$(
+            grep '^cross()' -n $GITHUB_ENV >/dev/null 2>&1 || cat $GITHUB_ENV
+          )") || true
+          cross ${{ matrix.cmake }} -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DENABLE_GETTEXT=ON ..
+          cross make -j
+          cross cpack -G ZIP
+          cp FreeMajor-*.zip ../release/${{ matrix.zip_name }}
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.zip_name }}
+          path: release/${{ matrix.zip_name }}

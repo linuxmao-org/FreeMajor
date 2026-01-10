@@ -81,7 +81,7 @@ Main_Component::~Main_Component()
 void Main_Component::reset_description_text()
 {
     std::string text = _(u8"TC Electronic G-Major controller\n"
-                           "Version %v, © 2018-2019\n"
+                           "Version %v, © 2018-2026\n"
                            "\n"
                            "Free and open source software controller by\n"
                            "Jean Pierre Cimalando & Julien Taverna");
